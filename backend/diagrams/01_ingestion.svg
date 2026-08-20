@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 420" font-family="Menlo, Consolas, 'SF Mono', monospace" font-size="12.5">
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1B2430"/>
+    </marker>
+    <marker id="a1p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2F6E62"/>
+    </marker>
+    <marker id="a1c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#A6741F"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="420" fill="#FFFFFF"/>
+  <text x="20" y="30" font-family="Georgia, serif" font-size="17" font-weight="600" fill="#1B2430">Ingestion — building the two-level index</text>
+
+  <!-- Source -->
+  <rect x="20" y="200" width="150" height="60" rx="8" fill="none" stroke="#8A93A0"/>
+  <text x="95" y="225" text-anchor="middle" font-weight="600" fill="#1B2430">family_law_domain</text>
+  <text x="95" y="242" text-anchor="middle" fill="#6B7480">*.json</text>
+
+  <!-- chunking.py -->
+  <rect x="250" y="200" width="150" height="60" rx="8" fill="none" stroke="#8A93A0"/>
+  <text x="325" y="225" text-anchor="middle" font-weight="600" fill="#1B2430">chunking.py</text>
+  <text x="325" y="242" text-anchor="middle" fill="#6B7480">per Q&amp;A item</text>
+
+  <!-- Parent record -->
+  <rect x="480" y="75" width="220" height="82" rx="8" fill="#E4EFEC" stroke="#2F6E62" stroke-width="1.4"/>
+  <text x="590" y="102" text-anchor="middle" font-weight="700" fill="#2F6E62">parent record</text>
+  <text x="590" y="120" text-anchor="middle" fill="#3E4A52">query + all responses</text>
+  <text x="590" y="137" text-anchor="middle" fill="#3E4A52">is_parent = true</text>
+
+  <!-- Child chunks -->
+  <rect x="480" y="318" width="220" height="82" rx="8" fill="#F5ECDA" stroke="#A6741F" stroke-width="1.4"/>
+  <text x="590" y="345" text-anchor="middle" font-weight="700" fill="#A6741F">child chunks</text>
+  <text x="590" y="363" text-anchor="middle" fill="#4A4030">1 per expert response</text>
+  <text x="590" y="380" text-anchor="middle" fill="#4A4030">is_parent = false</text>
+
+  <!-- embedding.py -->
+  <rect x="770" y="200" width="150" height="60" rx="8" fill="none" stroke="#8A93A0"/>
+  <text x="845" y="225" text-anchor="middle" font-weight="600" fill="#1B2430">embedding.py</text>
+  <text x="845" y="242" text-anchor="middle" fill="#6B7480">InLegal-Sbert</text>
+
+  <!-- Zilliz -->
+  <rect x="990" y="188" width="170" height="84" rx="8" fill="none" stroke="#3A5A9B" stroke-width="1.4"/>
+  <text x="1075" y="215" text-anchor="middle" font-weight="700" fill="#3A5A9B">Zilliz collection</text>
+  <text x="1075" y="233" text-anchor="middle" fill="#4A5670">one table</text>
+  <text x="1075" y="250" text-anchor="middle" fill="#4A5670">split by is_parent</text>
+
+  <!-- arrows -->
+  <line x1="170" y1="230" x2="246" y2="230" stroke="#1B2430" stroke-opacity="0.7" marker-end="url(#a1)"/>
+
+  <line x1="400" y1="216" x2="476" y2="140" stroke="#2F6E62" stroke-opacity="0.85" marker-end="url(#a1p)"/>
+  <text x="404" y="170" fill="#2F6E62" font-size="11.5">&#8804; 1800 tok</text>
+
+  <line x1="400" y1="244" x2="476" y2="345" stroke="#A6741F" stroke-opacity="0.85" marker-end="url(#a1c)"/>
+  <text x="404" y="310" fill="#A6741F" font-size="11.5">600 tok / 80 overlap</text>
+
+  <line x1="700" y1="125" x2="766" y2="212" stroke="#2F6E62" stroke-opacity="0.85" marker-end="url(#a1p)"/>
+  <line x1="700" y1="350" x2="766" y2="248" stroke="#A6741F" stroke-opacity="0.85" marker-end="url(#a1c)"/>
+
+  <line x1="920" y1="230" x2="986" y2="230" stroke="#1B2430" stroke-opacity="0.7" marker-end="url(#a1)"/>
+  <text x="925" y="220" fill="#6B7480" font-size="11.5">768-d vectors</text>
+
+  <!-- legend -->
+  <line x1="20" y1="392" x2="1160" y2="392" stroke="#D6DAE1"/>
+  <rect x="20" y="402" width="11" height="11" fill="#2F6E62"/>
+  <text x="38" y="411" fill="#5B6472">parent — full original text</text>
+  <rect x="270" y="402" width="11" height="11" fill="#A6741F"/>
+  <text x="288" y="411" fill="#5B6472">child — searchable fragment</text>
+  <rect x="520" y="402" width="11" height="11" fill="#3A5A9B"/>
+  <text x="538" y="411" fill="#5B6472">pipeline / storage</text>
+</svg>

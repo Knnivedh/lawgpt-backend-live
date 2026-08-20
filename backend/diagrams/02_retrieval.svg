@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 460" font-family="Menlo, Consolas, 'SF Mono', monospace" font-size="12.5">
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1B2430"/>
+    </marker>
+    <marker id="a2c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#A6741F"/>
+    </marker>
+    <marker id="a2p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2F6E62"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1560" height="460" fill="#FFFFFF"/>
+  <text x="20" y="30" font-family="Georgia, serif" font-size="17" font-weight="600" fill="#1B2430">Retrieval — search small, return big</text>
+
+  <!-- query -->
+  <rect x="20" y="215" width="140" height="60" rx="8" fill="none" stroke="#8A93A0"/>
+  <text x="90" y="250" text-anchor="middle" font-weight="600" fill="#1B2430">user query</text>
+
+  <!-- embed -->
+  <rect x="200" y="215" width="170" height="60" rx="8" fill="none" stroke="#8A93A0"/>
+  <text x="285" y="240" text-anchor="middle" font-weight="600" fill="#1B2430">embed query</text>
+  <text x="285" y="258" text-anchor="middle" fill="#6B7480">InLegal-Sbert</text>
+
+  <!-- stage1 top -->
+  <rect x="420" y="70" width="220" height="86" rx="8" fill="#F5ECDA" stroke="#A6741F" stroke-width="1.4"/>
+  <text x="530" y="98" text-anchor="middle" font-weight="700" fill="#A6741F">case pool search</text>
+  <text x="530" y="116" text-anchor="middle" fill="#4A4030">category filter</text>
+  <text x="530" y="133" text-anchor="middle" fill="#4A4030">is_parent == false</text>
+
+  <!-- stage1 bottom -->
+  <rect x="420" y="344" width="220" height="86" rx="8" fill="#F5ECDA" stroke="#A6741F" stroke-width="1.4"/>
+  <text x="530" y="372" text-anchor="middle" font-weight="700" fill="#A6741F">law/act pool search</text>
+  <text x="530" y="390" text-anchor="middle" fill="#4A4030">category filter</text>
+  <text x="530" y="407" text-anchor="middle" fill="#4A4030">is_parent == false</text>
+
+  <!-- merge: top-k matches -->
+  <rect x="700" y="215" width="200" height="60" rx="8" fill="none" stroke="#8A93A0"/>
+  <text x="800" y="238" text-anchor="middle" font-weight="600" fill="#1B2430">top-k child matches</text>
+  <text x="800" y="256" text-anchor="middle" fill="#6B7480">5 case + 3-5 law</text>
+
+  <!-- parent expansion -->
+  <rect x="960" y="198" width="260" height="94" rx="8" fill="#E4EFEC" stroke="#2F6E62" stroke-width="1.6"/>
+  <text x="1090" y="225" text-anchor="middle" font-weight="700" fill="#2F6E62">parent expansion</text>
+  <text x="1090" y="243" text-anchor="middle" fill="#3E4A52">collection.query()</text>
+  <text x="1090" y="260" text-anchor="middle" fill="#3E4A52">parent_id in [...]</text>
+  <text x="1090" y="277" text-anchor="middle" fill="#3E4A52">&#8804; 8 unique parents</text>
+
+  <!-- context out -->
+  <rect x="1290" y="215" width="250" height="60" rx="8" fill="none" stroke="#3A5A9B" stroke-width="1.4"/>
+  <text x="1415" y="238" text-anchor="middle" font-weight="700" fill="#3A5A9B">context</text>
+  <text x="1415" y="256" text-anchor="middle" fill="#4A5670">&#8594; generator.py</text>
+
+  <!-- arrows -->
+  <line x1="160" y1="245" x2="196" y2="245" stroke="#1B2430" stroke-opacity="0.7" marker-end="url(#a2)"/>
+
+  <line x1="370" y1="232" x2="416" y2="135" stroke="#1B2430" stroke-opacity="0.55" marker-end="url(#a2)"/>
+  <line x1="370" y1="258" x2="416" y2="365" stroke="#1B2430" stroke-opacity="0.55" marker-end="url(#a2)"/>
+
+  <line x1="640" y1="125" x2="696" y2="225" stroke="#A6741F" stroke-opacity="0.85" marker-end="url(#a2c)"/>
+  <line x1="640" y1="375" x2="696" y2="265" stroke="#A6741F" stroke-opacity="0.85" marker-end="url(#a2c)"/>
+
+  <line x1="900" y1="245" x2="956" y2="245" stroke="#1B2430" stroke-opacity="0.7" marker-end="url(#a2)"/>
+  <text x="905" y="235" fill="#6B7480" font-size="11.5">unique parent_ids</text>
+
+  <line x1="1220" y1="245" x2="1286" y2="245" stroke="#2F6E62" stroke-width="1.6" marker-end="url(#a2p)"/>
+  <text x="1226" y="235" fill="#2F6E62" font-size="11.5">full original text</text>
+
+  <!-- legend -->
+  <line x1="20" y1="432" x2="1540" y2="432" stroke="#D6DAE1"/>
+  <rect x="20" y="440" width="11" height="11" fill="#A6741F"/>
+  <text x="38" y="449" fill="#5B6472">stage 1 — search (precise, small)</text>
+  <rect x="300" y="440" width="11" height="11" fill="#2F6E62"/>
+  <text x="318" y="449" fill="#5B6472">stage 2 — expand (complete, big)</text>
+  <rect x="600" y="440" width="11" height="11" fill="#3A5A9B"/>
+  <text x="618" y="449" fill="#5B6472">handoff to generation</text>
+</svg>
