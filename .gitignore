@@ -21,10 +21,10 @@ logs/
 event_traces/
 volumes/
 
-# Generated RAG artifacts (recreate with chunking.py and embedding.py)
-backend/data/family_law_domain/
-backend/data/chunked/
-backend/data/embeddings/
+# # Generated RAG artifacts (recreate with chunking.py and embedding.py)
+# backend/data/family_law_domain/
+# backend/data/chunked/
+# backend/data/embeddings/
 
 # Local/editor files and backups
 .DS_Store

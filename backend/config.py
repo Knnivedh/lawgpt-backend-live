@@ -6,7 +6,7 @@ history_dir is removed — conversation state now lives in PostgreSQL.
 """
 
 import os
-from typing import Optional
+from typing import List, Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, field_validator
 import logging
@@ -86,6 +86,43 @@ class Settings(BaseSettings):
     # ── Rate Limiting ─────────────────────────────────────────────────────────
     rate_limit_per_minute: int = Field(default=60, env="RATE_LIMIT_PER_MINUTE")
 
+    # ── ASR (Speech-to-Text) — AI4Bharat IndicConformer ─────────────────────
+    enable_asr: bool = Field(default=True, env="ENABLE_ASR")
+    # HuggingFace model repo ID for the ASR model
+    asr_model_name: str = Field(
+        default="ai4bharat/indic-conformer-600m-multilingual",
+        env="ASR_MODEL_NAME",
+    )
+    # torch device: "cpu" or "cuda"
+    asr_device: str = Field(default="cpu", env="ASR_DEVICE")
+    # Decoding strategy: "ctc" (faster) or "rnnt" (streaming-friendly)
+    asr_strategy: str = Field(default="ctc", env="ASR_STRATEGY")
+    # BCP-47 / ISO-639-1 language code used when the client doesn't specify one
+    # Common codes: hi=Hindi, ta=Tamil, te=Telugu, bn=Bengali, mr=Marathi
+    asr_default_language: str = Field(default="hi", env="ASR_DEFAULT_LANGUAGE")
+    asr_max_audio_seconds: int = Field(default=60, env="ASR_MAX_AUDIO_SECONDS")
+    asr_rate_limit_per_minute: int = Field(default=20, env="ASR_RATE_LIMIT_PER_MINUTE")
+    # IndicConformer covers only these scheduled Indian languages — it has no
+    # English label, and forcing it to "transcribe as English" just produces
+    # garbage. Anything outside this set (chiefly "en") is routed to
+    # faster-whisper instead. Used both to validate an explicit `language` and,
+    # after Whisper's language-ID pass in auto mode, to pick the engine.
+    asr_indic_languages: List[str] = Field(
+        default=[
+            "hi", "bn", "te", "mr", "ta", "gu", "kn", "ml", "pa", "or", "as",
+            "ur", "ne", "sa", "sd", "ks", "mai", "kok", "mni", "doi", "bho", "raj",
+        ],
+        env="ASR_INDIC_LANGUAGES",
+    )
+
+    # ── ASR — faster-whisper (English + audio-based language ID) ────────────
+    # Used for (a) a fast single-pass language-ID on the raw audio when the
+    # client omits `language`, and (b) transcribing English (or any other
+    # non-Indic language), which IndicConformer cannot handle at all.
+    whisper_model_size: str = Field(default="small", env="WHISPER_MODEL_SIZE")
+    whisper_device: str = Field(default="cpu", env="WHISPER_DEVICE")
+    whisper_compute_type: str = Field(default="int8", env="WHISPER_COMPUTE_TYPE")
+
     # ── Auth / JWT ────────────────────────────────────────────────────────────
     jwt_secret_key: str = Field(..., env="JWT_SECRET_KEY")
     jwt_algorithm: str  = Field(default="HS256", env="JWT_ALGORITHM")
@@ -118,6 +155,13 @@ class Settings(BaseSettings):
     def parse_cors_origins(cls, v):
         if isinstance(v, str):
             return [o.strip() for o in v.split(",")]
+        return v
+
+    @field_validator("asr_indic_languages", mode="before")
+    @classmethod
+    def parse_asr_indic_languages(cls, v):
+        if isinstance(v, str):
+            return [o.strip() for o in v.split(",") if o.strip()]
         return v
 
     def create_data_directories(self):

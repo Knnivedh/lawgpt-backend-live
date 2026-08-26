@@ -18,6 +18,7 @@ from config import get_settings
 import os
 import logging
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from lang_utils import detect_language, build_language_instruction, get_language_name
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -131,6 +132,14 @@ def generate_response(state: FamilyLawState) -> Dict:
     user_intent = state.get("user_intent", "legal advice")
     gender = state.get("user_gender", "unknown")
     name = state.get("name", "Client")
+
+    # ── Language-aware response ─────────────────────────────────────────────
+    # Prefer the detected_language already stored in state (set by query_analyzer)
+    # so we don't re-run detection on every call.
+    detected_lang = state.get("detected_language") or detect_language(query)
+    lang_instruction = build_language_instruction(detected_lang)
+    if lang_instruction:
+        logger.info(f"🌐 Responding in language: {get_language_name(detected_lang)} ({detected_lang})")
     
     logger.info("🤖 === GENERATING LEGAL RESPONSE (CLEAN) ===")
     
@@ -146,13 +155,14 @@ def generate_response(state: FamilyLawState) -> Dict:
     legal_context = format_context(retrieved_chunks)
     case_information = format_case_info(info_collected, user_intent)
     
-    # Build conversation
-    conversation = [SystemMessage(content=SYSTEM_PROMPT)]
+    # Build conversation — inject language instruction into system prompt
+    system_content = SYSTEM_PROMPT + lang_instruction
+    conversation = [SystemMessage(content=system_content)]
     
     if messages:
         conversation.extend(messages[-4:])
     
-    # Construct prompt
+    # Construct prompt — also append language reminder in the user-facing block
     prompt = f"""Provide complete legal advice (experienced lawyer) based on the case information and precedents below.
 
 {case_information}
@@ -163,6 +173,7 @@ Legal Context:
 CLIENT NAME: {name}
 CLIENT GENDER: {gender}
 CLIENT QUERY: {query}
+{lang_instruction}
 
 Provide a COMPLETE, well-structured response with:
 - Internally reason as Issue → Rule (statute/precedent) → Application → Conclusion, but only output the detailed final answer.

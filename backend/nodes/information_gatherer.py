@@ -14,6 +14,7 @@ import json
 import logging
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from torch import ge
+from lang_utils import detect_language, build_language_instruction, get_language_name
 
 logger = logging.getLogger(__name__)
 
@@ -67,6 +68,7 @@ CRITICAL RULES:
 2. Ask ONLY about {current_target} that support the case - be specific and direct
 3. Be empathetic and professional. Use simple, clear language
 4. Reference previously collected information naturally
+{lang_instruction}
 
 YOUR QUESTION:"""
 
@@ -259,8 +261,7 @@ Response (JSON only, no other text):
                 "current_question_target": None
             }
         
-        # STEP 3: Generate next question
-        # next_target = info_needed_list[0]
+        # Generate next question
         next_item = info_needed_list[0]
 
         next_target = next_item["field"]
@@ -287,6 +288,9 @@ Response (JSON only, no other text):
             next_reason = next_item.get("reason", "")
         
         logger.info(f"Generating question for: {next_target}")
+
+        # Read language from state (set by query_analyzer)
+        detected_lang = state.get("detected_language") or detect_language(root_query)
         
         next_question = self._generate_question(
             name=name,
@@ -296,7 +300,8 @@ Response (JSON only, no other text):
             info_collected=info_collected,
             current_target=next_target,
             current_reason=next_reason,
-            all_remaining=info_needed_list
+            all_remaining=info_needed_list,
+            detected_lang=detected_lang,
         )
         
         return {
@@ -337,11 +342,15 @@ Response (JSON only, no other text):
         info_collected: Dict,
         current_target: str,
         current_reason: str,
-        all_remaining: List[Dict[str, str]]
+        all_remaining: List[Dict[str, str]],
+        detected_lang: str = "en",
     ) -> str:
-        """Generate a focused question."""
+        """Generate a focused question in the user's language."""
         
         collected_str = self._format_info_collected(info_collected)
+        lang_instruction = build_language_instruction(detected_lang)
+        if lang_instruction:
+            logger.info(f"🌐 Asking follow-up question in: {get_language_name(detected_lang)} ({detected_lang})")
         
         prompt = self.QUESTION_GENERATION_PROMPT.format(
             name=name,
@@ -350,7 +359,8 @@ Response (JSON only, no other text):
             user_intent=user_intent.replace("_", " ").title(),
             info_collected=collected_str or "None yet",
             current_target=current_target.replace("_", " ").title(),
-            current_reason=current_reason
+            current_reason=current_reason,
+            lang_instruction=lang_instruction,
         )
         
         try:

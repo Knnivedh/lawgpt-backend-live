@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, Trash2, Plus, Scale, BookOpen, Loader2, MessageSquare, ExternalLink, FileText, AlertCircle, CheckCircle, Clock, Info, Brain, Lightbulb, ChevronDown, ChevronUp, LogOut } from 'lucide-react';
+import { Send, Trash2, Plus, Scale, BookOpen, Loader2, MessageSquare, ExternalLink, FileText, AlertCircle, CheckCircle, Clock, Info, Brain, Lightbulb, ChevronDown, ChevronUp, LogOut, Mic, MicOff } from 'lucide-react';
 
 // ─── Colour Tokens ───────────────────────────────────────────────────────────
 // bg-page    : #ede8de   (warm parchment)
@@ -80,8 +80,14 @@ const LegalAssistChat: React.FC = () => {
   const [conversationStatus, setConversationStatus] = useState<string>('ready');
   const [infoCollected, setInfoCollected] = useState<Record<string, string>>({});
   const [infoNeeded, setInfoNeeded] = useState<string[]>([]);
+  const [recordingState, setRecordingState] = useState<'idle' | 'recording' | 'transcribing' | 'error'>('idle');
+  const [recordingError, setRecordingError] = useState<string | null>(null);
+  // Language for voice input — 'auto' uses backend detection, others are explicit ISO-639-1 codes
+  const [asrLanguage, setAsrLanguage] = useState<string>('auto');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
 
   const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:8000';
 
@@ -328,6 +334,69 @@ const LegalAssistChat: React.FC = () => {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  };
+
+  // ── Voice input (ASR) ──────────────────────────────────────────────────────
+
+  const startRecording = async () => {
+    setRecordingError(null);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+      audioChunksRef.current = [];
+      recorder.ondataavailable = e => { if (e.data.size > 0) audioChunksRef.current.push(e.data); };
+      recorder.onstop = () => {
+        stream.getTracks().forEach(t => t.stop());
+        handleRecordingComplete();
+      };
+      mediaRecorderRef.current = recorder;
+      recorder.start();
+      setRecordingState('recording');
+    } catch (err) {
+      console.error('Microphone access failed:', err);
+      setRecordingState('error');
+      setRecordingError('Microphone access denied. Please allow microphone permission.');
+    }
+  };
+
+  const stopRecording = () => {
+    mediaRecorderRef.current?.stop();
+  };
+
+  const handleRecordingComplete = async () => {
+    setRecordingState('transcribing');
+    const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+    const formData = new FormData();
+    formData.append('file', blob, 'recording.webm');
+    // Send language code only when explicitly selected; 'auto' → omit so backend detects
+    if (asrLanguage !== 'auto') {
+      formData.append('language', asrLanguage);
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/asr/transcribe`, {
+        method: 'POST',
+        headers: authHeaders(),
+        body: formData,
+      });
+      if (res.status === 401) { signOut(); return; }
+      if (!res.ok) {
+        const detail = await res.json().catch(() => null);
+        throw new Error(detail?.detail || `HTTP ${res.status}`);
+      }
+      const data = await res.json();
+      setInput(prev => (prev ? `${prev} ${data.text}` : data.text));
+      setRecordingState('idle');
+    } catch (err) {
+      console.error('Transcription failed:', err);
+      setRecordingState('error');
+      setRecordingError('Could not transcribe audio. Please try again or type your message.');
+    }
+  };
+
+  const handleMicClick = () => {
+    if (recordingState === 'recording') stopRecording();
+    else startRecording();
   };
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -769,6 +838,9 @@ const LegalAssistChat: React.FC = () => {
           {/* Input */}
           <div className="bg-white border-t border-[#c8b89a] px-6 py-4 shadow-md">
             <div className="max-w-4xl mx-auto">
+              {recordingError && (
+                <p className="text-red-600 text-xs mb-2">{recordingError}</p>
+              )}
               <div className="flex items-end gap-3">
                 <textarea
                   ref={textareaRef}
@@ -781,6 +853,43 @@ const LegalAssistChat: React.FC = () => {
                   className="flex-1 px-4 py-3 bg-[#f7f3ec] border border-[#c8b89a] rounded-xl text-[#2d1f0e] placeholder-[#8a7462] resize-none disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-[#74603e]/40 focus:border-[#74603e] transition-colors text-sm"
                   style={{ minHeight: '48px', maxHeight: '120px' }}
                 />
+                {/* Language selector for voice input */}
+                <select
+                  id="asr-language-select"
+                  value={asrLanguage}
+                  onChange={e => setAsrLanguage(e.target.value)}
+                  disabled={isLoading || recordingState === 'recording' || recordingState === 'transcribing'}
+                  title="Voice input language"
+                  className="px-2 py-3 bg-[#f7f3ec] border border-[#c8b89a] rounded-xl text-[#74603e] text-xs disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-[#74603e]/40 focus:border-[#74603e] transition-colors cursor-pointer"
+                  style={{ minWidth: '80px' }}
+                >
+                  <option value="auto">🌐 Auto</option>
+                  <option value="hi">🇮🇳 Hindi</option>
+                  <option value="en">🇬🇧 English</option>
+                  <option value="ta">Tamil</option>
+                  <option value="te">Telugu</option>
+                  <option value="bn">Bengali</option>
+                  <option value="mr">Marathi</option>
+                  <option value="gu">Gujarati</option>
+                  <option value="kn">Kannada</option>
+                  <option value="ml">Malayalam</option>
+                  <option value="pa">Punjabi</option>
+                </select>
+                <button
+                  onClick={handleMicClick}
+                  disabled={isLoading || recordingState === 'transcribing'}
+                  title={recordingState === 'recording' ? 'Stop recording' : 'Record voice message'}
+                  className={`px-4 py-3 rounded-xl transition-colors shadow-sm flex items-center gap-2 text-sm disabled:opacity-50 ${recordingState === 'recording'
+                    ? 'bg-red-600 text-white animate-pulse'
+                    : 'bg-[#f7f3ec] text-[#74603e] border border-[#c8b89a]'
+                    }`}
+                >
+                  {recordingState === 'transcribing'
+                    ? <Loader2 className="w-4 h-4 animate-spin" />
+                    : recordingState === 'recording'
+                      ? <MicOff className="w-4 h-4" />
+                      : <Mic className="w-4 h-4" />}
+                </button>
                 <button
                   onClick={() => sendMessage()}
                   disabled={isLoading || !input.trim()}

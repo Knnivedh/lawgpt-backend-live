@@ -44,15 +44,17 @@ logger.info("=" * 80)
 # ── Imports ───────────────────────────────────────────────────────────────────
 import json
 import os
+import tempfile
 import time
 import traceback
 import uuid
 from contextlib import asynccontextmanager
 from typing import List, Optional
 
-from fastapi import FastAPI, HTTPException, Request, BackgroundTasks, Depends, status
+from fastapi import FastAPI, HTTPException, Request, BackgroundTasks, Depends, status, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import select, func, delete
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -69,6 +71,7 @@ from config import get_settings
 from database import AsyncSessionLocal, Thread, Message, User, create_tables, get_db
 from graph import create_graph
 from auth import hash_password, verify_password, create_access_token, get_current_user
+from lang_utils import detect_language
 
 # ── Settings ──────────────────────────────────────────────────────────────────
 settings = get_settings()
@@ -109,6 +112,45 @@ async def lifespan(app: FastAPI):
         # 3. Compile graph
         app.state.family_law_app = await create_graph(checkpointer)
         logger.info("✅ LangGraph app ready")
+
+        # 4. Load ASR models (optional, gated behind ENABLE_ASR)
+        # Two engines: AI4Bharat indic-conformer-600m-multilingual for the 22
+        # scheduled Indian languages, and faster-whisper for English (which
+        # IndicConformer has no label for) plus audio-based language-ID when
+        # the client doesn't specify a language.
+        app.state.asr_model = None
+        app.state.whisper_model = None
+        if settings.enable_asr:
+            from transformers import AutoModel
+
+            logger.info(f"⏳ Loading ASR model: {settings.asr_model_name} …")
+            asr_model = AutoModel.from_pretrained(
+                settings.asr_model_name,
+                trust_remote_code=True,
+            )
+            asr_model.eval()
+            # Move to configured device if CUDA is available
+            import torch
+            if settings.asr_device == "cuda" and torch.cuda.is_available():
+                asr_model = asr_model.cuda()
+            app.state.asr_model = asr_model
+            logger.info(
+                f"✅ ASR model loaded: {settings.asr_model_name} "
+                f"(device={settings.asr_device}, strategy={settings.asr_strategy})"
+            )
+
+            logger.info(f"⏳ Loading Whisper model: {settings.whisper_model_size} …")
+            from faster_whisper import WhisperModel
+
+            app.state.whisper_model = WhisperModel(
+                settings.whisper_model_size,
+                device=settings.whisper_device,
+                compute_type=settings.whisper_compute_type,
+            )
+            logger.info(
+                f"✅ Whisper model loaded: {settings.whisper_model_size} "
+                f"(device={settings.whisper_device}, compute_type={settings.whisper_compute_type})"
+            )
 
         yield  # ← application runs here
 
@@ -189,6 +231,16 @@ class MessageOut(BaseModel):
     content:    str
     metadata:   Optional[dict]
     created_at: str
+
+
+class TranscriptionResponse(BaseModel):
+    text:                  str
+    language:              str
+    language_probability:  float
+    duration_seconds:      float
+
+
+MAX_ASR_UPLOAD_BYTES = 25 * 1024 * 1024  # 25MB
 
 
 # ── Background task — save messages to DB ─────────────────────────────────────
@@ -304,6 +356,220 @@ async def auth_me(current_user: User = Depends(get_current_user)):
     return {"id": current_user.id, "email": current_user.email, "full_name": current_user.full_name, "gender": current_user.gender}
 
 
+# ── ASR (voice input) endpoint ────────────────────────────────────────────────
+
+def _load_audio_with_av(audio_path: str, target_sr: int = 16_000):
+    """
+    Decode any audio format (WebM, Opus, WAV, OGG, MP3, FLAC …) using PyAV.
+
+    PyAV bundles its own FFmpeg via pre-built wheels — no system ffmpeg needed.
+    Returns a numpy float32 array at *target_sr* Hz, shape (num_samples,).
+    """
+    import av
+    import numpy as np
+    from scipy.signal import resample_poly
+    from math import gcd
+
+    frames = []
+    with av.open(audio_path) as container:
+        # Use AudioResampler to get mono, float32 (planar = 'fltp') at target rate
+        resampler = av.AudioResampler(
+            format="fltp",
+            layout="mono",
+            rate=target_sr,
+        )
+        for raw_frame in container.decode(audio=0):
+            for out_frame in resampler.resample(raw_frame):
+                # to_ndarray() → shape (channels, samples); take channel 0
+                frames.append(out_frame.to_ndarray()[0])
+
+        # Flush resampler
+        for out_frame in resampler.resample(None):
+            frames.append(out_frame.to_ndarray()[0])
+
+    if not frames:
+        raise ValueError("No audio frames decoded from file")
+
+    audio = np.concatenate(frames).astype(np.float32)
+    return audio, target_sr
+
+
+def _run_transcription(model, audio_path: str, language: str, strategy: str) -> TranscriptionResponse:
+    """
+    Blocking AI4Bharat IndicConformer transcription call.
+    Must run in a threadpool — never call from the async event loop.
+
+    Uses PyAV for audio decoding (handles browser WebM/Opus natively, bundles
+    its own FFmpeg — no system dependency required). The model expects a
+    (1, num_samples) float32 torch.Tensor sampled at 16 kHz.
+    """
+    import torch
+
+    TARGET_SR = 16_000
+
+    audio, sr = _load_audio_with_av(audio_path, TARGET_SR)
+    duration_seconds = len(audio) / sr
+
+    wav = torch.FloatTensor(audio).unsqueeze(0)  # shape: (1, num_samples)
+
+    with torch.no_grad():
+        text = model(wav, language, strategy)
+
+    # model() may return a list of strings (batch) or a plain string
+    if isinstance(text, list):
+        text = " ".join(t.strip() for t in text if t).strip()
+    else:
+        text = str(text).strip()
+
+    return TranscriptionResponse(
+        text=text,
+        language=language,
+        language_probability=1.0,  # IndicConformer uses an explicit language code
+        duration_seconds=duration_seconds,
+    )
+
+
+def _run_whisper_transcription(
+    model, audio_path: str, language: Optional[str] = None
+) -> TranscriptionResponse:
+    """
+    Blocking faster-whisper transcription call. Must run in a threadpool.
+
+    Handles English and any other language outside IndicConformer's label
+    set. Passing ``language=None`` also doubles as the audio-based
+    language-ID step for auto mode: Whisper runs real language detection on
+    the audio itself (not a text-based guess), then decodes in that language.
+    """
+    segments, info = model.transcribe(audio_path, language=language, vad_filter=True)
+    text = " ".join(seg.text.strip() for seg in segments).strip()
+
+    return TranscriptionResponse(
+        text=text,
+        language=info.language,
+        language_probability=float(info.language_probability),
+        duration_seconds=float(info.duration),
+    )
+
+
+
+def _auto_detect_language(
+    indic_model, whisper_model, audio_path: str, strategy: str
+) -> TranscriptionResponse:
+    """
+    Detect language when the client omits `language`, then transcribe.
+
+    Uses faster-whisper's real audio-based language-ID (a single forward pass
+    over the audio itself) rather than transcribing repeatedly and guessing
+    from the resulting text — that text-based approach was unreliable because
+    several Indic languages share a script, so a wrong forced-language guess
+    still often "read" as a plausible language to a text detector.
+
+    If Whisper's detected language is one IndicConformer supports, we
+    re-transcribe with IndicConformer for its better Indic accuracy;
+    otherwise (chiefly English) Whisper's own transcript is used directly,
+    since IndicConformer has no label for it at all.
+    """
+    whisper_result = _run_whisper_transcription(whisper_model, audio_path, language=None)
+    detected_lang = whisper_result.language
+
+    logger.info(
+        f"[auto-detect] whisper LID → lang={detected_lang} "
+        f"prob={whisper_result.language_probability:.2f}"
+    )
+
+    if detected_lang not in settings.asr_indic_languages:
+        return whisper_result
+
+    try:
+        indic_result = _run_transcription(indic_model, audio_path, detected_lang, strategy)
+        indic_result.language_probability = whisper_result.language_probability
+        return indic_result
+    except Exception as e:
+        logger.warning(
+            f"[auto-detect] IndicConformer re-transcription failed for "
+            f"lang={detected_lang}, falling back to whisper transcript: {e}"
+        )
+        return whisper_result
+
+
+@app.post("/asr/transcribe", response_model=TranscriptionResponse)
+@limiter.limit(f"{settings.asr_rate_limit_per_minute}/minute")
+async def transcribe_audio(
+    request:      Request,
+    file:         UploadFile = File(...),
+    language:     Optional[str] = Form(None),
+    current_user: User = Depends(get_current_user),
+):
+    """
+    Transcribe a short voice recording into text.
+
+    Uses AI4Bharat IndicConformer for the 22 scheduled Indian languages and
+    faster-whisper for English (and anything else IndicConformer doesn't
+    support), routing between them automatically.
+
+    Pass ``language`` as a BCP-47 / ISO-639-1 code (e.g. ``hi``, ``ta``, ``en``).
+    If omitted, the language is auto-detected from the audio itself.
+    Does not send a chat message — the client must POST the transcript to /chat/stream.
+    """
+    asr_model     = request.app.state.asr_model
+    whisper_model = request.app.state.whisper_model
+    if asr_model is None or whisper_model is None:
+        raise HTTPException(status_code=503, detail="Voice input is not available")
+
+    audio_bytes = await file.read()
+    if len(audio_bytes) > MAX_ASR_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="Audio file is too large")
+    if not audio_bytes:
+        raise HTTPException(status_code=400, detail="No audio data received")
+
+    lang_code = language  # None means auto-detect
+    strategy  = settings.asr_strategy
+
+    suffix = Path(file.filename or "").suffix or ".webm"
+    tmp_path = None
+    try:
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+
+        if lang_code and lang_code in settings.asr_indic_languages:
+            # Explicit Indic language requested — IndicConformer handles it directly.
+            result = await run_in_threadpool(
+                _run_transcription, asr_model, tmp_path, lang_code, strategy
+            )
+        elif lang_code:
+            # Explicit non-Indic language (e.g. "en") — IndicConformer has no
+            # label for it, so use Whisper.
+            result = await run_in_threadpool(
+                _run_whisper_transcription, whisper_model, tmp_path, lang_code
+            )
+        else:
+            # Auto-detect: Whisper does audio-based language-ID, then we
+            # re-transcribe with IndicConformer if it's an Indic language.
+            logger.info("🔍 Auto-detecting language from audio …")
+            result = await run_in_threadpool(
+                _auto_detect_language, asr_model, whisper_model, tmp_path, strategy
+            )
+    except Exception as e:
+        logger.error(f"❌ ASR transcription failed: {e}")
+        logger.error(traceback.format_exc())
+        raise HTTPException(status_code=400, detail="Could not process audio file")
+    finally:
+        if tmp_path:
+            os.unlink(tmp_path)
+
+    if result.duration_seconds > settings.asr_max_audio_seconds:
+        raise HTTPException(status_code=413, detail="Audio recording is too long")
+    if not result.text:
+        raise HTTPException(status_code=422, detail="No speech detected")
+
+    logger.info(
+        f"🎙️  Transcribed audio for user={current_user.id} "
+        f"lang={result.language}  dur={result.duration_seconds:.1f}s"
+    )
+    return result
+
+
 # ── Chat streaming endpoint ───────────────────────────────────────────────────
 
 @app.options("/chat/stream")
@@ -366,6 +632,8 @@ async def chat_stream(
                 "user_gender":        current_user.gender or "unknown",
                 "include_reasoning":  chat_request.include_reasoning,
                 "include_prediction": chat_request.include_prediction,
+                # Pre-detect query language so all nodes have it from turn 1
+                "detected_language":  detect_language(chat_request.query),
                 # Resettable per-turn fields
                 "needs_more_info":    False,
                 "reasoning_steps":    [],

@@ -17,6 +17,7 @@ import os
 import json
 import logging
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from lang_utils import detect_language, build_language_instruction
 
 logger = logging.getLogger(__name__)
 
@@ -191,12 +192,17 @@ ANALYSIS (JSON only):"""
             logger.info(f"Query analysis: intent_confidence={intent_confidence}, "
                        f"user_type={user_intent}, needs={len(info_needed)} items")
             
+            # Detect query language and store for downstream nodes
+            detected_lang = detect_language(query)
+            logger.info(f"Detected language: {detected_lang!r}")
+
             return {
                 "user_intent": user_intent,
                 "intent_confidence": intent_confidence,
                 "info_collected": info_provided,
                 "info_needed_list": info_needed,
                 "has_sufficient_info": has_sufficient_info,
+                "detected_language": detected_lang,
             }
         
         except json.JSONDecodeError as e:

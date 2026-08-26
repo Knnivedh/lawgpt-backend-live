@@ -19,10 +19,13 @@ class FamilyLawState(MessagesState):
     """
 
     # ── Current query ─────────────────────────────────────────────────────────
-    name:Optional[str]
+    name: Optional[str]
     query: str
     user_gender: Optional[str]
-    name: Optional[str]
+
+    # ISO 639-1 language code detected from the user's query (e.g. "hi", "en", "ta").
+    # Set by query_analyzer and read by generator / information_gatherer.
+    detected_language: Optional[str]
 
     # ── Analysis phase ────────────────────────────────────────────────────────
     root_query:            Optional[str]
