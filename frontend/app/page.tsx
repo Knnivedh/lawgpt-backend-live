@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, Trash2, Plus, Scale, BookOpen, Loader2, MessageSquare, ExternalLink, FileText, AlertCircle, CheckCircle, Clock, Info, Brain, Lightbulb, ChevronDown, ChevronUp, LogOut, Mic, MicOff } from 'lucide-react';
+import { Send, Trash2, Plus, Scale, BookOpen, Loader2, MessageSquare, ExternalLink, FileText, AlertCircle, CheckCircle, Clock, Info, Brain, Lightbulb, ChevronDown, ChevronUp, LogOut, Mic, MicOff, Volume2, VolumeX } from 'lucide-react';
 
 // ─── Colour Tokens ───────────────────────────────────────────────────────────
 // bg-page    : #ede8de   (warm parchment)
@@ -399,6 +399,181 @@ const LegalAssistChat: React.FC = () => {
     else startRecording();
   };
 
+  // ── Text-to-Speech (TTS) ────────────────────────────────────────────────────
+
+  /**
+   * Lightweight language detector based on Unicode script ranges and keywords.
+   * Returns a BCP-47 language prefix for the /tts/synthesize endpoint.
+   */
+  const detectLanguage = (text: string): string => {
+    // Devanagari (Hindi, Marathi, Sanskrit)
+    if (/[\u0900-\u097F]/.test(text)) {
+      if (/आहे|नाही|असेल|करणे/.test(text)) return 'mr-IN';
+      return 'hi-IN';
+    }
+    if (/[\u0B80-\u0BFF]/.test(text)) return 'ta-IN';  // Tamil
+    if (/[\u0C00-\u0C7F]/.test(text)) return 'te-IN';  // Telugu
+    if (/[\u0980-\u09FF]/.test(text)) return 'bn-IN';  // Bengali
+    if (/[\u0A80-\u0AFF]/.test(text)) return 'gu-IN';  // Gujarati
+    if (/[\u0C80-\u0CFF]/.test(text)) return 'kn-IN';  // Kannada
+    if (/[\u0D00-\u0D7F]/.test(text)) return 'ml-IN';  // Malayalam
+    if (/[\u0A00-\u0A7F]/.test(text)) return 'pa-IN';  // Gurmukhi (Punjabi)
+    return 'en-IN';
+  };
+
+  /** Strip HTML tags and decode common entities to get clean plain text. */
+  const htmlToPlainText = (html: string): string => {
+    return html
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .trim();
+  };
+
+  // ── TTSButton sub-component (AI4Bharat Indic Parler-TTS via backend) ─────────
+
+  const TTSButton: React.FC<{ text: string; disabled?: boolean }> = ({ text, disabled = false }) => {
+    type TtsState = 'idle' | 'loading' | 'playing' | 'error';
+    const [ttsState, setTtsState] = useState<TtsState>('idle');
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    const stopAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current = null;
+      }
+      setTtsState('idle');
+    };
+
+    /** Fall back to browser's built-in speech synthesis (no network needed). */
+    const speakWithBrowser = (plain: string, langFull: string) => {
+      if (!('speechSynthesis' in window)) {
+        setTtsState('error');
+        setErrorMsg('Speech synthesis not supported in this browser.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(plain);
+      utterance.lang = langFull;        // e.g. "hi-IN"
+      utterance.rate = 0.95;
+      const voices = window.speechSynthesis.getVoices();
+      const matched =
+        voices.find(v => v.lang === langFull) ||
+        voices.find(v => v.lang.startsWith(langFull.split('-')[0]));
+      if (matched) utterance.voice = matched;
+      utterance.onstart = () => setTtsState('playing');
+      utterance.onend   = () => setTtsState('idle');
+      utterance.onerror = () => { setTtsState('error'); setErrorMsg('Browser speech failed.'); };
+      window.speechSynthesis.speak(utterance);
+    };
+
+    const handleSpeak = async () => {
+      // Stop if already playing (browser TTS or audio element)
+      if (ttsState === 'playing') {
+        window.speechSynthesis?.cancel();
+        stopAudio();
+        return;
+      }
+      if (ttsState === 'loading') return;
+
+      setErrorMsg(null);
+      setTtsState('loading');
+
+      const plain    = htmlToPlainText(text);
+      const truncated = plain.slice(0, 500);
+      const langFull = detectLanguage(truncated);          // e.g. "hi-IN"
+      const lang     = langFull.split('-')[0];             // e.g. "hi"
+
+      // ── Try AI backend (Indic Parler-TTS) first ──────────────────────────────
+      try {
+        const token = localStorage.getItem('auth_token');
+        const res = await fetch(`${API_BASE}/tts/synthesize`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({ text: truncated, language: lang }),
+        });
+
+        if (res.status === 503) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.detail || 'TTS model warming up. Retry in ~30 s.');
+        }
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.detail || `TTS backend error (${res.status})`);
+        }
+
+        const audioBlob = await res.blob();
+        const audioUrl  = URL.createObjectURL(audioBlob);
+        const audio     = new Audio(audioUrl);
+        audioRef.current = audio;
+
+        audio.onended = () => { URL.revokeObjectURL(audioUrl); stopAudio(); };
+        audio.onerror = () => {
+          URL.revokeObjectURL(audioUrl);
+          setTtsState('error');
+          setErrorMsg('Audio playback failed.');
+        };
+
+        setTtsState('playing');
+        await audio.play();
+
+      } catch (err: any) {
+        // ── Backend unreachable → silently fall back to browser TTS ─────────────
+        console.warn('Indic Parler-TTS unavailable, falling back to browser TTS:', err.message);
+        setErrorMsg('⚠️ AI model unreachable — using browser voice (quality may vary).');
+        speakWithBrowser(truncated, langFull);
+      }
+    };
+
+    return (
+      <div className="flex flex-col items-start gap-1 pt-2">
+        <button
+          onClick={handleSpeak}
+          disabled={disabled || ttsState === 'loading'}
+          title={
+            ttsState === 'playing' ? 'Stop reading'
+            : ttsState === 'loading' ? 'Generating audio with AI4Bharat Indic Parler-TTS…'
+            : 'Listen (AI4Bharat Indic Parler-TTS)'
+          }
+          className={`
+            inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+            border transition-all duration-200 select-none disabled:cursor-not-allowed
+            ${ttsState === 'playing'
+              ? 'bg-[#74603e] text-white border-[#5c4b2f] shadow-md animate-pulse'
+              : ttsState === 'loading'
+                ? 'bg-[#f0ebe1] text-[#8a7462] border-[#c8b89a] opacity-80'
+                : ttsState === 'error'
+                  ? 'bg-red-50 text-red-600 border-red-300 hover:bg-red-100'
+                  : 'bg-[#f7f3ec] text-[#74603e] border-[#c8b89a] hover:bg-[#f0ebe1] hover:border-[#74603e] hover:shadow-sm'
+            }
+          `}
+        >
+          {ttsState === 'loading'  && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+          {ttsState === 'playing'  && <VolumeX className="w-3.5 h-3.5" />}
+          {(ttsState === 'idle' || ttsState === 'error') && <Volume2 className="w-3.5 h-3.5" />}
+          <span>
+            {ttsState === 'loading' ? 'Generating…'
+            : ttsState === 'playing' ? 'Stop'
+            : ttsState === 'error'   ? 'Retry'
+            : 'Listen'}
+          </span>
+        </button>
+        {ttsState === 'error' && errorMsg && (
+          <p className="text-xs text-red-500 max-w-xs leading-snug">{errorMsg}</p>
+        )}
+      </div>
+    );
+  };
+
   // ── Helpers ─────────────────────────────────────────────────────────────────
 
   const formatMessage = (text: string): string => {
@@ -755,6 +930,12 @@ const LegalAssistChat: React.FC = () => {
                             className={`prose max-w-none text-sm leading-relaxed ${msg.role === 'user' ? 'prose-invert' : ''}`}
                           />
                           {renderInfoProgress(msg)}
+                          {/* TTS button – only for assistant messages */}
+                          {msg.role === 'assistant' && (
+                            <div className="pt-2">
+                              <TTSButton text={formatMessage(msg.content)} />
+                            </div>
+                          )}
                         </div>
                         {msg.timestamp && (
                           <div className={`px-5 py-1.5 border-t ${msg.role === 'user' ? 'border-white/10 bg-black/10' : 'border-[rgba(116,96,62,0.10)] bg-[#f7f3ec]/50'}`}>
