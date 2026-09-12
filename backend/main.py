@@ -152,17 +152,23 @@ async def lifespan(app: FastAPI):
                 f"(device={settings.whisper_device}, compute_type={settings.whisper_compute_type})"
             )
 
-        # 5. Load TTS model at startup — downloads if not cached, then loads.
-        # Tries Indic Parler-TTS first; falls back to facebook/mms-tts-hin (VITS).
+
+
+        # 5. Load IndicParler-TTS — non-fatal: server starts even if TTS fails.
         # Runs in a threadpool so it doesn't block the async event loop.
-        logger.info("⏳ Loading TTS model …")
+        logger.info("⏳ Loading IndicParler-TTS model …")
         tts_engine = _LocalTTSEngine()
-        await run_in_threadpool(tts_engine.ensure_loaded)
+        try:
+            await run_in_threadpool(tts_engine.ensure_loaded)
+            logger.info("✅ TTS engine ready on device=%s", tts_engine._device)
+        except Exception as _tts_exc:
+            logger.warning(
+                "⚠️  TTS failed to load (%s: %s). "
+                "/tts/synthesize will return 503 until the server is restarted.",
+                type(_tts_exc).__name__, _tts_exc,
+            )
+            tts_engine = None   # type: ignore[assignment]
         app.state.tts_engine = tts_engine
-        logger.info(
-            "✅ TTS engine ready (engine=%s)",
-            "parler" if tts_engine._using_parler else "vits-fallback",
-        )
 
         yield  # ← application runs here
 
@@ -582,144 +588,249 @@ async def transcribe_audio(
     return result
 
 
-# ── TTS (local Indic Parler-TTS / VITS — adapted from Mitra tts.py) ────────────
 
-# Voice descriptions for Indic Parler-TTS, keyed by language prefix.
+
+
+
+# ── TTS (IndicParler-TTS — GPU → CPU fallback) ────────────────────────────────
+
+# Voice descriptions keyed by BCP-47 language prefix.
 _TTS_VOICE_DESCRIPTIONS: dict[str, str] = {
-    "hi": "A female speaker with a clear, calm Hindi voice at a moderate pace.",
-    "ta": "A female speaker with a clear Tamil voice at a moderate pace.",
-    "te": "A female speaker with a clear Telugu voice at a moderate pace.",
-    "bn": "A female speaker with a clear Bengali voice at a moderate pace.",
-    "mr": "A female speaker with a clear Marathi voice at a moderate pace.",
-    "gu": "A female speaker with a clear Gujarati voice at a moderate pace.",
-    "kn": "A female speaker with a clear Kannada voice at a moderate pace.",
-    "ml": "A female speaker with a clear Malayalam voice at a moderate pace.",
-    "pa": "A female speaker with a clear Punjabi voice at a moderate pace.",
-    "ur": "A female speaker with a clear Urdu voice at a moderate pace.",
-    "en": "A female speaker with a clear Indian English accent at a moderate pace.",
+    "hi": (
+        "Divya speaks Hindi naturally with a clear female voice, "
+        "a neutral and slightly expressive tone, moderate speaking pace "
+        "and medium pitch. The recording is very high quality, "
+        "close-sounding, and has no background noise."
+    ),
+
+    "ta": (
+        "A natural Tamil female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "te": (
+        "A natural Telugu female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "bn": (
+        "A natural Bengali female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "mr": (
+        "A natural Marathi female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "gu": (
+        "A natural Gujarati female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "kn": (
+        "A natural Kannada female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "ml": (
+        "A natural Malayalam female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "pa": (
+        "A natural Punjabi female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "ur": (
+        "A natural Urdu female speaker speaks clearly at a moderate pace "
+        "with a neutral, slightly expressive tone and medium pitch. "
+        "The recording is very high quality, close-sounding, "
+        "and has no background noise."
+    ),
+
+    "en": (
+        "A natural female Indian English speaker with a clear Indian accent "
+        "speaks at a moderate pace with a neutral, slightly expressive tone "
+        "and medium pitch. The recording is very high quality, "
+        "close-sounding, and has no background noise."
+    ),
 }
 
 TTS_MAX_CHARS = 500
 _PARLER_MODEL_ID = "ai4bharat/indic-parler-tts"
-_VITS_FALLBACK_ID = "facebook/mms-tts-hin"   # ungated, always downloadable
 
 
 class _LocalTTSEngine:
     """
-    Local TTS engine — loads Indic Parler-TTS if parler_tts is installed and
-    the gated model is accessible; otherwise falls back to a VITS model.
-    Adapted directly from Mitra project src/speech/tts.py.
+    IndicParler-TTS engine with automatic GPU → CPU fallback.
+
+    Device selection priority:
+      1. CUDA  (NVIDIA GPU)
+      2. MPS   (Apple Silicon GPU)
+      3. CPU   (always available)
+
+    If loading on GPU fails (OOM, driver issue, etc.) the engine retries
+    transparently on CPU so the server always starts successfully.
     """
 
     def __init__(self) -> None:
-        self._parler = None
+        self._model = None
         self._prompt_tok = None
-        self._voice_ids: dict[str, object] = {}   # cached per language
-        self._vits = None
-        self._vits_tok = None
+        self._desc_tok = None
         self._torch = None
         self._device = "cpu"
-        self._sr: int = 16_000
-        self._using_parler = False
+        self._sr: int = 44_100      # overwritten after model loads
 
-    # ── loading ────────────────────────────────────────────────────────────────
+    # ── device detection ───────────────────────────────────────────────────────
 
-    def _detect_device(self) -> str:
+    def _best_device(self) -> str:
         import torch
         self._torch = torch
         if torch.cuda.is_available():
             return "cuda"
-        if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-            return "mps"
+        # if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        #     return "mps"
         return "cpu"
 
+    # ── loading ────────────────────────────────────────────────────────────────
+
     def ensure_loaded(self) -> None:
-        if self._parler is not None or self._vits is not None:
+        """Load the model if not already loaded. Safe to call multiple times."""
+        if self._model is not None:
             return
-        self._device = self._detect_device()
-        try:
-            self._load_parler()
-            self._using_parler = True
-            logger.info("🔊 TTS: Indic Parler-TTS loaded on %s", self._device)
-        except Exception as e:
-            logger.warning(
-                "🔊 TTS: Indic Parler-TTS unavailable (%s: %s). "
-                "To enable: accept conditions at https://huggingface.co/%s "
-                "and install: pip install git+https://github.com/huggingface/parler-tts.git. "
-                "Falling back to %s.",
-                type(e).__name__, str(e)[:120], _PARLER_MODEL_ID, _VITS_FALLBACK_ID,
-            )
-            self._load_vits(_VITS_FALLBACK_ID)
 
-    def _load_parler(self) -> None:
-        from parler_tts import ParlerTTSForConditionalGeneration  # type: ignore
-        from transformers import AutoTokenizer
-        self._parler = ParlerTTSForConditionalGeneration.from_pretrained(
-            _PARLER_MODEL_ID
-        ).to(self._device)
-        self._prompt_tok = AutoTokenizer.from_pretrained(_PARLER_MODEL_ID)
-        self._desc_tok = AutoTokenizer.from_pretrained(
-            self._parler.config.text_encoder._name_or_path
+        preferred = self._best_device()
+        devices = [preferred, "cpu"] if preferred != "cpu" else ["cpu"]
+
+        for device in devices:
+            try:
+                self._load_on(device)
+                self._device = device
+                logger.info(
+                    "🔊 TTS: IndicParler-TTS ready on %s (sr=%d Hz)",
+                    self._device, self._sr,
+                )
+                return
+            except Exception as exc:
+                logger.warning(
+                    "🔊 TTS: load failed on %s (%s: %s)%s",
+                    device,
+                    type(exc).__name__,
+                    str(exc)[:120],
+                    " — retrying on CPU." if device != "cpu" else "",
+                )
+                self._model = None   # clean state before retry
+
+        raise RuntimeError(
+            "IndicParler-TTS could not be loaded on any device. "
+            "Ensure parler_tts is installed and the model is accessible on HuggingFace."
         )
-        self._sr = int(self._parler.config.sampling_rate)
 
-    def _load_vits(self, model_id: str) -> None:
-        from transformers import AutoTokenizer, VitsModel
-        try:
-            self._vits = VitsModel.from_pretrained(model_id).to(self._device)
-        except Exception:
-            self._vits = VitsModel.from_pretrained(model_id)  # CPU fallback
-            self._device = "cpu"
-        self._vits_tok = AutoTokenizer.from_pretrained(model_id)
-        self._sr = int(getattr(self._vits.config, "sampling_rate", 16_000))
-        logger.info("🔊 TTS: VITS loaded (%s) on %s", model_id, self._device)
+    def _load_on(self, device: str) -> None:
+        """
+        Load the model onto `device`.
+
+        Root cause of the loading failure:
+          `from_pretrained` internally calls `AutoConfig.from_pretrained`, which
+          goes through `PretrainedConfig.from_dict`, which strips the sub-config
+          keys (text_encoder / audio_encoder / decoder) before they can reach
+          `ParlerTTSConfig.__init__`, causing the ValueError.
+
+        Fix: download config.json ourselves, build `ParlerTTSConfig` directly
+        from the raw dict (which works fine), then pass it to `from_pretrained`
+        so the weight loading uses our correctly-constructed config.
+        """
+        import json
+        from huggingface_hub import hf_hub_download
+        from parler_tts import ParlerTTSForConditionalGeneration  # type: ignore
+        from parler_tts.configuration_parler_tts import ParlerTTSConfig  # type: ignore
+        from transformers import AutoTokenizer
+
+        # ── 1. Build config manually from raw config.json ────────────────────────
+        cfg_path = hf_hub_download(repo_id=_PARLER_MODEL_ID, filename="config.json")
+        with open(cfg_path, encoding="utf-8") as fh:
+            cfg = json.load(fh)
+
+        config = ParlerTTSConfig(
+            text_encoder=cfg["text_encoder"],
+            audio_encoder=cfg["audio_encoder"],
+            decoder=cfg["decoder"],
+            vocab_size=cfg.get("vocab_size", 1024),
+            prompt_cross_attention=cfg.get("prompt_cross_attention", False),
+            pad_token_id=cfg.get("pad_token_id"),
+            decoder_start_token_id=cfg.get("decoder_start_token_id"),
+            is_encoder_decoder=cfg.get("is_encoder_decoder", True),
+            transformers_version=cfg.get("transformers_version"),
+        )
+
+        # ── 2. Load model weights with our fixed config ───────────────────────────
+        model = ParlerTTSForConditionalGeneration.from_pretrained(
+            _PARLER_MODEL_ID, config=config
+        ).to(device)
+        model.eval()
+
+        # ── 3. Load tokenisers ────────────────────────────────────────────────────
+        self._model      = model
+        self._prompt_tok = AutoTokenizer.from_pretrained(_PARLER_MODEL_ID)
+        self._desc_tok   = AutoTokenizer.from_pretrained(
+            model.config.text_encoder._name_or_path
+        )
+        # Sampling rate lives on the decoder sub-config for IndicParler-TTS
+        self._sr = int(
+            getattr(model.config, "sampling_rate", None)
+            or getattr(model.config.decoder, "sampling_rate", 44_100)
+            or 44_100
+        )
+
+
 
     # ── synthesis ──────────────────────────────────────────────────────────────
 
     def synthesize(self, text: str, voice_description: str) -> tuple:
-        """Returns (numpy float32 waveform, sample_rate)."""
-        self.ensure_loaded()
-        if self._parler is not None:
-            return self._synth_parler(text, voice_description)
-        return self._synth_vits(text)
-
-    def _synth_parler(self, text: str, voice_description: str) -> tuple:
+        """Returns (numpy float32 waveform, sample_rate). Thread-safe to call."""
         import numpy as np
-        voice_ids = self._desc_tok(voice_description, return_tensors="pt").to(self._device)
-        prompt = self._prompt_tok(text, return_tensors="pt").to(self._device)
+        self.ensure_loaded()
+
+        desc_ids = self._desc_tok(voice_description, return_tensors="pt").to(self._device)
+        prompt   = self._prompt_tok(text, return_tensors="pt").to(self._device)
+
         with self._torch.no_grad():
-            gen = self._parler.generate(
-                input_ids=voice_ids.input_ids,
-                attention_mask=voice_ids.attention_mask,
+            gen = self._model.generate(
+                input_ids=desc_ids.input_ids,
+                attention_mask=desc_ids.attention_mask,
                 prompt_input_ids=prompt.input_ids,
                 prompt_attention_mask=prompt.attention_mask,
             )
-        wav = gen.cpu().numpy().squeeze().astype(np.float32)
-        return wav, self._sr
 
-    def _synth_vits(self, text: str) -> tuple:
-        import numpy as np
-        inputs = self._vits_tok(text, return_tensors="pt")
-        inputs = {k: v.to(self._device) for k, v in inputs.items() if hasattr(v, "to")}
-        with self._torch.no_grad():
-            outputs = self._vits(**inputs)
-        # Use explicit None checks — Python `or` on a Tensor raises RuntimeError.
-        wav_t = getattr(outputs, "waveform", None)
-        if wav_t is None:
-            wav_t = getattr(outputs, "audio", None)
-        if wav_t is None:
-            wav_t = outputs[0] if isinstance(outputs, (tuple, list)) else outputs
-        wav = wav_t.squeeze().cpu().numpy().astype(np.float32)
+        wav = gen.cpu().numpy().squeeze().astype(np.float32)
         return wav, self._sr
 
 
 def _get_tts_engine(request: Request) -> _LocalTTSEngine:
-    """Return the pre-loaded TTS engine from app.state."""
+    """Dependency: return the pre-loaded TTS engine from app.state."""
     return request.app.state.tts_engine
 
 
 class TTSRequest(BaseModel):
-    text: str = Field(..., min_length=1, max_length=TTS_MAX_CHARS)
+    text: str     = Field(..., min_length=1, max_length=TTS_MAX_CHARS)
     language: str = Field(default="en", max_length=10)
 
 
@@ -731,40 +842,40 @@ async def tts_synthesize(
     current_user: User = Depends(get_current_user),
 ):
     """
-    Synthesize speech locally using AI4Bharat Indic Parler-TTS (or VITS fallback).
-    No external API calls — runs entirely on-device.
-    Pattern adapted from Mitra project src/speech/tts.py.
+    Synthesize speech using AI4Bharat IndicParler-TTS.
+    Runs on GPU when available; falls back to CPU automatically.
+    Returns a WAV audio file.
     """
     import io
     import soundfile as sf
 
-    text = body.text[:TTS_MAX_CHARS].strip()
+    text        = body.text[:TTS_MAX_CHARS].strip()
     lang_prefix = body.language.lower().split("-")[0]
-    voice_description = _TTS_VOICE_DESCRIPTIONS.get(
-        lang_prefix, _TTS_VOICE_DESCRIPTIONS["en"]
-    )
+    voice_desc  = _TTS_VOICE_DESCRIPTIONS.get(lang_prefix, _TTS_VOICE_DESCRIPTIONS["en"])
 
     logger.info(
-        f"🔊 TTS request: user={current_user.id} lang={lang_prefix} chars={len(text)}"
+        "🔊 TTS request: user=%s  lang=%s  chars=%d",
+        current_user.id, lang_prefix, len(text),
     )
 
-    engine = _get_tts_engine(request)
-
-    def _run_synthesis():
-        return engine.synthesize(text, voice_description)
+    engine: _LocalTTSEngine | None = request.app.state.tts_engine
+    if engine is None:
+        raise HTTPException(
+            status_code=503,
+            detail="TTS engine is unavailable — model failed to load at startup. Check server logs.",
+        )
 
     try:
-        wav, sr = await run_in_threadpool(_run_synthesis)
+        wav, sr = await run_in_threadpool(engine.synthesize, text, voice_desc)
 
-        # Encode to WAV bytes in memory
         buf = io.BytesIO()
         sf.write(buf, wav, sr, format="WAV", subtype="PCM_16")
         buf.seek(0)
         audio_bytes = buf.read()
 
         logger.info(
-            f"✅ TTS synthesized {len(audio_bytes)} bytes "
-            f"(sr={sr}, using={'parler' if engine._using_parler else 'vits'})"
+            "✅ TTS synthesized %d bytes (sr=%d Hz, device=%s)",
+            len(audio_bytes), sr, engine._device,
         )
 
         from fastapi.responses import Response as FastAPIResponse
@@ -774,12 +885,12 @@ async def tts_synthesize(
             headers={
                 "Cache-Control": "no-store",
                 "X-TTS-Language": lang_prefix,
-                "X-TTS-Engine": "parler" if engine._using_parler else "vits",
+                "X-TTS-Device":   engine._device,
             },
         )
 
     except Exception as e:
-        logger.error(f"❌ TTS synthesis error: {e}")
+        logger.error("❌ TTS synthesis error: %s", e)
         raise HTTPException(status_code=500, detail=f"TTS synthesis failed: {e}")
 
 
