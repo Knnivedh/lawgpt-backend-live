@@ -13,6 +13,7 @@ Spaces:
 from __future__ import annotations
 
 import logging
+import inspect
 import os
 import tempfile
 from pathlib import Path
@@ -29,6 +30,15 @@ _INDIC_ASR_SPACE    = os.getenv("INDIC_ASR_SPACE_URL",  "rverma0631/Multilingual
 _INDIC_TTS_SPACE    = os.getenv("INDIC_TTS_SPACE_URL",  "R910/IndicParler_TTS")
 
 
+def _space_client(space: str, **kwargs) -> Client:
+    """Authenticate Space calls with the configured backend HF account."""
+    from config import get_settings
+
+    # Gradio 2.x uses token; older supported clients use hf_token.
+    token_parameter = "token" if "token" in inspect.signature(Client).parameters else "hf_token"
+    return Client(space, **{token_parameter: get_settings().huggingface_api_key}, **kwargs)
+
+
 # ── Whisper (English / non-Indic transcription + language ID) ─────────────────
 
 def call_whisper_space(audio_path: str) -> dict:
@@ -43,7 +53,7 @@ def call_whisper_space(audio_path: str) -> dict:
     """
     logger.info("🎙️  [Whisper Space] Sending audio → %s", _WHISPER_SPACE)
     try:
-        client = Client(_WHISPER_SPACE)
+        client = _space_client(_WHISPER_SPACE)
         result = client.predict(
             audio=handle_file(audio_path),
             api_name="/transcribe",
@@ -78,7 +88,7 @@ def call_indic_asr_space(audio_path: str, language: str) -> dict:
         "🎙️  [IndicConformer Space] lang=%s → %s", language, _INDIC_ASR_SPACE
     )
     try:
-        client = Client(_INDIC_ASR_SPACE)
+        client = _space_client(_INDIC_ASR_SPACE)
         result = client.predict(
             audio_file=handle_file(audio_path),
             language=language,
@@ -174,7 +184,7 @@ def call_tts_space(text: str, voice_description: str) -> bytes:
         # Gradio downloads file outputs locally. Read them before cleaning up
         # this request's directory so generated audio does not accumulate.
         with tempfile.TemporaryDirectory(prefix="tts-") as output_dir:
-            client = Client(_INDIC_TTS_SPACE, download_files=output_dir)
+            client = _space_client(_INDIC_TTS_SPACE, download_files=output_dir)
             result = client.predict(
                 text=text,
                 description=voice_description,

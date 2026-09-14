@@ -1,4 +1,5 @@
 'use client';
+import { getSpeechAudio } from '../lib/speech-audio';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Send, Trash2, Plus, Scale, BookOpen, Loader2, MessageSquare, ExternalLink, FileText, AlertCircle, CheckCircle, Clock, Info, Brain, Lightbulb, ChevronDown, ChevronUp, LogOut, Mic, MicOff, Volume2, VolumeX } from 'lucide-react';
@@ -64,6 +65,157 @@ interface MessageOut {
   metadata: Record<string, any> | null;
   created_at: string;
 }
+
+// ── Text-to-Speech (TTS) ────────────────────────────────────────────────────
+
+/**
+ * Lightweight language detector based on Unicode script ranges.
+ * Returns a BCP-47 language tag for the /tts/synthesize endpoint.
+ */
+const detectLanguage = (text: string): string => {
+  if (/[\u0900-\u097F]/.test(text)) {
+    if (/\u0906\u0939\u0947|\u0928\u093e\u0939\u0940|\u0905\u0938\u0947\u0932|\u0915\u0930\u0923\u0947/.test(text)) return 'mr-IN';
+    return 'hi-IN';
+  }
+  if (/[\u0B80-\u0BFF]/.test(text)) return 'ta-IN';  // Tamil
+  if (/[\u0C00-\u0C7F]/.test(text)) return 'te-IN';  // Telugu
+  if (/[\u0980-\u09FF]/.test(text)) return 'bn-IN';  // Bengali
+  if (/[\u0A80-\u0AFF]/.test(text)) return 'gu-IN';  // Gujarati
+  if (/[\u0C80-\u0CFF]/.test(text)) return 'kn-IN';  // Kannada
+  if (/[\u0D00-\u0D7F]/.test(text)) return 'ml-IN';  // Malayalam
+  if (/[\u0A00-\u0A7F]/.test(text)) return 'pa-IN';  // Gurmukhi (Punjabi)
+  return 'en-IN';
+};
+
+/** Strip HTML tags and decode common entities to plain text. */
+const htmlToPlainText = (html: string): string =>
+  html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'").trim();
+
+// ── TTSButton sub-component ────────────────────────────────────────────────
+
+const TTSButton: React.FC<{ text: string; disabled?: boolean }> = ({ text, disabled = false }) => {
+  type TtsState = 'idle' | 'loading' | 'playing' | 'error';
+  const [ttsState, setTtsState] = useState<TtsState>('idle');
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioUrlRef = useRef<string | null>(null);
+  const busyRef = useRef(false);
+  const mountedRef = useRef(true);
+
+  const releaseAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.onended = null;
+      audioRef.current.onerror = null;
+      audioRef.current.pause();
+      audioRef.current.src = '';
+      audioRef.current = null;
+    }
+    if (audioUrlRef.current) URL.revokeObjectURL(audioUrlRef.current);
+    audioUrlRef.current = null;
+  };
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; releaseAudio(); };
+  }, []);
+
+  const stopAudio = () => {
+    releaseAudio();
+    setTtsState('idle');
+  };
+
+  const handleSpeak = async () => {
+    if (ttsState === 'playing') { window.speechSynthesis?.cancel(); stopAudio(); return; }
+    if (busyRef.current) return;
+    busyRef.current = true;
+
+    setErrorMsg(null);
+    setTtsState('loading');
+
+    const truncated = htmlToPlainText(text).slice(0, 500);
+    const langFull  = detectLanguage(truncated);   // e.g. "hi-IN"
+    const lang      = langFull.split('-')[0];       // e.g. "hi"
+
+    try {
+      const token = localStorage.getItem('auth_token');
+      const blob = await getSpeechAudio(token, truncated, lang);
+      if (!mountedRef.current) return;
+      const audioUrl = URL.createObjectURL(blob);
+      audioUrlRef.current = audioUrl;
+      const audio    = new Audio(audioUrl);
+      audioRef.current = audio;
+
+      audio.onended = () => {
+        audio.onended = null;
+        audio.onerror = null;
+        stopAudio();
+      };
+      audio.onerror = () => {
+        audio.onended = null;
+        audio.onerror = null;
+        releaseAudio();
+        setTtsState('error');
+        setErrorMsg('Audio playback failed.');
+      };
+
+      setTtsState('playing');
+      await audio.play();
+
+    } catch (err: unknown) {
+      if (!mountedRef.current) return;
+      releaseAudio();
+      setTtsState('error');
+      setErrorMsg(err instanceof Error ? err.message : 'TTS synthesis failed.');
+    } finally {
+      busyRef.current = false;
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-start gap-1 pt-2">
+      <button
+        onClick={handleSpeak}
+        disabled={disabled || ttsState === 'loading'}
+        title={
+          ttsState === 'playing' ? 'Stop reading'
+          : ttsState === 'loading' ? 'Generating audio…'
+          : 'Listen (IndicParler-TTS)'
+        }
+        className={`
+          inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+          border transition-all duration-200 select-none disabled:cursor-not-allowed
+          ${ttsState === 'playing'
+            ? 'bg-[#74603e] text-white border-[#5c4b2f] shadow-md animate-pulse'
+            : ttsState === 'loading'
+              ? 'bg-[#f0ebe1] text-[#8a7462] border-[#c8b89a] opacity-80'
+              : ttsState === 'error'
+                ? 'bg-red-50 text-red-600 border-red-300 hover:bg-red-100'
+                : 'bg-[#f7f3ec] text-[#74603e] border-[#c8b89a] hover:bg-[#f0ebe1] hover:border-[#74603e] hover:shadow-sm'
+          }
+        `}
+      >
+        {ttsState === 'loading' && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+        {ttsState === 'playing' && <VolumeX className="w-3.5 h-3.5" />}
+        {(ttsState === 'idle' || ttsState === 'error') && <Volume2 className="w-3.5 h-3.5" />}
+        <span>
+          {ttsState === 'loading' ? 'Generating…'
+          : ttsState === 'playing' ? 'Stop'
+          : ttsState === 'error'   ? 'Retry'
+          : 'Listen'}
+        </span>
+      </button>
+      {ttsState === 'error' && errorMsg && (
+        <p className="text-xs text-red-500 max-w-xs leading-snug">{errorMsg}</p>
+      )}
+    </div>
+  );
+};
+
 
 const LegalAssistChat: React.FC = () => {
   const router = useRouter();
@@ -397,147 +549,6 @@ const LegalAssistChat: React.FC = () => {
   const handleMicClick = () => {
     if (recordingState === 'recording') stopRecording();
     else startRecording();
-  };
-
-  // ── Text-to-Speech (TTS) ────────────────────────────────────────────────────
-
-  /**
-   * Lightweight language detector based on Unicode script ranges.
-   * Returns a BCP-47 language tag for the /tts/synthesize endpoint.
-   */
-  const detectLanguage = (text: string): string => {
-    if (/[\u0900-\u097F]/.test(text)) {
-      if (/\u0906\u0939\u0947|\u0928\u093e\u0939\u0940|\u0905\u0938\u0947\u0932|\u0915\u0930\u0923\u0947/.test(text)) return 'mr-IN';
-      return 'hi-IN';
-    }
-    if (/[\u0B80-\u0BFF]/.test(text)) return 'ta-IN';  // Tamil
-    if (/[\u0C00-\u0C7F]/.test(text)) return 'te-IN';  // Telugu
-    if (/[\u0980-\u09FF]/.test(text)) return 'bn-IN';  // Bengali
-    if (/[\u0A80-\u0AFF]/.test(text)) return 'gu-IN';  // Gujarati
-    if (/[\u0C80-\u0CFF]/.test(text)) return 'kn-IN';  // Kannada
-    if (/[\u0D00-\u0D7F]/.test(text)) return 'ml-IN';  // Malayalam
-    if (/[\u0A00-\u0A7F]/.test(text)) return 'pa-IN';  // Gurmukhi (Punjabi)
-    return 'en-IN';
-  };
-
-  /** Strip HTML tags and decode common entities to plain text. */
-  const htmlToPlainText = (html: string): string =>
-    html
-      .replace(/<br\s*\/?>/gi, '\n')
-      .replace(/<[^>]+>/g, '')
-      .replace(/&amp;/g, '&').replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>').replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'").trim();
-
-  // ── TTSButton sub-component ────────────────────────────────────────────────
-
-  const TTSButton: React.FC<{ text: string; disabled?: boolean }> = ({ text, disabled = false }) => {
-    type TtsState = 'idle' | 'loading' | 'playing' | 'error';
-    const [ttsState, setTtsState] = useState<TtsState>('idle');
-    const [errorMsg, setErrorMsg] = useState<string | null>(null);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-
-    const stopAudio = () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = '';
-        audioRef.current = null;
-      }
-      setTtsState('idle');
-    };
-
-    const handleSpeak = async () => {
-      if (ttsState === 'playing') { window.speechSynthesis?.cancel(); stopAudio(); return; }
-      if (ttsState === 'loading') return;
-
-      setErrorMsg(null);
-      setTtsState('loading');
-
-      const truncated = htmlToPlainText(text).slice(0, 500);
-      const langFull  = detectLanguage(truncated);   // e.g. "hi-IN"
-      const lang      = langFull.split('-')[0];       // e.g. "hi"
-
-      try {
-        const token = localStorage.getItem('auth_token');
-        const res = await fetch(`${API_BASE}/tts/synthesize`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ text: truncated, language: lang }),
-        });
-
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.detail || `TTS error (${res.status})`);
-        }
-
-        const audioUrl = URL.createObjectURL(await res.blob());
-        const audio    = new Audio(audioUrl);
-        audioRef.current = audio;
-
-        audio.onended = () => {
-          audio.onended = null;
-          audio.onerror = null;
-          URL.revokeObjectURL(audioUrl);
-          stopAudio();
-        };
-        audio.onerror = () => {
-          audio.onended = null;
-          audio.onerror = null;
-          URL.revokeObjectURL(audioUrl);
-          setTtsState('error');
-          setErrorMsg('Audio playback failed.');
-        };
-
-        setTtsState('playing');
-        await audio.play();
-
-      } catch (err: any) {
-        setTtsState('error');
-        setErrorMsg(err.message || 'TTS synthesis failed.');
-      }
-    };
-
-    return (
-      <div className="flex flex-col items-start gap-1 pt-2">
-        <button
-          onClick={handleSpeak}
-          disabled={disabled || ttsState === 'loading'}
-          title={
-            ttsState === 'playing' ? 'Stop reading'
-            : ttsState === 'loading' ? 'Generating audio…'
-            : 'Listen (IndicParler-TTS)'
-          }
-          className={`
-            inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
-            border transition-all duration-200 select-none disabled:cursor-not-allowed
-            ${ttsState === 'playing'
-              ? 'bg-[#74603e] text-white border-[#5c4b2f] shadow-md animate-pulse'
-              : ttsState === 'loading'
-                ? 'bg-[#f0ebe1] text-[#8a7462] border-[#c8b89a] opacity-80'
-                : ttsState === 'error'
-                  ? 'bg-red-50 text-red-600 border-red-300 hover:bg-red-100'
-                  : 'bg-[#f7f3ec] text-[#74603e] border-[#c8b89a] hover:bg-[#f0ebe1] hover:border-[#74603e] hover:shadow-sm'
-            }
-          `}
-        >
-          {ttsState === 'loading' && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-          {ttsState === 'playing' && <VolumeX className="w-3.5 h-3.5" />}
-          {(ttsState === 'idle' || ttsState === 'error') && <Volume2 className="w-3.5 h-3.5" />}
-          <span>
-            {ttsState === 'loading' ? 'Generating…'
-            : ttsState === 'playing' ? 'Stop'
-            : ttsState === 'error'   ? 'Retry'
-            : 'Listen'}
-          </span>
-        </button>
-        {ttsState === 'error' && errorMsg && (
-          <p className="text-xs text-red-500 max-w-xs leading-snug">{errorMsg}</p>
-        )}
-      </div>
-    );
   };
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
