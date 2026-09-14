@@ -853,11 +853,11 @@ async def health_check():
 # ── Entry point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    
+
     uvicorn.run(
         "main:app",
         host=settings.api_host,
-        port=settings.api_port,
+        port=int(os.getenv("PORT", settings.api_port)),
         log_level=settings.log_level.lower(),
         reload=False,
     )
