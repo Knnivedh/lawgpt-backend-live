@@ -72,29 +72,31 @@ from database import AsyncSessionLocal, Thread, Message, User, create_tables, ge
 from graph import create_graph
 from auth import hash_password, verify_password, create_access_token, get_current_user
 from lang_utils import detect_language
+import spaces_client
 
-# ── Settings ──────────────────────────────────────────────────────────────────
-settings = get_settings()
-
-# ── Event trace directory (keep from original) ────────────────────────────────
-TRACE_DIR = "event_traces"
-os.makedirs(TRACE_DIR, exist_ok=True)
-
-
-# ── Lifespan ──────────────────────────────────────────────────────────────────
+# ─── Lifespan ────────────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
-    Startup:
+    Startup (lightweight — no local model loading):
       1. Create application-level tables (threads, messages).
       2. Initialise the AsyncPostgresSaver and create its tables
          (checkpoints, checkpoint_writes).
       3. Compile the LangGraph app with the checkpointer.
 
+    All AI inference is delegated to separate HuggingFace Spaces:
+      - ASR (Indic)  → rverma0631/MultilingualASR
+      - ASR (English)→ rverma0631/Whisper
+      - TTS          → R910/IndicParler_TTS
+      - LLM          → HuggingFace Inference API (via HuggingFaceEndpoint)
+
     Shutdown:
       Close the checkpointer connection pool.
     """
     logger.info("🚀 Starting up …")
+    logger.info("🔗 ASR Space  (Indic): %s", settings.indic_asr_space_url)
+    logger.info("🔗 ASR Space  (Whisper): %s", settings.whisper_space_url)
+    logger.info("🔗 TTS Space: %s", settings.indic_tts_space_url)
 
     # 1. Application tables
     await create_tables()
@@ -112,63 +114,6 @@ async def lifespan(app: FastAPI):
         # 3. Compile graph
         app.state.family_law_app = await create_graph(checkpointer)
         logger.info("✅ LangGraph app ready")
-
-        # 4. Load ASR models (optional, gated behind ENABLE_ASR)
-        # Two engines: AI4Bharat indic-conformer-600m-multilingual for the 22
-        # scheduled Indian languages, and faster-whisper for English (which
-        # IndicConformer has no label for) plus audio-based language-ID when
-        # the client doesn't specify a language.
-        app.state.asr_model = None
-        app.state.whisper_model = None
-        if settings.enable_asr:
-            from transformers import AutoModel
-
-            logger.info(f"⏳ Loading ASR model: {settings.asr_model_name} …")
-            asr_model = AutoModel.from_pretrained(
-                settings.asr_model_name,
-                trust_remote_code=True,
-            )
-            asr_model.eval()
-            # Move to configured device if CUDA is available
-            import torch
-            if settings.asr_device == "cuda" and torch.cuda.is_available():
-                asr_model = asr_model.cuda()
-            app.state.asr_model = asr_model
-            logger.info(
-                f"✅ ASR model loaded: {settings.asr_model_name} "
-                f"(device={settings.asr_device}, strategy={settings.asr_strategy})"
-            )
-
-            logger.info(f"⏳ Loading Whisper model: {settings.whisper_model_size} …")
-            from faster_whisper import WhisperModel
-
-            app.state.whisper_model = WhisperModel(
-                settings.whisper_model_size,
-                device=settings.whisper_device,
-                compute_type=settings.whisper_compute_type,
-            )
-            logger.info(
-                f"✅ Whisper model loaded: {settings.whisper_model_size} "
-                f"(device={settings.whisper_device}, compute_type={settings.whisper_compute_type})"
-            )
-
-
-
-        # 5. Load IndicParler-TTS — non-fatal: server starts even if TTS fails.
-        # Runs in a threadpool so it doesn't block the async event loop.
-        logger.info("⏳ Loading IndicParler-TTS model …")
-        tts_engine = _LocalTTSEngine()
-        try:
-            await run_in_threadpool(tts_engine.ensure_loaded)
-            logger.info("✅ TTS engine ready on device=%s", tts_engine._device)
-        except Exception as _tts_exc:
-            logger.warning(
-                "⚠️  TTS failed to load (%s: %s). "
-                "/tts/synthesize will return 503 until the server is restarted.",
-                type(_tts_exc).__name__, _tts_exc,
-            )
-            tts_engine = None   # type: ignore[assignment]
-        app.state.tts_engine = tts_engine
 
         yield  # ← application runs here
 
@@ -376,139 +321,6 @@ async def auth_me(current_user: User = Depends(get_current_user)):
 
 # ── ASR (voice input) endpoint ────────────────────────────────────────────────
 
-def _load_audio_with_av(audio_path: str, target_sr: int = 16_000):
-    """
-    Decode any audio format (WebM, Opus, WAV, OGG, MP3, FLAC …) using PyAV.
-
-    PyAV bundles its own FFmpeg via pre-built wheels — no system ffmpeg needed.
-    Returns a numpy float32 array at *target_sr* Hz, shape (num_samples,).
-    """
-    import av
-    import numpy as np
-    from scipy.signal import resample_poly
-    from math import gcd
-
-    frames = []
-    with av.open(audio_path) as container:
-        # Use AudioResampler to get mono, float32 (planar = 'fltp') at target rate
-        resampler = av.AudioResampler(
-            format="fltp",
-            layout="mono",
-            rate=target_sr,
-        )
-        for raw_frame in container.decode(audio=0):
-            for out_frame in resampler.resample(raw_frame):
-                # to_ndarray() → shape (channels, samples); take channel 0
-                frames.append(out_frame.to_ndarray()[0])
-
-        # Flush resampler
-        for out_frame in resampler.resample(None):
-            frames.append(out_frame.to_ndarray()[0])
-
-    if not frames:
-        raise ValueError("No audio frames decoded from file")
-
-    audio = np.concatenate(frames).astype(np.float32)
-    return audio, target_sr
-
-
-def _run_transcription(model, audio_path: str, language: str, strategy: str) -> TranscriptionResponse:
-    """
-    Blocking AI4Bharat IndicConformer transcription call.
-    Must run in a threadpool — never call from the async event loop.
-
-    Uses PyAV for audio decoding (handles browser WebM/Opus natively, bundles
-    its own FFmpeg — no system dependency required). The model expects a
-    (1, num_samples) float32 torch.Tensor sampled at 16 kHz.
-    """
-    import torch
-
-    TARGET_SR = 16_000
-
-    audio, sr = _load_audio_with_av(audio_path, TARGET_SR)
-    duration_seconds = len(audio) / sr
-
-    wav = torch.FloatTensor(audio).unsqueeze(0)  # shape: (1, num_samples)
-
-    with torch.no_grad():
-        text = model(wav, language, strategy)
-
-    # model() may return a list of strings (batch) or a plain string
-    if isinstance(text, list):
-        text = " ".join(t.strip() for t in text if t).strip()
-    else:
-        text = str(text).strip()
-
-    return TranscriptionResponse(
-        text=text,
-        language=language,
-        language_probability=1.0,  # IndicConformer uses an explicit language code
-        duration_seconds=duration_seconds,
-    )
-
-
-def _run_whisper_transcription(
-    model, audio_path: str, language: Optional[str] = None
-) -> TranscriptionResponse:
-    """
-    Blocking faster-whisper transcription call. Must run in a threadpool.
-
-    Handles English and any other language outside IndicConformer's label
-    set. Passing ``language=None`` also doubles as the audio-based
-    language-ID step for auto mode: Whisper runs real language detection on
-    the audio itself (not a text-based guess), then decodes in that language.
-    """
-    segments, info = model.transcribe(audio_path, language=language, vad_filter=True)
-    text = " ".join(seg.text.strip() for seg in segments).strip()
-
-    return TranscriptionResponse(
-        text=text,
-        language=info.language,
-        language_probability=float(info.language_probability),
-        duration_seconds=float(info.duration),
-    )
-
-
-
-def _auto_detect_language(
-    indic_model, whisper_model, audio_path: str, strategy: str
-) -> TranscriptionResponse:
-    """
-    Detect language when the client omits `language`, then transcribe.
-
-    Uses faster-whisper's real audio-based language-ID (a single forward pass
-    over the audio itself) rather than transcribing repeatedly and guessing
-    from the resulting text — that text-based approach was unreliable because
-    several Indic languages share a script, so a wrong forced-language guess
-    still often "read" as a plausible language to a text detector.
-
-    If Whisper's detected language is one IndicConformer supports, we
-    re-transcribe with IndicConformer for its better Indic accuracy;
-    otherwise (chiefly English) Whisper's own transcript is used directly,
-    since IndicConformer has no label for it at all.
-    """
-    whisper_result = _run_whisper_transcription(whisper_model, audio_path, language=None)
-    detected_lang = whisper_result.language
-
-    logger.info(
-        f"[auto-detect] whisper LID → lang={detected_lang} "
-        f"prob={whisper_result.language_probability:.2f}"
-    )
-
-    if detected_lang not in settings.asr_indic_languages:
-        return whisper_result
-
-    try:
-        indic_result = _run_transcription(indic_model, audio_path, detected_lang, strategy)
-        indic_result.language_probability = whisper_result.language_probability
-        return indic_result
-    except Exception as e:
-        logger.warning(
-            f"[auto-detect] IndicConformer re-transcription failed for "
-            f"lang={detected_lang}, falling back to whisper transcript: {e}"
-        )
-        return whisper_result
-
 
 @app.post("/asr/transcribe", response_model=TranscriptionResponse)
 @limiter.limit(f"{settings.asr_rate_limit_per_minute}/minute")
@@ -521,18 +333,15 @@ async def transcribe_audio(
     """
     Transcribe a short voice recording into text.
 
-    Uses AI4Bharat IndicConformer for the 22 scheduled Indian languages and
-    faster-whisper for English (and anything else IndicConformer doesn't
-    support), routing between them automatically.
+    Routes to the appropriate HuggingFace Space:
+      - Explicit Indic language → rverma0631/MultilingualASR (IndicConformer)
+      - Explicit non-Indic / English → rverma0631/Whisper
+      - Auto-detect: Whisper for language ID, then IndicConformer if Indic
 
-    Pass ``language`` as a BCP-47 / ISO-639-1 code (e.g. ``hi``, ``ta``, ``en``).
-    If omitted, the language is auto-detected from the audio itself.
     Does not send a chat message — the client must POST the transcript to /chat/stream.
     """
-    asr_model     = request.app.state.asr_model
-    whisper_model = request.app.state.whisper_model
-    if asr_model is None or whisper_model is None:
-        raise HTTPException(status_code=503, detail="Voice input is not available")
+    if not settings.enable_asr:
+        raise HTTPException(status_code=503, detail="Voice input is disabled")
 
     audio_bytes = await file.read()
     if len(audio_bytes) > MAX_ASR_UPLOAD_BYTES:
@@ -540,50 +349,56 @@ async def transcribe_audio(
     if not audio_bytes:
         raise HTTPException(status_code=400, detail="No audio data received")
 
-    lang_code = language  # None means auto-detect
-    strategy  = settings.asr_strategy
-
-    suffix = Path(file.filename or "").suffix or ".webm"
+    suffix   = Path(file.filename or "").suffix or ".webm"
     tmp_path = None
     try:
         with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
             tmp.write(audio_bytes)
             tmp_path = tmp.name
 
+        lang_code = language  # None → auto-detect
+
         if lang_code and lang_code in settings.asr_indic_languages:
-            # Explicit Indic language requested — IndicConformer handles it directly.
-            result = await run_in_threadpool(
-                _run_transcription, asr_model, tmp_path, lang_code, strategy
+            # Explicit Indic language → IndicConformer Space
+            data = await run_in_threadpool(
+                spaces_client.call_indic_asr_space, tmp_path, lang_code
             )
         elif lang_code:
-            # Explicit non-Indic language (e.g. "en") — IndicConformer has no
-            # label for it, so use Whisper.
-            result = await run_in_threadpool(
-                _run_whisper_transcription, whisper_model, tmp_path, lang_code
+            # Explicit non-Indic (e.g. "en") → Whisper Space
+            data = await run_in_threadpool(
+                spaces_client.call_whisper_space, tmp_path
             )
+            data["language"] = lang_code
         else:
-            # Auto-detect: Whisper does audio-based language-ID, then we
-            # re-transcribe with IndicConformer if it's an Indic language.
+            # Auto-detect: Whisper for language ID, IndicConformer if Indic
             logger.info("🔍 Auto-detecting language from audio …")
-            result = await run_in_threadpool(
-                _auto_detect_language, asr_model, whisper_model, tmp_path, strategy
+            data = await run_in_threadpool(
+                spaces_client.call_auto_detect_space,
+                tmp_path,
+                settings.asr_indic_languages,
             )
+
+        result = TranscriptionResponse(
+            text=data["text"],
+            language=data["language"],
+            language_probability=data.get("language_probability", 1.0),
+            duration_seconds=0.0,  # Gradio spaces don’t return duration
+        )
+
     except Exception as e:
-        logger.error(f"❌ ASR transcription failed: {e}")
+        logger.error("❌ ASR transcription failed: %s", e)
         logger.error(traceback.format_exc())
         raise HTTPException(status_code=400, detail="Could not process audio file")
     finally:
         if tmp_path:
             os.unlink(tmp_path)
 
-    if result.duration_seconds > settings.asr_max_audio_seconds:
-        raise HTTPException(status_code=413, detail="Audio recording is too long")
     if not result.text:
         raise HTTPException(status_code=422, detail="No speech detected")
 
     logger.info(
-        f"🎙️  Transcribed audio for user={current_user.id} "
-        f"lang={result.language}  dur={result.duration_seconds:.1f}s"
+        "🎙️  Transcribed audio for user=%s lang=%s",
+        current_user.id, result.language,
     )
     return result
 
@@ -592,7 +407,7 @@ async def transcribe_audio(
 
 
 
-# ── TTS (IndicParler-TTS — GPU → CPU fallback) ────────────────────────────────
+# ── TTS (IndicParler-TTS via HuggingFace Space) ──────────────────────────────
 
 # Voice descriptions keyed by BCP-47 language prefix.
 _TTS_VOICE_DESCRIPTIONS: dict[str, str] = {
@@ -602,231 +417,70 @@ _TTS_VOICE_DESCRIPTIONS: dict[str, str] = {
         "and medium pitch. The recording is very high quality, "
         "close-sounding, and has no background noise."
     ),
-
     "ta": (
         "A natural Tamil female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "te": (
         "A natural Telugu female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "bn": (
         "A natural Bengali female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "mr": (
         "A natural Marathi female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "gu": (
         "A natural Gujarati female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "kn": (
         "A natural Kannada female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "ml": (
         "A natural Malayalam female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "pa": (
         "A natural Punjabi female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
     "ur": (
         "A natural Urdu female speaker speaks clearly at a moderate pace "
         "with a neutral, slightly expressive tone and medium pitch. "
         "The recording is very high quality, close-sounding, "
         "and has no background noise."
     ),
-
-    "en": (
-        "A natural female Indian English speaker with a clear Indian accent "
-        "speaks at a moderate pace with a neutral, slightly expressive tone "
-        "and medium pitch. The recording is very high quality, "
-        "close-sounding, and has no background noise."
-    ),
 }
 
+_TTS_VOICE_DESCRIPTIONS["en"] = (
+    f"{settings.tts_english_speaker} speaks English with a clear Indian accent "
+    "at a moderate pace with a neutral, slightly expressive tone and medium pitch. "
+    "The recording is very clear audio, very high quality, close-sounding, "
+    "and has no background noise."
+)
+
 TTS_MAX_CHARS = 500
-_PARLER_MODEL_ID = "ai4bharat/indic-parler-tts"
-
-
-class _LocalTTSEngine:
-    """
-    IndicParler-TTS engine with automatic GPU → CPU fallback.
-
-    Device selection priority:
-      1. CUDA  (NVIDIA GPU)
-      2. MPS   (Apple Silicon GPU)
-      3. CPU   (always available)
-
-    If loading on GPU fails (OOM, driver issue, etc.) the engine retries
-    transparently on CPU so the server always starts successfully.
-    """
-
-    def __init__(self) -> None:
-        self._model = None
-        self._prompt_tok = None
-        self._desc_tok = None
-        self._torch = None
-        self._device = "cpu"
-        self._sr: int = 44_100      # overwritten after model loads
-
-    # ── device detection ───────────────────────────────────────────────────────
-
-    def _best_device(self) -> str:
-        import torch
-        self._torch = torch
-        if torch.cuda.is_available():
-            return "cuda"
-        # if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-        #     return "mps"
-        return "cpu"
-
-    # ── loading ────────────────────────────────────────────────────────────────
-
-    def ensure_loaded(self) -> None:
-        """Load the model if not already loaded. Safe to call multiple times."""
-        if self._model is not None:
-            return
-
-        preferred = self._best_device()
-        devices = [preferred, "cpu"] if preferred != "cpu" else ["cpu"]
-
-        for device in devices:
-            try:
-                self._load_on(device)
-                self._device = device
-                logger.info(
-                    "🔊 TTS: IndicParler-TTS ready on %s (sr=%d Hz)",
-                    self._device, self._sr,
-                )
-                return
-            except Exception as exc:
-                logger.warning(
-                    "🔊 TTS: load failed on %s (%s: %s)%s",
-                    device,
-                    type(exc).__name__,
-                    str(exc)[:120],
-                    " — retrying on CPU." if device != "cpu" else "",
-                )
-                self._model = None   # clean state before retry
-
-        raise RuntimeError(
-            "IndicParler-TTS could not be loaded on any device. "
-            "Ensure parler_tts is installed and the model is accessible on HuggingFace."
-        )
-
-    def _load_on(self, device: str) -> None:
-        """
-        Load the model onto `device`.
-
-        Root cause of the loading failure:
-          `from_pretrained` internally calls `AutoConfig.from_pretrained`, which
-          goes through `PretrainedConfig.from_dict`, which strips the sub-config
-          keys (text_encoder / audio_encoder / decoder) before they can reach
-          `ParlerTTSConfig.__init__`, causing the ValueError.
-
-        Fix: download config.json ourselves, build `ParlerTTSConfig` directly
-        from the raw dict (which works fine), then pass it to `from_pretrained`
-        so the weight loading uses our correctly-constructed config.
-        """
-        import json
-        from huggingface_hub import hf_hub_download
-        from parler_tts import ParlerTTSForConditionalGeneration  # type: ignore
-        from parler_tts.configuration_parler_tts import ParlerTTSConfig  # type: ignore
-        from transformers import AutoTokenizer
-
-        # ── 1. Build config manually from raw config.json ────────────────────────
-        cfg_path = hf_hub_download(repo_id=_PARLER_MODEL_ID, filename="config.json")
-        with open(cfg_path, encoding="utf-8") as fh:
-            cfg = json.load(fh)
-
-        config = ParlerTTSConfig(
-            text_encoder=cfg["text_encoder"],
-            audio_encoder=cfg["audio_encoder"],
-            decoder=cfg["decoder"],
-            vocab_size=cfg.get("vocab_size", 1024),
-            prompt_cross_attention=cfg.get("prompt_cross_attention", False),
-            pad_token_id=cfg.get("pad_token_id"),
-            decoder_start_token_id=cfg.get("decoder_start_token_id"),
-            is_encoder_decoder=cfg.get("is_encoder_decoder", True),
-            transformers_version=cfg.get("transformers_version"),
-        )
-
-        # ── 2. Load model weights with our fixed config ───────────────────────────
-        model = ParlerTTSForConditionalGeneration.from_pretrained(
-            _PARLER_MODEL_ID, config=config
-        ).to(device)
-        model.eval()
-
-        # ── 3. Load tokenisers ────────────────────────────────────────────────────
-        self._model      = model
-        self._prompt_tok = AutoTokenizer.from_pretrained(_PARLER_MODEL_ID)
-        self._desc_tok   = AutoTokenizer.from_pretrained(
-            model.config.text_encoder._name_or_path
-        )
-        # Sampling rate lives on the decoder sub-config for IndicParler-TTS
-        self._sr = int(
-            getattr(model.config, "sampling_rate", None)
-            or getattr(model.config.decoder, "sampling_rate", 44_100)
-            or 44_100
-        )
-
-
-
-    # ── synthesis ──────────────────────────────────────────────────────────────
-
-    def synthesize(self, text: str, voice_description: str) -> tuple:
-        """Returns (numpy float32 waveform, sample_rate). Thread-safe to call."""
-        import numpy as np
-        self.ensure_loaded()
-
-        desc_ids = self._desc_tok(voice_description, return_tensors="pt").to(self._device)
-        prompt   = self._prompt_tok(text, return_tensors="pt").to(self._device)
-
-        with self._torch.no_grad():
-            gen = self._model.generate(
-                input_ids=desc_ids.input_ids,
-                attention_mask=desc_ids.attention_mask,
-                prompt_input_ids=prompt.input_ids,
-                prompt_attention_mask=prompt.attention_mask,
-            )
-
-        wav = gen.cpu().numpy().squeeze().astype(np.float32)
-        return wav, self._sr
-
-
-def _get_tts_engine(request: Request) -> _LocalTTSEngine:
-    """Dependency: return the pre-loaded TTS engine from app.state."""
-    return request.app.state.tts_engine
 
 
 class TTSRequest(BaseModel):
@@ -842,13 +496,10 @@ async def tts_synthesize(
     current_user: User = Depends(get_current_user),
 ):
     """
-    Synthesize speech using AI4Bharat IndicParler-TTS.
-    Runs on GPU when available; falls back to CPU automatically.
+    Synthesize speech via the AI4Bharat IndicParler-TTS HuggingFace Space.
+    Delegates all inference to R910/IndicParler_TTS — no local model loaded.
     Returns a WAV audio file.
     """
-    import io
-    import soundfile as sf
-
     text        = body.text[:TTS_MAX_CHARS].strip()
     lang_prefix = body.language.lower().split("-")[0]
     voice_desc  = _TTS_VOICE_DESCRIPTIONS.get(lang_prefix, _TTS_VOICE_DESCRIPTIONS["en"])
@@ -858,25 +509,11 @@ async def tts_synthesize(
         current_user.id, lang_prefix, len(text),
     )
 
-    engine: _LocalTTSEngine | None = request.app.state.tts_engine
-    if engine is None:
-        raise HTTPException(
-            status_code=503,
-            detail="TTS engine is unavailable — model failed to load at startup. Check server logs.",
-        )
-
     try:
-        wav, sr = await run_in_threadpool(engine.synthesize, text, voice_desc)
-
-        buf = io.BytesIO()
-        sf.write(buf, wav, sr, format="WAV", subtype="PCM_16")
-        buf.seek(0)
-        audio_bytes = buf.read()
-
-        logger.info(
-            "✅ TTS synthesized %d bytes (sr=%d Hz, device=%s)",
-            len(audio_bytes), sr, engine._device,
+        audio_bytes = await run_in_threadpool(
+            spaces_client.call_tts_space, text, voice_desc
         )
+        logger.info("✅ TTS synthesized %d bytes via HF Space", len(audio_bytes))
 
         from fastapi.responses import Response as FastAPIResponse
         return FastAPIResponse(
@@ -885,7 +522,6 @@ async def tts_synthesize(
             headers={
                 "Cache-Control": "no-store",
                 "X-TTS-Language": lang_prefix,
-                "X-TTS-Device":   engine._device,
             },
         )
 

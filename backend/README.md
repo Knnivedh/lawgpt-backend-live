@@ -1,96 +1,42 @@
-# Family Law Assistant
+# Family Law Assistant — Backend API
 
-## How to Run
+FastAPI + LangGraph backend for the Indian Family Law Assistant.  
+Deployed on **Render** (free web service).
 
-### Prerequisites
+## AI Models
 
-**Install Docker** → [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
+All inference is delegated to separate HuggingFace Spaces — no models are loaded locally:
 
----
+| Model | Space | Purpose |
+|-------|-------|---------|
+| Llama 3.1 8B Instruct | HF Inference API | Legal response generation |
+| IndicConformer 600M | `rverma0631/MultilingualASR` | Indic language ASR |
+| Whisper small | `rverma0631/Whisper` | English ASR + language ID |
+| IndicParler-TTS | `R910/IndicParler_TTS` | Multilingual TTS |
 
-### 1. Start Milvus (Vector Database)
+## API Docs
 
-In your terminal, run:
+Visit `/api/docs` for the interactive Swagger UI once deployed.
 
-```bash
-curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
-bash standalone_embed.sh start
-```
+## Environment Variables
 
----
+Set these as **Render Environment Variables** (sensitive ones as Secret Files or env vars):
 
-### 2. Clone the Repository
+| Variable | Description |
+|----------|-------------|
+| `HUGGINGFACE_API_KEY` | HF token for LLM Inference API |
+| `DATABASE_URL` | Neon PostgreSQL asyncpg URL |
+| `MILVUS_URI` | Zilliz Cloud endpoint |
+| `MILVUS_TOKEN` | Zilliz Cloud API token |
+| `JWT_SECRET_KEY` | JWT signing key |
+| `CORS_ORIGINS` | `["https://your-app.vercel.app"]` |
+| `WHISPER_SPACE_URL` | `rverma0631/Whisper` |
+| `INDIC_ASR_SPACE_URL` | `rverma0631/MultilingualASR` |
+| `INDIC_TTS_SPACE_URL` | `R910/IndicParler_TTS` |
 
-Open VS Code and in the terminal:
-
-```bash
-git clone https://github.com/madhans476/family-law-assistant.git
-cd family-law-assistant
-```
-
----
-
-### 3. Set Up the Environment
-
-Install dependencies using `uv`:
-
-```bash
-uv sync
-```
-
-> If `uv` is not found, install it first:
-> ```bash
-> pip install uv
-> ```
-
-Activate the virtual environment:
+## Local Development
 
 ```bash
-# macOS / Linux
-source .venv/bin/activate
-
-# Windows
-source .venv\bin\activate
+cp env.template .env   # fill in your values
+uv run uvicorn main:app --reload --port 8000
 ```
-
-Configure Environment Variables:
-Create a .env file in the root directory using the provided template:
-
-```bash
-cp env.template .env
-```
-
----
-
-### 4. Process & Store Data
-
-Run the following scripts in order:
-
-```bash
-uv run python chunking.py
-uv run python embedding.py
-uv run python milvus_store.py
-```
-
----
-
-### 5. Start the Backend
-
-```bash
-cd family-law-assistant
-source .venv/bin/activate
-uvicorn main:app --reload
-```
-
----
-
-### 6. Start the Frontend
-
-In a new terminal:
-
-```bash
-cd family-law-assistant/frontend
-npm run dev
-```
-
-<img alt="workflow" src="image.png" />

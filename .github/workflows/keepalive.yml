@@ -1,0 +1,38 @@
+name: Keep Services Alive
+
+# Render free tier spins down after 15 min of inactivity.
+# Ping every 10 minutes to keep it warm.
+# HF CPU Free Spaces sleep after 48h — also covered here.
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # Every 10 minutes
+  workflow_dispatch:          # Allow manual trigger
+
+jobs:
+  ping-render-backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Ping Render Backend
+        run: |
+          echo "Pinging Render backend..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "${{ secrets.RENDER_BACKEND_URL }}/health" \
+            --max-time 30)
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ Render backend is alive"
+          else
+            echo "::warning::Backend returned $STATUS (may be cold-starting, takes ~30s)"
+          fi
+
+  ping-whisper-space:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Ping Whisper HF Space
+        run: |
+          echo "Pinging Whisper Space (CPU Free)..."
+          curl -s -o /dev/null -w "Whisper HTTP: %{http_code}\n" \
+            "https://rverma0631-whisper.hf.space/" \
+            --max-time 30 || echo "Whisper ping timed out (waking up)"

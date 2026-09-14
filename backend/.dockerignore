@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment files (secrets set in HF Space Settings)
+.env
+.env.*
+!env.template
+
+# Dev/test artifacts
+test/
+*.log
+logs/
+event_traces/
+diagrams/
+
+# Data (Milvus data is on Zilliz Cloud, not local)
+data/
+
+# Local DB and lock files
+uv.lock
+*.db
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

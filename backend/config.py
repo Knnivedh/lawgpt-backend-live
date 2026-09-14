@@ -86,27 +86,15 @@ class Settings(BaseSettings):
     # ── Rate Limiting ─────────────────────────────────────────────────────────
     rate_limit_per_minute: int = Field(default=60, env="RATE_LIMIT_PER_MINUTE")
 
-    # ── ASR (Speech-to-Text) — AI4Bharat IndicConformer ─────────────────────
+    # ── ASR (Speech-to-Text) — routed to HuggingFace Spaces ─────────────────
     enable_asr: bool = Field(default=True, env="ENABLE_ASR")
-    # HuggingFace model repo ID for the ASR model
-    asr_model_name: str = Field(
-        default="ai4bharat/indic-conformer-600m-multilingual",
-        env="ASR_MODEL_NAME",
-    )
-    # torch device: "cpu" or "cuda"
-    asr_device: str = Field(default="cpu", env="ASR_DEVICE")
-    # Decoding strategy: "ctc" (faster) or "rnnt" (streaming-friendly)
-    asr_strategy: str = Field(default="ctc", env="ASR_STRATEGY")
     # BCP-47 / ISO-639-1 language code used when the client doesn't specify one
     # Common codes: hi=Hindi, ta=Tamil, te=Telugu, bn=Bengali, mr=Marathi
     asr_default_language: str = Field(default="hi", env="ASR_DEFAULT_LANGUAGE")
     asr_max_audio_seconds: int = Field(default=60, env="ASR_MAX_AUDIO_SECONDS")
     asr_rate_limit_per_minute: int = Field(default=20, env="ASR_RATE_LIMIT_PER_MINUTE")
-    # IndicConformer covers only these scheduled Indian languages — it has no
-    # English label, and forcing it to "transcribe as English" just produces
-    # garbage. Anything outside this set (chiefly "en") is routed to
-    # faster-whisper instead. Used both to validate an explicit `language` and,
-    # after Whisper's language-ID pass in auto mode, to pick the engine.
+    # IndicConformer covers only these scheduled Indian languages — anything
+    # outside this set (chiefly "en") is routed to the Whisper Space instead.
     asr_indic_languages: List[str] = Field(
         default=[
             "hi", "bn", "te", "mr", "ta", "gu", "kn", "ml", "pa", "or", "as",
@@ -115,13 +103,24 @@ class Settings(BaseSettings):
         env="ASR_INDIC_LANGUAGES",
     )
 
-    # ── ASR — faster-whisper (English + audio-based language ID) ────────────
-    # Used for (a) a fast single-pass language-ID on the raw audio when the
-    # client omits `language`, and (b) transcribing English (or any other
-    # non-Indic language), which IndicConformer cannot handle at all.
-    whisper_model_size: str = Field(default="small", env="WHISPER_MODEL_SIZE")
-    whisper_device: str = Field(default="cpu", env="WHISPER_DEVICE")
-    whisper_compute_type: str = Field(default="int8", env="WHISPER_COMPUTE_TYPE")
+    # ── HuggingFace Space URLs (model microservices) ──────────────────────────
+    # Whisper small Space — handles English + audio-based language ID
+    whisper_space_url: str = Field(
+        default="rverma0631/Whisper",
+        env="WHISPER_SPACE_URL",
+    )
+    # IndicConformer 600M Space — handles 22 Indian languages
+    indic_asr_space_url: str = Field(
+        default="rverma0631/MultilingualASR",
+        env="INDIC_ASR_SPACE_URL",
+    )
+    # IndicParler-TTS Space — multilingual TTS
+    indic_tts_space_url: str = Field(
+        default="R910/IndicParler_TTS",
+        env="INDIC_TTS_SPACE_URL",
+    )
+
+    tts_english_speaker: str = Field(default="Mary", env="TTS_ENGLISH_SPEAKER")
 
     # ── Auth / JWT ────────────────────────────────────────────────────────────
     jwt_secret_key: str = Field(..., env="JWT_SECRET_KEY")

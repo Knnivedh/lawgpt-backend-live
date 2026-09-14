@@ -1,0 +1,53 @@
+services:
+  - type: web
+    name: family-law-backend
+    runtime: docker
+    plan: free          # 512 MB RAM, spins down after 15 min inactivity
+    region: oregon      # Change to: ohio, virginia, frankfurt, singapore as needed
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+
+    # Health check — Render uses this to know the service is ready
+    healthCheckPath: /health
+
+    # Environment variables (also set sensitive ones as secrets in Render dashboard)
+    envVars:
+      - key: API_HOST
+        value: "0.0.0.0"
+      - key: LLM_MODEL
+        value: meta-llama/Llama-3.1-8B-Instruct
+      - key: EMBEDDING_MODEL
+        value: bhavyagiri/InLegal-Sbert
+      - key: EMBEDDING_DIMENSION
+        value: "768"
+      - key: MILVUS_COLLECTION_NAME
+        value: indian_family_law_cases_hrag_test
+      - key: ENABLE_STREAMING
+        value: "true"
+      - key: ENABLE_MULTI_TURN
+        value: "true"
+      - key: ENABLE_ASR
+        value: "true"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "60"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: WHISPER_SPACE_URL
+        value: rverma0631/Whisper
+      - key: INDIC_ASR_SPACE_URL
+        value: rverma0631/MultilingualASR
+      - key: INDIC_TTS_SPACE_URL
+        value: R910/IndicParler_TTS
+      # ── Secrets: set these in Render Dashboard → Environment ──────────────
+      - key: HUGGINGFACE_API_KEY
+        sync: false   # Must be set manually in Render dashboard
+      - key: DATABASE_URL
+        sync: false
+      - key: MILVUS_URI
+        sync: false
+      - key: MILVUS_TOKEN
+        sync: false
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false   # Set to your Vercel URL e.g. ["https://your-app.vercel.app"]

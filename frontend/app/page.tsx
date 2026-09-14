@@ -402,13 +402,12 @@ const LegalAssistChat: React.FC = () => {
   // ── Text-to-Speech (TTS) ────────────────────────────────────────────────────
 
   /**
-   * Lightweight language detector based on Unicode script ranges and keywords.
-   * Returns a BCP-47 language prefix for the /tts/synthesize endpoint.
+   * Lightweight language detector based on Unicode script ranges.
+   * Returns a BCP-47 language tag for the /tts/synthesize endpoint.
    */
   const detectLanguage = (text: string): string => {
-    // Devanagari (Hindi, Marathi, Sanskrit)
     if (/[\u0900-\u097F]/.test(text)) {
-      if (/आहे|नाही|असेल|करणे/.test(text)) return 'mr-IN';
+      if (/\u0906\u0939\u0947|\u0928\u093e\u0939\u0940|\u0905\u0938\u0947\u0932|\u0915\u0930\u0923\u0947/.test(text)) return 'mr-IN';
       return 'hi-IN';
     }
     if (/[\u0B80-\u0BFF]/.test(text)) return 'ta-IN';  // Tamil
@@ -421,20 +420,16 @@ const LegalAssistChat: React.FC = () => {
     return 'en-IN';
   };
 
-  /** Strip HTML tags and decode common entities to get clean plain text. */
-  const htmlToPlainText = (html: string): string => {
-    return html
+  /** Strip HTML tags and decode common entities to plain text. */
+  const htmlToPlainText = (html: string): string =>
+    html
       .replace(/<br\s*\/?>/gi, '\n')
       .replace(/<[^>]+>/g, '')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'")
-      .trim();
-  };
+      .replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'").trim();
 
-  // ── TTSButton sub-component (AI4Bharat Indic Parler-TTS via backend) ─────────
+  // ── TTSButton sub-component ────────────────────────────────────────────────
 
   const TTSButton: React.FC<{ text: string; disabled?: boolean }> = ({ text, disabled = false }) => {
     type TtsState = 'idle' | 'loading' | 'playing' | 'error';
@@ -451,73 +446,46 @@ const LegalAssistChat: React.FC = () => {
       setTtsState('idle');
     };
 
-    /** Fall back to browser's built-in speech synthesis (no network needed). */
-    const speakWithBrowser = (plain: string, langFull: string) => {
-      if (!('speechSynthesis' in window)) {
-        setTtsState('error');
-        setErrorMsg('Speech synthesis not supported in this browser.');
-        return;
-      }
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(plain);
-      utterance.lang = langFull;        // e.g. "hi-IN"
-      utterance.rate = 0.95;
-      const voices = window.speechSynthesis.getVoices();
-      const matched =
-        voices.find(v => v.lang === langFull) ||
-        voices.find(v => v.lang.startsWith(langFull.split('-')[0]));
-      if (matched) utterance.voice = matched;
-      utterance.onstart = () => setTtsState('playing');
-      utterance.onend   = () => setTtsState('idle');
-      utterance.onerror = () => { setTtsState('error'); setErrorMsg('Browser speech failed.'); };
-      window.speechSynthesis.speak(utterance);
-    };
-
     const handleSpeak = async () => {
-      // Stop if already playing (browser TTS or audio element)
-      if (ttsState === 'playing') {
-        window.speechSynthesis?.cancel();
-        stopAudio();
-        return;
-      }
+      if (ttsState === 'playing') { window.speechSynthesis?.cancel(); stopAudio(); return; }
       if (ttsState === 'loading') return;
 
       setErrorMsg(null);
       setTtsState('loading');
 
-      const plain    = htmlToPlainText(text);
-      const truncated = plain.slice(0, 500);
-      const langFull = detectLanguage(truncated);          // e.g. "hi-IN"
-      const lang     = langFull.split('-')[0];             // e.g. "hi"
+      const truncated = htmlToPlainText(text).slice(0, 500);
+      const langFull  = detectLanguage(truncated);   // e.g. "hi-IN"
+      const lang      = langFull.split('-')[0];       // e.g. "hi"
 
-      // ── Try AI backend (Indic Parler-TTS) first ──────────────────────────────
       try {
         const token = localStorage.getItem('auth_token');
         const res = await fetch(`${API_BASE}/tts/synthesize`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ text: truncated, language: lang }),
         });
 
-        if (res.status === 503) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.detail || 'TTS model warming up. Retry in ~30 s.');
-        }
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.detail || `TTS backend error (${res.status})`);
+          throw new Error(data.detail || `TTS error (${res.status})`);
         }
 
-        const audioBlob = await res.blob();
-        const audioUrl  = URL.createObjectURL(audioBlob);
-        const audio     = new Audio(audioUrl);
+        const audioUrl = URL.createObjectURL(await res.blob());
+        const audio    = new Audio(audioUrl);
         audioRef.current = audio;
 
-        audio.onended = () => { URL.revokeObjectURL(audioUrl); stopAudio(); };
+        audio.onended = () => {
+          audio.onended = null;
+          audio.onerror = null;
+          URL.revokeObjectURL(audioUrl);
+          stopAudio();
+        };
         audio.onerror = () => {
+          audio.onended = null;
+          audio.onerror = null;
           URL.revokeObjectURL(audioUrl);
           setTtsState('error');
           setErrorMsg('Audio playback failed.');
@@ -527,10 +495,8 @@ const LegalAssistChat: React.FC = () => {
         await audio.play();
 
       } catch (err: any) {
-        // ── Backend unreachable → silently fall back to browser TTS ─────────────
-        console.warn('Indic Parler-TTS unavailable, falling back to browser TTS:', err.message);
-        setErrorMsg('⚠️ AI model unreachable — using browser voice (quality may vary).');
-        speakWithBrowser(truncated, langFull);
+        setTtsState('error');
+        setErrorMsg(err.message || 'TTS synthesis failed.');
       }
     };
 
@@ -541,8 +507,8 @@ const LegalAssistChat: React.FC = () => {
           disabled={disabled || ttsState === 'loading'}
           title={
             ttsState === 'playing' ? 'Stop reading'
-            : ttsState === 'loading' ? 'Generating audio with AI4Bharat Indic Parler-TTS…'
-            : 'Listen (AI4Bharat Indic Parler-TTS)'
+            : ttsState === 'loading' ? 'Generating audio…'
+            : 'Listen (IndicParler-TTS)'
           }
           className={`
             inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
@@ -557,8 +523,8 @@ const LegalAssistChat: React.FC = () => {
             }
           `}
         >
-          {ttsState === 'loading'  && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-          {ttsState === 'playing'  && <VolumeX className="w-3.5 h-3.5" />}
+          {ttsState === 'loading' && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+          {ttsState === 'playing' && <VolumeX className="w-3.5 h-3.5" />}
           {(ttsState === 'idle' || ttsState === 'error') && <Volume2 className="w-3.5 h-3.5" />}
           <span>
             {ttsState === 'loading' ? 'Generating…'
@@ -930,7 +896,7 @@ const LegalAssistChat: React.FC = () => {
                             className={`prose max-w-none text-sm leading-relaxed ${msg.role === 'user' ? 'prose-invert' : ''}`}
                           />
                           {renderInfoProgress(msg)}
-                          {/* TTS button – only for assistant messages */}
+                          {/* TTS button — only for assistant messages */}
                           {msg.role === 'assistant' && (
                             <div className="pt-2">
                               <TTSButton text={formatMessage(msg.content)} />
