@@ -74,6 +74,8 @@ from auth import hash_password, verify_password, create_access_token, get_curren
 from lang_utils import detect_language
 import spaces_client
 
+settings = get_settings()
+
 # ─── Lifespan ────────────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
