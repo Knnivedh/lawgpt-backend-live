@@ -15,7 +15,8 @@ from __future__ import annotations
 import logging
 import os
 import tempfile
-from typing import Optional
+from pathlib import Path
+from urllib.parse import urlsplit
 
 import httpx
 from gradio_client import Client, handle_file
@@ -136,6 +137,25 @@ def call_auto_detect_space(
 
 # ── IndicParler-TTS ────────────────────────────────────────────────────────────
 
+def _read_tts_audio(result: object) -> bytes:
+    """Read a Gradio download, or fetch an explicit HTTP(S) audio URL."""
+    candidates = (
+        [result.get("path"), result.get("url")]
+        if isinstance(result, dict) else [result]
+    )
+    for candidate in candidates:
+        if not isinstance(candidate, str) or not candidate:
+            continue
+        if urlsplit(candidate).scheme in ("http", "https"):
+            with httpx.Client(timeout=60, follow_redirects=True) as http:
+                response = http.get(candidate)
+                response.raise_for_status()
+                return response.content
+        if Path(candidate).is_file():
+            return Path(candidate).read_bytes()
+    raise ValueError("TTS Space returned no readable audio file or HTTP(S) URL")
+
+
 def call_tts_space(text: str, voice_description: str) -> bytes:
     """
     Synthesize speech using the IndicParler-TTS HF Space.
@@ -151,27 +171,16 @@ def call_tts_space(text: str, voice_description: str) -> bytes:
         "🔊 [TTS Space] text=%d chars → %s", len(text), _INDIC_TTS_SPACE
     )
     try:
-        client = Client(_INDIC_TTS_SPACE)
-        result = client.predict(
-            text=text,
-            description=voice_description,
-            api_name="/generate_finetuned",
-        )
-        # Gradio returns a FileData dict with a 'url' key pointing to the audio
-        audio_url: Optional[str] = None
-        if isinstance(result, dict):
-            audio_url = result.get("url") or result.get("path")
-        elif isinstance(result, str):
-            audio_url = result
-
-        if not audio_url:
-            raise ValueError(f"TTS Space returned unexpected result: {result!r}")
-
-        # Fetch the audio bytes from the returned URL
-        with httpx.Client(timeout=60) as http:
-            resp = http.get(audio_url)
-            resp.raise_for_status()
-            audio_bytes = resp.content
+        # Gradio downloads file outputs locally. Read them before cleaning up
+        # this request's directory so generated audio does not accumulate.
+        with tempfile.TemporaryDirectory(prefix="tts-") as output_dir:
+            client = Client(_INDIC_TTS_SPACE, download_files=output_dir)
+            result = client.predict(
+                text=text,
+                description=voice_description,
+                api_name="/generate_finetuned",
+            )
+            audio_bytes = _read_tts_audio(result)
 
         logger.info("✅ [TTS Space] Synthesized %d bytes", len(audio_bytes))
         return audio_bytes
