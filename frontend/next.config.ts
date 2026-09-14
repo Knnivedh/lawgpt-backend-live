@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Expose the backend URL to the browser.
-  // Set NEXT_PUBLIC_API_BASE in Vercel environment variables to your HF Space URL.
+  // Set NEXT_PUBLIC_API_BASE in Vercel to the deployed Render backend URL.
   // Falls back to localhost for local development.
   env: {
     NEXT_PUBLIC_API_BASE:

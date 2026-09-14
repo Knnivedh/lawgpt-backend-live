@@ -6,6 +6,7 @@ history_dir is removed — conversation state now lives in PostgreSQL.
 """
 
 import os
+import json
 from typing import List, Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, field_validator
@@ -153,7 +154,10 @@ class Settings(BaseSettings):
     @classmethod
     def parse_cors_origins(cls, v):
         if isinstance(v, str):
-            return [o.strip() for o in v.split(",")]
+            value = v.strip()
+            if value.startswith("["):
+                return json.loads(value)
+            return [o.strip() for o in value.split(",") if o.strip()]
         return v
 
     @field_validator("asr_indic_languages", mode="before")

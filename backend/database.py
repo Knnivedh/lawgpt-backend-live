@@ -30,7 +30,6 @@ load_dotenv()
 # Expects DATABASE_URL in the form:
 #   postgresql+asyncpg://user:password@host:5432/dbname
 DATABASE_URL = os.getenv("DATABASE_URL")
-print("DB URL:", DATABASE_URL)
 if not DATABASE_URL:
     raise EnvironmentError("DATABASE_URL environment variable is not set.")
 

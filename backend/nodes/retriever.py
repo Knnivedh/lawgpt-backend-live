@@ -1,8 +1,8 @@
 from pymilvus import Collection, connections
-from sentence_transformers import SentenceTransformer
 from typing import Dict, Iterable, List, Optional
 
 from config import get_settings
+from embedding_client import HuggingFaceEmbeddingClient
 from state import FamilyLawState
 
 
@@ -54,7 +54,7 @@ print(
     f"(context window >= {settings.large_context_window_threshold})"
 )
 
-model = SentenceTransformer(MODEL_NAME)
+embedding_client = HuggingFaceEmbeddingClient(MODEL_NAME, settings.embedding_dimension)
 
 
 def connect_and_load():
@@ -279,7 +279,7 @@ def retrieve_documents(state: FamilyLawState) -> Dict:
     if not collection:
         return {"retrieved_chunks": [], "sources": []}
 
-    query_embedding = model.encode([combined_query])[0].tolist()
+    query_embedding = embedding_client.embed([combined_query])[0]
 
     if len(query_embedding) != settings.embedding_dimension:
         print(

@@ -20,10 +20,7 @@ dependencies = [
     "langgraph>=1.0.2",
     # Vector Store
     "pymilvus>=2.5.0,<2.6.0",
-    # Embeddings (sentence-transformers runs locally for RAG)
-    "transformers>=4.36.2",
-    "torch>=2.1.2",
-    "sentence-transformers>=4.1.0",
+    # Embeddings are generated through the Hugging Face Inference API.
     "requests>=2.31.0",
     "tiktoken>=0.12.0",
     "langdetect>=1.0.9",
@@ -41,7 +38,6 @@ dependencies = [
     "websockets>=12.0",
     # Monitoring & Logging
     "loguru>=0.7.2",
-    "accelerate>=1.12.0",
     "psutil>=7.2.0",
     "rich>=14.2.0",
     "sqlalchemy[asyncio]>=2.0.45",

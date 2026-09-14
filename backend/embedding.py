@@ -1,7 +1,7 @@
 import os
 import json
 from tqdm import tqdm
-from sentence_transformers import SentenceTransformer
+from embedding_client import HuggingFaceEmbeddingClient
 
 # Directories
 CHUNKED_DIR = "./data/chunked"
@@ -11,8 +11,8 @@ os.makedirs(EMBEDDINGS_DIR, exist_ok=True)
 # Load Indian Law-specific embedding model
 MODEL_NAME = "bhavyagiri/InLegal-Sbert"  # 768-dimensional embeddings
 print(f"Loading Indian Law embedding model: {MODEL_NAME}")
-print("Note: This model provides 768-dimensional embeddings optimized for Indian legal context")
-model = SentenceTransformer(MODEL_NAME)
+print("Using Hugging Face Inference API; the model is not loaded locally")
+embedding_client = HuggingFaceEmbeddingClient(MODEL_NAME, 768)
 
 def generate_embeddings(file_path):
     """Generate embeddings for all chunks in a file using InLegal-Sbert."""
@@ -34,7 +34,7 @@ def generate_embeddings(file_path):
     
     # Generate embeddings in batches - InLegal-Sbert optimized for legal text
     print("Generating 768-dimensional embeddings with InLegal-Sbert...")
-    embeddings = model.encode(contents, show_progress_bar=True, batch_size=32)
+    embeddings = embedding_client.embed(contents)
     
     # Verify embedding dimensions
     if len(embeddings[0]) != 768:
@@ -48,7 +48,7 @@ def generate_embeddings(file_path):
         embedded_chunks.append({
             "id": i,
             "content": chunk["content"],
-            "embedding": embeddings[i].tolist(),
+            "embedding": embeddings[i],
             "metadata": chunk["metadata"]
         })
     
