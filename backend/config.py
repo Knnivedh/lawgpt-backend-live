@@ -7,8 +7,8 @@ history_dir is removed — conversation state now lives in PostgreSQL.
 
 import os
 import json
-from typing import List, Optional
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Annotated, List, Optional
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 from pydantic import Field, field_validator
 import logging
 
@@ -75,7 +75,7 @@ class Settings(BaseSettings):
     api_port: int       = Field(default=8000,       env="API_PORT")
     milvus_uri: str
     milvus_token: str
-    cors_origins: list[str] = Field(
+    cors_origins: Annotated[list[str], NoDecode] = Field(
         default=["http://localhost:3000", "http://localhost:3001"],
         env="CORS_ORIGINS",
     )
