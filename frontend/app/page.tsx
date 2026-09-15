@@ -400,75 +400,80 @@ const LegalAssistChat: React.FC = () => {
       let messageType: string | null = null;
       let reasoningSteps: ReasoningStep[] = [];
       let precedentExplanations: PrecedentExplanation[] = [];
+      let buffer = '';
+      let receivedDone = false;
 
       while (true) {
         const { done, value } = await reader.read();
-        if (done) break;
-
-        for (const line of decoder.decode(value).split('\n')) {
+        buffer += done ? decoder.decode() : decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = done ? '' : lines.pop() || '';
+        for (const line of lines) {
           if (!line.startsWith('data: ')) continue;
-          try {
-            const data = JSON.parse(line.slice(6));
+          const data = JSON.parse(line.slice(6));
 
-            if (data.type === 'setup') {
-              // Backend assigned a new thread_id
-              setCurrentThreadId(data.thread_id);
-            } else if (data.type === 'metadata') {
-              // Confirmation of thread_id (sent on every request)
-              if (!currentThreadId) setCurrentThreadId(data.thread_id);
-            } else if (data.type === 'clarification') {
-              accumulatedText = data.content;
-              messageType = 'clarification';
-              setStreamingMessage(accumulatedText);
-              setConversationStatus('clarifying');
-            } else if (data.type === 'information_gathering') {
-              accumulatedText = data.content;
-              messageType = 'information_gathering';
-              setInfoCollected(data.info_collected || {});
-              setInfoNeeded(data.info_needed || []);
-              setStreamingMessage(accumulatedText);
-              setConversationStatus('gathering_info');
-            } else if (data.type === 'token') {
-              accumulatedText += data.content;
-              messageType = 'final_response';
-              setStreamingMessage(accumulatedText);
-              setConversationStatus('generating');
-            } else if (data.type === 'sources') {
-              setSources(data.sources || []);
-            } else if (data.type === 'reasoning') {
-              reasoningSteps = data.steps || [];
-            } else if (data.type === 'precedent_explanations') {
-              precedentExplanations = data.explanations || [];
-            } else if (data.type === 'done') {
-              messageType = data.message_type || 'final_response';
-              if (accumulatedText) {
-                const msg: Message = {
-                  role: 'assistant',
-                  content: accumulatedText,
-                  timestamp: new Date(),
-                  messageType: messageType as any,
-                  reasoningSteps: data.reasoning_steps || reasoningSteps,
-                  precedentExplanations: data.precedent_explanations || precedentExplanations,
-                };
-                if (messageType === 'information_gathering') {
-                  msg.infoCollected = data.info_collected;
-                  msg.infoNeeded = data.info_needed;
-                }
-                setMessages(prev => [...prev, msg]);
+          if (data.type === 'setup') {
+            // Backend assigned a new thread_id
+            setCurrentThreadId(data.thread_id);
+          } else if (data.type === 'metadata') {
+            // Confirmation of thread_id (sent on every request)
+            if (!currentThreadId) setCurrentThreadId(data.thread_id);
+          } else if (data.type === 'clarification') {
+            accumulatedText = data.content;
+            messageType = 'clarification';
+            setStreamingMessage(accumulatedText);
+            setConversationStatus('clarifying');
+          } else if (data.type === 'information_gathering') {
+            accumulatedText = data.content;
+            messageType = 'information_gathering';
+            setInfoCollected(data.info_collected || {});
+            setInfoNeeded(data.info_needed || []);
+            setStreamingMessage(accumulatedText);
+            setConversationStatus('gathering_info');
+          } else if (data.type === 'token') {
+            accumulatedText += data.content;
+            messageType = 'final_response';
+            setStreamingMessage(accumulatedText);
+            setConversationStatus('generating');
+          } else if (data.type === 'sources') {
+            setSources(data.sources || []);
+          } else if (data.type === 'reasoning') {
+            reasoningSteps = data.steps || [];
+          } else if (data.type === 'precedent_explanations') {
+            precedentExplanations = data.explanations || [];
+          } else if (data.type === 'done') {
+            receivedDone = true;
+            accumulatedText = data.response || accumulatedText;
+            messageType = data.message_type || 'final_response';
+            if (accumulatedText) {
+              const msg: Message = {
+                role: 'assistant',
+                content: accumulatedText,
+                timestamp: new Date(),
+                messageType: messageType as any,
+                reasoningSteps: data.reasoning_steps || reasoningSteps,
+                precedentExplanations: data.precedent_explanations || precedentExplanations,
+              };
+              if (messageType === 'information_gathering') {
+                msg.infoCollected = data.info_collected;
+                msg.infoNeeded = data.info_needed;
               }
-              setStreamingMessage('');
-              setConversationStatus(
-                messageType === 'final_response' ? 'completed' :
-                  messageType === 'information_gathering' ? 'gathering_info' : 'clarifying'
-              );
-              // Ensure thread_id is set from done payload
-              if (data.thread_id && !currentThreadId) setCurrentThreadId(data.thread_id);
-            } else if (data.type === 'error') {
-              throw new Error(data.message);
+              setMessages(prev => [...prev, msg]);
             }
-          } catch (e) { console.warn('Parse error', e); }
+            setStreamingMessage('');
+            setConversationStatus(
+              messageType === 'final_response' ? 'completed' :
+                messageType === 'information_gathering' ? 'gathering_info' : 'clarifying'
+            );
+            // Ensure thread_id is set from done payload
+            if (data.thread_id && !currentThreadId) setCurrentThreadId(data.thread_id);
+          } else if (data.type === 'error') {
+            throw new Error(data.message);
+          }
         }
+        if (done) break;
       }
+      if (!receivedDone) throw new Error('Response stream ended before completion');
       loadThreads();
     } catch (err) {
       console.error('Send failed:', err);
