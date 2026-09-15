@@ -121,6 +121,11 @@ class Settings(BaseSettings):
         env="INDIC_TTS_SPACE_URL",
     )
 
+    tts_fallback_space_url: str = Field(
+        default="rverma0631/TTS_Sanskrit",
+        env="TTS_FALLBACK_SPACE_URL",
+    )
+
     tts_english_speaker: str = Field(default="Mary", env="TTS_ENGLISH_SPEAKER")
 
     # ── Auth / JWT ────────────────────────────────────────────────────────────

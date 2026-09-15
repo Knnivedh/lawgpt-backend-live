@@ -33,6 +33,7 @@ Set these as **Render Environment Variables** (sensitive ones as Secret Files or
 | `WHISPER_SPACE_URL` | `rverma0631/Whisper` |
 | `INDIC_ASR_SPACE_URL` | `rverma0631/MultilingualASR` |
 | `INDIC_TTS_SPACE_URL` | `R910/IndicParler_TTS` |
+| `TTS_FALLBACK_SPACE_URL` | `rverma0631/TTS_Sanskrit`; empty disables fallback |
 
 ## Local Development
 
@@ -53,3 +54,50 @@ the requested GPU allocation. Wait for the reset time reported by HF or use
 a hosting/account option with sufficient capacity. Generated audio duration
 is not GPU execution duration. Reducing a Space's `@spaces.GPU(duration=...)`
 requires measuring its actual inference runtime, including long inputs.
+
+
+## TTS fallback and cold starts
+
+TTS tries the primary Space first, then `rverma0631/TTS_Sanskrit` if client
+initialization, prediction (including ZeroGPU quota exhaustion), or audio retrieval
+fails. Both receive the same text and voice description at `/generate_finetuned`.
+Each distinct Space is attempted once per request. If both fail, the request fails
+with both errors. Downloads are cleaned up for each attempt. The fallback default
+requires no `.env` change; redeploy the backend to activate it.
+
+This does not remove queue time, CPU inference latency, or cold starts. The backend
+waits for the primary call to return or raise before switching; there is no quota
+reset cache or application-level prediction deadline. Verify fallback language and
+voice quality for the languages your application offers.
+
+Hugging Face documents that CPU Basic Spaces sleep after 48 hours of inactivity,
+and custom sleep settings require paid hardware:
+https://huggingface.co/docs/hub/spaces-gpus#set-a-custom-sleep-time
+
+For predictable availability, upgrade the Spaces to hardware configured never to
+sleep, or host the models on an always-running machine with adequate RAM/compute.
+Always-on CPU hosting removes sleep latency but may still synthesize slowly.
+For a free demo, visit the Spaces before a session to wake them and run a short
+sample to load any lazily initialized models. In each Space, load models once per
+process and reuse them. These reduce startup overhead but cannot guarantee uptime.
+A backend health check alone does not warm the separate model Spaces. Scheduled
+HTTP pings are not a documented guarantee that a model stays loaded.
+
+### Scheduled wake-up requests
+
+`.github/workflows/keepalive.yml` runs every 10 minutes and can also be run manually
+from GitHub Actions → **Keep Services Alive** → **Run workflow**. It checks Render's
+`/health` plus the Gradio `/config` endpoint for Whisper, IndicConformer,
+IndicParler TTS, and the Sanskrit TTS fallback. Each service runs independently,
+with bounded retries for cold starts; failed requests fail their job.
+
+To activate, push the workflow to the repository's default branch and enable
+GitHub Actions. Add the repository Actions secret `RENDER_BACKEND_URL` with the
+backend base URL (without `/health`). Public Space checks require no token.
+If you change model Spaces in backend settings, update the workflow URLs too.
+
+These requests can wake sleeping apps but do not run inference, warm lazily loaded
+models, or replenish ZeroGPU quota. Free hosting can still sleep or restart.
+GitHub schedules can be delayed, and public-repository schedules are disabled after
+60 days without repository activity. See the
+[GitHub schedule documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).

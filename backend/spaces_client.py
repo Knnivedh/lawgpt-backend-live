@@ -1,5 +1,5 @@
 """
-spaces_client.py — HTTP clients for the three deployed HuggingFace Gradio Spaces.
+spaces_client.py — HTTP clients for the deployed HuggingFace Gradio Spaces.
 
 Each function calls the corresponding Space using `gradio_client`, which handles
 the Gradio queuing protocol, file uploads, and polling automatically.
@@ -8,6 +8,7 @@ Spaces:
   - Whisper small      → rverma0631/Whisper          (/transcribe)
   - IndicConformer 600M→ rverma0631/MultilingualASR   (/transcribe_audio)
   - IndicParler-TTS   → R910/IndicParler_TTS          (/generate_finetuned)
+  - TTS fallback     → rverma0631/TTS_Sanskrit       (/generate_finetuned)
 """
 
 from __future__ import annotations
@@ -27,7 +28,6 @@ logger = logging.getLogger(__name__)
 # ── Space URLs (set via environment / config) ──────────────────────────────────
 _WHISPER_SPACE      = os.getenv("WHISPER_SPACE_URL",    "rverma0631/Whisper")
 _INDIC_ASR_SPACE    = os.getenv("INDIC_ASR_SPACE_URL",  "rverma0631/MultilingualASR")
-_INDIC_TTS_SPACE    = os.getenv("INDIC_TTS_SPACE_URL",  "R910/IndicParler_TTS")
 
 
 def _space_client(space: str, **kwargs) -> Client:
@@ -166,35 +166,44 @@ def _read_tts_audio(result: object) -> bytes:
     raise ValueError("TTS Space returned no readable audio file or HTTP(S) URL")
 
 
+def _tts_spaces() -> list[str]:
+    """Read settings lazily so both .env and deployment overrides are honored."""
+    from config import get_settings
+
+    settings = get_settings()
+    return list(dict.fromkeys(space for space in (
+        settings.indic_tts_space_url, settings.tts_fallback_space_url
+    ) if space))
+
+
 def call_tts_space(text: str, voice_description: str) -> bytes:
-    """
-    Synthesize speech using the IndicParler-TTS HF Space.
+    """Return WAV bytes, trying the CPU fallback if the primary Space fails.
 
-    The Space exposes two endpoints:
-      /generate_finetuned  — fine-tuned multilingual model (preferred)
-      /generate_pretrained — base pretrained model (fallback)
-
-    Returns:
-        Raw WAV audio bytes.
+    Both Spaces expose /generate_finetuned with text and description inputs.
+    Each provider is attempted once, including on quota, startup, or output errors.
     """
-    logger.info(
-        "🔊 [TTS Space] text=%d chars → %s", len(text), _INDIC_TTS_SPACE
+    failures = []
+    for space in _tts_spaces():
+        logger.info("🔊 [TTS Space] text=%d chars → %s", len(text), space)
+        try:
+            # Keep downloads isolated and clean up after either success or failure.
+            with tempfile.TemporaryDirectory(prefix="tts-") as output_dir:
+                client = _space_client(space, download_files=output_dir)
+                result = client.predict(
+                    text=text,
+                    description=voice_description,
+                    api_name="/generate_finetuned",
+                )
+                audio_bytes = _read_tts_audio(result)
+                if not audio_bytes:
+                    raise ValueError("TTS Space returned empty audio")
+            logger.info("✅ [TTS Space] %s synthesized %d bytes", space, len(audio_bytes))
+            return audio_bytes
+        except Exception as error:
+            logger.warning("[TTS Space] %s failed: %s", space, error)
+            failures.append((space, error))
+
+    details = "; ".join(f"{space}: {error}" for space, error in failures)
+    raise RuntimeError(f"TTS Spaces failed: {details or 'no Spaces configured'}") from (
+        failures[-1][1] if failures else None
     )
-    try:
-        # Gradio downloads file outputs locally. Read them before cleaning up
-        # this request's directory so generated audio does not accumulate.
-        with tempfile.TemporaryDirectory(prefix="tts-") as output_dir:
-            client = _space_client(_INDIC_TTS_SPACE, download_files=output_dir)
-            result = client.predict(
-                text=text,
-                description=voice_description,
-                api_name="/generate_finetuned",
-            )
-            audio_bytes = _read_tts_audio(result)
-
-        logger.info("✅ [TTS Space] Synthesized %d bytes", len(audio_bytes))
-        return audio_bytes
-
-    except Exception as e:
-        logger.error("❌ [TTS Space] Error: %s", e)
-        raise RuntimeError(f"IndicParler-TTS Space call failed: {e}") from e

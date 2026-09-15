@@ -1,38 +1,63 @@
 name: Keep Services Alive
 
-# Render free tier spins down after 15 min of inactivity.
-# Ping every 10 minutes to keep it warm.
-# HF CPU Free Spaces sleep after 48h — also covered here.
+# Best-effort wake-up requests; free hosting does not guarantee availability.
 on:
   schedule:
-    - cron: "*/10 * * * *"   # Every 10 minutes
-  workflow_dispatch:          # Allow manual trigger
+    - cron: "7,17,27,37,47,57 * * * *" # Every 10 minutes, away from minute zero
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: keep-services-alive
+  cancel-in-progress: false
 
 jobs:
   ping-render-backend:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 5
+    env:
+      RENDER_BACKEND_URL: ${{ secrets.RENDER_BACKEND_URL }}
     steps:
-      - name: Ping Render Backend
+      - name: Ping Render backend
+        shell: bash
         run: |
-          echo "Pinging Render backend..."
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            "${{ secrets.RENDER_BACKEND_URL }}/health" \
-            --max-time 30)
-          echo "HTTP status: $STATUS"
-          if [ "$STATUS" = "200" ]; then
-            echo "✅ Render backend is alive"
-          else
-            echo "::warning::Backend returned $STATUS (may be cold-starting, takes ~30s)"
+          if [[ -z "$RENDER_BACKEND_URL" ]]; then
+            echo "::error::Set the RENDER_BACKEND_URL Actions secret to the backend base URL."
+            exit 1
           fi
+          curl --fail --silent --show-error --location \
+            --output /dev/null --write-out 'Backend HTTP: %{http_code}\n' \
+            --connect-timeout 15 --max-time 60 \
+            --retry 2 --retry-delay 10 --retry-all-errors --retry-max-time 210 \
+            "${RENDER_BACKEND_URL%/}/health"
 
-  ping-whisper-space:
+  ping-hf-spaces:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Whisper
+            url: https://rverma0631-whisper.hf.space
+          - name: IndicConformer
+            url: https://rverma0631-multilingualasr.hf.space
+          - name: IndicParler TTS
+            url: https://r910-indicparler-tts.hf.space
+          - name: Sanskrit TTS fallback
+            url: https://rverma0631-tts-sanskrit.hf.space
+    name: Wake ${{ matrix.name }}
+    env:
+      SPACE_URL: ${{ matrix.url }}
     steps:
-      - name: Ping Whisper HF Space
+      - name: Request Gradio app configuration
+        shell: bash
         run: |
-          echo "Pinging Whisper Space (CPU Free)..."
-          curl -s -o /dev/null -w "Whisper HTTP: %{http_code}\n" \
-            "https://rverma0631-whisper.hf.space/" \
-            --max-time 30 || echo "Whisper ping timed out (waking up)"
+          # Reach the actual app, rather than its Hugging Face repository page.
+          # This does not run inference or allocate a ZeroGPU GPU.
+          curl --fail --silent --show-error --location \
+            --output /dev/null --write-out 'Space HTTP: %{http_code}\n' \
+            --connect-timeout 15 --max-time 60 \
+            --retry 2 --retry-delay 10 --retry-all-errors --retry-max-time 210 \
+            "${SPACE_URL}/config"
