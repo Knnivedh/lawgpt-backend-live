@@ -19,6 +19,7 @@ from pathlib import Path
 from datetime import datetime
 
 LOG_DIR = Path("./logs")
+TRACE_DIR = LOG_DIR / "event_traces"
 LOG_DIR.mkdir(exist_ok=True)
 log_filename = LOG_DIR / f"app_{datetime.now().strftime('%Y%m%d')}.log"
 
@@ -563,6 +564,7 @@ async def chat_stream(
         thread_id  = chat_request.thread_id or str(uuid.uuid4())
         is_new     = chat_request.thread_id is None
         user_id    = current_user.id
+        trace_file = None
 
         try:
             logger.info("=" * 80)
@@ -609,14 +611,23 @@ async def chat_stream(
             yield f"data: {json.dumps({'type': 'metadata', 'thread_id': thread_id})}\n\n"
 
             # ── 3. Open event trace file ──────────────────────────────────────
-            trace_path = os.path.join(TRACE_DIR, f"{thread_id}.log")
-            trace_file = open(trace_path, "a", encoding="utf-8")
+            try:
+                TRACE_DIR.mkdir(parents=True, exist_ok=True)
+                trace_path = TRACE_DIR / f"{thread_id}.log"
+                trace_file = trace_path.open("a", encoding="utf-8")
+            except OSError:
+                logger.warning("Unable to open event trace; continuing chat", exc_info=True)
 
             def write_trace(event_type: str, payload):
-                trace_file.write(
-                    json.dumps({"ts": datetime.utcnow().isoformat(), "type": event_type, "payload": payload}, default=str) + "\n"
-                )
-                trace_file.flush()
+                if trace_file is None:
+                    return
+                try:
+                    trace_file.write(
+                        json.dumps({"ts": datetime.utcnow().isoformat(), "type": event_type, "payload": payload}, default=str) + "\n"
+                    )
+                    trace_file.flush()
+                except OSError:
+                    logger.warning("Unable to write event trace; continuing chat", exc_info=True)
 
             # ── 4. Stream graph events ────────────────────────────────────────
             accumulated_response   = ""
@@ -678,8 +689,6 @@ async def chat_stream(
                     if precedent_explanations:
                         yield f"data: {json.dumps({'type': 'precedent_explanations', 'explanations': precedent_explanations})}\n\n"
 
-            trace_file.close()
-
             # ── 5. Schedule background save ───────────────────────────────────
             latency_ms   = int((time.time() - start_time) * 1000)
             ai_metadata  = {
@@ -723,6 +732,12 @@ async def chat_stream(
             logger.error(f"❌ Streaming error: {e}")
             logger.error(traceback.format_exc())
             yield f"data: {json.dumps({'type': 'error', 'message': 'An error occurred.'})}\n\n"
+        finally:
+            if trace_file is not None:
+                try:
+                    trace_file.close()
+                except OSError:
+                    logger.warning("Unable to close event trace", exc_info=True)
 
     return StreamingResponse(
         event_generator(),
