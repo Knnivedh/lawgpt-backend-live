@@ -15,7 +15,9 @@ class HuggingFaceEmbeddingClient:
         self.api_key = os.getenv("HUGGINGFACE_API_KEY")
         self.endpoint = (
             "https://router.huggingface.co/hf-inference/models/"
-            f"{model_name}"
+            # Explicitly request embeddings: this model defaults to sentence
+            # similarity, which expects sentence pairs rather than a text list.
+            f"{model_name}/pipeline/feature-extraction"
         )
 
     def embed(self, texts: List[str]) -> List[List[float]]:
@@ -27,7 +29,7 @@ class HuggingFaceEmbeddingClient:
         response = requests.post(
             self.endpoint,
             headers={"Authorization": f"Bearer {self.api_key}"},
-            json={"inputs": texts, "options": {"wait_for_model": True}},
+            json={"inputs": texts},
             timeout=120,
         )
         response.raise_for_status()
