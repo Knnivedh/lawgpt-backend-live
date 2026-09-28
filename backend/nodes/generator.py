@@ -19,6 +19,7 @@ import os
 import logging
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from lang_utils import detect_language, build_language_instruction, get_language_name
+from citation_guard import sanitize_citations, trim_to_last_sentence
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -36,8 +37,8 @@ llm = ChatHuggingFace(
         repo_id=settings.llm_model,
         huggingfacehub_api_token=settings.huggingface_api_key,
         task="conversational",
-        max_new_tokens=1024,
-        temperature=0.7,
+        max_new_tokens=2048,
+        temperature=0.3,
     )
 )
 
@@ -66,6 +67,7 @@ SYSTEM_PROMPT = (
     "- Prefer authoritative Indian sources and cite succinctly, e.g., (IPC s.498A), (HMA 1955 s.13), (CrPC s.125) — only when that citation is present in the context.\n"
     "- If a precise section is uncertain or absent from context, say so briefly instead of guessing.\n"
     "- Give concise response to ensure a Flesch Reading Ease score of at least 55+.\n"
+    "- Keep the whole answer under about 350 words. Do not repeat points you have already made.\n"
     "- Explain legal terms briefly in everyday language when necessary.\n"
     "- Give practical guidance wherever possible, focusing on what a person can realistically do.\n\n"
     f"Style Example (tone only, not ground truth):\n"
@@ -194,7 +196,18 @@ YOUR COMPLETE RESPONSE:"""
         # Generate main response
         response = llm.invoke(conversation)
         response_content = response.content.strip()
-        
+
+        finish_reason = (getattr(response, "response_metadata", None) or {}).get("finish_reason")
+        if finish_reason == "length":
+            logger.warning("⚠️ Response hit the token limit; trimming to the last complete sentence")
+            response_content = trim_to_last_sentence(response_content)
+
+        response_content, removed_sections = sanitize_citations(
+            response_content, legal_context, detected_lang
+        )
+        if removed_sections:
+            logger.warning(f"⚠️ Removed unverified section citations: {removed_sections}")
+
         logger.info(f"✅ Generated response: {len(response_content)} characters")
         
         # Add disclaimer if not present

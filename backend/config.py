@@ -47,6 +47,14 @@ class Settings(BaseSettings):
     embedding_model: str  = Field(default="bhavyagiri/InLegal-Sbert", env="EMBEDDING_MODEL")
     embedding_dimension: int = Field(default=768, env="EMBEDDING_DIMENSION")
 
+    # ── Query translation (any language → English, used for retrieval only) ───
+    translation_model: str = Field(default="google/gemma-3-4b-it", env="TRANSLATION_MODEL")
+    enable_query_translation: bool = Field(default=False, env="ENABLE_QUERY_TRANSLATION")
+    # Optional rollout allowlist of detected_language codes. Empty = every
+    # non-English query. Note langdetect mislabels code-mixed text (Hinglish
+    # often comes back as "fi"/"es"), so an allowlist skips those queries.
+    translation_enabled_languages: List[str] = Field(default=[], env="TRANSLATION_ENABLED_LANGUAGES")
+
     # ── RAG ───────────────────────────────────────────────────────────────────
     retrieval_top_k: int = Field(default=5,   env="RETRIEVAL_TOP_K")
     retrieval_cases_top_k: int = Field(default=5, env="RETRIEVAL_CASES_TOP_K")
@@ -168,6 +176,13 @@ class Settings(BaseSettings):
     @field_validator("asr_indic_languages", mode="before")
     @classmethod
     def parse_asr_indic_languages(cls, v):
+        if isinstance(v, str):
+            return [o.strip() for o in v.split(",") if o.strip()]
+        return v
+
+    @field_validator("translation_enabled_languages", mode="before")
+    @classmethod
+    def parse_translation_enabled_languages(cls, v):
         if isinstance(v, str):
             return [o.strip() for o in v.split(",") if o.strip()]
         return v

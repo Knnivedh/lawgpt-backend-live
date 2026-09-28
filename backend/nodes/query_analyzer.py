@@ -140,6 +140,7 @@ ANALYSIS (JSON only):"""
                 huggingfacehub_api_token=api_key,
                 task="text-generation",
                 max_new_tokens=1024,
+                temperature=0.15,
             )
         )
     

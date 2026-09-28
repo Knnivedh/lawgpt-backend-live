@@ -34,6 +34,9 @@ Set these as **Render Environment Variables** (sensitive ones as Secret Files or
 | `INDIC_ASR_SPACE_URL` | `rverma0631/MultilingualASR` |
 | `INDIC_TTS_SPACE_URL` | `R910/IndicParler_TTS` |
 | `TTS_FALLBACK_SPACE_URL` | `rverma0631/TTS_Sanskrit`; empty disables fallback |
+| `ENABLE_QUERY_TRANSLATION` | `false` by default. Translates non-English queries to English before retrieval only (see `nodes/retriever.py`); the original query is untouched for analysis/generation |
+| `TRANSLATION_MODEL` | `google/gemma-3-4b-it`, called via HF Inference Providers like the LLM |
+| `TRANSLATION_ENABLED_LANGUAGES` | Optional comma-separated ISO 639-1 allowlist. Empty = all non-English queries (langdetect mislabels code-mixed text, so an allowlist skips it) |
 
 ## Local Development
 

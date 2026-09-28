@@ -1,10 +1,14 @@
+import logging
+
 from pymilvus import Collection, connections
 from typing import Dict, Iterable, List, Optional
 
 from config import get_settings
 from embedding_client import HuggingFaceEmbeddingClient
+from translation_client import QueryTranslator, TranslationError
 from state import FamilyLawState
 
+logger = logging.getLogger(__name__)
 
 settings = get_settings()
 
@@ -55,6 +59,36 @@ print(
 )
 
 embedding_client = HuggingFaceEmbeddingClient(MODEL_NAME, settings.embedding_dimension)
+translator = QueryTranslator(settings.translation_model, settings.huggingface_api_key)
+
+
+def _retrieval_query(combined_query: str, detected_language: str) -> str:
+    """
+    Return the text to embed/search with. Translates non-English queries to
+    English when translation is enabled (and the language is in the optional
+    allowlist); falls back to the original query on any failure. The original
+    query in graph state is never modified -- this only affects retrieval.
+    """
+    allowlist = settings.translation_enabled_languages
+    if (
+        detected_language == "en"
+        or not settings.enable_query_translation
+        or (allowlist and detected_language not in allowlist)
+    ):
+        return combined_query
+
+    try:
+        translated = translator.translate(combined_query)
+        logger.info(
+            "Query translation for retrieval: language=%s success=True", detected_language
+        )
+        return translated
+    except TranslationError as e:
+        logger.warning(
+            "Query translation for retrieval: language=%s success=False error=%s",
+            detected_language, e,
+        )
+        return combined_query
 
 
 def connect_and_load():
@@ -279,7 +313,10 @@ def retrieve_documents(state: FamilyLawState) -> Dict:
     if not collection:
         return {"retrieved_chunks": [], "sources": []}
 
-    query_embedding = embedding_client.embed([combined_query])[0]
+    detected_language = state.get("detected_language") or "en"
+    retrieval_query = _retrieval_query(combined_query, detected_language)
+
+    query_embedding = embedding_client.embed([retrieval_query])[0]
 
     if len(query_embedding) != settings.embedding_dimension:
         print(

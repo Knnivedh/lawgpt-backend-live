@@ -15,6 +15,7 @@ import re
 from pydantic import BaseModel
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from citation_guard import excerpt_in_source
 import os
 
 logger = logging.getLogger(__name__)
@@ -276,6 +277,12 @@ YOUR ANALYSIS (JSON only):"""
             # Parse JSON
             usage_data = self._extract_json(response_text)
             
+            # The prompt contains both the precedent and the generated response, so the
+            # model sometimes quotes the response. Only trust an excerpt found in the precedent.
+            key_excerpt = usage_data.get('key_excerpt', '')
+            if not excerpt_in_source(key_excerpt, content):
+                key_excerpt = content[:200]
+
             # Create PrecedentUsage object
             usage = PrecedentUsage(
                 precedent_title=metadata.get('title', f'Precedent {precedent_index + 1}'),
@@ -284,7 +291,7 @@ YOUR ANALYSIS (JSON only):"""
                 usage_score=float(usage_data.get('usage_score', 0.5)),
                 matching_factors=usage_data.get('matching_factors', []),
                 different_factors=usage_data.get('different_factors', []),
-                key_excerpt=usage_data.get('key_excerpt', content[:200]),
+                key_excerpt=key_excerpt,
                 how_it_influenced_response=usage_data.get('how_it_influenced_response', ''),
                 response_sections_influenced=usage_data.get('response_sections_influenced', []),
                 citation=metadata.get('url', metadata.get('source', ''))
