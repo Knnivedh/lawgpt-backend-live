@@ -501,7 +501,10 @@ def retrieve_documents(state: FamilyLawState) -> Dict:
     detected_language = state.get("detected_language") or "en"
     embed_text, keyword_text = _search_texts(combined_query, detected_language)
 
-    query_embedding = embedding_client.embed([settings.embedding_query_prefix + embed_text])[0]
+    # One space between prefix and question whether or not the setting kept its
+    # trailing space (.env files and hosting dashboards often strip it).
+    prefix = settings.embedding_query_prefix.strip()
+    query_embedding = embedding_client.embed([f"{prefix} {embed_text}" if prefix else embed_text])[0]
 
     if len(query_embedding) != settings.embedding_dimension:
         print(

@@ -684,8 +684,11 @@ async def chat_stream(
                     sources = output.get("sources", [])
                     yield f"data: {json.dumps({'type': 'sources', 'sources': sources})}\n\n"
 
-                # LLM token streaming (only from generate + gather_info nodes)
-                elif kind == "on_chat_model_stream" and event.get("metadata", {}).get("langgraph_node") in ("generate", "gather_info"):
+                # LLM token streaming, from the generate node only. gather_info also
+                # calls the model to extract the user's answer as JSON; streaming that
+                # put {"extracted_answer": ...} at the top of the final answer. Its
+                # follow-up question reaches the client through ask_question above.
+                elif kind == "on_chat_model_stream" and event.get("metadata", {}).get("langgraph_node") == "generate":
                     content = event["data"]["chunk"].content
                     if content:
                         message_type = "final_response"
@@ -698,6 +701,12 @@ async def chat_stream(
                     final_state            = output
                     reasoning_steps        = output.get("reasoning_steps", [])
                     precedent_explanations = output.get("precedent_explanations", [])
+
+                    # The streamed tokens are the model's raw text. The generate node
+                    # then trims a cut-off ending, runs the citation guard and adds the
+                    # disclaimer; send and save that final text, not the raw stream.
+                    if message_type == "final_response" and output.get("response"):
+                        accumulated_response = output["response"]
 
                     if reasoning_steps:
                         yield f"data: {json.dumps({'type': 'reasoning', 'steps': reasoning_steps})}\n\n"

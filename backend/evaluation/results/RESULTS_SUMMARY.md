@@ -163,3 +163,5 @@ Measured offline (`evaluation/retrieval_eval/compare_models_offline.py`, results
 
 Gold labels were pooled from keyword search and InLegal-SBERT, so precedent scores for other models are lower bounds.
 
+Rerankers over bge-small-en-v1.5 + keyword candidates (offline; top-3 / top-5 statutes, top-5 precedents): no reranker 0.81 / 0.87 / 0.60; ms-marco-MiniLM-L-6-v2 0.55 / 0.66 / 0.59; bge-reranker-base 0.67 / 0.77 / 0.59. Both rerankers lower statute hits and leave precedents unchanged.
+
