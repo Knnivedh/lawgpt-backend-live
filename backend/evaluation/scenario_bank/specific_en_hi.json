@@ -1,0 +1,334 @@
+[
+{
+ "id": "L-en-01", "language": "en", "topic": "one-time alimony in mutual consent divorce", "style": "narrative", "role": "husband", "gender": "male",
+ "source": "corpus post 1285 (Quantum of one time alimony in case of divorce by mutual consent), facts changed",
+ "query": {"en": "Our marriage is 11 months old. My wife has alleged cruelty and domestic violence against me, which is false. The marriage was never consummated. Both families now want to end it by mutual consent, but her side is asking for 25 lakhs as one-time alimony. I earn 70k a month. Is that amount reasonable, and can the court reduce it?"},
+ "analyzer": {
+  "category": "already-detailed",
+  "intent": "Assess whether a Rs 25 lakh one-time alimony demand in a mutual consent divorce after an 11-month marriage is reasonable and whether a court can reduce it",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "marriage_duration: 11 months | allegations: wife alleges cruelty and domestic violence | consummation: never | settlement: both families want mutual consent; wife's side demands Rs 25 lakh | client_income: Rs 70,000/month | client_role: husband",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | wife's_income | assets | any_case_already_filed",
+  "must_not_ask": "marriage_duration | client_income | amount_demanded | consummation"
+ }
+},
+{
+ "id": "L-en-02", "language": "en", "topic": "498A FIR against husband living abroad", "style": "narrative", "role": "husband", "gender": "male",
+ "source": "corpus post 2260 (Passport impounding and problems abroad), facts changed",
+ "query": {"en": "I have been working in Germany since 2019. Last year my wife filed an FIR under 498A and 406 against me and my parents in Ludhiana. We are a Sikh family. I have not been to India since. Can they impound my passport or issue a look out circular? How do I get the FIR quashed from here?"},
+ "analyzer": {
+  "category": "already-detailed",
+  "intent": "Deal with a 498A/406 FIR in India while living in Germany: risk to his passport, a look out circular, and quashing the FIR from abroad",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "client_location: Germany since 2019 | case: FIR under 498A and 406 against client and parents, Ludhiana, last year | travel: has not visited India since | religion: Sikh | client_role: husband",
+  "must_ask": "",
+  "acceptable_info_needed": "stage_of_case | whether_summons_or_warrant_issued | wife's_current_location | divorce_status",
+  "must_not_ask": "religion | where_the_FIR_was_filed | which_sections"
+ }
+},
+{
+ "id": "L-en-03", "language": "en", "topic": "consent withdrawn before second motion", "style": "narrative", "role": "husband", "gender": "male",
+ "source": "corpus posts 2550 and 710 (mutual consent, second motion), facts changed",
+ "query": {"en": "We filed for mutual consent divorce in January. I paid half of the settlement amount at the first motion. Now, at the second motion, my wife is refusing to appear and says she wants more money. Can the court grant the divorce anyway? Can I get my money back?"},
+ "analyzer": {
+  "category": "clear-partial",
+  "intent": "Know whether the divorce can still be granted, and the part payment recovered, when his wife withholds consent at the second motion",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "petition: mutual consent divorce filed in January | payment: half the settlement paid at first motion | wife: refuses to appear at second motion, demands more money | client_role: husband",
+  "must_ask": "",
+  "acceptable_info_needed": "religion | whether_settlement_terms_are_recorded_in_court | amount_paid_and_proof | children",
+  "must_not_ask": "whether_first_motion_is_done | whether_payment_was_made"
+ }
+},
+{
+ "id": "L-en-04", "language": "en", "topic": "reducing maintenance after remarriage", "style": "narrative", "role": "ex-husband", "gender": "male",
+ "source": "corpus post 2306 (Maintenance), facts changed",
+ "query": {"en": "I had a mutual divorce in 2019 with an agreed monthly maintenance of 15k to my ex-wife, and I have paid it regularly. I remarried this year and have new responsibilities. She is working now. Can I stop or reduce the maintenance?"},
+ "analyzer": {
+  "category": "clear-partial",
+  "intent": "Stop or reduce the monthly maintenance agreed in his 2019 mutual divorce, now that he has remarried and his ex-wife is working",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "divorce: mutual, 2019 | maintenance: Rs 15,000/month agreed, paid regularly | change: client remarried this year; ex-wife now working | client_role: ex-husband",
+  "must_ask": "",
+  "acceptable_info_needed": "whether_terms_are_in_the_court_decree | ex-wife's_income | whether_ex-wife_remarried | children",
+  "must_not_ask": "amount_of_maintenance | whether_he_has_paid | year_of_divorce"
+ }
+},
+{
+ "id": "L-en-05", "language": "en", "topic": "stepfather's name in child's records", "style": "narrative", "role": "mother", "gender": "female",
+ "source": "corpus post 2124 (Addition of name of adopted father in passport), facts changed",
+ "query": {"en": "I got divorced in 2016 and the court gave me full custody of my daughter. I remarried in 2020. I want to add my present husband's name as father in her passport and school records. Is adoption necessary for this?"},
+ "analyzer": {
+  "category": "religion-critical",
+  "intent": "Add her present husband's name as father in her daughter's passport and school records, and know whether adoption is required",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "divorce: 2016, full custody of daughter with client | remarried: 2020 | relief_sought: present husband's name as father in passport and school records | client_role: mother",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | daughter's_age | whether_biological_father_consents_or_can_be_traced",
+  "must_not_ask": "who_has_custody | whether_she_remarried"
+ }
+},
+{
+ "id": "L-en-06", "language": "en", "topic": "will and later unregistered revocation", "style": "narrative", "role": "child of deceased", "gender": "unknown",
+ "source": "corpus post 2431 (Challenge a will), facts changed",
+ "query": {"en": "My mother made a registered will in 2012 leaving her flat to my younger brother. In 2019 she wrote and signed a paper saying all her earlier wills are cancelled, but it was not registered. She passed away last month. Which document will hold? We are three siblings, Hindu."},
+ "analyzer": {
+  "category": "clear-complete",
+  "intent": "Know which document prevails: the mother's registered 2012 will or her later unregistered paper cancelling earlier wills",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "will: registered 2012, flat to younger brother | later_document: signed 2019 paper cancelling earlier wills, unregistered | mother: died last month | heirs: three siblings | religion: Hindu",
+  "must_ask": "",
+  "acceptable_info_needed": "whether_the_2019_paper_was_witnessed | whether_the_flat_was_self_acquired | whether_father_is_alive",
+  "must_not_ask": "religion | number_of_siblings | whether_the_will_was_registered"
+ }
+},
+{
+ "id": "L-en-07", "language": "en", "topic": "opposing wife's guardianship petition", "style": "narrative", "role": "father", "gender": "male",
+ "source": "corpus post 2252 (GWOP Petition), facts changed",
+ "query": {"en": "My wife filed a petition for sole guardianship of our 5 year old daughter in the family court. In that petition she says she earns 45000 per month, but in her maintenance case she told the court she has no income. Can I use this contradiction, and how do I oppose her guardianship petition?"},
+ "analyzer": {
+  "category": "clear-partial",
+  "intent": "Oppose his wife's sole guardianship petition and use her contradictory income statements in the two cases",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "petition: wife seeks sole guardianship of daughter aged 5, family court | contradiction: claims Rs 45,000/month there, no income in maintenance case | client_role: father",
+  "must_ask": "",
+  "acceptable_info_needed": "who_the_child_lives_with | religion | stage_of_both_cases",
+  "must_not_ask": "child_age | what_the_wife_said_about_income"
+ }
+},
+{
+ "id": "L-en-08", "language": "en", "topic": "in-laws allege concealment of past illness", "style": "narrative", "role": "sibling", "gender": "unknown",
+ "source": "corpus post 519 (Schizophrenia), facts changed",
+ "query": {"en": "My sister was treated for depression some years ago and is completely fine now. She got married last month, an arranged marriage. Her in-laws found old prescriptions and now say we cheated them. They want to send her back and are demanding all the wedding expenses. Can they cancel the marriage for this?"},
+ "analyzer": {
+  "category": "role",
+  "intent": "Know whether the client's sister's in-laws can annul the marriage and recover expenses over her past treatment for depression",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "aggrieved_person: client's sister | marriage: last month, arranged | history: treated for depression years ago, now well | in_laws: found old prescriptions, allege cheating, want to send her back and recover wedding expenses",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | whether_the_illness_was_disclosed_before_marriage | current_medical_status | any_notice_or_case",
+  "must_not_ask": "when_she_married | assumes_client_is_the_wife"
+ }
+},
+{
+ "id": "L-en-09", "language": "en", "topic": "precautions before wife files cases", "style": "noisy", "role": "husband", "gender": "male",
+ "source": "corpus post 348 (Preventive measures before divorce), facts changed",
+ "query": {"en": "wife left 2 months back with our daughter to her parents place in haryana.. we live in bangalore with my parents. went twice to bring her back she refused. now her father is saying they will file cases. what precautions shud i take before she files anything?? married 4 yrs"},
+ "analyzer": {
+  "category": "noisy",
+  "intent": "Know what precautions to take before his wife's family files cases against him",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "wife_left: 2 months ago with daughter, to her parents in Haryana | client: lives in Bangalore with his parents | attempts: went twice to bring her back, she refused | threat: her father says they will file cases | marriage_duration: 4 years | client_role: husband",
+  "must_ask": "",
+  "acceptable_info_needed": "religion | daughter's_age | reason_wife_left | any_complaint_already_filed",
+  "must_not_ask": "marriage_duration | where_the_wife_is | whether_he_tried_to_bring_her_back"
+ }
+},
+{
+ "id": "L-en-10", "language": "en", "topic": "husband concealed sexual orientation", "style": "narrative", "role": "sibling", "gender": "unknown",
+ "source": "corpus post 2643 (Gay case - cheating, fraud, domestic violence), facts changed",
+ "query": {"en": "My sister married in 2021. Last year she found out that her husband is gay and married her only because of family pressure. He admitted it in front of both families. There has been no physical relationship. She wants out. Is this a ground for annulment or divorce, and is it cheating?"},
+ "analyzer": {
+  "category": "role",
+  "intent": "Know whether the client's sister can get an annulment or divorce because her husband concealed that he is gay, and whether it amounts to cheating",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "aggrieved_person: client's sister | marriage: 2021 | discovery: last year, husband is gay, admitted before both families | consummation: no physical relationship | relief_sought: annulment or divorce",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | evidence_of_the_admission | whether_living_together",
+  "must_not_ask": "marriage_year | consummation | assumes_client_is_the_wife"
+ }
+},
+{
+ "id": "X-en-1", "language": "en", "topic": "noisy three-word request", "style": "noisy", "role": "unknown", "gender": "unknown", "analyzer_only": true,
+ "source": "synthetic",
+ "query": {"en": "divorse hlp plz urgent"},
+ "analyzer": {
+  "category": "noisy",
+  "intent": "Wants help with a divorce (no details given)",
+  "confidence": "medium", "needs_clarification": "no",
+  "info_provided": "relief_sought: divorce",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | client_role | marriage_duration | grounds | children | whether_spouse_agrees",
+  "must_not_ask": ""
+ }
+},
+{
+ "id": "X-en-2", "language": "en", "topic": "off-topic: consumer complaint", "style": "off-topic", "role": "unknown", "gender": "unknown", "analyzer_only": true,
+ "source": "synthetic",
+ "query": {"en": "I bought a phone online and it stopped working in 2 days. The seller is refusing a refund. Can I go to consumer court?"},
+ "analyzer": {
+  "category": "off-topic",
+  "intent": "(outside family law: consumer complaint)",
+  "confidence": "low", "needs_clarification": "yes",
+  "info_provided": "(empty)", "must_ask": "", "acceptable_info_needed": "(empty)",
+  "must_not_ask": "religion | marriage_date | children"
+ }
+},
+{
+ "id": "L-hi-01", "language": "hi", "topic": "domestic violence by alcoholic husband", "style": "speech", "role": "wife", "gender": "female",
+ "source": "synthetic, voice style modelled on event traces",
+ "query": {"hi": "मेरा पति रोज शराब पीकर आता है और मुझे मारता है दो बच्चे हैं मैं अभी मायके में हूं वो खर्चा भी नहीं देता मुझे क्या करना चाहिए"},
+ "analyzer": {
+  "category": "speech",
+  "intent": "Find remedies against a husband who drinks, beats her and gives no money for her and the two children",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "husband: drinks daily and beats her | children: two | residence: at her parents' home | support: husband gives no money | client_role: wife",
+  "must_ask": "",
+  "acceptable_info_needed": "religion | marriage_duration | own_income | prior_complaints",
+  "must_not_ask": "children | current_residence | whether_violence_occurred"
+ }
+},
+{
+ "id": "L-hi-02", "language": "hi", "topic": "dowry demand (father asking for daughter)", "style": "short", "role": "parent", "gender": "male",
+ "source": "corpus post 120 and 2831 (dowry harassment), facts changed",
+ "query": {"hi": "मेरी बेटी की शादी को आठ महीने हुए हैं। ससुराल वाले दहेज में कार की मांग कर रहे हैं और दामाद भी उनका साथ दे रहा है। बेटी को रोज़ ताने देते हैं और अब उसे मायके भेज दिया है। हमें क्या करना चाहिए?"},
+ "analyzer": {
+  "category": "role",
+  "intent": "Find remedies for the client's daughter, whose husband and in-laws demand a car as dowry and have sent her back to her parents",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "aggrieved_person: client's daughter | marriage_duration: 8 months | demand: in-laws want a car as dowry, son-in-law supports them | treatment: daily taunts, sent back to her parents' home",
+  "must_ask": "",
+  "acceptable_info_needed": "religion | any_physical_violence | evidence_of_the_demand | prior_complaints",
+  "must_not_ask": "marriage_duration | what_is_demanded | assumes_client_is_the_wife"
+ }
+},
+{
+ "id": "L-hi-03", "language": "hi", "topic": "bringing wife back (restitution)", "style": "short", "role": "husband", "gender": "male",
+ "source": "corpus post 'Restitution of conjugal rights', facts changed",
+ "query": {"hi": "मेरी पत्नी एक साल से मायके में है और वापस आने को तैयार नहीं है। उसके घरवाले मुझे झूठे केस में फँसाने की धमकी देते हैं। मैं उसे वापस लाना चाहता हूँ, तलाक नहीं चाहता। इसका कानूनी रास्ता क्या है?"},
+ "analyzer": {
+  "category": "religion-critical",
+  "intent": "Find the legal way to bring his wife back to the matrimonial home; he does not want a divorce",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "wife: at her parents' home for 1 year, refuses to return | threat: her family threatens false cases | wish: wants her back, not a divorce | client_role: husband",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | reason_wife_left | children | marriage_date",
+  "must_not_ask": "how_long_wife_has_been_away | whether_he_wants_divorce"
+ }
+},
+{
+ "id": "L-hi-04", "language": "hi", "topic": "sisters' share in ancestral farmland", "style": "short", "role": "daughter", "gender": "female",
+ "source": "corpus post 1553 (Ancestral property disputes), facts changed",
+ "query": {"hi": "पिताजी का 2019 में देहांत हो गया। भाई ने गाँव की पुश्तैनी ज़मीन पटवारी से मिलकर सिर्फ अपने नाम चढ़वा ली है। हम तीन बहनें हैं। क्या हम अपना हिस्सा ले सकती हैं?"},
+ "analyzer": {
+  "category": "religion-critical",
+  "intent": "Claim the sisters' share in ancestral village land that their brother had recorded in his name alone",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "father: died 2019 | property: ancestral village land, brother got it recorded in his name alone | heirs: three sisters (including client) and one brother",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | whether_father_left_a_will | whether_mother_is_alive | state",
+  "must_not_ask": "year_of_father's_death | number_of_sisters"
+ }
+},
+{
+ "id": "L-hi-05", "language": "hi", "topic": "Muslim husband's second nikah and maintenance", "style": "short", "role": "wife", "gender": "female",
+ "source": "corpus post 495 and 'Muslim divorce', facts changed",
+ "query": {"hi": "मैं मुस्लिम हूँ। मेरे शौहर ने मुझसे पूछे बिना दूसरा निकाह कर लिया है और अब मुझे और मेरे तीन बच्चों को खर्चा नहीं देते। क्या मैं उनसे गुज़ारा-भत्ता ले सकती हूँ और क्या उनका दूसरा निकाह जायज़ है?"},
+ "analyzer": {
+  "category": "clear-complete",
+  "intent": "Claim maintenance for herself and three children, and know whether her husband's second nikah is lawful",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "religion: Muslim | husband: second nikah without asking her | support: none for her and three children | client_role: wife",
+  "must_ask": "",
+  "acceptable_info_needed": "own_income | whether_living_together | mehr_status | children_ages",
+  "must_not_ask": "religion | number_of_children | whether_husband_remarried"
+ }
+},
+{
+ "id": "L-hi-06", "language": "hi", "topic": "widow's rights in husband's property", "style": "short", "role": "widow", "gender": "female",
+ "source": "synthetic, modelled on corpus property posts",
+ "query": {"hi": "मेरे पति का पिछले साल देहांत हो गया। अब सास-ससुर और देवर मुझे और मेरे दो बच्चों को घर से निकालना चाहते हैं और कहते हैं कि पति की ज़मीन-जायदाद में मेरा कोई हक नहीं है। क्या यह सही है?"},
+ "analyzer": {
+  "category": "religion-critical",
+  "intent": "Know a widow's rights to her late husband's property and to stay in the house when her in-laws want to evict her and her children",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "husband: died last year | in_laws: parents-in-law and brother-in-law want to evict her and two children, deny her any share | client_role: widow",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | whether_husband_left_a_will | whose_name_the_property_is_in | whether_the_property_is_ancestral",
+  "must_not_ask": "number_of_children | when_the_husband_died"
+ }
+},
+{
+ "id": "L-hi-07", "language": "hi", "topic": "protection after inter-caste court marriage", "style": "narrative", "role": "husband", "gender": "male",
+ "source": "corpus post 'Intercaste marriage consequences', facts changed",
+ "query": {"hi": "मैंने और मेरी पत्नी ने घरवालों की मर्ज़ी के खिलाफ कोर्ट मैरिज की है। हम दोनों बालिग हैं, जाति अलग है। लड़की के घरवाले जान से मारने की धमकी दे रहे हैं और मुझ पर अपहरण का केस करने की बात कर रहे हैं। हम अपनी सुरक्षा के लिए क्या कर सकते हैं?"},
+ "analyzer": {
+  "category": "clear-partial",
+  "intent": "Get protection for himself and his wife after an inter-caste court marriage, against death threats and a threatened kidnapping case from her family",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "marriage: court marriage against families' wishes, inter-caste | ages: both adults | threat: wife's family threatens to kill them and to file a kidnapping case | client_role: husband",
+  "must_ask": "",
+  "acceptable_info_needed": "state_or_city | whether_they_have_the_marriage_certificate | any_complaint_already_filed",
+  "must_not_ask": "whether_they_are_adults | whether_the_families_agreed"
+ }
+},
+{
+ "id": "L-hi-08", "language": "hi", "topic": "child's expenses after divorce", "style": "short", "role": "mother (divorced)", "gender": "female",
+ "source": "corpus post 420 (alimony and child), facts changed",
+ "query": {"hi": "मेरा तलाक 2022 में हो गया था। बेटा मेरे पास रहता है। तलाक के समय पति ने बच्चे का खर्च देने की बात मानी थी, लेकिन एक साल से कुछ नहीं दे रहा। क्या मैं बच्चे के खर्च के लिए अलग से केस कर सकती हूँ?"},
+ "analyzer": {
+  "category": "clear-partial",
+  "intent": "Make her ex-husband pay their son's expenses, which he agreed to at the divorce but has not paid for a year",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "divorce: 2022 | child: son, lives with client | agreement: ex-husband agreed to pay the child's expenses | default: nothing paid for one year | client_role: mother",
+  "must_ask": "",
+  "acceptable_info_needed": "whether_the_agreement_is_in_the_court_decree | child_age | ex-husband's_income | own_income | religion",
+  "must_not_ask": "who_the_child_lives_with | whether_she_is_divorced"
+ }
+},
+{
+ "id": "L-hi-09", "language": "hi", "topic": "wife's adultery, divorce and custody", "style": "multi-issue", "role": "husband", "gender": "male",
+ "source": "corpus post 'My wife is having an extra marital affair', facts changed",
+ "query": {"hi": "मुझे अपनी पत्नी के फोन में दूसरे आदमी के साथ चैट और फोटो मिले हैं। हमारी एक 5 साल की बेटी है। क्या मैं इस आधार पर तलाक ले सकता हूँ और क्या बेटी की कस्टडी मुझे मिल सकती है?"},
+ "analyzer": {
+  "category": "multi-issue",
+  "intent": "Divorce his wife on the ground of her affair and get custody of their 5-year-old daughter",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "evidence: chats and photos of wife with another man on her phone | child: daughter aged 5 | reliefs_sought: divorce, custody | client_role: husband",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | marriage_duration | whether_living_together | who_the_child_lives_with",
+  "must_not_ask": "child_age | what_evidence_he_has"
+ }
+},
+{
+ "id": "L-hi-10", "language": "hi", "topic": "husband abroad, no contact or money", "style": "speech", "role": "wife", "gender": "female",
+ "source": "synthetic, voice style modelled on event traces (spoken numbers, no punctuation)",
+ "query": {"hi": "मेरी शादी पंद्रह फरवरी दो हजार बाईस को हुई थी शादी के तीन महीने बाद पति दुबई चला गया और एक साल से न फोन करता है न पैसे भेजता है ससुराल वाले भी बात नहीं करते अब मैं क्या करूं"},
+ "analyzer": {
+  "category": "speech",
+  "intent": "Find remedies against a husband who went to Dubai and has not called or sent money for a year",
+  "confidence": "high", "needs_clarification": "no",
+  "info_provided": "marriage_date: 15 February 2022 | husband: went to Dubai 3 months after marriage; no calls or money for one year | in_laws: do not talk to her | client_role: wife",
+  "must_ask": "",
+  "acceptable_info_needed": "religion | current_residence | children | own_income | relief_sought",
+  "must_not_ask": "marriage_date | where_the_husband_is | how_long_without_contact"
+ }
+},
+{
+ "id": "X-hi-1", "language": "hi", "topic": "speech recognised in the wrong script", "style": "asr-garbled", "role": "unknown", "gender": "unknown", "analyzer_only": true,
+ "source": "real test conversation (event trace 05a58640): Tamil speech transcribed in Devanagari",
+ "query": {"hi": "ए मनेव नेट एंग कुलंदेकड़ सेें विटारार एंगे इकार ए इनितम सलमाटा नान इना सेयवॅ"},
+ "analyzer": {
+  "category": "asr-garbled",
+  "intent": "(unintelligible: Tamil speech transcribed in Devanagari)",
+  "confidence": "low", "needs_clarification": "yes",
+  "info_provided": "(empty)", "must_ask": "", "acceptable_info_needed": "(empty)",
+  "must_not_ask": "religion | marriage_date | children"
+ }
+},
+{
+ "id": "X-hi-2", "language": "hi", "topic": "friend wants a divorce (voice input)", "style": "speech", "role": "friend", "gender": "unknown", "analyzer_only": true,
+ "source": "real test conversation (event trace 2dc232ba), name removed",
+ "query": {"hi": "मेरा एक फ्रेंड है उसकी वाइफ से झगड़ा हो गया है अब बताओ उसको क्या करना चाहिए डिवोर्स लेने के लिए"},
+ "analyzer": {
+  "category": "speech",
+  "intent": "Know how the client's friend can get a divorce after a quarrel with his wife",
+  "confidence": "medium", "needs_clarification": "no",
+  "info_provided": "aggrieved_person: client's friend (the husband) | event: quarrel with his wife | relief_sought: divorce",
+  "must_ask": "religion",
+  "acceptable_info_needed": "religion | marriage_duration | grounds | whether_the_wife_agrees | children",
+  "must_not_ask": "assumes_client_is_the_husband"
+ }
+}
+]

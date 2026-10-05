@@ -36,6 +36,10 @@ Set these as **Render Environment Variables** (sensitive ones as Secret Files or
 | `TTS_FALLBACK_SPACE_URL` | `rverma0631/TTS_Sanskrit`; empty disables fallback |
 | `ENABLE_QUERY_TRANSLATION` | `false` by default. Translates non-English queries to English before retrieval only (see `nodes/retriever.py`); the original query is untouched for analysis/generation |
 | `TRANSLATION_MODEL` | `google/gemma-3-4b-it`, called via HF Inference Providers like the LLM |
+| `ENABLE_HYBRID_SEARCH` | `true` by default. Merges a BM25 keyword ranking with vector search; runs in-process, no API calls |
+| `ENABLE_CORPUS_CURATION` | `true` by default. Skips off-topic documents and returns one document per subject (`corpus_curation.py`) |
+| `ENABLE_QUERY_REWRITE` | `false` by default. Rewrites each question into a short search query before retrieval (one extra model call per English question) |
+| `CITATION_GUARD_MODE` | `mixed` by default. What happens to a citation not found in the retrieved context: `strict` removes the sentence, `mixed` removes for sections, wrong act+section pairs and case names but only flags bare act names, `flag` removes for sections only |
 | `TRANSLATION_ENABLED_LANGUAGES` | Optional comma-separated ISO 639-1 allowlist. Empty = all non-English queries (langdetect mislabels code-mixed text, so an allowlist skips it) |
 
 ## Local Development

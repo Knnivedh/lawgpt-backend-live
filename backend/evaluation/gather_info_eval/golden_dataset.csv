@@ -1,0 +1,71 @@
+id,category,field,source,last_question,user_response,expected_extraction
+1,direct,marriage_date,Queries related to court marriage,आपकी शादी कब हुई थी?,मेरी शादी 20 जून 2016 को हिंदू रीति-रिवाज़ से हुई थी।,The marriage took place on 20 June 2016 through Hindu rites.
+2,direct,separation_duration,Query regarding divorce,Have you and your spouse been living separately?,"Yes, we have been living separately since March 2016 due to incompatibility.",The parties have been living separately since March 2016 due to incompatibility.
+3,direct,children,Custody of 5 and half year old,Do you have any children from this marriage?,"Yes, I have a 5 and a half year old son.","The client has one son, aged five and a half years."
+4,direct,income,"Alimony, impotency case",What is your and your spouse's income?,"I earn 55 thousand rupees a month, she earns 40 thousand.","The client earns Rs. 55,000/month; the spouse earns Rs. 40,000/month."
+5,direct,religion,synthetic,आपके परिवार का धर्म क्या है?,हम दोनों हिंदू हैं।,The client and spouse are both Hindu.
+6,direct,dowry_details,Harassed by my in-laws for money,Has your husband's family demanded money or dowry from you?,"Yes, my mother-in-law shouts at me and demands money since I am working.",The mother-in-law verbally abuses the client and demands money from her earnings.
+7,direct,court_proceedings,Perjury,Are there any ongoing court proceedings?,My wife has filed a divorce petition and claimed her income is zero.,"The wife has filed a divorce petition, claiming zero income."
+8,direct,domestic_violence_details,Mental harassment and physical sometimes,Has your husband ever been physically violent with you?,"Yes, he has beaten me and thrown me out of the house before, and was violent in front of my grandson in 2010.","The husband has previously beaten the client, evicted her, and was violent in front of a grandchild in 2010."
+9,short,gender,synthetic,What is your gender?,female,The client identifies as female.
+10,short,religion,synthetic,"Are you Hindu, Muslim, or another religion?",Hindu,The client is Hindu.
+11,short,dowry_given,synthetic,शादी में दहेज दिया गया था?,नहीं,No dowry was given at the marriage.
+12,short,marital_role,Divorce,Are you the husband or the wife in this marriage?,wife,The client stated that she is the wife.
+13,short,separation_duration,synthetic,कितने समय से अलग रह रहे हैं?,5 साल,The parties have been living separately for 5 years.
+14,short,notice_given,synthetic,क्या आपको कोई नोटिस दिया गया था?,नहीं,No notice was given to the client.
+15,short,employment_status,synthetic,Are you currently employed?,housewife,The client is a housewife with no independent income.
+16,short,children_count,Divorce settlement and sharing of property,How many children do you have?,two,The client has two children.
+17,short,marriage_type,Queries related to court marriage,Was the marriage a court marriage or a religious ceremony?,religious,The marriage was solemnised through a religious ceremony.
+18,negation,notice_given,synthetic,क्या आपके ससुराल वालों ने आपको कोई नोटिस दिया था?,"नहीं, कोई नोटिस नहीं दिया गया था और कोई कारण भी नहीं बताया गया।",No notice was given and no reason was provided for the eviction.
+19,negation,divorce_status,synthetic,क्या आपका तलाक हो चुका है?,तलाक नहीं हुआ है। मैं अपनी पत्नी से अलग रह रहा हूँ।,The divorce has not been finalised; the client lives separately from his spouse.
+20,negation,maintenance_claim,Need advice on divorce,Has your wife given you a divorce notice?,"My husband has not given me a divorce notice, can I still claim maintenance?",No divorce notice has been given by the husband.
+21,negation,dowry_given,synthetic,"नहीं, शादी में कोई दहेज नहीं दिया गया था?","नहीं, शादी में कोई दहेज नहीं दिया गया था।",No dowry was given at the time of the marriage.
+22,negation,consent_to_separation,synthetic,क्या यह अलगाव आपसी सहमति से हुआ था?,"यह आपसी सहमति से नहीं हुआ था, मुझे जबरदस्ती निकाला गया।",The separation was not by mutual consent; the client was forcibly evicted.
+23,negation,legal_representation,synthetic,Do you currently have a lawyer representing you?,"No, I haven't consulted a lawyer yet.",The client has not yet consulted a lawyer.
+24,negation,prior_complaint,synthetic,क्या आपने इससे पहले कभी पुलिस शिकायत दर्ज करवाई थी?,"नहीं, मैंने पहले कभी शिकायत दर्ज नहीं करवाई।",The client has never filed a police complaint before.
+25,negation,cohabitation,synthetic,Are you currently living with your husband?,"No, I am not living with him anymore, I moved out last month.",The client is no longer living with her husband; she moved out last month.
+26,numeric,marriage_duration,Financial part for working woman after divorce,How long have you been married?,"We got married in India, it's been about 4 years now.",The couple has been married for approximately 4 years.
+27,numeric,income_amount,CRPC 125 Maintenance - Appeal in High Court?,How much maintenance has the court awarded?,"Court awarded 40,000rs per month.","The court awarded maintenance of Rs. 40,000 per month."
+28,numeric,child_age,Child custody,How old is your daughter?,She's 8 months old.,The daughter is 8 months old.
+29,numeric,marriage_year,Null and void,किस साल शादी हुई थी?,सितंबर 2018 में।,The marriage took place in September 2018.
+30,numeric,eviction_year,synthetic,आपको घर से कब निकाला गया?,2023 में मुझे घर से निकाल दिया गया।,The client was evicted from the house in 2023.
+31,numeric,age_difference,"Alimony, impotency case",What are your and your spouse's ages?,We're both 29 years old.,Both the client and spouse are 29 years old.
+32,numeric,revalidation_income,synthetic,आपकी मासिक आय कितनी है?,"मेरी कोई आय नहीं है, मैं गृहिणी हूँ।",The client has no income; she is a homemaker.
+33,numeric,engagement_to_marriage_gap,synthetic,When did the engagement happen relative to the marriage?,"Engaged in June 2018, married in February 2019.",The client was engaged in June 2018 and married in February 2019.
+34,hindi,current_residence,synthetic,आप अभी कहाँ रह रही हैं?,"मैं अभी अपने माता-पिता के घर पर रह रही हूँ, अपने ससुराल में नहीं।","The client currently resides at her parents' home, not at her marital home."
+35,hindi,relationship_with_in_laws,synthetic,आपके सास-ससुर के साथ आपके संबंध कैसे हैं?,"मेरे सास-ससुर ने ही मुझे घर से निकाला था, वे सहयोग नहीं करते।",The in-laws evicted the client from the house and are uncooperative.
+36,hindi,living_arrangement,synthetic,शादी के बाद आप कहाँ रहते थे?,"हम संयुक्त परिवार में, अपने ससुराल वालों के साथ ही रहते थे।",The couple lived in a joint family with the client's in-laws.
+37,hindi,marriage_registration,synthetic,क्या आपकी शादी का पंजीकरण हुआ है?,"हाँ, हमारी शादी का पंजीकरण हुआ था और मेरे पास प्रमाण पत्र है।",The marriage is registered and the client holds the registration certificate.
+38,hindi,dowry_complaint,synthetic,दहेज उत्पीड़न की शिकायत कब दर्ज करवाई?,"मैंने अभी तक कोई शिकायत दर्ज नहीं करवाई है, बस जानकारी लेना चाहती हूँ।",No complaint has been filed yet; the client only wants information.
+39,hindi,custody_preference,synthetic,बच्चे की कस्टडी को लेकर आपकी क्या इच्छा है?,"मैं चाहती हूँ कि बच्चा मेरे साथ रहे, क्योंकि पति उसकी देखभाल नहीं करता।","The client wants custody of the child, stating the husband does not care for him."
+40,hindi,income_source,synthetic,आपकी आय का स्रोत क्या है?,मैं एक निजी कंपनी में काम करती हूँ और हर महीने 25 हज़ार कमाती हूँ।,"The client works at a private company, earning Rs. 25,000 per month."
+41,hindi,health_condition,synthetic,क्या आपके पति की कोई स्वास्थ्य समस्या है?,"हाँ, शादी के बाद पता चला कि वे शारीरिक रूप से असमर्थ हैं।",The husband was found to have a physical incapacity after the marriage.
+42,code-mixed,domestic_violence_details,synthetic,Aapke husband aapke saath kaisa vyavhaar karte hain?,"Mera husband domestic violence karta hai, roz maarpeet karta hai.",The husband commits domestic violence and beats the client regularly.
+43,code-mixed,separation_reason,synthetic,Aap kyun alag rehti hain?,Meri wife ne mujhe chhod diya hai aur 5 saal se alag rehti hai.,The wife left the client and has been living separately for 5 years.
+44,code-mixed,custody_query,synthetic,Divorce case mein custody kaise decide hoti hai?,"Mujhe bas ye janna hai ki custody kis basis par decide hoti hai, koi case nahi hua abhi.",No case has been filed yet; the client wants to know the general basis for custody decisions.
+45,code-mixed,maintenance_status,synthetic,Kya aapko maintenance mil rahi hai abhi?,"Nahi, abhi tak koi maintenance nahi mili, isiliye maine ye sawaal poocha.",No maintenance has been received by the client so far.
+46,code-mixed,marriage_consent,synthetic,Kya shaadi dono parivaron ki sehmati se hui thi?,"Haan, love marriage thi lekin baad mein dono parivaar maan gaye the.",It was a love marriage; both families eventually consented.
+47,code-mixed,income_status,Divorce,Aapki income kitni hai?,"Main ek govt firm mein group b officer hoon, around 40k per month kamati hoon.","The client works as a Group B officer in a government firm, earning around Rs. 40,000/month."
+48,code-mixed,child_custody_current,Child custody,Abhi bacchi kiske paas hai?,Inlaws ne meri 8 mahine ki beti ko zabardasti apne paas rakh liya hai.,The in-laws have forcibly kept the 8-month-old daughter with them.
+49,code-mixed,dowry_return,synthetic,Kya aapka saamaan ya gehne wapas mile?,"Nahi mila abhi tak, ससुराल वाले वापस नहीं कर रहे।",The client's belongings/jewellery have not been returned by the in-laws.
+50,non-answer,marriage_date,synthetic,आपकी शादी की सही तारीख क्या थी?,सही तारीख मुझे याद नहीं है।,NOT_PROVIDED
+51,non-answer,legal_opinion_deflection,synthetic,क्या आपको लगता है कि आपको हिंदू विवाह अधिनियम के तहत सुरक्षा मिल सकती है?,"मुझे इसकी जानकारी नहीं है, इसीलिए मैं आपसे पूछ रही हूँ।",NOT_PROVIDED
+52,non-answer,income,synthetic,What is your monthly income?,Why do you need to know that?,NOT_PROVIDED
+53,non-answer,notice_given,synthetic,Was any legal notice served to you?,"I'm not sure, can you explain what a legal notice looks like?",NOT_PROVIDED
+54,non-answer,dowry_amount,synthetic,कितना दहेज मांगा गया था?,"मुझे ठीक से याद नहीं, बहुत साल पहले की बात है।",NOT_PROVIDED
+55,non-answer,court_case_number,synthetic,क्या आपके पास केस नंबर है?,"वो सब कागज़ात मेरे वकील के पास हैं, मुझे नहीं पता।",NOT_PROVIDED
+56,non-answer,children_details,synthetic,Please tell me about your children's ages and schooling.,"Let's talk about that later, first tell me if I can get divorce.",NOT_PROVIDED
+57,non-answer,in_laws_address,synthetic,What is your in-laws' current address?,I'd rather not share that right now.,NOT_PROVIDED
+58,rambling,separation_duration,Mental harassment and physical sometimes,How long have you been separated?,"It's been a long story honestly, my husband's family never liked me from day one, there were fights over silly things, my mother used to say marriages take work, but anyway to answer your question — since around 2010, that's when things really fell apart after the incident with my grandson.",The client has been separated from her husband since around 2010.
+59,rambling,income,Harassed by my in-laws for money,Are you currently earning an income?,"So basically I've always tried to be independent, my parents raised me to work hard, and yes I am working right now, I earn but I don't remember the exact figure, my mother-in-law keeps asking me to hand it over to her though.","The client is employed and earning, though the exact amount is unclear; the mother-in-law demands the earnings."
+60,rambling,marriage_date,synthetic,"शादी कब हुई थी, यह बताइए।","देखिए, शादी की बहुत सारी रस्में हुई थीं, बहुत बड़ा फंक्शन था, रिश्तेदार भी दूर से आए थे, असल शादी दिसंबर 2016 में हुई थी।",The marriage took place in December 2016.
+61,rambling,notice_given,synthetic,क्या आपको घर से निकालते समय कोई नोटिस दिया गया?,"मुझे तो यह भी नहीं पता था कि ऐसी चीज़ों में नोटिस देना ज़रूरी होता है, वैसे भी सब कुछ अचानक हुआ, कोई नोटिस नहीं दिया गया और न ही कोई कारण बताया गया।","No notice was given, and no reason was provided before the eviction."
+62,rambling,children,Divorce settlement and sharing of property,"Do you have children, and what are their ages?","Yes, married life was complicated because of the kids honestly, my mother helped raise them a lot since I was working abroad, we have two children, 17 and 15 years old.","The client has two children, aged 17 and 15."
+63,rambling,dowry_details,synthetic,क्या शादी में दहेज को लेकर कोई समस्या हुई थी?,"हमारे परिवार में शुरू से ही पैसों को लेकर तनाव था, मेरे पापा ने बहुत कुछ दिया था फिर भी ससुराल वाले संतुष्ट नहीं थे और बार-बार पैसों की मांग करते रहे।",The in-laws repeatedly demanded more money despite what was already given at marriage.
+64,rambling,employment_status,synthetic,Are you currently employed?,"It's a difficult phase, I used to work before marriage but after the kids I stopped, now I'm a full-time homemaker with no income of my own.",The client is currently a homemaker with no independent income.
+65,already-known,gender,synthetic,"Sorry, could you confirm your gender again?","I already told you, I'm male.",The client is male (already provided earlier).
+66,already-known,religion,synthetic,"आपका धर्म क्या है, फिर से बता दीजिए?","मैं पहले ही बता चुकी हूँ, मैं हिंदू हूँ।",The client is Hindu (already provided earlier).
+67,already-known,marriage_date,synthetic,When exactly did you get married?,"Like I said before, 2019 — I don't remember the exact date.",The marriage took place in 2019 (already provided earlier); exact date unknown.
+68,already-known,separation_duration,synthetic,"आप कब से अलग रह रहे हैं, यह दोबारा बताइए?","मैंने बताया था ना, 5 साल से।",The parties have been separated for 5 years (already provided earlier).
+69,already-known,dowry_given,synthetic,Was any dowry given at the marriage?,I already answered this — no dowry was given.,No dowry was given (already provided earlier).
+70,already-known,children,synthetic,Do you have any children? Please confirm.,"Yes, as I mentioned, one son.",The client has one son (already provided earlier).

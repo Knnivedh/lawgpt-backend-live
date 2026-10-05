@@ -46,28 +46,75 @@ class Settings(BaseSettings):
     llm_model: str        = Field(default="meta-llama/Llama-3.1-8B-Instruct", env="LLM_MODEL")
     embedding_model: str  = Field(default="bhavyagiri/InLegal-Sbert", env="EMBEDDING_MODEL")
     embedding_dimension: int = Field(default=768, env="EMBEDDING_DIMENSION")
+    # Text put in front of a question before it is embedded. Some models are
+    # trained with one; BAAI/bge-*-en-v1.5 use
+    # "Represent this sentence for searching relevant passages: ".
+    # Documents are embedded without it.
+    embedding_query_prefix: str = Field(default="", env="EMBEDDING_QUERY_PREFIX")
 
     # ── Query translation (any language → English, used for retrieval only) ───
     translation_model: str = Field(default="google/gemma-3-4b-it", env="TRANSLATION_MODEL")
     enable_query_translation: bool = Field(default=False, env="ENABLE_QUERY_TRANSLATION")
+    # Inference providers tried in order for the translation model; "auto" lets
+    # Hugging Face choose. A second entry is the fallback when the first refuses.
+    # "ollama" calls ollama_translation_model through Ollama instead of Hugging
+    # Face, e.g. TRANSLATION_PROVIDERS=ollama,auto.
+    translation_providers: Annotated[List[str], NoDecode] = Field(
+        default=["auto"], env="TRANSLATION_PROVIDERS"
+    )
+    ollama_translation_model: str = Field(default="gemma4:31b-cloud", env="OLLAMA_TRANSLATION_MODEL")
+    # A local Ollama app signed in to ollama.com serves cloud models at the
+    # default URL with no key. On a server with no Ollama app, set
+    # OLLAMA_BASE_URL=https://ollama.com and OLLAMA_API_KEY.
+    ollama_base_url: str = Field(default="http://localhost:11434", env="OLLAMA_BASE_URL")
+    ollama_api_key: Optional[str] = Field(default=None, env="OLLAMA_API_KEY")
     # Optional rollout allowlist of detected_language codes. Empty = every
     # non-English query. Note langdetect mislabels code-mixed text (Hinglish
     # often comes back as "fi"/"es"), so an allowlist skips those queries.
-    translation_enabled_languages: List[str] = Field(default=[], env="TRANSLATION_ENABLED_LANGUAGES")
+    translation_enabled_languages: Annotated[List[str], NoDecode] = Field(
+        default=[], env="TRANSLATION_ENABLED_LANGUAGES"
+    )
+    # Rewrite every question (English included) into a short neutral search
+    # query before retrieval. Done in the same model call as the translation.
+    # Off by default: on the 36-query retrieval set it did not beat hybrid
+    # search alone, and it costs one model call per English question.
+    enable_query_rewrite: bool = Field(default=False, env="ENABLE_QUERY_REWRITE")
+    # Merge BM25 keyword ranking with the vector ranking (no API calls).
+    enable_hybrid_search: bool = Field(default=True, env="ENABLE_HYBRID_SEARCH")
+    # Weight of each ranking in the merge. On the 200-question retrieval set
+    # the keyword ranking alone found more relevant documents than the vector
+    # ranking, so it counts for more. 0 switches a ranking off.
+    retrieval_keyword_weight: float = Field(default=2.0, env="RETRIEVAL_KEYWORD_WEIGHT")
+    retrieval_vector_weight: float = Field(default=1.0, env="RETRIEVAL_VECTOR_WEIGHT")
+    # Skip off-topic documents and return one document per subject
+    # (see corpus_curation.py).
+    enable_corpus_curation: bool = Field(default=True, env="ENABLE_CORPUS_CURATION")
+
+    # What the citation guard does with a citation it cannot find in the
+    # retrieved context: "strict" removes the sentence for any kind; "mixed"
+    # removes for sections, act+section mismatches and case names but only
+    # flags bare act names; "flag" removes for sections only. See citation_guard.py.
+    citation_guard_mode: str = Field(default="mixed", env="CITATION_GUARD_MODE")
 
     # ── RAG ───────────────────────────────────────────────────────────────────
     retrieval_top_k: int = Field(default=5,   env="RETRIEVAL_TOP_K")
     retrieval_cases_top_k: int = Field(default=5, env="RETRIEVAL_CASES_TOP_K")
-    retrieval_laws_top_k: int = Field(default=3, env="RETRIEVAL_LAWS_TOP_K")
+    retrieval_laws_top_k: int = Field(default=5, env="RETRIEVAL_LAWS_TOP_K")
     retrieval_laws_large_context_top_k: int = Field(default=5, env="RETRIEVAL_LAWS_LARGE_CONTEXT_TOP_K")
     llm_context_window: int = Field(default=8192, env="LLM_CONTEXT_WINDOW")
     large_context_window_threshold: int = Field(default=16000, env="LARGE_CONTEXT_WINDOW_THRESHOLD")
-    retrieval_case_categories: list[str] = Field(
-        default=["legal_cases", "case_law", "cases", "judgments", "precedents"],
+    # Actual Milvus category values (verified against the live collection):
+    # "family_law" = Kaanoon-style case Q&A, "family_law_2" = statute/case-law
+    # summaries. The previous defaults here ("legal_cases", "acts", etc.)
+    # never matched anything in the data, so the case/law category split
+    # silently did nothing and both searches fell through to their unfiltered
+    # fallback every time.
+    retrieval_case_categories: Annotated[List[str], NoDecode] = Field(
+        default=["family_law"],
         env="RETRIEVAL_CASE_CATEGORIES",
     )
-    retrieval_law_categories: list[str] = Field(
-        default=["law_cases", "acts", "statutes", "bare_acts", "laws"],
+    retrieval_law_categories: Annotated[List[str], NoDecode] = Field(
+        default=["family_law_2"],
         env="RETRIEVAL_LAW_CATEGORIES",
     )
     chunk_size: int      = Field(default=800, env="CHUNK_SIZE")
@@ -104,7 +151,7 @@ class Settings(BaseSettings):
     asr_rate_limit_per_minute: int = Field(default=20, env="ASR_RATE_LIMIT_PER_MINUTE")
     # IndicConformer covers only these scheduled Indian languages — anything
     # outside this set (chiefly "en") is routed to the Whisper Space instead.
-    asr_indic_languages: List[str] = Field(
+    asr_indic_languages: Annotated[List[str], NoDecode] = Field(
         default=[
             "hi", "bn", "te", "mr", "ta", "gu", "kn", "ml", "pa", "or", "as",
             "ur", "ne", "sa", "sd", "ks", "mai", "kok", "mni", "doi", "bho", "raj",
@@ -180,9 +227,16 @@ class Settings(BaseSettings):
             return [o.strip() for o in v.split(",") if o.strip()]
         return v
 
-    @field_validator("translation_enabled_languages", mode="before")
+    @field_validator("translation_enabled_languages", "translation_providers", mode="before")
     @classmethod
     def parse_translation_enabled_languages(cls, v):
+        if isinstance(v, str):
+            return [o.strip() for o in v.split(",") if o.strip()]
+        return v
+
+    @field_validator("retrieval_case_categories", "retrieval_law_categories", mode="before")
+    @classmethod
+    def parse_retrieval_categories(cls, v):
         if isinstance(v, str):
             return [o.strip() for o in v.split(",") if o.strip()]
         return v

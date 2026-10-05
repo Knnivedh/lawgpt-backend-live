@@ -1,0 +1,302 @@
+[
+ {
+  "id": "P13",
+  "topic": "validity of foreign divorce",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 32 (Mutual consent divorce in USA valid in Chennai?), facts changed",
+  "query": {
+   "en": "I got married in Chennai in 2010 and later moved to the USA with my husband. We got a mutual consent divorce from a court in New York. Is that divorce valid in India, and can I remarry here?",
+   "hi": "मेरी शादी 2010 में चेन्नई में हुई थी और बाद में मैं पति के साथ अमेरिका चली गई। हमने न्यूयॉर्क की अदालत से आपसी सहमति से तलाक ले लिया। क्या वह तलाक भारत में मान्य है और क्या मैं यहाँ दोबारा शादी कर सकती हूँ?",
+   "hi-en": "Meri shaadi 2010 me Chennai me hui thi aur baad me main husband ke saath USA chali gayi. Humne New York ke court se mutual consent divorce le liya. Kya wo divorce India me valid hai aur kya main yahan dobara shaadi kar sakti hoon?",
+   "ta": "எனக்கு 2010-ல் சென்னையில் திருமணம் நடந்தது. பிறகு கணவருடன் அமெரிக்கா சென்றேன். நியூயார்க் நீதிமன்றத்தில் பரஸ்பர சம்மதத்துடன் விவாகரத்து பெற்றோம். அந்த விவாகரத்து இந்தியாவில் செல்லுமா? நான் இங்கே மறுமணம் செய்துகொள்ளலாமா?",
+   "kn": "ನನ್ನ ಮದುವೆ 2010ರಲ್ಲಿ ಚೆನ್ನೈಯಲ್ಲಿ ಆಯಿತು, ನಂತರ ಗಂಡನ ಜೊತೆ ಅಮೆರಿಕಕ್ಕೆ ಹೋದೆ. ನ್ಯೂಯಾರ್ಕ್ ಕೋರ್ಟ್‌ನಲ್ಲಿ ಪರಸ್ಪರ ಒಪ್ಪಿಗೆಯಿಂದ ವಿಚ್ಛೇದನ ಪಡೆದೆವು. ಆ ವಿಚ್ಛೇದನ ಭಾರತದಲ್ಲಿ ಮಾನ್ಯವೇ? ನಾನು ಇಲ್ಲಿ ಮರುಮದುವೆ ಆಗಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "religion-critical",
+   "intent": "Know whether a mutual consent divorce granted by a New York court is valid in India and whether she can remarry",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "marriage: 2010, Chennai | moved_to: USA | divorce: mutual consent, New York court | relief_sought: validity in India and remarriage | client_role: wife",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion_or_law_under_which_married | whether_both_took_part_in_the_foreign_case | year_of_foreign_decree",
+   "must_not_ask": "place_of_marriage | type_of_divorce | where_divorce_was_granted"
+  }
+ },
+ {
+  "id": "P14",
+  "topic": "NRI husband abandons wife",
+  "style": "short",
+  "role": "parent",
+  "gender": "unknown",
+  "source": "corpus post 1133 (Desertion by NRI husband), facts changed",
+  "query": {
+   "en": "My daughter got married last year. Two months after the wedding her husband went back to Australia and has stopped answering her calls. His family says he will not take her there. What can we do?",
+   "hi": "मेरी बेटी की शादी पिछले साल हुई थी। शादी के दो महीने बाद उसका पति वापस ऑस्ट्रेलिया चला गया और अब उसके फोन भी नहीं उठाता। उसके घरवाले कहते हैं कि वह उसे वहाँ नहीं ले जाएगा। हम क्या कर सकते हैं?",
+   "hi-en": "Meri beti ki shaadi last year hui thi. Shaadi ke 2 mahine baad uska husband wapas Australia chala gaya aur ab uske calls bhi nahi uthata. Uske gharwale kehte hain ki wo use wahan nahi le jayega. Hum kya kar sakte hain?",
+   "ta": "என் மகளுக்குக் கடந்த வருடம் திருமணம் நடந்தது. திருமணமாகி இரண்டு மாதங்களில் அவள் கணவர் ஆஸ்திரேலியாவுக்குத் திரும்பிச் சென்றுவிட்டார்; இப்போது அவளுடைய அழைப்புகளுக்குப் பதில் சொல்வதில்லை. அவளை அங்கே அழைத்துச் செல்ல மாட்டார் என்று அவர் குடும்பத்தினர் சொல்கிறார்கள். நாங்கள் என்ன செய்யலாம்?",
+   "kn": "ನನ್ನ ಮಗಳ ಮದುವೆ ಕಳೆದ ವರ್ಷ ಆಯಿತು. ಮದುವೆಯಾದ ಎರಡು ತಿಂಗಳಿಗೆ ಅವಳ ಗಂಡ ಆಸ್ಟ್ರೇಲಿಯಾಕ್ಕೆ ವಾಪಸ್ ಹೋದ, ಈಗ ಅವಳ ಕರೆಗಳನ್ನೂ ಸ್ವೀಕರಿಸುತ್ತಿಲ್ಲ. ಅವನು ಅವಳನ್ನು ಅಲ್ಲಿಗೆ ಕರೆದುಕೊಂಡು ಹೋಗುವುದಿಲ್ಲ ಎಂದು ಅವನ ಮನೆಯವರು ಹೇಳುತ್ತಿದ್ದಾರೆ. ನಾವು ಏನು ಮಾಡಬಹುದು?"
+  },
+  "analyzer": {
+   "category": "role",
+   "intent": "Find remedies for the client's daughter, abandoned by her husband who returned to Australia soon after the wedding",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "aggrieved_person: client's daughter | marriage: last year | husband: returned to Australia after 2 months, not answering calls | in_laws: say he will not take her",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | daughter's_current_residence | wedding_expenses_or_dowry_given | relief_sought | husband's_visa_or_citizenship_status",
+   "must_not_ask": "where_the_husband_is | when_he_left | assumes_client_is_the_wife"
+  }
+ },
+ {
+  "id": "P15",
+  "topic": "custody of young child",
+  "style": "short",
+  "role": "mother",
+  "gender": "female",
+  "source": "corpus post 'Custody of a child', facts changed",
+  "query": {
+   "en": "I am separated from my husband and our 4-year-old daughter lives with me. He is threatening to take her away by force. Who has the legal right to her custody?",
+   "hi": "मैं अपने पति से अलग रहती हूँ और हमारी 4 साल की बेटी मेरे साथ रहती है। वह उसे ज़बरदस्ती ले जाने की धमकी दे रहा है। कानूनन उसकी कस्टडी का हक किसका है?",
+   "hi-en": "Main husband se alag rehti hoon aur hamari 4 saal ki beti mere saath rehti hai. Wo use zabardasti le jaane ki dhamki de raha hai. Legally uski custody ka right kiska hai?",
+   "ta": "நான் என் கணவரைப் பிரிந்து வாழ்கிறேன்; எங்கள் 4 வயது மகள் என்னுடன் இருக்கிறாள். அவளை வலுக்கட்டாயமாகத் தூக்கிச் சென்றுவிடுவேன் என்று அவர் மிரட்டுகிறார். சட்டப்படி அவளுடைய காவல் உரிமை யாருக்கு?",
+   "kn": "ನಾನು ಗಂಡನಿಂದ ಬೇರೆಯಾಗಿ ವಾಸಿಸುತ್ತಿದ್ದೇನೆ, ನಮ್ಮ 4 ವರ್ಷದ ಮಗಳು ನನ್ನ ಜೊತೆ ಇದ್ದಾಳೆ. ಅವಳನ್ನು ಬಲವಂತವಾಗಿ ಕರೆದುಕೊಂಡು ಹೋಗುತ್ತೇನೆ ಎಂದು ಅವರು ಬೆದರಿಕೆ ಹಾಕುತ್ತಿದ್ದಾರೆ. ಕಾನೂನಿನ ಪ್ರಕಾರ ಅವಳ ಕಸ್ಟಡಿ ಹಕ್ಕು ಯಾರಿಗಿದೆ?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Know who has the legal right to custody of her 4-year-old daughter and how to stop the father taking her by force",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "status: separated | child: daughter aged 4, living with client | threat: husband says he will take the child by force | client_role: mother",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | existing_court_orders | divorce_status",
+   "must_not_ask": "child_age | who_the_child_lives_with"
+  }
+ },
+ {
+  "id": "P16",
+  "topic": "father's visitation",
+  "style": "short",
+  "role": "father",
+  "gender": "male",
+  "source": "corpus post 531 (Child visitation in DVC), facts changed",
+  "query": {
+   "en": "My wife filed a domestic violence case against me and does not let me meet my 4-year-old son. My application under the Guardians and Wards Act has not moved for 7 months. Can a father get visitation in the meantime?",
+   "hi": "मेरी पत्नी ने मुझ पर घरेलू हिंसा का केस किया है और मुझे मेरे 4 साल के बेटे से मिलने नहीं देती। गार्जियन्स एंड वार्ड्स एक्ट के तहत मेरी अर्जी 7 महीने से आगे नहीं बढ़ी है। क्या इस बीच पिता को बेटे से मिलने का अधिकार मिल सकता है?",
+   "hi-en": "Wife ne mujh par domestic violence ka case kiya hai aur mujhe mere 4 saal ke bete se milne nahi deti. Guardians and Wards Act ke under meri application 7 mahine se aage nahi badhi. Kya is beech father ko visitation mil sakta hai?",
+   "ta": "என் மனைவி என் மீது குடும்ப வன்முறை வழக்கு போட்டிருக்கிறாள்; என் 4 வயது மகனைப் பார்க்க என்னை அனுமதிப்பதில்லை. பாதுகாவலர் மற்றும் காப்பாளர் சட்டத்தின் (Guardians and Wards Act) கீழ் நான் போட்ட மனு 7 மாதங்களாக நகரவில்லை. இதற்கிடையில் தந்தைக்குக் குழந்தையைப் பார்க்கும் உரிமை கிடைக்குமா?",
+   "kn": "ನನ್ನ ಹೆಂಡತಿ ನನ್ನ ಮೇಲೆ ಕೌಟುಂಬಿಕ ಹಿಂಸೆ ಕೇಸ್ ಹಾಕಿದ್ದಾಳೆ ಮತ್ತು ನನ್ನ 4 ವರ್ಷದ ಮಗನನ್ನು ಭೇಟಿಯಾಗಲು ಬಿಡುತ್ತಿಲ್ಲ. ಗಾರ್ಡಿಯನ್ಸ್ ಅಂಡ್ ವಾರ್ಡ್ಸ್ ಕಾಯ್ದೆಯಡಿ ನಾನು ಹಾಕಿದ ಅರ್ಜಿ 7 ತಿಂಗಳಿಂದ ಮುಂದೆ ಸಾಗಿಲ್ಲ. ಈ ನಡುವೆ ತಂದೆಗೆ ಮಗುವನ್ನು ಭೇಟಿಯಾಗುವ ಹಕ್ಕು ಸಿಗಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "role",
+   "intent": "Get interim visitation with his 4-year-old son while his guardianship application is pending",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "case: domestic violence case filed by wife | child: son aged 4, access denied | application: under Guardians and Wards Act, pending 7 months | client_role: father",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | divorce_status | whether_interim_application_filed",
+   "must_not_ask": "child_age | whether_application_filed | who_filed_the_dv_case"
+  }
+ },
+ {
+  "id": "P17",
+  "topic": "dowry harassment complaint",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 2831 (I am a naval officer wife), facts changed",
+  "query": {
+   "en": "I have been married for one and a half years. My husband and in-laws harass me for more dowry and have hit me several times. I never complained, hoping they would change. How do I file a complaint now?",
+   "hi": "मेरी शादी को डेढ़ साल हुआ है। मेरे पति और ससुराल वाले और दहेज के लिए मुझे परेशान करते हैं और कई बार मारपीट भी कर चुके हैं। मैंने कभी शिकायत नहीं की, यह सोचकर कि वे बदल जाएंगे। अब मैं शिकायत कैसे दर्ज करूँ?",
+   "hi-en": "Meri shaadi ko dedh saal hua hai. Husband aur sasural wale aur dowry ke liye mujhe harass karte hain aur kai baar maar-peet bhi kar chuke hain. Maine kabhi complaint nahi ki, socha wo badal jayenge. Ab main complaint kaise file karun?",
+   "ta": "எனக்குத் திருமணமாகி ஒன்றரை வருடம் ஆகிறது. என் கணவரும் மாமியார் வீட்டாரும் கூடுதல் வரதட்சணை கேட்டு என்னைத் துன்புறுத்துகிறார்கள்; பலமுறை அடித்தும் இருக்கிறார்கள். அவர்கள் மாறுவார்கள் என்று நம்பி இதுவரை புகார் செய்யவில்லை. இப்போது எப்படிப் புகார் கொடுப்பது?",
+   "kn": "ನನ್ನ ಮದುವೆಯಾಗಿ ಒಂದೂವರೆ ವರ್ಷ ಆಗಿದೆ. ನನ್ನ ಗಂಡ ಮತ್ತು ಅತ್ತೆ-ಮಾವ ಹೆಚ್ಚಿನ ವರದಕ್ಷಿಣೆಗಾಗಿ ನನಗೆ ಕಿರುಕುಳ ಕೊಡುತ್ತಿದ್ದಾರೆ, ಹಲವು ಬಾರಿ ಹೊಡೆದಿದ್ದಾರೆ ಕೂಡ. ಅವರು ಬದಲಾಗುತ್ತಾರೆ ಎಂದುಕೊಂಡು ನಾನು ಇದುವರೆಗೆ ದೂರು ಕೊಟ್ಟಿಲ್ಲ. ಈಗ ದೂರು ಹೇಗೆ ದಾಖಲಿಸಬೇಕು?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "File a complaint against her husband and in-laws for dowry harassment and physical violence",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "marriage_duration: 1.5 years | harassment: demands for more dowry by husband and in-laws | violence: hit several times | prior_complaints: none | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | current_residence | evidence_available | children",
+   "must_not_ask": "marriage_duration | prior_complaints | whether_violence_occurred"
+  }
+ },
+ {
+  "id": "P18",
+  "topic": "return of dowry (Christian family)",
+  "style": "short",
+  "role": "sibling",
+  "gender": "unknown",
+  "source": "corpus post 1251 (Claim back the dowry), facts changed",
+  "query": {
+   "en": "My sister is Christian. She and her child have been staying at our parents' house for 6 months because her husband and in-laws treated her badly. Can we claim back the dowry we gave at her wedding?",
+   "hi": "मेरी बहन ईसाई है। पति और ससुराल वालों के बुरे बर्ताव की वजह से वह और उसका बच्चा 6 महीने से हमारे माता-पिता के घर रह रहे हैं। क्या हम शादी में दिया गया दहेज वापस मांग सकते हैं?",
+   "hi-en": "Meri sister Christian hai. Husband aur sasural walon ke bure behaviour ki wajah se wo aur uska baccha 6 mahine se hamare parents ke ghar reh rahe hain. Kya hum shaadi me diya hua dowry wapas claim kar sakte hain?",
+   "ta": "என் சகோதரி கிறிஸ்தவர். கணவரும் மாமியார் வீட்டாரும் மோசமாக நடத்தியதால், அவளும் அவள் குழந்தையும் 6 மாதங்களாக எங்கள் பெற்றோர் வீட்டில் இருக்கிறார்கள். திருமணத்தின்போது நாங்கள் கொடுத்த வரதட்சணையைத் திரும்பக் கேட்க முடியுமா?",
+   "kn": "ನನ್ನ ಸಹೋದರಿ ಕ್ರೈಸ್ತ ಧರ್ಮದವಳು. ಗಂಡ ಮತ್ತು ಅತ್ತೆ-ಮಾವ ಕೆಟ್ಟದಾಗಿ ನಡೆಸಿಕೊಂಡಿದ್ದರಿಂದ ಅವಳು ಮತ್ತು ಅವಳ ಮಗು 6 ತಿಂಗಳಿಂದ ನಮ್ಮ ತಂದೆ-ತಾಯಿಯ ಮನೆಯಲ್ಲಿದ್ದಾರೆ. ಮದುವೆಯಲ್ಲಿ ನಾವು ಕೊಟ್ಟ ವರದಕ್ಷಿಣೆಯನ್ನು ವಾಪಸ್ ಕೇಳಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "role",
+   "intent": "Recover the dowry given at the client's sister's wedding after she left her husband and in-laws because of ill-treatment",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "aggrieved_person: client's sister | religion: Christian | residence: parents' house for 6 months, with her child | cause: ill-treatment by husband and in-laws | relief_sought: return of dowry",
+   "must_ask": "",
+   "acceptable_info_needed": "what_was_given_and_proof | divorce_or_case_status | marriage_date",
+   "must_not_ask": "religion | how_long_at_parents_house | assumes_client_is_the_wife"
+  }
+ },
+ {
+  "id": "P19",
+  "topic": "husband's second marriage",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 225 (Second marriage without divorcing first wife), facts changed",
+  "query": {
+   "en": "We are Hindus and I am still legally married to my husband, but last month he married another woman in a temple. What action can I take against him?",
+   "hi": "हम हिंदू हैं और मैं अब भी अपने पति की कानूनी पत्नी हूँ, लेकिन पिछले महीने उन्होंने मंदिर में दूसरी औरत से शादी कर ली। मैं उनके खिलाफ क्या कार्रवाई कर सकती हूँ?",
+   "hi-en": "Hum Hindu hain aur main abhi bhi apne husband ki legally wife hoon, lekin last month usne mandir me doosri aurat se shaadi kar li. Main uske against kya action le sakti hoon?",
+   "ta": "நாங்கள் இந்துக்கள். நான் இன்னும் சட்டப்படி என் கணவரின் மனைவிதான். ஆனால் கடந்த மாதம் அவர் கோவிலில் வேறொரு பெண்ணைத் திருமணம் செய்துகொண்டார். அவர் மீது நான் என்ன நடவடிக்கை எடுக்கலாம்?",
+   "kn": "ನಾವು ಹಿಂದೂಗಳು ಮತ್ತು ನಾನು ಇನ್ನೂ ಕಾನೂನುಬದ್ಧವಾಗಿ ನನ್ನ ಗಂಡನ ಹೆಂಡತಿ. ಆದರೆ ಕಳೆದ ತಿಂಗಳು ಅವರು ದೇವಸ್ಥಾನದಲ್ಲಿ ಬೇರೊಬ್ಬ ಮಹಿಳೆಯನ್ನು ಮದುವೆಯಾಗಿದ್ದಾರೆ. ಅವರ ವಿರುದ್ಧ ನಾನು ಯಾವ ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಬಹುದು?"
+  },
+  "analyzer": {
+   "category": "clear-complete",
+   "intent": "Take legal action against her husband for marrying another woman while still married to her",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "religion: Hindu | marital_status: still legally married, not divorced | husband: married another woman last month in a temple | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "evidence_of_second_marriage | marriage_registration | children | relief_sought",
+   "must_not_ask": "religion | divorce_status"
+  }
+ },
+ {
+  "id": "P20",
+  "topic": "restitution decree not obeyed",
+  "style": "short",
+  "role": "husband",
+  "gender": "male",
+  "source": "corpus post 580 (Does non compliance of RCR order lead to contempt?), facts changed",
+  "query": {
+   "en": "My wife left our home two years ago. I filed for restitution of conjugal rights and got an ex parte decree, but she still has not come back. What can I do next?",
+   "hi": "मेरी पत्नी दो साल पहले घर छोड़कर चली गई थी। मैंने दांपत्य अधिकारों की बहाली का केस किया और एकतरफा डिक्री भी मिल गई, लेकिन वह अब भी वापस नहीं आई। अब मैं आगे क्या कर सकता हूँ?",
+   "hi-en": "Meri wife 2 saal pehle ghar chhod kar chali gayi thi. Maine restitution of conjugal rights ka case kiya aur ex parte decree bhi mil gayi, lekin wo abhi tak wapas nahi aayi. Ab main aage kya kar sakta hoon?",
+   "ta": "என் மனைவி இரண்டு வருடங்களுக்கு முன் வீட்டை விட்டுச் சென்றுவிட்டாள். தாம்பத்திய உரிமைகளை மீட்டுத் தரக் கோரி வழக்கு தொடர்ந்து, ஒருதலைப்பட்ச தீர்ப்பாணையும் (ex parte decree) பெற்றேன். ஆனாலும் அவள் இன்னும் திரும்பி வரவில்லை. அடுத்து நான் என்ன செய்யலாம்?",
+   "kn": "ನನ್ನ ಹೆಂಡತಿ ಎರಡು ವರ್ಷಗಳ ಹಿಂದೆ ಮನೆ ಬಿಟ್ಟು ಹೋದಳು. ನಾನು ದಾಂಪತ್ಯ ಹಕ್ಕುಗಳ ಪುನಃಸ್ಥಾಪನೆಗಾಗಿ ಕೇಸ್ ಹಾಕಿ ಏಕಪಕ್ಷೀಯ ಡಿಕ್ರಿ ಕೂಡ ಪಡೆದೆ, ಆದರೆ ಅವಳು ಇನ್ನೂ ವಾಪಸ್ ಬಂದಿಲ್ಲ. ಮುಂದೆ ನಾನು ಏನು ಮಾಡಬಹುದು?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Know his options when his wife does not comply with an ex parte decree for restitution of conjugal rights",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "wife_left: 2 years ago | case: restitution of conjugal rights, ex parte decree obtained | compliance: wife has not returned | client_role: husband",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | date_of_decree | whether_he_now_wants_divorce | children",
+   "must_not_ask": "how_long_since_wife_left | whether_decree_obtained"
+  }
+ },
+ {
+  "id": "P21",
+  "topic": "desertion in unconsummated marriage",
+  "style": "short",
+  "role": "husband",
+  "gender": "male",
+  "source": "corpus post 1088 (Desertion of wife in an unconsummated marriage for 2 years), facts changed",
+  "query": {
+   "en": "I got married in March 2024. My wife went back to her parents' house after one week and has not returned for over two years, even after many talks. The marriage was never consummated. What are my options?",
+   "hi": "मेरी शादी मार्च 2024 में हुई थी। एक हफ्ते बाद ही मेरी पत्नी मायके चली गई और कई बार बातचीत के बाद भी दो साल से ज़्यादा समय से वापस नहीं आई। हमारे बीच कभी शारीरिक संबंध नहीं बने। मेरे पास क्या विकल्प हैं?",
+   "hi-en": "Meri shaadi March 2024 me hui thi. Ek hafte baad hi wife mayke chali gayi aur kai baar baat karne ke baad bhi 2 saal se zyada ho gaye wapas nahi aayi. Marriage kabhi consummate nahi hui. Mere paas kya options hain?",
+   "ta": "எனக்கு மார்ச் 2024-ல் திருமணம் நடந்தது. ஒரு வாரத்திலேயே என் மனைவி தன் பெற்றோர் வீட்டுக்குச் சென்றுவிட்டாள்; பலமுறை பேசியும் இரண்டு வருடங்களுக்கு மேலாகத் திரும்பி வரவில்லை. எங்களுக்குள் தாம்பத்திய உறவே ஏற்படவில்லை. எனக்கு என்ன வழிகள் உள்ளன?",
+   "kn": "ನನ್ನ ಮದುವೆ ಮಾರ್ಚ್ 2024ರಲ್ಲಿ ಆಯಿತು. ಒಂದೇ ವಾರಕ್ಕೆ ನನ್ನ ಹೆಂಡತಿ ತವರು ಮನೆಗೆ ಹೋದಳು; ಎಷ್ಟೋ ಬಾರಿ ಮಾತುಕತೆ ನಡೆಸಿದರೂ ಎರಡು ವರ್ಷಕ್ಕೂ ಹೆಚ್ಚು ಕಾಲದಿಂದ ವಾಪಸ್ ಬಂದಿಲ್ಲ. ನಮ್ಮ ನಡುವೆ ದಾಂಪತ್ಯ ಸಂಬಂಧವೇ ಆಗಿಲ್ಲ. ನನಗೆ ಯಾವ ಆಯ್ಕೆಗಳಿವೆ?"
+  },
+  "analyzer": {
+   "category": "religion-critical",
+   "intent": "Know his legal options (divorce or annulment) when his wife left a week after the wedding and the marriage was never consummated",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "marriage: March 2024 | wife_left: after one week, away for over two years | consummation: never | reconciliation: attempted many times, failed | client_role: husband",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion | reason_the_wife_gives | any_cases_filed",
+   "must_not_ask": "marriage_date | consummation | how_long_wife_has_been_away"
+  }
+ },
+ {
+  "id": "P22",
+  "topic": "annulment for impotency",
+  "style": "short",
+  "role": "parent",
+  "gender": "unknown",
+  "source": "corpus post 446 (Nullification of marriage), facts changed",
+  "query": {
+   "en": "My daughter got married in February this year. Even after 7 months the marriage has not been consummated because her husband is impotent, and his family hid this from us. Can the marriage be annulled?",
+   "hi": "मेरी बेटी की शादी इसी साल फरवरी में हुई थी। 7 महीने बाद भी पति की नपुंसकता की वजह से शादी में शारीरिक संबंध नहीं बने हैं, और उसके परिवार ने यह बात हमसे छिपाई थी। क्या यह शादी रद्द हो सकती है?",
+   "hi-en": "Meri beti ki shaadi isi saal February me hui thi. 7 mahine baad bhi husband ki impotency ki wajah se marriage consummate nahi hui, aur uski family ne ye baat humse chhupayi thi. Kya ye shaadi annul ho sakti hai?",
+   "ta": "என் மகளுக்கு இந்த வருடம் பிப்ரவரியில் திருமணம் நடந்தது. 7 மாதங்கள் ஆகியும் கணவரின் ஆண்மைக்குறைவு காரணமாகத் தாம்பத்திய உறவு ஏற்படவில்லை. இதை அவர் குடும்பத்தினர் எங்களிடம் மறைத்துவிட்டார்கள். இந்தத் திருமணத்தை ரத்து செய்ய முடியுமா?",
+   "kn": "ನನ್ನ ಮಗಳ ಮದುವೆ ಇದೇ ವರ್ಷ ಫೆಬ್ರವರಿಯಲ್ಲಿ ಆಯಿತು. 7 ತಿಂಗಳಾದರೂ ಗಂಡನ ನಪುಂಸಕತ್ವದಿಂದಾಗಿ ದಾಂಪತ್ಯ ಸಂಬಂಧ ಆಗಿಲ್ಲ, ಮತ್ತು ಈ ವಿಷಯವನ್ನು ಅವನ ಮನೆಯವರು ನಮ್ಮಿಂದ ಮುಚ್ಚಿಟ್ಟಿದ್ದರು. ಈ ಮದುವೆಯನ್ನು ರದ್ದುಪಡಿಸಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "role",
+   "intent": "Know whether the client's daughter's marriage can be annulled because of the husband's concealed impotency",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "aggrieved_person: client's daughter | marriage: February this year | consummation: none after 7 months | cause: husband's impotency, concealed by his family",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion | medical_evidence | daughter's_own_wishes | gifts_or_dowry_given",
+   "must_not_ask": "marriage_date | consummation | assumes_client_is_the_wife"
+  }
+ },
+ {
+  "id": "P23",
+  "topic": "divorce and return of stridhan",
+  "style": "multi-issue",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 2614 (Filing divorce and getting back my personal items), facts changed",
+  "query": {
+   "en": "My husband turned out to be a drunkard and is having an affair with a colleague. After putting up with it for 6 months I returned to my parents' home. How do I file for divorce and get back my jewellery and personal belongings from his house?",
+   "hi": "मेरा पति शराबी निकला और उसका अपनी एक सहकर्मी के साथ अफेयर भी है। 6 महीने सहने के बाद मैं मायके लौट आई। मैं तलाक का केस कैसे करूँ और उसके घर से अपने गहने और निजी सामान कैसे वापस लूँ?",
+   "hi-en": "Mera husband sharabi nikla aur uska apni ek colleague ke saath affair bhi hai. 6 mahine bardasht karne ke baad main mayke wapas aa gayi. Divorce kaise file karun aur uske ghar se apne gehne aur personal saaman kaise wapas loon?",
+   "ta": "என் கணவர் குடிகாரர் என்பது திருமணத்துக்குப் பிறகுதான் தெரிந்தது; அவருக்கு உடன் பணிபுரியும் ஒரு பெண்ணுடன் தொடர்பும் இருக்கிறது. 6 மாதங்கள் பொறுத்துக்கொண்ட பிறகு என் பெற்றோர் வீட்டுக்குத் திரும்பிவிட்டேன். விவாகரத்து வழக்கு எப்படித் தொடர்வது? அவர் வீட்டில் உள்ள என் நகைகளையும் தனிப்பட்ட பொருட்களையும் எப்படித் திரும்பப் பெறுவது?",
+   "kn": "ನನ್ನ ಗಂಡ ಕುಡುಕ ಎಂದು ಮದುವೆಯ ನಂತರ ಗೊತ್ತಾಯಿತು, ಅವರಿಗೆ ಸಹೋದ್ಯೋಗಿಯೊಬ್ಬಳ ಜೊತೆ ಅಕ್ರಮ ಸಂಬಂಧವೂ ಇದೆ. 6 ತಿಂಗಳು ಸಹಿಸಿಕೊಂಡ ನಂತರ ನಾನು ತವರು ಮನೆಗೆ ವಾಪಸ್ ಬಂದೆ. ವಿಚ್ಛೇದನಕ್ಕೆ ಅರ್ಜಿ ಹೇಗೆ ಹಾಕಬೇಕು? ಅವರ ಮನೆಯಲ್ಲಿರುವ ನನ್ನ ಒಡವೆ ಮತ್ತು ವೈಯಕ್ತಿಕ ವಸ್ತುಗಳನ್ನು ಹೇಗೆ ವಾಪಸ್ ಪಡೆಯಬೇಕು?"
+  },
+  "analyzer": {
+   "category": "multi-issue",
+   "intent": "File for divorce from an alcoholic, unfaithful husband and recover her jewellery and belongings from his house",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "husband: alcoholic, having an affair with a colleague | cohabitation: 6 months, then returned to parents' home | reliefs_sought: divorce, return of jewellery and belongings | client_role: wife",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion | marriage_date | list_or_proof_of_items | children",
+   "must_not_ask": "where_she_lives_now | why_she_left"
+  }
+ },
+ {
+  "id": "P24",
+  "topic": "instant triple talaq",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 413 (Talaqnama), facts changed",
+  "query": {
+   "en": "I am a Muslim woman. My husband sent me talaq three times in a single WhatsApp message last week and told me to leave the house. Is this divorce valid, and can I claim maintenance for myself and my two children?",
+   "hi": "मैं एक मुस्लिम महिला हूँ। पिछले हफ्ते मेरे पति ने व्हाट्सऐप के एक ही मैसेज में तीन बार तलाक लिखकर भेज दिया और घर छोड़ने को कहा। क्या यह तलाक मान्य है, और क्या मैं अपने और अपने दो बच्चों के लिए गुज़ारा-भत्ता मांग सकती हूँ?",
+   "hi-en": "Main Muslim hoon. Last week mere husband ne WhatsApp ke ek hi message me teen baar talaq likh kar bhej diya aur ghar chhodne ko kaha. Kya ye talaq valid hai, aur kya main apne aur apne 2 bachchon ke liye maintenance maang sakti hoon?",
+   "ta": "நான் ஒரு முஸ்லிம் பெண். கடந்த வாரம் என் கணவர் ஒரே வாட்ஸ்அப் செய்தியில் மூன்று முறை தலாக் என்று அனுப்பி, வீட்டை விட்டு வெளியேறச் சொன்னார். இந்த விவாகரத்து செல்லுமா? எனக்கும் என் இரண்டு குழந்தைகளுக்கும் ஜீவனாம்சம் கேட்க முடியுமா?",
+   "kn": "ನಾನು ಮುಸ್ಲಿಂ ಮಹಿಳೆ. ಕಳೆದ ವಾರ ನನ್ನ ಗಂಡ ಒಂದೇ ವಾಟ್ಸಾಪ್ ಸಂದೇಶದಲ್ಲಿ ಮೂರು ಬಾರಿ ತಲಾಖ್ ಎಂದು ಕಳುಹಿಸಿ, ಮನೆ ಬಿಟ್ಟು ಹೋಗು ಎಂದರು. ಈ ತಲಾಖ್ ಮಾನ್ಯವೇ? ನನಗೆ ಮತ್ತು ನನ್ನ ಇಬ್ಬರು ಮಕ್ಕಳಿಗೆ ಜೀವನಾಂಶ ಕೇಳಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "clear-complete",
+   "intent": "Know whether an instant triple talaq sent by WhatsApp is valid and whether she can claim maintenance for herself and two children",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "religion: Muslim | event: talaq three times in one WhatsApp message, last week | husband: told her to leave the house | children: two | reliefs_sought: validity of divorce, maintenance | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "children_ages | mehr_status | own_income",
+   "must_not_ask": "religion | type_of_talaq | number_of_children"
+  }
+ }
+]

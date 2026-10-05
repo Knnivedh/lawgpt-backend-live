@@ -1,0 +1,72 @@
+REASONING EXPLAINER GOLDEN DATASET — DETAILED INFO
+===================================================
+File:      evaluation/reasoning_eval/golden_dataset.csv
+Generator: evaluation/reasoning_eval/generate_dataset.py
+Rows:      31 (10 scenarios; 20 "high", 11 "low")
+Purpose:   Evaluate nodes/reasoning_explainer.py::analyze_precedent_usage(),
+           which produces the "Why These Precedents Matter" panel: a usage
+           score, matching/different factors, a key excerpt, and an
+           explanation of how each precedent shaped the answer.
+
+           In manual testing it claimed an unrelated precedent (a caste-based
+           breakup) "directly informed the advice", and in one case quoted
+           the assistant's own answer as the precedent's excerpt. This
+           dataset tests both.
+
+WHAT EACH ROW REPRESENTS
+------------------------
+One (scenario, precedent) pair. Each scenario has a fixed case summary and
+a short reference response, paired with 3-4 real corpus precedents
+labelled:
+  high - clearly relevant; the reference response relies on the same
+         issue
+  low  - clearly irrelevant. Several are the precedents the deployed app
+         actually showed for the wrong query (school admission, caste
+         breakup, extra-marital affair, sister's marriage problems).
+
+COLUMNS
+-------
+id                         row number
+scenario_id                S1-S10
+case_summary               passed as case_summary
+reference_response         passed as response (fixed, so the test isolates
+                           the explainer from the generator)
+precedent_parent_id        look up the full parent content by this id and
+                           pass it as the precedent
+precedent_title            title from the corpus
+precedent_excerpt          first 300 characters, for the human reviewer
+expected_relevance         high / low
+expected_usage_score_band  >= 0.5 for high, <= 0.3 for low
+rationale                  why the label was chosen
+
+HOW TO SCORE (per row)
+----------------------
+  1. score band     - usage_score is in expected_usage_score_band
+  2. no invented similarity - for "low" rows, matching_factors should be
+                     empty or generic, not fabricated case-specific
+                     similarities (LLM judge)
+  3. excerpt check  - key_excerpt appears verbatim in the precedent's
+                     content (citation_guard.excerpt_in_source). Should be
+                     near 100% now that the fallback exists, but count how
+                     often the model's own excerpt failed and fell back.
+  4. honest influence - for "low" rows, how_it_influenced_response should
+                     not claim the precedent shaped the advice
+Most important numbers: false "high" rate on the 11 "low" rows
+(over-claiming) and the excerpt check.
+
+SPECIAL ROW TO NOTE
+-------------------
+Row 1 (S1, parent 2845 "Daughter in law's rights") is labelled "high"
+because it is on topic, but its expert answer says the wife needs the
+father-in-law's permission to stay, which conflicts with Satish Chander
+Ahuja v. Sneha Ahuja (2020) and with the reference response. A good
+explainer should flag it in different_factors rather than present it as
+supporting the answer. It shows that "relevant" and "supports the advice"
+are not the same thing.
+
+KNOWN LIMITATIONS
+-----------------
+- Only clear-cut high/low pairs are included; borderline relevance is not
+  tested.
+- The reference responses were written by an AI assistant and simplified;
+  they are for testing the explainer, not legal ground truth.

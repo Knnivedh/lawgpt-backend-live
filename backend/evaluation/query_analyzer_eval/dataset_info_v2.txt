@@ -1,0 +1,105 @@
+QUERY ANALYZER GOLDEN DATASET, VERSION 2
+=========================================
+File:    evaluation/query_analyzer_eval/golden_dataset_v2.csv   (200 rows)
+Source:  evaluation/scenario_bank/*.json, built by evaluation/scenario_bank/build_datasets.py
+         Edit the bank and rebuild; do not edit the CSV by hand unless you
+         then treat the CSV as the source of truth.
+Version 1 (42 rows) is kept as golden_dataset.csv.
+
+Purpose: evaluate the first call of QueryAnalyzer.analyze_query() on a fresh
+user message, in five languages.
+
+STRUCTURE
+---------
+150 parallel rows:           30 scenarios x 5 languages
+                             (24 legal scenarios P01-P24 + 6 analyzer-only A01-A06)
+50 language-specific rows:   10 per language
+                             (8 legal + 2 analyzer-only), written natively
+
+Language    Rows
+English      40
+Hindi        40
+Hinglish     40
+Tamil        40
+Kannada      40
+
+COLUMNS
+-------
+id                            scenario id + language, e.g. P01__hi
+scenario_id                   the bank scenario
+split                         parallel / language-specific
+language                      English, Hindi, Hinglish, Tamil, Kannada
+category                      what the row tests (below)
+style                         short, narrative, multi-issue, speech, noisy, vague, ...
+role                          who is asking (wife, husband, father, parent, sibling, ...)
+user_gender                   the gender to select in the app for this row
+source                        real test conversation, corpus post, or synthetic
+user_query                    the first message
+expected_intent               the correct intent, in English
+expected_confidence           high / medium / low
+expected_needs_clarification  yes if the graph should route to "clarify"
+expected_info_provided        facts stated in the message ("key: value | key: value")
+must_ask                      fields that must appear in info_needed
+acceptable_info_needed        fields it is fine to ask; "(empty)" = nothing should be asked
+must_not_ask                  facts already given, plus privacy fields the analyzer
+                              prompt forbids (address, phone, email, Aadhaar/PAN,
+                              bank, workplace)
+
+CATEGORIES (rows)
+-----------------
+clear-partial      68  Intent clear, some critical facts missing.
+role               27  The speaker is not the stereotypical victim: a father, a
+                       husband defending a case, a parent or sibling asking for
+                       someone else, a senior citizen.
+clear-complete     26  Everything needed is in the message; little or nothing
+                       should be asked.
+religion-critical  24  The answer depends on personal law and religion is not
+                       stated; it must be asked.
+off-topic          14  Not family law (land, salary, consumer, loan). Low
+                       confidence; no family-law fields should be invented.
+vague              13  Greetings and pleas with no legal content.
+multi-issue        10  Several reliefs in one message.
+informational       5  General legal question; no personal facts needed.
+privacy-trap        5  The user offers address/Aadhaar; the analyzer must not ask.
+speech              4  Voice-style input: no punctuation, numbers as words.
+already-detailed    2  Long fact-heavy messages; nothing stated may be re-asked.
+noisy               1  Typos and abbreviations.
+asr-garbled         1  Tamil speech transcribed in Devanagari (from a real trace).
+
+Expected confidence: high 170, low 28, medium 2.
+Religion must be asked in 49 rows.
+
+WHAT THE PARALLEL DESIGN GIVES YOU
+----------------------------------
+The same scenario in five languages has the same expected labels. Comparing the
+analyzer's output across the five versions of one scenario measures whether it
+treats languages equally: same intent, same facts extracted, same questions.
+Report every metric per language, and report "cross-language agreement": the
+share of scenarios where all five versions pass a check.
+
+HOW TO SCORE (one judge call per row)
+-------------------------------------
+1. confidence      matches expected_confidence (medium vs high is a near-miss)
+2. clarification   low confidence <=> expected_needs_clarification
+3. extraction      every fact in expected_info_provided is captured (the output
+                   may be in any language; judge the meaning)
+4. must ask        every must_ask field is in info_needed
+5. no re-ask       nothing in info_needed asks for a fact already given or
+                   listed in must_not_ask
+6. no scope creep  every info_needed item is within acceptable_info_needed
+                   (clearly critical extras may be marked "acceptable extra")
+Privacy can be checked in plain code first (keyword match on address, phone,
+aadhaar, pan, bank, workplace).
+
+The analyzer runs at temperature 0.15: run each row 3 times and take the
+majority. That is 600 calls per full run on the Hugging Face credit pool.
+
+LIMITS
+------
+- Tamil and Kannada text was written by an AI assistant and has not been
+  checked by a native speaker. Hindi and Hinglish should be read for naturalness.
+- Labels are judgement calls and need review, ideally by someone with
+  family-law experience.
+- "Real-world" here means modelled on real forum posts and on the project's
+  own test conversations, not on conversations from outside users.
+- Only 2 rows expect "medium" confidence, so that level is barely tested.

@@ -1,0 +1,89 @@
+RETRIEVAL GOLDEN DATASET — DETAILED INFO
+=========================================
+File:      evaluation/retrieval_eval/golden_dataset.csv
+Generator: evaluation/retrieval_eval/generate_dataset.py
+Rows:      36
+Purpose:   Evaluate nodes/retriever.py::retrieve_documents(): given a query,
+           does it return the right case precedents and the right
+           statutes/case-law digests? Use it to measure the effect of the
+           category fix and query-construction fix, and later the
+           re-embedding work.
+
+COLUMNS
+-------
+id                    row number
+topic                 legal topic
+language              en (27), hi (5), ta (2), hi-en (2)
+query                 the search query (the root_query the user typed)
+gold_law_parent_ids   known-relevant documents from the law/act bucket
+                      (category family_law_2), " | " separated
+gold_law_titles       their titles, looked up from the corpus
+gold_case_parent_ids  known-relevant case posts (category family_law)
+gold_case_titles      their titles
+notes                 e.g. which rows are language twins
+
+HOW THE GOLD LABELS WERE BUILT
+------------------------------
+- Law ids: picked by hand from the 81 family_law_2 documents (full list
+  reviewed).
+- Case ids: title keyword search over all 2,926 family_law posts, then
+  hand-filtered (e.g. "residency/citizenship" posts were dropped from the
+  right-to-reside topic).
+- The generator checks every id exists in data/chunked/*.json and is in the
+  correct bucket, and refuses to write the file otherwise.
+- Gold lists mean "known relevant", NOT "the only relevant documents". The
+  corpus has many on-topic posts per topic, so an on-topic result that is
+  not in the gold list is not a miss.
+
+LANGUAGE TWINS
+--------------
+Several topics appear as English + Hindi (or Tamil / Hinglish) versions of
+the same question with the same gold labels: right to reside (en/hi/ta),
+custody (en/hi), dowry (en/hi), mutual consent (en/hi), bigamy (en/hi).
+Comparing twins shows whether translation makes retrieval language-
+independent.
+
+HOW TO SCORE
+------------
+Run with the production settings (ENABLE_QUERY_TRANSLATION as deployed).
+Per row:
+  1. law_recall@k   - share of gold_law ids in the returned law_or_act results
+  2. case_hit@k     - did at least one gold_case id appear in the case
+                      results (stricter: case_recall@k)
+  3. LLM-judged relevance - for every returned chunk, ask the judge
+                      "is this relevant to the query? (0/1)"; report
+                      precision. This catches on-topic results that are
+                      not in the gold list.
+  4. twin agreement - overlap of returned parent_ids between language twins
+Rows with an empty gold list (498A law, same-sex/legal-aid case, interfaith
+child case) should be scored on judged relevance only.
+
+CORPUS FINDINGS WORTH KNOWING BEFORE YOU SCORE
+----------------------------------------------
+- The DV Act IS in the corpus (parent_ids 2930 and 2952). When the earlier
+  manual-test answer left out the right to reside (s.17), that was a
+  ranking/generation problem, not missing data.
+- There is no IPC/BNS or CrPC/BNSS statute document, so criminal-law
+  questions (498A, bigamy punishment) can't retrieve a statute.
+- Several separate articles cover the same ruling or act and take up law
+  slots: 2962/2986/2987/2988 (Muslim women maintenance), 2989-2992 (child
+  of Muslim-Hindu marriage), 2997/2998, 3000/3001, 3006/3007. They are not
+  copies (text overlap is under 20%). corpus_curation.py now returns at
+  most one document per subject.
+- family_law_2 contains documents unrelated to family law, e.g. 3009 (tax
+  incentives for FDI), 2980 (vehicle repossession), 2982 (fisheries act),
+  2978 (bail order), 3010 (arrest grounds). They can occupy law slots.
+- 64 chunks in Milvus (7 documents, category = filename, no parent record,
+  no url) are not in data/chunked and are not covered by this dataset.
+- Some corpus answers are outdated. For example, post 2845 ("Daughter in
+  law's rights") says a wife needs the father-in-law's permission to live
+  in his house, which conflicts with Satish Chander Ahuja v. Sneha Ahuja
+  (2020). Retrieval can be "correct" and still feed the generator wrong
+  law.
+
+KNOWN LIMITATIONS
+-----------------
+- Gold case lists are based on titles; a reviewer should open a few posts
+  to confirm their content matches.
+- 36 queries are enough to compare before/after a change, not to estimate
+  absolute recall precisely.

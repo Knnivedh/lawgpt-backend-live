@@ -1,0 +1,13 @@
+13662 chunks, 2999 documents, 200 queries
+Keyword search (BM25) alone                  english   cases@5 0.56 (recall 0.19)  statutes@3 0.68 @5 0.78  | English 0.62/0.75  others 0.54/0.79
+InLegal-SBERT (current): vector alone        english   cases@5 0.32 (recall 0.10)  statutes@3 0.37 @5 0.47  | English 0.40/0.50  others 0.30/0.47
+InLegal-SBERT (current): vector + keyword x1 english   cases@5 0.52 (recall 0.16)  statutes@3 0.59 @5 0.68  | English 0.62/0.75  others 0.49/0.67
+InLegal-SBERT (current): vector + keyword x2 english   cases@5 0.58 (recall 0.20)  statutes@3 0.63 @5 0.70  | English 0.62/0.81  others 0.57/0.68
+bge-small-en-v1.5: vector alone              english   cases@5 0.47 (recall 0.16)  statutes@3 0.77 @5 0.84  | English 0.47/0.86  others 0.47/0.83
+bge-small-en-v1.5: vector + keyword x1       english   cases@5 0.60 (recall 0.20)  statutes@3 0.81 @5 0.87  | English 0.65/0.89  others 0.59/0.87
+bge-small-en-v1.5: vector + keyword x2       english   cases@5 0.60 (recall 0.20)  statutes@3 0.81 @5 0.87  | English 0.70/0.86  others 0.57/0.87
+multilingual-e5-base: vector alone           english   cases@5 0.47 (recall 0.17)  statutes@3 0.76 @5 0.84  | English 0.50/0.86  others 0.46/0.83
+multilingual-e5-base: vector + keyword x1    english   cases@5 0.62 (recall 0.22)  statutes@3 0.81 @5 0.84  | English 0.72/0.81  others 0.60/0.85
+multilingual-e5-base: vector + keyword x2    english   cases@5 0.63 (recall 0.22)  statutes@3 0.81 @5 0.85  | English 0.72/0.86  others 0.61/0.85
+multilingual-e5-base: vector alone           original  cases@5 0.32 (recall 0.10)  statutes@3 0.56 @5 0.67  | English 0.50/0.86  others 0.27/0.62
+multilingual-e5-base: vector + keyword x1    original  cases@5 0.55 (recall 0.18)  statutes@3 0.77 @5 0.82  | English 0.72/0.81  others 0.51/0.82

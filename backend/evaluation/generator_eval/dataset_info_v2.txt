@@ -1,0 +1,74 @@
+GENERATOR GOLDEN DATASET, VERSION 2
+===================================
+File:    evaluation/generator_eval/golden_dataset_v2.csv   (200 rows)
+Source:  evaluation/scenario_bank/rubrics_parallel.py and rubrics_specific.py,
+         built by scenario_bank/build_datasets.py. Edit the bank and rebuild.
+Version 1 (30 rows) is kept as golden_dataset.csv.
+
+Purpose: judge the final answer the generate node writes: is the law right,
+is it in the user's language, is it addressed to the right person, and does it
+avoid inventing things.
+
+STRUCTURE
+---------
+150 parallel rows:           30 legal scenarios x 5 languages. The rubric is
+                             the same for all five; only the question and the
+                             expected answer language change
+50 language-specific rows:   10 per language
+40 rows each for English, Hindi, Hinglish, Tamil and Kannada.
+There is no single "correct answer" text. Each row has a rubric instead.
+
+COLUMNS
+-------
+id, scenario_id, split, language, topic, style
+role                        who is asking (wife, father, parent, sibling, ...)
+user_gender                 the gender to select in the app
+expected_response_language  the answer must be in this language
+user_query                  the first message
+info_collected              all facts known when the answer is written: those
+                            in the first message plus those from follow-ups
+must_cover                  3-4 legal points a good answer makes, " | " apart
+expected_statutes           the provisions it should rest on
+must_not_claim              2-3 specific wrong statements it must not make
+statute_in_corpus           yes / partly / no: whether the knowledge base
+                            holds the statute this answer needs
+
+READING THE STATUTE COLUMN
+--------------------------
+Criminal provisions are given under the new codes in force since 1 July 2024
+(BNS, BNSS, BSA) with the old IPC / CrPC / Evidence Act number in brackets,
+e.g. "BNS s.85 (IPC s.498A)". Either numbering is acceptable in an answer.
+
+statute_in_corpus matters for reading the results. The system is told to cite
+only what it retrieved. On a "no" row (19 rows; mostly criminal procedure,
+senior citizens, wills) a careful answer that explains the remedy without a
+section number is correct behaviour, and a confident section number is likely
+to be invented. Score these rows separately.
+
+SCORING (LLM judge, one answer at a time)
+-----------------------------------------
+coverage        share of must_cover points present
+no wrong claim  none of must_not_claim appears (and no other legal error)
+statutes        cited provisions are among expected_statutes or otherwise
+                correct; nothing invented
+language        the answer is in expected_response_language
+addressee       the answer speaks to the right person. For role = parent or
+                sibling the user is asking for someone else. For a male user
+                the answer must not address him as the wife, and so on
+tone            practical next steps; no promise of an outcome
+
+Report by language and by statute_in_corpus. For the parallel rows compare
+coverage across the five languages of each scenario: the facts are identical,
+so a drop in one language is a language problem.
+
+LIMITS
+------
+- The rubrics were drafted by an AI assistant from general knowledge of
+  Indian family law. They have NOT been checked by a lawyer. Case names,
+  section numbers and the BNS/BNSS equivalents in particular need checking
+  before any figure from this set is published.
+- A few points of law are unsettled or differ between States and High Courts
+  (khula without consent, eviction under the Senior Citizens Act, agricultural
+  land, the separation period for Christian mutual-consent divorce). The
+  rubrics say so; the judge should accept an answer that states the
+  uncertainty.

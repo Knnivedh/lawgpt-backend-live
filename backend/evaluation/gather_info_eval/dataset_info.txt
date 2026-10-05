@@ -1,0 +1,169 @@
+GATHER_INFO GOLDEN DATASET — DETAILED INFO
+============================================
+File:      evaluation/gather_info_eval/golden_dataset.csv
+Generator: evaluation/gather_info_eval/generate_dataset.py
+Rows:      70
+Purpose:   Evaluate InformationGatherer._extract_information()
+           (nodes/information_gatherer.py), the step that reads the user's
+           latest reply and tries to extract the answer to the question the
+           gatherer just asked. This is the step responsible for the
+           "keeps asking the same/irrelevant question" bug observed in
+           manual testing.
+
+WHAT EACH ROW REPRESENTS
+-------------------------
+One simulated turn of the gatherer's extraction step:
+  last_question       - the follow-up question the gatherer asked
+  user_response       - the user's raw reply (as they would actually type it)
+  expected_extraction - the "gold" answer a correct extraction should produce,
+                         OR the literal string "NOT_PROVIDED" when the reply
+                         genuinely contains no usable answer
+
+expected_extraction is written as a single gold sentence in the same style
+the app's own ANSWER_EXTRACTION_PROMPT asks for (3-20 words, factual, no
+added assumptions or legal advice). It is meant for LLM-as-judge scoring
+(semantic equivalence), NOT exact string matching — paraphrases that
+preserve the same facts should be marked correct by the judge.
+
+COLUMNS
+-------
+id                    sequential row number (1-70)
+category              which failure mode this row tests (see below)
+field                 the info_needed field this question targets
+                       (e.g. marriage_date, income, notice_given)
+source                real post title this row's facts were drawn from,
+                       or "synthetic" if hand-written for a specific case
+last_question         the question asked (Hindi or English)
+user_response         the user's raw reply (Hindi, English, or Hinglish)
+expected_extraction   the gold answer, or "NOT_PROVIDED"
+
+CATEGORY BREAKDOWN (70 rows total)
+-----------------------------------
+short           9   One-word / short-phrase answers ("haan", "female",
+                    "5 saal") that need expansion using the question's
+                    context to become a usable fact.
+direct          8   Full-sentence answers that clearly state the fact.
+                    Baseline case — if extraction fails here, something is
+                    badly wrong.
+negation        8   The answer contains a negation ("nahi diya gaya",
+                    "has not given me a notice"). This is the exact bug
+                    reproduced in manual testing (IPC s.22 hallucination
+                    case traced back to a negation the generator ignored;
+                    here we test whether the GATHERER correctly captures
+                    the negation in the first place).
+numeric         8   Dates, durations, amounts, ages. Tests whether specific
+                    numbers survive extraction unchanged (a wrong number
+                    silently carried forward is worse than a missed
+                    extraction, since nothing flags it downstream).
+hindi           8   Devanagari-only replies. See note below: the actual
+                    corpus contains zero Hindi text, so extraction quality
+                    on Hindi input has never been naturally exercised.
+code-mixed      8   Hinglish replies ("Mera husband domestic violence
+                    karta hai..."). Mirrors real usage patterns seen in
+                    manual testing and in the translation-model comparison
+                    work.
+non-answer      8   Genuine non-answers, deflections, or questions-back
+                    ("mujhe nahi pata", "why do you need to know that").
+                    Correct behavior is to return exactly "NOT_PROVIDED".
+                    A false extraction here is worse than a missed one —
+                    it silently inserts an unstated "fact" into the case.
+rambling        7   The real answer is present but buried in irrelevant
+                    narrative detail (a common real-user pattern visible
+                    in the source corpus's forum-post style). Tests
+                    whether extraction can find the fact inside noise
+                    without also pulling in the noise.
+already-known   6   The user is asked something they already answered
+                    earlier in the conversation ("I already told you...").
+                    Regression case for the repeated-question bug: even if
+                    extraction succeeds, the fact that the question was
+                    re-asked at all is itself the failure being tracked
+                    (this category is best read as an eval on the
+                    surrounding gather_info loop, not extraction alone).
+
+FIELD COVERAGE
+---------------
+49 distinct "field" values are exercised (e.g. marriage_date, income,
+notice_given, religion, dowry_given, children, court_proceedings,
+domestic_violence_details, custody_preference, marriage_registration).
+The four most-repeated fields (marriage_date, separation_duration,
+notice_given: 4 rows each; children, income, religion, dowry_given: 3 rows
+each) were chosen because they were the fields actually asked in the
+manual test transcripts that surfaced the original bug reports.
+
+GROUNDING IN THE REAL CORPUS
+------------------------------
+21 of 70 rows (30%) are built directly from real posts in
+data/chunked/family_law_chunks.json (the corpus this app actually
+retrieves from), found by keyword search for income/dowry/notice/in-laws/
+religion/children/marriage-date mentions. The "source" column names the
+original post title for these rows, so any row can be traced back and
+re-checked against the original text.
+
+The remaining 49 rows (70%) are marked "synthetic" — hand-written to
+specifically target a failure mode (negation, non-answer, already-known)
+where the corpus did not naturally contain a matching real scenario, or
+to produce the Hindi/Hinglish versions the corpus does not contain at all
+(see below). Synthetic rows still use realistic Indian family-law
+scenarios and phrasing, just not lifted verbatim from a specific post.
+
+IMPORTANT CAVEAT: NO HINDI TEXT IN THE ACTUAL CORPUS
+-------------------------------------------------------
+While building this dataset, a full scan of both corpus files was run:
+
+    family_law_chunks.json    2,926 parent posts, 0 contain Devanagari text
+    family_law_2_chunks.json     81 parent posts, 0 contain Devanagari text
+
+Every post in the corpus this app retrieves from is in English. This means
+all 31 rows in this dataset that contain Devanagari text (8 "hindi" rows +
+8 "code-mixed" rows + Hindi text scattered into "negation", "numeric",
+"non-answer", "rambling", and "already-known" rows) were written by
+translating/adapting real English-post facts into Hindi or Hinglish, not
+sampled from the corpus itself. This is expected and intentional (the app
+must handle Hindi input regardless of what the corpus contains), but it
+means these specific rows test the extraction model's own Hindi
+capability in isolation — they are not validating against any known-good
+Hindi reference text from your data.
+
+This also reinforces a retrieval-side finding from earlier analysis: since
+the corpus is 100% English, Hindi queries are structurally unable to
+match it well without translation — independent of how good extraction or
+generation are.
+
+NOT_PROVIDED ROWS
+-------------------
+8 of 70 rows (all in the "non-answer" category) have expected_extraction
+exactly equal to "NOT_PROVIDED". These are the rows that test for false
+positives — an extraction that invents an answer where none was given.
+
+HOW THIS DATASET IS MEANT TO BE USED
+---------------------------------------
+1. Human review (current stage): check each row for realism, correct the
+   expected_extraction where it's wrong or too strict/loose, flag any row
+   that doesn't reflect how a real user would actually respond.
+2. Automated scoring (next stage, not yet built): run each row's
+   (last_question, user_response) pair through
+   InformationGatherer._extract_information(), then use a large LLM as
+   judge to compare the actual output against expected_extraction for
+   semantic equivalence (not exact string match) — except for the 8
+   NOT_PROVIDED rows, where the judge should check for an exact literal
+   match, since "NOT_PROVIDED" is a control signal, not a paraphrasable
+   sentence.
+3. Aggregate results by category (see breakdown above) to see WHICH
+   failure mode is actually driving the repeated-question bug — e.g. if
+   "negation" and "already-known" score much lower than "direct", that
+   directly confirms the hypothesis from the retrieval/generation
+   analysis; if "hindi" scores much lower than "code-mixed" or "direct",
+   that points at a language-specific extraction weakness rather than a
+   general extraction weakness.
+
+KNOWN LIMITATIONS OF THIS DATASET
+------------------------------------
+- 70 rows is enough to see directional signal per category, not enough
+  for tight statistical confidence on any single category (7-9 rows each).
+- expected_extraction was authored by an AI assistant (not a lawyer or a
+  native Hindi speaker), so nuance in legal terminology and Hindi phrasing
+  should be checked especially carefully during human review.
+- "already-known" rows test a loop-level behavior (should this question
+  have been asked at all), which _extract_information() alone cannot fix
+  even with perfect extraction - that gap is in gather_info's list
+  management / revalidate's scope creep, not in this specific function.

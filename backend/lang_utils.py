@@ -6,6 +6,7 @@ the language of the user's query so the LLM can respond in the same language.
 """
 
 import logging
+import re
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -40,6 +41,26 @@ LANGUAGE_NAMES: dict = {
 }
 
 
+# Frequent Hindi function words as typed in the Roman alphabet.
+_HINGLISH_WORDS = frozenset(
+    "hai hain nahi nahin kya mera meri mere mujhe maine hum humne tha thi the ki ke ko se aur par ka "
+    "ho raha rahi rahe kar karna sakta sakti chahiye wo woh unhone usne apne apni abhi kaise kyun "
+    "gaya gayi diya liya bhi toh hu hoon".split()
+)
+
+
+def looks_like_hinglish(text: str) -> bool:
+    """
+    True for Hindi typed in the Roman alphabet (usually mixed with English).
+    langdetect has no such language: it labels this text Indonesian, Somali,
+    Swahili or sometimes English.
+    """
+    if not text or not text.isascii():
+        return False
+    words = re.findall(r"[a-z]+", text.lower())
+    return len(words) >= 4 and sum(w in _HINGLISH_WORDS for w in words) / len(words) >= 0.18
+
+
 def detect_language(text: str) -> str:
     """
     Detect the ISO 639-1 language code of *text*.
@@ -51,7 +72,8 @@ def detect_language(text: str) -> str:
         return "en"
 
     try:
-        from langdetect import detect, LangDetectException
+        from langdetect import DetectorFactory, detect, LangDetectException
+        DetectorFactory.seed = 0  # langdetect is random by default: same text, different answer
         code = detect(text)
         logger.debug(f"[lang_utils] detected language: {code!r} for text: {text[:60]!r}")
         return code

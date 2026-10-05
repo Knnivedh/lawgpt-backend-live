@@ -1,0 +1,94 @@
+QUERY ANALYZER GOLDEN DATASET — DETAILED INFO
+===============================================
+File:      evaluation/query_analyzer_eval/golden_dataset.csv
+Generator: evaluation/query_analyzer_eval/generate_dataset.py
+Rows:      42
+Purpose:   Evaluate the FIRST call of QueryAnalyzer.analyze_query()
+           (nodes/query_analyzer.py), i.e. the analyze_query node, on a fresh
+           user message. It must: identify the intent, set a confidence level,
+           extract the facts the user already gave, and list only the
+           critical facts still missing.
+
+           The revalidate node reuses the same class on a different kind of
+           input; that is covered separately in revalidate_eval/.
+
+COLUMNS
+-------
+id                            row number
+category                      what the row tests (see breakdown)
+language                      en, hi, hi-en (Hinglish), ta-en (Tanglish)
+source                        corpus post title the scenario is based on, or
+                              "synthetic"
+user_query                    the user's first message
+expected_intent               short description of the correct intent
+expected_confidence           high / medium / low
+expected_needs_clarification  yes if the graph should route to "clarify"
+                              (graph.py sends low confidence to clarify)
+expected_info_provided        facts that should be extracted from the message
+                              ("key: value | key: value"); "(empty)" if none
+must_ask                      fields that MUST appear in info_needed (empty if
+                              none are strictly required). Mostly religion,
+                              which the analyzer prompt marks as critical for
+                              marriage, divorce, maintenance, custody,
+                              inheritance, DV and dowry matters.
+acceptable_info_needed        fields it is fine to ask for. "(empty)" means
+                              info_needed should be empty.
+must_not_ask                  fields that must NOT be asked: anything already
+                              stated in the message, plus privacy fields the
+                              analyzer prompt explicitly forbids (address,
+                              phone, email, Aadhaar/PAN, bank, workplace)
+
+CATEGORY BREAKDOWN (42 rows)
+----------------------------
+clear-partial      6  Intent clear, some critical facts missing.
+hindi              6  Devanagari messages. Includes the exact query from
+                      manual testing where the bot re-asked for the
+                      marriage date after the user had given "2019".
+vague              5  Greetings / no legal content. Should be low
+                      confidence and route to clarification.
+code-mixed         5  Hinglish and Tanglish.
+clear-complete     3  Everything needed is already in the message;
+                      info_needed should be empty or near-empty.
+already-detailed   3  Long, fact-heavy messages (from real corpus posts).
+                      Tests that no stated fact gets re-asked.
+informational      3  General legal questions ("void vs voidable").
+                      No personal facts are needed; asking any is wrong.
+role               3  The speaker is not the stereotypical victim: a father
+                      seeking visitation, a mother-in-law who is a DV
+                      respondent, a sibling asking for their sister.
+off-topic          2  Not family law (tenancy, tax). Should be low
+                      confidence, with no family-law fields invented.
+privacy-trap       2  The user offers or implies PII; the analyzer must not
+                      ask for it.
+religion-critical  2  Divorce/succession questions without religion stated;
+                      religion must be asked.
+multi-issue        2  Several reliefs in one message (divorce, custody,
+                      stridhan).
+
+HOW TO SCORE
+------------
+Use an LLM judge per row, with these checks (each pass/fail):
+  1. confidence     - matches expected_confidence (medium vs high may be
+                      treated as a near-miss rather than a fail)
+  2. clarification  - needs_clarification behaviour matches
+  3. extraction     - every fact in expected_info_provided is captured
+                      (semantic match, key names can differ)
+  4. must_ask       - every must_ask field is present in info_needed
+  5. no re-ask      - no info_needed item asks for something already
+                      provided or listed in must_not_ask
+  6. no scope creep - info_needed items are within acceptable_info_needed
+                      (judge semantically; extra items that are clearly
+                      legally relevant can be marked "acceptable extra")
+Report pass rates per check and per category. Checks 5 and 6 are the most
+important: they map directly to the "keeps asking irrelevant / repeated
+questions" problem seen in manual testing.
+
+KNOWN LIMITATIONS
+-----------------
+- Written by an AI assistant; the acceptable_info_needed lists are judgement
+  calls and should be reviewed, ideally by someone with family-law
+  experience.
+- 42 rows give directional signal per category (2-6 rows each), not tight
+  statistics.
+- The analyzer runs at temperature 0.15, so some variance between runs is
+  expected. Run each row 2-3 times and report the majority result.

@@ -1,0 +1,107 @@
+[
+ {
+  "plan": "search once, first message (now)",
+  "method": "vector",
+  "cases@5": 0.32,
+  "statutes@3": 0.37,
+  "statutes@5": 0.47
+ },
+ {
+  "plan": "search once, first message (now)",
+  "method": "keyword",
+  "cases@5": 0.56,
+  "statutes@3": 0.68,
+  "statutes@5": 0.78
+ },
+ {
+  "plan": "search once, first message (now)",
+  "method": "vector + keyword x2",
+  "cases@5": 0.58,
+  "statutes@3": 0.63,
+  "statutes@5": 0.7
+ },
+ {
+  "plan": "search once at the end, message + all follow-up facts",
+  "method": "vector",
+  "cases@5": 0.29,
+  "statutes@3": 0.36,
+  "statutes@5": 0.45
+ },
+ {
+  "plan": "search once at the end, message + all follow-up facts",
+  "method": "keyword",
+  "cases@5": 0.43,
+  "statutes@3": 0.78,
+  "statutes@5": 0.91
+ },
+ {
+  "plan": "search once at the end, message + all follow-up facts",
+  "method": "vector + keyword x2",
+  "cases@5": 0.51,
+  "statutes@3": 0.67,
+  "statutes@5": 0.78
+ },
+ {
+  "plan": "search at every turn with the text so far, merge",
+  "method": "vector",
+  "cases@5": 0.33,
+  "statutes@3": 0.32,
+  "statutes@5": 0.5
+ },
+ {
+  "plan": "search at every turn with the text so far, merge",
+  "method": "keyword",
+  "cases@5": 0.53,
+  "statutes@3": 0.73,
+  "statutes@5": 0.85
+ },
+ {
+  "plan": "search at every turn with the text so far, merge",
+  "method": "vector + keyword x2",
+  "cases@5": 0.54,
+  "statutes@3": 0.65,
+  "statutes@5": 0.75
+ },
+ {
+  "plan": "search at every turn with message + that turn's fact, merge",
+  "method": "vector",
+  "cases@5": 0.39,
+  "statutes@3": 0.37,
+  "statutes@5": 0.48
+ },
+ {
+  "plan": "search at every turn with message + that turn's fact, merge",
+  "method": "keyword",
+  "cases@5": 0.55,
+  "statutes@3": 0.72,
+  "statutes@5": 0.81
+ },
+ {
+  "plan": "search at every turn with message + that turn's fact, merge",
+  "method": "vector + keyword x2",
+  "cases@5": 0.56,
+  "statutes@3": 0.65,
+  "statutes@5": 0.71
+ },
+ {
+  "plan": "search at every turn with only that turn's reply, merge",
+  "method": "vector",
+  "cases@5": 0.17,
+  "statutes@3": 0.37,
+  "statutes@5": 0.53
+ },
+ {
+  "plan": "search at every turn with only that turn's reply, merge",
+  "method": "keyword",
+  "cases@5": 0.37,
+  "statutes@3": 0.68,
+  "statutes@5": 0.76
+ },
+ {
+  "plan": "search at every turn with only that turn's reply, merge",
+  "method": "vector + keyword x2",
+  "cases@5": 0.41,
+  "statutes@3": 0.58,
+  "statutes@5": 0.65
+ }
+]

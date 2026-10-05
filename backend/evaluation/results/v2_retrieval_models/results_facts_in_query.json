@@ -1,0 +1,86 @@
+[
+ {
+  "search text": "first message only (what the app searches now)",
+  "method": "vector",
+  "cases@5": 0.32,
+  "statutes@3": 0.37,
+  "statutes@5": 0.47
+ },
+ {
+  "search text": "first message only (what the app searches now)",
+  "method": "keyword",
+  "cases@5": 0.56,
+  "statutes@3": 0.68,
+  "statutes@5": 0.78
+ },
+ {
+  "search text": "first message only (what the app searches now)",
+  "method": "vector + keyword x2",
+  "cases@5": 0.58,
+  "statutes@3": 0.63,
+  "statutes@5": 0.7
+ },
+ {
+  "search text": "first message + all collected facts",
+  "method": "vector",
+  "cases@5": 0.18,
+  "statutes@3": 0.2,
+  "statutes@5": 0.38
+ },
+ {
+  "search text": "first message + all collected facts",
+  "method": "keyword",
+  "cases@5": 0.55,
+  "statutes@3": 0.81,
+  "statutes@5": 0.88
+ },
+ {
+  "search text": "first message + all collected facts",
+  "method": "vector + keyword x2",
+  "cases@5": 0.59,
+  "statutes@3": 0.64,
+  "statutes@5": 0.74
+ },
+ {
+  "search text": "first message + facts from follow-ups only",
+  "method": "vector",
+  "cases@5": 0.29,
+  "statutes@3": 0.36,
+  "statutes@5": 0.45
+ },
+ {
+  "search text": "first message + facts from follow-ups only",
+  "method": "keyword",
+  "cases@5": 0.43,
+  "statutes@3": 0.78,
+  "statutes@5": 0.91
+ },
+ {
+  "search text": "first message + facts from follow-ups only",
+  "method": "vector + keyword x2",
+  "cases@5": 0.51,
+  "statutes@3": 0.67,
+  "statutes@5": 0.78
+ },
+ {
+  "search text": "first message + religion only",
+  "method": "vector",
+  "cases@5": 0.32,
+  "statutes@3": 0.34,
+  "statutes@5": 0.44
+ },
+ {
+  "search text": "first message + religion only",
+  "method": "keyword",
+  "cases@5": 0.54,
+  "statutes@3": 0.68,
+  "statutes@5": 0.81
+ },
+ {
+  "search text": "first message + religion only",
+  "method": "vector + keyword x2",
+  "cases@5": 0.57,
+  "statutes@3": 0.61,
+  "statutes@5": 0.69
+ }
+]

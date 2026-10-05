@@ -1,0 +1,74 @@
+RETRIEVER GOLDEN DATASET, VERSION 2
+===================================
+File:    evaluation/retrieval_eval/golden_dataset_v2.csv   (200 rows)
+Source:  evaluation/scenario_bank/ (questions in the *.json files, labels in
+         labels_retrieval.py), built by scenario_bank/build_datasets.py.
+         Edit the bank and rebuild; do not edit the CSV by hand.
+Version 1 (30 rows) is kept as golden_dataset.csv.
+
+Purpose: check that the retrieve node returns the right statute documents and
+similar past cases for a user's question, in five languages.
+
+STRUCTURE
+---------
+150 parallel rows:           30 legal scenarios (P01-P30) x 5 languages
+50 language-specific rows:   10 per language (L-xx-01..10), written natively
+40 rows each for English, Hindi, Hinglish, Tamil and Kannada.
+
+The parallel rows ask the same question in five languages, so their gold
+documents are identical. Any difference in what is retrieved between the
+English row and the other four is caused by language handling alone.
+
+COLUMNS
+-------
+id                    scenario id + language, e.g. P01__ta
+scenario_id, split, language, topic, style
+query                 the user's first message
+gold_law_parent_ids   known-relevant documents in the statute pool (category
+                      family_law_2), separated by " | ". Empty for 14 rows
+                      where the pool has nothing on the topic
+gold_law_titles       their titles, for reading
+gold_case_parent_ids  known-relevant forum posts (category family_law)
+gold_case_titles      their titles
+seed_parent_id        the corpus post the scenario was modelled on, if any.
+                      It is NOT in the gold list: finding a question's own
+                      source is too easy to count as a hit. Report it apart
+seed_title
+statute_in_corpus     yes / partly / no: whether the statute a good answer
+                      needs exists in the statute pool at all (102 / 79 / 19
+                      rows). A miss on a "no" row is a gap in the knowledge
+                      base, not a retrieval error
+thin_pool             yes for 7 scenarios (11 rows) where few relevant posts
+                      were found in the corpus; read their recall with caution
+
+HOW THE LABELS WERE MADE
+------------------------
+Statutes: chosen by reading the titles of all 81 documents in the statute
+pool (off-topic documents excluded by corpus_curation.py are never gold).
+Several documents cover the same Act; the harness counts such a group once.
+
+Cases: for each scenario the top 6 results of two different search methods
+(BM25 over whole documents, vector search over chunks) were pooled, using the
+English wording (scenario_bank/pool_candidates.py -> candidates.json, 928
+candidates for 80 scenarios). Every candidate was read (title and opening
+text) and marked relevant or not. Mean 4.4 gold cases per scenario.
+
+LIMITS
+------
+- Judged by an AI assistant from titles and opening text, not by a lawyer and
+  not from the full post. A person should spot-check a sample.
+- Pooling only finds what one of the two methods ranked in its top 6. Relevant
+  posts that neither found are unlabelled, so recall is a lower bound and the
+  labels lean slightly towards the methods used to pool.
+- The hybrid retriever being evaluated uses the same two methods, so absolute
+  numbers flatter it somewhat. Comparisons between configurations and between
+  languages remain fair.
+
+RUNNING
+-------
+  python evaluation/retrieval_eval/run_eval.py --dataset golden_dataset_v2.csv --label v2-baseline
+  add  --languages English          to run one language only
+
+English rows need only embedding calls. Each non-English row needs one
+translation call to Hugging Face the first time (160 rows); results are cached
+in .api_cache.json, so later runs are free.

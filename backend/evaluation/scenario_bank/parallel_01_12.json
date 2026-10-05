@@ -1,0 +1,302 @@
+[
+ {
+  "id": "P01",
+  "topic": "right to reside",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "manual test conversation (eviction by in-laws)",
+  "query": {
+   "en": "My in-laws threw me out of the house last month. My husband did nothing to stop them. Do I have any right to go back and live there?",
+   "hi": "पिछले महीने मेरे ससुराल वालों ने मुझे घर से निकाल दिया। मेरे पति ने उन्हें रोका भी नहीं। क्या मुझे उस घर में वापस जाकर रहने का कोई अधिकार है?",
+   "hi-en": "Last month sasural walon ne mujhe ghar se nikal diya. Husband ne unhe roka bhi nahi. Kya mujhe us ghar me wapas jaakar rehne ka koi right hai?",
+   "ta": "கடந்த மாதம் என் மாமியார் வீட்டார் என்னை வீட்டை விட்டு வெளியேற்றிவிட்டார்கள். என் கணவர் அவர்களைத் தடுக்கவே இல்லை. அந்த வீட்டில் திரும்பிச் சென்று வாழ எனக்கு உரிமை இருக்கிறதா?",
+   "kn": "ಕಳೆದ ತಿಂಗಳು ನನ್ನ ಅತ್ತೆ-ಮಾವ ನನ್ನನ್ನು ಮನೆಯಿಂದ ಹೊರಹಾಕಿದರು. ನನ್ನ ಗಂಡ ಅವರನ್ನು ತಡೆಯಲೇ ಇಲ್ಲ. ಆ ಮನೆಗೆ ವಾಪಸ್ ಹೋಗಿ ವಾಸಿಸಲು ನನಗೆ ಹಕ್ಕಿದೆಯೇ?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Know whether she has a right to return to and live in the matrimonial home after being evicted by her in-laws",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "evicted_by: in-laws | when: last month | husband: did not intervene | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | marriage_date_or_duration | ownership_of_house | current_residence | children",
+   "must_not_ask": "who_evicted | when_evicted"
+  }
+ },
+ {
+  "id": "P02",
+  "topic": "mutual consent divorce",
+  "style": "short",
+  "role": "spouse",
+  "gender": "unknown",
+  "source": "real test conversation (event trace 0795be98)",
+  "query": {
+   "en": "We have been married for 3 years and things are not working out between us at all. Can we get a mutual consent divorce? What is the procedure and how long does it take?",
+   "hi": "हमारी शादी को तीन साल हो गए हैं और हम दोनों के बीच बिल्कुल नहीं बनती। क्या हम आपसी सहमति से तलाक ले सकते हैं? इसकी प्रक्रिया क्या है और इसमें कितना समय लगता है?",
+   "hi-en": "Hamari shaadi ko 3 saal ho gaye hain aur hum dono ki bilkul nahi banti. Kya hum mutual consent se divorce le sakte hain? Iska procedure kya hai aur kitna time lagta hai?",
+   "ta": "எங்களுக்குத் திருமணமாகி மூன்று வருடங்கள் ஆகின்றன. எங்கள் இருவருக்கும் சுத்தமாக ஒத்துப்போகவில்லை. நாங்கள் பரஸ்பர சம்மதத்துடன் விவாகரத்து பெற முடியுமா? இதற்கான நடைமுறை என்ன, எவ்வளவு காலம் ஆகும்?",
+   "kn": "ನಮ್ಮ ಮದುವೆಯಾಗಿ ಮೂರು ವರ್ಷಗಳಾಗಿವೆ, ನಮ್ಮಿಬ್ಬರ ನಡುವೆ ಹೊಂದಾಣಿಕೆಯೇ ಇಲ್ಲ. ನಾವು ಪರಸ್ಪರ ಒಪ್ಪಿಗೆಯಿಂದ ವಿಚ್ಛೇದನ ಪಡೆಯಬಹುದೇ? ಅದರ ವಿಧಾನ ಏನು ಮತ್ತು ಎಷ್ಟು ಸಮಯ ಬೇಕಾಗುತ್ತದೆ?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Learn whether they can get a mutual consent divorce, its procedure and how long it takes",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "marriage_duration: 3 years | relationship: not working out | relief_sought: mutual consent divorce",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion | separation_duration | children | whether_spouse_agrees",
+   "must_not_ask": "marriage_duration"
+  }
+ },
+ {
+  "id": "P03",
+  "topic": "children taken by spouse",
+  "style": "short",
+  "role": "father",
+  "gender": "male",
+  "source": "real test conversation (event trace 0b835e48)",
+  "query": {
+   "en": "My wife left with our two children yesterday and won't tell me where they are. What should I do?",
+   "hi": "कल मेरी पत्नी हमारे दोनों बच्चों को लेकर चली गई और बता नहीं रही कि वे कहाँ हैं। मुझे क्या करना चाहिए?",
+   "hi-en": "Kal meri wife hamare dono bachchon ko lekar chali gayi aur bata nahi rahi ki wo kahan hain. Mujhe kya karna chahiye?",
+   "ta": "நேற்று என் மனைவி எங்கள் இரண்டு குழந்தைகளையும் அழைத்துக்கொண்டு சென்றுவிட்டாள். அவர்கள் எங்கே இருக்கிறார்கள் என்று என்னிடம் சொல்ல மறுக்கிறாள். நான் என்ன செய்ய வேண்டும்?",
+   "kn": "ನಿನ್ನೆ ನನ್ನ ಹೆಂಡತಿ ನಮ್ಮ ಇಬ್ಬರು ಮಕ್ಕಳನ್ನು ಕರೆದುಕೊಂಡು ಹೋಗಿದ್ದಾಳೆ. ಅವರು ಎಲ್ಲಿದ್ದಾರೆ ಎಂದು ನನಗೆ ಹೇಳುತ್ತಿಲ್ಲ. ನಾನು ಏನು ಮಾಡಬೇಕು?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Find out what a father can do after his wife left with their two children and will not disclose where they are",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "wife_left_with: two children | when: yesterday | whereabouts: not disclosed | client_role: father",
+   "must_ask": "",
+   "acceptable_info_needed": "children_ages | existing_court_orders | divorce_or_separation_status | religion | reason_for_leaving",
+   "must_not_ask": "number_of_children | when_she_left"
+  }
+ },
+ {
+  "id": "P04",
+  "topic": "domestic violence and maintenance",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "real test conversation (event trace 3d01fbd4)",
+  "query": {
+   "en": "My husband and I got married in 2020 under Hindu rites. He has been mentally and physically abusive since 2022 and recently stopped giving me any money. What legal steps can I take?",
+   "hi": "मेरी और मेरे पति की शादी 2020 में हिंदू रीति-रिवाज से हुई थी। 2022 से वे मुझे मानसिक और शारीरिक रूप से प्रताड़ित कर रहे हैं और हाल ही में उन्होंने मुझे पैसे देना भी बंद कर दिया है। मैं क्या कानूनी कदम उठा सकती हूँ?",
+   "hi-en": "Meri shaadi 2020 me Hindu rites se hui thi. 2022 se husband mujhe mentally aur physically abuse kar raha hai aur ab usne paise dena bhi band kar diya hai. Main kya legal steps le sakti hoon?",
+   "ta": "எனக்கும் என் கணவருக்கும் 2020-ல் இந்து முறைப்படி திருமணம் நடந்தது. 2022 முதல் அவர் என்னை மனரீதியாகவும் உடல்ரீதியாகவும் துன்புறுத்தி வருகிறார்; சமீபத்தில் எனக்குப் பணம் தருவதையும் நிறுத்திவிட்டார். நான் என்ன சட்ட நடவடிக்கை எடுக்கலாம்?",
+   "kn": "ನನ್ನ ಮತ್ತು ನನ್ನ ಗಂಡನ ಮದುವೆ 2020ರಲ್ಲಿ ಹಿಂದೂ ಸಂಪ್ರದಾಯದಂತೆ ಆಯಿತು. 2022ರಿಂದ ಅವರು ನನಗೆ ಮಾನಸಿಕ ಮತ್ತು ದೈಹಿಕ ಹಿಂಸೆ ಕೊಡುತ್ತಿದ್ದಾರೆ, ಇತ್ತೀಚೆಗೆ ಹಣ ಕೊಡುವುದನ್ನೂ ನಿಲ್ಲಿಸಿದ್ದಾರೆ. ನಾನು ಯಾವ ಕಾನೂನು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಬಹುದು?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Find legal remedies against an abusive husband who has stopped supporting her financially",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "marriage_year: 2020 | religion: Hindu | abuse: mental and physical since 2022 | financial_support: stopped recently | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "children | own_income | current_residence | prior_complaints | relief_sought",
+   "must_not_ask": "religion | marriage_date | whether_abuse_occurred"
+  }
+ },
+ {
+  "id": "P05",
+  "topic": "jurisdiction for divorce",
+  "style": "short",
+  "role": "husband",
+  "gender": "male",
+  "source": "real test conversation (event trace 018ce663)",
+  "query": {
+   "en": "My wife and I married in Mumbai, lived together in Bengaluru for 3 years, and she has now moved to Delhi. Where should I file for divorce?",
+   "hi": "मेरी और मेरी पत्नी की शादी मुंबई में हुई थी, हम तीन साल बेंगलुरु में साथ रहे और अब वह दिल्ली चली गई है। मुझे तलाक का केस कहाँ दाखिल करना चाहिए?",
+   "hi-en": "Meri shaadi Mumbai me hui thi, hum 3 saal Bengaluru me saath rahe aur ab wife Delhi shift ho gayi hai. Divorce ka case mujhe kahan file karna chahiye?",
+   "ta": "எனக்கும் என் மனைவிக்கும் மும்பையில் திருமணம் நடந்தது. மூன்று வருடங்கள் பெங்களூருவில் சேர்ந்து வாழ்ந்தோம். இப்போது அவள் டெல்லிக்குச் சென்றுவிட்டாள். நான் விவாகரத்து வழக்கை எங்கே தாக்கல் செய்ய வேண்டும்?",
+   "kn": "ನನ್ನ ಮತ್ತು ನನ್ನ ಹೆಂಡತಿಯ ಮದುವೆ ಮುಂಬೈಯಲ್ಲಿ ಆಯಿತು. ಮೂರು ವರ್ಷ ಬೆಂಗಳೂರಿನಲ್ಲಿ ಜೊತೆಯಾಗಿ ವಾಸವಿದ್ದೆವು. ಈಗ ಅವಳು ದೆಹಲಿಗೆ ಹೋಗಿದ್ದಾಳೆ. ನಾನು ವಿಚ್ಛೇದನ ಅರ್ಜಿಯನ್ನು ಎಲ್ಲಿ ಸಲ್ಲಿಸಬೇಕು?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Know which city's court has jurisdiction for his divorce petition",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "place_of_marriage: Mumbai | last_resided_together: Bengaluru, 3 years | wife_now_in: Delhi | client_role: husband",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion | client_current_city | marriage_date | grounds_for_divorce",
+   "must_not_ask": "place_of_marriage | where_they_lived_together | wife's_current_city"
+  }
+ },
+ {
+  "id": "P06",
+  "topic": "498A case, settlement and custody",
+  "style": "multi-issue",
+  "role": "husband",
+  "gender": "male",
+  "source": "corpus post 964 (498a and divorce settlement), facts changed",
+  "query": {
+   "en": "My wife filed a false 498A case against me and my family. The chargesheet has been filed and summons issued. Now she wants to compromise, but she wants to keep our 4-year-old son. How can the case be closed, and will I lose custody?",
+   "hi": "मेरी पत्नी ने मेरे और मेरे परिवार के खिलाफ 498A का झूठा केस किया है। चार्जशीट दाखिल हो चुकी है और समन आ गया है। अब वह समझौता करना चाहती है, लेकिन हमारे 4 साल के बेटे को अपने पास रखना चाहती है। केस कैसे खत्म होगा और क्या बेटे की कस्टडी मेरे हाथ से चली जाएगी?",
+   "hi-en": "Wife ne mere aur meri family ke against 498A ka jhootha case kiya hai. Chargesheet file ho chuki hai aur summons aa gaya hai. Ab wo compromise karna chahti hai lekin hamare 4 saal ke bete ko apne paas rakhna chahti hai. Case kaise close hoga aur kya bete ki custody mujhse chali jayegi?",
+   "ta": "என் மனைவி என் மீதும் என் குடும்பத்தினர் மீதும் பொய்யான 498A வழக்கு போட்டிருக்கிறாள். குற்றப்பத்திரிகை தாக்கல் செய்யப்பட்டு சம்மனும் வந்துவிட்டது. இப்போது அவள் சமரசம் செய்ய விரும்புகிறாள், ஆனால் எங்கள் 4 வயது மகனைத் தன்னிடமே வைத்துக்கொள்ள விரும்புகிறாள். வழக்கை எப்படி முடிப்பது? மகனின் காவல் உரிமையை நான் இழந்துவிடுவேனா?",
+   "kn": "ನನ್ನ ಹೆಂಡತಿ ನನ್ನ ಮತ್ತು ನನ್ನ ಕುಟುಂಬದವರ ವಿರುದ್ಧ ಸುಳ್ಳು 498A ಕೇಸ್ ಹಾಕಿದ್ದಾಳೆ. ಚಾರ್ಜ್‌ಶೀಟ್ ಸಲ್ಲಿಕೆಯಾಗಿದೆ, ಸಮನ್ಸ್ ಕೂಡ ಬಂದಿದೆ. ಈಗ ಅವಳು ರಾಜಿ ಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುತ್ತಿದ್ದಾಳೆ, ಆದರೆ ನಮ್ಮ 4 ವರ್ಷದ ಮಗನನ್ನು ತನ್ನ ಬಳಿಯೇ ಇಟ್ಟುಕೊಳ್ಳಬೇಕು ಎನ್ನುತ್ತಿದ್ದಾಳೆ. ಕೇಸ್ ಹೇಗೆ ಮುಗಿಸಬಹುದು? ಮಗನ ಕಸ್ಟಡಿ ನನ್ನ ಕೈತಪ್ಪುತ್ತದೆಯೇ?"
+  },
+  "analyzer": {
+   "category": "multi-issue",
+   "intent": "Close a 498A case through compromise and understand the effect on custody of his 4-year-old son",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "case: 498A against client and family, filed by wife | stage: chargesheet filed, summons issued | wife: wants compromise | child: son aged 4, wife wants custody | client_role: husband",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | divorce_status | terms_of_compromise | marriage_duration | who_child_lives_with_now",
+   "must_not_ask": "stage_of_case | child_age | who_filed_the_case"
+  }
+ },
+ {
+  "id": "P07",
+  "topic": "threat of false dowry case",
+  "style": "short",
+  "role": "husband",
+  "gender": "male",
+  "source": "corpus post 'Threat to implicate me, my family in dowry, harassment', facts changed",
+  "query": {
+   "en": "My wife's family is threatening to file a false dowry case against me and my parents if I don't transfer my flat to her name. No case has been filed yet. How can I protect myself?",
+   "hi": "मेरी पत्नी के घरवाले धमकी दे रहे हैं कि अगर मैंने अपना फ्लैट उसके नाम नहीं किया तो वे मुझ पर और मेरे माता-पिता पर दहेज का झूठा केस कर देंगे। अभी तक कोई केस दर्ज नहीं हुआ है। मैं अपना बचाव कैसे करूँ?",
+   "hi-en": "Wife ke gharwale dhamki de rahe hain ki agar maine apna flat uske naam nahi kiya to mujh par aur mere parents par dowry ka jhootha case kar denge. Abhi tak koi case file nahi hua hai. Main apne aap ko kaise protect karun?",
+   "ta": "என் ஃப்ளாட்டை மனைவி பெயருக்கு மாற்றாவிட்டால், என் மீதும் என் பெற்றோர் மீதும் பொய்யான வரதட்சணை வழக்கு போடுவோம் என்று என் மனைவியின் குடும்பத்தினர் மிரட்டுகிறார்கள். இதுவரை எந்த வழக்கும் பதிவாகவில்லை. நான் என்னை எப்படிப் பாதுகாத்துக்கொள்வது?",
+   "kn": "ನನ್ನ ಫ್ಲ್ಯಾಟ್ ಅನ್ನು ಹೆಂಡತಿಯ ಹೆಸರಿಗೆ ಮಾಡದಿದ್ದರೆ ನನ್ನ ಮತ್ತು ನನ್ನ ತಂದೆ-ತಾಯಿಯ ವಿರುದ್ಧ ಸುಳ್ಳು ವರದಕ್ಷಿಣೆ ಕೇಸ್ ಹಾಕುತ್ತೇವೆ ಎಂದು ನನ್ನ ಹೆಂಡತಿಯ ಮನೆಯವರು ಬೆದರಿಕೆ ಹಾಕುತ್ತಿದ್ದಾರೆ. ಇದುವರೆಗೆ ಯಾವುದೇ ಕೇಸ್ ದಾಖಲಾಗಿಲ್ಲ. ನಾನು ನನ್ನನ್ನು ಹೇಗೆ ರಕ್ಷಿಸಿಕೊಳ್ಳಬೇಕು?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Protect himself and his parents from a threatened false dowry case used to force a property transfer",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "threat: false dowry case by wife's family | demand: transfer flat to wife's name | case_status: none filed yet | client_role: husband",
+   "must_ask": "",
+   "acceptable_info_needed": "marriage_duration | evidence_of_threats | whether_living_together | religion",
+   "must_not_ask": "whether_case_filed | what_is_demanded"
+  }
+ },
+ {
+  "id": "P08",
+  "topic": "maintenance for wife and child",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 'Looking for maintenance from husband', facts changed",
+  "query": {
+   "en": "My husband left me and our 6-year-old daughter two years ago and has not sent any money since. I have no job and I am living with my parents. Can I claim maintenance from him?",
+   "hi": "मेरे पति दो साल पहले मुझे और हमारी 6 साल की बेटी को छोड़कर चले गए और तब से कोई पैसा नहीं भेजा। मेरे पास कोई नौकरी नहीं है और मैं अपने माता-पिता के साथ रह रही हूँ। क्या मैं उनसे भरण-पोषण मांग सकती हूँ?",
+   "hi-en": "Mere husband 2 saal pehle mujhe aur hamari 6 saal ki beti ko chhod kar chale gaye aur tab se koi paisa nahi bheja. Meri koi job nahi hai aur main apne parents ke saath reh rahi hoon. Kya main unse maintenance claim kar sakti hoon?",
+   "ta": "என் கணவர் இரண்டு வருடங்களுக்கு முன் என்னையும் எங்கள் 6 வயது மகளையும் விட்டுவிட்டுச் சென்றுவிட்டார்; அதன் பிறகு எந்தப் பணமும் அனுப்பவில்லை. எனக்கு வேலை இல்லை, என் பெற்றோருடன் வசிக்கிறேன். அவரிடம் ஜீவனாம்சம் கேட்க முடியுமா?",
+   "kn": "ನನ್ನ ಗಂಡ ಎರಡು ವರ್ಷಗಳ ಹಿಂದೆ ನನ್ನನ್ನು ಮತ್ತು ನಮ್ಮ 6 ವರ್ಷದ ಮಗಳನ್ನು ಬಿಟ್ಟು ಹೋದರು, ಅಂದಿನಿಂದ ಯಾವುದೇ ಹಣ ಕಳುಹಿಸಿಲ್ಲ. ನನಗೆ ಕೆಲಸ ಇಲ್ಲ, ನಾನು ನನ್ನ ತಂದೆ-ತಾಯಿಯ ಜೊತೆ ಇದ್ದೇನೆ. ಅವರಿಂದ ಜೀವನಾಂಶ ಕೇಳಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "clear-complete",
+   "intent": "Claim maintenance for herself and her daughter from the husband who left them",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "husband_left: 2 years ago | child: daughter aged 6 | support_paid: none since | own_income: none | residence: with parents | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | husband_income | marriage_date",
+   "must_not_ask": "children | own_income | current_residence | separation_duration"
+  }
+ },
+ {
+  "id": "P09",
+  "topic": "maintenance claimed by earning wife",
+  "style": "short",
+  "role": "husband",
+  "gender": "male",
+  "source": "corpus post 'Perjury' (wife's income and maintenance), facts changed",
+  "query": {
+   "en": "My wife earns about 60,000 rupees a month, more than I do. We are separated and she has filed for maintenance. Does a working wife still get maintenance?",
+   "hi": "मेरी पत्नी महीने के करीब 60,000 रुपये कमाती है, जो मुझसे ज़्यादा है। हम अलग रह रहे हैं और उसने भरण-पोषण का केस किया है। क्या कमाने वाली पत्नी को भी भरण-पोषण मिलता है?",
+   "hi-en": "Meri wife mahine ka around 60,000 kamati hai, mujhse zyada. Hum alag reh rahe hain aur usne maintenance ka case file kiya hai. Kya working wife ko bhi maintenance milta hai?",
+   "ta": "என் மனைவி மாதம் சுமார் 60,000 ரூபாய் சம்பாதிக்கிறாள்; இது என் வருமானத்தை விட அதிகம். நாங்கள் பிரிந்து வாழ்கிறோம்; அவள் ஜீவனாம்சம் கேட்டு வழக்கு தொடர்ந்திருக்கிறாள். வேலை செய்யும் மனைவிக்கும் ஜீவனாம்சம் கிடைக்குமா?",
+   "kn": "ನನ್ನ ಹೆಂಡತಿ ತಿಂಗಳಿಗೆ ಸುಮಾರು 60,000 ರೂಪಾಯಿ ಸಂಪಾದಿಸುತ್ತಾಳೆ, ಅದು ನನ್ನ ಸಂಬಳಕ್ಕಿಂತ ಹೆಚ್ಚು. ನಾವು ಬೇರೆಯಾಗಿ ವಾಸಿಸುತ್ತಿದ್ದೇವೆ ಮತ್ತು ಅವಳು ಜೀವನಾಂಶಕ್ಕಾಗಿ ಕೇಸ್ ಹಾಕಿದ್ದಾಳೆ. ಕೆಲಸ ಮಾಡುವ ಹೆಂಡತಿಗೂ ಜೀವನಾಂಶ ಸಿಗುತ್ತದೆಯೇ?"
+  },
+  "analyzer": {
+   "category": "role",
+   "intent": "Know whether his wife, who earns more than he does, can still get maintenance from him",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "wife_income: about Rs 60,000/month, more than client | status: separated | case: wife filed for maintenance | client_role: husband",
+   "must_ask": "",
+   "acceptable_info_needed": "client_income | children | religion | law_under_which_she_filed",
+   "must_not_ask": "wife's_income | whether_separated | whether_case_filed"
+  }
+ },
+ {
+  "id": "P10",
+  "topic": "recovery of unpaid maintenance",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 1235 (CrPC 125 and 125(3)), facts changed",
+  "query": {
+   "en": "The court ordered my husband to pay me 15,000 rupees a month as maintenance, but he has not paid anything for the last 8 months. What can I do to recover it?",
+   "hi": "कोर्ट ने मेरे पति को मुझे हर महीने 15,000 रुपये भरण-पोषण देने का आदेश दिया था, लेकिन उन्होंने पिछले 8 महीनों से कुछ नहीं दिया। यह रकम वसूल करने के लिए मैं क्या कर सकती हूँ?",
+   "hi-en": "Court ne mere husband ko har mahine 15,000 rupaye maintenance dene ka order diya tha, lekin usne pichle 8 mahine se kuch nahi diya. Ye amount recover karne ke liye main kya kar sakti hoon?",
+   "ta": "என் கணவர் எனக்கு மாதம் 15,000 ரூபாய் ஜீவனாம்சம் தர வேண்டும் என்று நீதிமன்றம் உத்தரவிட்டது. ஆனால் கடந்த 8 மாதங்களாக அவர் எதுவும் தரவில்லை. அந்தத் தொகையை வசூலிக்க நான் என்ன செய்யலாம்?",
+   "kn": "ನನ್ನ ಗಂಡ ನನಗೆ ತಿಂಗಳಿಗೆ 15,000 ರೂಪಾಯಿ ಜೀವನಾಂಶ ಕೊಡಬೇಕು ಎಂದು ಕೋರ್ಟ್ ಆದೇಶ ಮಾಡಿತ್ತು. ಆದರೆ ಕಳೆದ 8 ತಿಂಗಳಿಂದ ಅವರು ಏನೂ ಕೊಟ್ಟಿಲ್ಲ. ಆ ಹಣವನ್ನು ವಸೂಲಿ ಮಾಡಲು ನಾನು ಏನು ಮಾಡಬಹುದು?"
+  },
+  "analyzer": {
+   "category": "clear-complete",
+   "intent": "Recover 8 months of unpaid court-ordered maintenance from her husband",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "court_order: maintenance of Rs 15,000/month | arrears: 8 months unpaid | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "law_under_which_order_was_passed | husband's_employment | religion",
+   "must_not_ask": "amount_ordered | months_unpaid | whether_order_exists"
+  }
+ },
+ {
+  "id": "P11",
+  "topic": "evidence for mental cruelty",
+  "style": "short",
+  "role": "husband",
+  "gender": "male",
+  "source": "corpus post 2136 (Evidence for mental cruelty?), facts changed",
+  "query": {
+   "en": "I want to divorce my wife on the ground of mental cruelty, but I have no audio or video proof. Will the statements of my family members work as evidence?",
+   "hi": "मैं मानसिक क्रूरता के आधार पर अपनी पत्नी से तलाक लेना चाहता हूँ, लेकिन मेरे पास कोई ऑडियो या वीडियो सबूत नहीं है। क्या मेरे परिवार वालों की गवाही सबूत के तौर पर चलेगी?",
+   "hi-en": "Main mental cruelty ke ground par wife se divorce lena chahta hoon, lekin mere paas koi audio ya video proof nahi hai. Kya meri family ke logon ki gawahi evidence ke taur par chalegi?",
+   "ta": "மனரீதியான கொடுமை என்ற காரணத்தில் என் மனைவியிடமிருந்து விவாகரத்து பெற விரும்புகிறேன். ஆனால் என்னிடம் ஆடியோ அல்லது வீடியோ ஆதாரம் எதுவும் இல்லை. என் குடும்பத்தினரின் சாட்சியம் ஆதாரமாக ஏற்கப்படுமா?",
+   "kn": "ಮಾನಸಿಕ ಕ್ರೌರ್ಯದ ಆಧಾರದ ಮೇಲೆ ನನ್ನ ಹೆಂಡತಿಯಿಂದ ವಿಚ್ಛೇದನ ಪಡೆಯಲು ಬಯಸುತ್ತೇನೆ. ಆದರೆ ನನ್ನ ಬಳಿ ಆಡಿಯೋ ಅಥವಾ ವಿಡಿಯೋ ಸಾಕ್ಷ್ಯ ಇಲ್ಲ. ನನ್ನ ಕುಟುಂಬದವರ ಸಾಕ್ಷಿಯನ್ನು ಸಾಕ್ಷ್ಯವಾಗಿ ಪರಿಗಣಿಸುತ್ತಾರೆಯೇ?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Know what evidence is accepted to prove mental cruelty in a divorce case when he has no recordings",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "relief_sought: divorce on ground of mental cruelty | evidence: no audio or video | proposed_evidence: family members' testimony | client_role: husband",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | nature_of_cruelty | marriage_duration | whether_case_already_filed",
+   "must_not_ask": "whether_recordings_exist"
+  }
+ },
+ {
+  "id": "P12",
+  "topic": "divorce without spouse's consent",
+  "style": "short",
+  "role": "husband",
+  "gender": "male",
+  "source": "corpus post 2533 (Living separate for 4 years), facts changed",
+  "query": {
+   "en": "My wife and I have lived separately for 4 years. I want a divorce but she refuses to agree. Can I still get a divorce without her consent?",
+   "hi": "मैं और मेरी पत्नी 4 साल से अलग रह रहे हैं। मैं तलाक चाहता हूँ लेकिन वह राज़ी नहीं है। क्या उसकी सहमति के बिना भी मुझे तलाक मिल सकता है?",
+   "hi-en": "Main aur meri wife 4 saal se alag reh rahe hain. Mujhe divorce chahiye lekin wo agree nahi kar rahi. Kya uski consent ke bina bhi mujhe divorce mil sakta hai?",
+   "ta": "நானும் என் மனைவியும் 4 வருடங்களாகப் பிரிந்து வாழ்கிறோம். எனக்கு விவாகரத்து வேண்டும், ஆனால் அவள் சம்மதிக்க மறுக்கிறாள். அவள் சம்மதம் இல்லாமலும் விவாகரத்து கிடைக்குமா?",
+   "kn": "ನಾನು ಮತ್ತು ನನ್ನ ಹೆಂಡತಿ 4 ವರ್ಷಗಳಿಂದ ಬೇರೆಯಾಗಿ ವಾಸಿಸುತ್ತಿದ್ದೇವೆ. ನನಗೆ ವಿಚ್ಛೇದನ ಬೇಕು, ಆದರೆ ಅವಳು ಒಪ್ಪುತ್ತಿಲ್ಲ. ಅವಳ ಒಪ್ಪಿಗೆ ಇಲ್ಲದೆಯೂ ನನಗೆ ವಿಚ್ಛೇದನ ಸಿಗಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "religion-critical",
+   "intent": "Know whether he can get a divorce after 4 years of separation when his wife refuses to consent",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "separation_duration: 4 years | wife: refuses consent to divorce | client_role: husband",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion | who_left_and_why | marriage_date | children",
+   "must_not_ask": "separation_duration | whether_wife_consents"
+  }
+ }
+]

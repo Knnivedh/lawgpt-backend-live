@@ -1,0 +1,67 @@
+REVALIDATION GOLDEN DATASET, VERSION 2
+======================================
+File:    evaluation/revalidate_eval/golden_dataset_v2.csv   (200 rows)
+Source:  evaluation/scenario_bank/revalidation_rounds.py, built by
+         scenario_bank/build_datasets.py. Edit the bank and rebuild.
+Version 1 (29 rows) is kept as golden_dataset.csv.
+
+Purpose: after each round of follow-up, the revalidate node decides whether
+enough is known to answer or whether to ask more. This set checks that it
+stops at the right time and asks only for what matters.
+
+STRUCTURE
+---------
+Each scenario is a conversation of 3 or 4 rounds; each round is one row.
+150 parallel rows:           10 scenarios x 3 rounds x 5 languages
+50 language-specific rows:   per language, one 4-round and two 3-round
+                             scenarios
+40 rows each for English, Hindi, Hinglish, Tamil and Kannada.
+Only root_query changes with the language; the collected facts are in English,
+as the node stores them.
+
+COLUMNS
+-------
+id                        scenario + language + round, e.g. P02__hi__r2
+scenario_id, split, language, round, topic
+root_query                the user's first message
+info_collected            every fact known at this round ("key: value | ...").
+                          Round 1 holds only what the first message said
+expected_converged        yes = stop asking and answer; no = ask more
+acceptable_still_missing  when "no": the fields it is reasonable to ask for
+scope_creep_fields        fields that do not affect the legal answer; asking
+                          for them is a fault
+must_not_ask              anything already in info_collected, plus private
+                          details (address, phone, Aadhaar/PAN, bank,
+                          workplace)
+notes                     why the round is labelled as it is
+
+CONVERSATION PATTERNS
+---------------------
+no -> no -> yes (-> yes)   an essential fact, usually religion (it decides
+                           which personal law applies), is still missing after
+                           the first reply
+no -> yes -> yes           the last round adds only NOT_PROVIDED for an
+                           optional question. The node must not start asking
+                           again: this is the loop seen in manual testing
+yes -> yes -> yes          the first message was already complete; the node
+                           should not ask anything
+
+Rows: 140 expected yes, 60 expected no.
+
+SCORING
+-------
+1. Convergence accuracy: does the node's decision match expected_converged?
+   Report separately the two error types: stopping too early (says yes when
+   the label is no) and over-asking (says no when the label is yes).
+2. When it asks: share of its questions that fall in
+   acceptable_still_missing, share in scope_creep_fields, and any that hit
+   must_not_ask (should be zero).
+3. Language consistency: for parallel rows, the decision should be the same
+   in all five languages, since info_collected is identical.
+
+LIMITS
+------
+- Whether a case is "complete enough" is a judgement. The rule used: religion
+  is essential only where the answer depends on personal law (divorce
+  grounds, annulment, validity of marriage, succession, adoption).
+- Labels were set by an AI assistant and should be reviewed by a lawyer.

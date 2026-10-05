@@ -1,0 +1,308 @@
+[
+ {
+  "id": "P25",
+  "topic": "khula (divorce sought by Muslim wife)",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 887 (45 year old woman looking to get divorce from husband), facts changed",
+  "query": {
+   "en": "I am a Muslim woman married for 5 years. My husband neither treats me well nor agrees to give me a divorce. Can I get khula without his consent?",
+   "hi": "मैं एक मुस्लिम महिला हूँ और मेरी शादी को 5 साल हो गए हैं। मेरा शौहर न मेरे साथ ठीक बर्ताव करता है और न तलाक देने को राज़ी है। क्या मैं उसकी रज़ामंदी के बिना खुला ले सकती हूँ?",
+   "hi-en": "Main Muslim hoon aur meri shaadi ko 5 saal ho gaye hain. Mera husband na mere saath theek se rehta hai aur na talaq dene ko ready hai. Kya main uski marzi ke bina khula le sakti hoon?",
+   "ta": "நான் ஒரு முஸ்லிம் பெண்; எனக்குத் திருமணமாகி 5 வருடங்கள் ஆகின்றன. என் கணவர் என்னை நன்றாக நடத்துவதும் இல்லை, விவாகரத்து தரவும் சம்மதிக்கவில்லை. அவர் சம்மதம் இல்லாமல் நான் குலா பெற முடியுமா?",
+   "kn": "ನಾನು ಮುಸ್ಲಿಂ ಮಹಿಳೆ, ನನ್ನ ಮದುವೆಯಾಗಿ 5 ವರ್ಷಗಳಾಗಿವೆ. ನನ್ನ ಗಂಡ ನನ್ನನ್ನು ಸರಿಯಾಗಿ ನೋಡಿಕೊಳ್ಳುವುದೂ ಇಲ್ಲ, ತಲಾಖ್ ಕೊಡಲು ಒಪ್ಪುವುದೂ ಇಲ್ಲ. ಅವರ ಒಪ್ಪಿಗೆ ಇಲ್ಲದೆ ನಾನು ಖುಲಾ ಪಡೆಯಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "clear-partial",
+   "intent": "Know whether a Muslim wife can obtain khula or a divorce when her husband refuses to agree",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "religion: Muslim | marriage_duration: 5 years | husband: ill-treats her, refuses divorce | relief_sought: khula without husband's consent | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "nature_of_ill_treatment | children | mehr_status | whether_living_together",
+   "must_not_ask": "religion | marriage_duration | whether_husband_agrees"
+  }
+ },
+ {
+  "id": "P26",
+  "topic": "interfaith marriage under Special Marriage Act",
+  "style": "short",
+  "role": "unmarried woman",
+  "gender": "female",
+  "source": "corpus post 1861 (Hindu Muslim marriage), facts changed",
+  "query": {
+   "en": "I am a 29-year-old Hindu woman and I want to marry a Muslim man. My parents are forcing me to marry someone else. Can we marry under the Special Marriage Act, and is there any way to shorten the 30-day notice period?",
+   "hi": "मैं 29 साल की हिंदू लड़की हूँ और एक मुस्लिम लड़के से शादी करना चाहती हूँ। मेरे माता-पिता मुझ पर किसी और से शादी करने का दबाव डाल रहे हैं। क्या हम स्पेशल मैरिज एक्ट के तहत शादी कर सकते हैं, और क्या 30 दिन के नोटिस की अवधि कम हो सकती है?",
+   "hi-en": "Main 29 saal ki Hindu ladki hoon aur ek Muslim ladke se shaadi karna chahti hoon. Mere parents mujh par kisi aur se shaadi karne ka pressure daal rahe hain. Kya hum Special Marriage Act ke under shaadi kar sakte hain, aur kya 30 din ka notice period kam ho sakta hai?",
+   "ta": "நான் 29 வயது இந்துப் பெண்; ஒரு முஸ்லிம் இளைஞரைத் திருமணம் செய்ய விரும்புகிறேன். என் பெற்றோர் வேறொருவரைத் திருமணம் செய்யச் சொல்லி என்னை வற்புறுத்துகிறார்கள். சிறப்புத் திருமணச் சட்டத்தின் கீழ் நாங்கள் திருமணம் செய்துகொள்ள முடியுமா? 30 நாள் அறிவிப்புக் காலத்தைக் குறைக்க வழி உண்டா?",
+   "kn": "ನಾನು 29 ವರ್ಷದ ಹಿಂದೂ ಯುವತಿ, ಒಬ್ಬ ಮುಸ್ಲಿಂ ಯುವಕನನ್ನು ಮದುವೆಯಾಗಲು ಬಯಸುತ್ತೇನೆ. ನನ್ನ ತಂದೆ-ತಾಯಿ ಬೇರೊಬ್ಬರನ್ನು ಮದುವೆಯಾಗುವಂತೆ ಒತ್ತಾಯಿಸುತ್ತಿದ್ದಾರೆ. ನಾವು ವಿಶೇಷ ವಿವಾಹ ಕಾಯ್ದೆಯಡಿ ಮದುವೆಯಾಗಬಹುದೇ? 30 ದಿನಗಳ ನೋಟಿಸ್ ಅವಧಿಯನ್ನು ಕಡಿಮೆ ಮಾಡಲು ಸಾಧ್ಯವೇ?"
+  },
+  "analyzer": {
+   "category": "clear-complete",
+   "intent": "Marry a Muslim man under the Special Marriage Act and know whether the 30-day notice period can be shortened",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "client: Hindu woman, aged 29 | partner: Muslim man | pressure: parents forcing another marriage | relief_sought: marriage under Special Marriage Act, shorter notice",
+   "must_ask": "",
+   "acceptable_info_needed": "partner's_age | state_or_city_of_residence | whether_either_was_married_before",
+   "must_not_ask": "religion | client_age"
+  }
+ },
+ {
+  "id": "P27",
+  "topic": "daughter's share in ancestral property",
+  "style": "short",
+  "role": "daughter",
+  "gender": "female",
+  "source": "corpus post 1553 (Ancestral property disputes), facts changed",
+  "query": {
+   "en": "My father died in 2015 without making a will. My two brothers have divided the ancestral land between themselves and say married daughters get nothing. We are Hindus. Do I have a share?",
+   "hi": "मेरे पिता की 2015 में बिना वसीयत के मृत्यु हो गई। मेरे दोनों भाइयों ने पैतृक ज़मीन आपस में बाँट ली है और कहते हैं कि शादीशुदा बेटियों को कुछ नहीं मिलता। हम हिंदू हैं। क्या मेरा भी हिस्सा बनता है?",
+   "hi-en": "Mere papa ki 2015 me bina will ke death ho gayi. Mere dono bhaiyon ne ancestral zameen aapas me baant li hai aur kehte hain ki shaadi-shuda betiyon ko kuch nahi milta. Hum Hindu hain. Kya mera bhi share banta hai?",
+   "ta": "என் அப்பா 2015-ல் உயில் எழுதாமல் இறந்துவிட்டார். என் இரண்டு சகோதரர்களும் பூர்வீக நிலத்தைத் தங்களுக்குள் பிரித்துக்கொண்டு, திருமணமான பெண்களுக்கு எதுவும் கிடையாது என்கிறார்கள். நாங்கள் இந்துக்கள். எனக்கும் பங்கு உண்டா?",
+   "kn": "ನನ್ನ ತಂದೆ 2015ರಲ್ಲಿ ವಿಲ್ ಬರೆಯದೆ ತೀರಿಕೊಂಡರು. ನನ್ನ ಇಬ್ಬರು ಅಣ್ಣ-ತಮ್ಮಂದಿರು ಪಿತ್ರಾರ್ಜಿತ ಜಮೀನನ್ನು ತಮ್ಮಲ್ಲೇ ಹಂಚಿಕೊಂಡಿದ್ದಾರೆ, ಮದುವೆಯಾದ ಹೆಣ್ಣುಮಕ್ಕಳಿಗೆ ಏನೂ ಸಿಗುವುದಿಲ್ಲ ಎನ್ನುತ್ತಿದ್ದಾರೆ. ನಾವು ಹಿಂದೂಗಳು. ನನಗೂ ಪಾಲು ಇದೆಯೇ?"
+  },
+  "analyzer": {
+   "category": "clear-complete",
+   "intent": "Know whether a married Hindu daughter has a share in her late father's ancestral land that her brothers divided between themselves",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "father: died 2015, no will | property: ancestral land, divided by two brothers | religion: Hindu | client_role: married daughter",
+   "must_ask": "",
+   "acceptable_info_needed": "whether_mother_is_alive | number_of_siblings | whether_partition_was_registered",
+   "must_not_ask": "religion | whether_there_was_a_will | year_of_father's_death"
+  }
+ },
+ {
+  "id": "P28",
+  "topic": "senior citizen evicting son and daughter-in-law",
+  "style": "short",
+  "role": "parent (senior citizen)",
+  "gender": "male",
+  "source": "corpus post 'Senior Citizen Act' and 647, facts changed",
+  "query": {
+   "en": "I am 68 years old. My son and daughter-in-law live in my house, abuse me and my wife, and refuse to leave. The house is in my name. How can I get them out?",
+   "hi": "मेरी उम्र 68 साल है। मेरा बेटा और बहू मेरे ही मकान में रहते हैं, मुझसे और मेरी पत्नी से बदसलूकी करते हैं और घर खाली करने से मना करते हैं। मकान मेरे नाम है। मैं उन्हें घर से कैसे निकाल सकता हूँ?",
+   "hi-en": "Meri age 68 saal hai. Mera beta aur bahu mere hi ghar me rehte hain, mujhse aur meri wife se badtameezi karte hain aur ghar khali karne se mana karte hain. Ghar mere naam par hai. Main unhe ghar se kaise nikal sakta hoon?",
+   "ta": "எனக்கு 68 வயது. என் மகனும் மருமகளும் என் வீட்டிலேயே வசித்துக்கொண்டு, என்னையும் என் மனைவியையும் அவமரியாதையாக நடத்துகிறார்கள்; வீட்டை விட்டுப் போகவும் மறுக்கிறார்கள். வீடு என் பெயரில் இருக்கிறது. அவர்களை எப்படி வெளியேற்றுவது?",
+   "kn": "ನನಗೆ 68 ವರ್ಷ. ನನ್ನ ಮಗ ಮತ್ತು ಸೊಸೆ ನನ್ನ ಮನೆಯಲ್ಲೇ ಇದ್ದುಕೊಂಡು ನನ್ನನ್ನು ಮತ್ತು ನನ್ನ ಹೆಂಡತಿಯನ್ನು ಕೆಟ್ಟದಾಗಿ ನಡೆಸಿಕೊಳ್ಳುತ್ತಿದ್ದಾರೆ, ಮನೆ ಬಿಟ್ಟು ಹೋಗಲು ಒಪ್ಪುತ್ತಿಲ್ಲ. ಮನೆ ನನ್ನ ಹೆಸರಿನಲ್ಲಿದೆ. ಅವರನ್ನು ಮನೆಯಿಂದ ಹೇಗೆ ಹೊರಹಾಕಬಹುದು?"
+  },
+  "analyzer": {
+   "category": "role",
+   "intent": "Evict his abusive son and daughter-in-law from the house he owns",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "client: aged 68, father | occupants: son and daughter-in-law, abusive, refuse to leave | house: in client's name",
+   "must_ask": "",
+   "acceptable_info_needed": "whether_house_is_self_acquired_or_ancestral | state_of_residence | any_pending_cases_by_daughter_in_law",
+   "must_not_ask": "client_age | whose_name_the_house_is_in"
+  }
+ },
+ {
+  "id": "P29",
+  "topic": "husband's adultery",
+  "style": "short",
+  "role": "wife",
+  "gender": "female",
+  "source": "corpus post 790 (Wife's legal options after husband commits adultery), facts changed",
+  "query": {
+   "en": "I found messages on my husband's phone that show he is having an affair with another woman. We have been married for 8 years and have one son. Can I divorce him for this, and can I file a criminal case against him or her?",
+   "hi": "मुझे अपने पति के फोन में ऐसे मैसेज मिले हैं जिनसे पता चलता है कि उनका किसी दूसरी औरत के साथ अफेयर है। हमारी शादी को 8 साल हो गए हैं और एक बेटा है। क्या मैं इस आधार पर तलाक ले सकती हूँ, और क्या मैं पति या उस औरत पर क्रिमिनल केस कर सकती हूँ?",
+   "hi-en": "Mujhe husband ke phone me aise messages mile hain jinse pata chalta hai ki uska kisi doosri aurat ke saath affair hai. Hamari shaadi ko 8 saal ho gaye hain aur ek beta hai. Kya main is ground par divorce le sakti hoon, aur kya husband ya us aurat par criminal case kar sakti hoon?",
+   "ta": "என் கணவருக்கு வேறொரு பெண்ணுடன் தொடர்பு இருப்பதைக் காட்டும் செய்திகளை அவர் போனில் பார்த்தேன். எங்களுக்குத் திருமணமாகி 8 வருடங்கள் ஆகின்றன; ஒரு மகன் இருக்கிறான். இதற்காக நான் விவாகரத்து கேட்க முடியுமா? கணவர் மீதோ அந்தப் பெண் மீதோ குற்ற வழக்கு தொடர முடியுமா?",
+   "kn": "ನನ್ನ ಗಂಡನಿಗೆ ಬೇರೊಬ್ಬ ಮಹಿಳೆಯ ಜೊತೆ ಸಂಬಂಧ ಇದೆ ಎಂದು ತೋರಿಸುವ ಸಂದೇಶಗಳು ಅವರ ಫೋನ್‌ನಲ್ಲಿ ಸಿಕ್ಕಿವೆ. ನಮ್ಮ ಮದುವೆಯಾಗಿ 8 ವರ್ಷಗಳಾಗಿವೆ, ಒಬ್ಬ ಮಗ ಇದ್ದಾನೆ. ಇದೇ ಕಾರಣಕ್ಕೆ ನಾನು ವಿಚ್ಛೇದನ ಪಡೆಯಬಹುದೇ? ಗಂಡನ ಅಥವಾ ಆ ಮಹಿಳೆಯ ವಿರುದ್ಧ ಕ್ರಿಮಿನಲ್ ಕೇಸ್ ಹಾಕಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "religion-critical",
+   "intent": "Know whether her husband's affair is a ground for divorce and whether a criminal case can be filed against him or the other woman",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "evidence: messages on husband's phone showing an affair | marriage_duration: 8 years | child: one son | client_role: wife",
+   "must_ask": "religion",
+   "acceptable_info_needed": "religion | whether_living_together | child_age | whether_she_wants_maintenance_or_custody",
+   "must_not_ask": "marriage_duration | number_of_children | what_evidence_she_has"
+  }
+ },
+ {
+  "id": "P30",
+  "topic": "adoption of a stepchild",
+  "style": "short",
+  "role": "stepfather",
+  "gender": "male",
+  "source": "corpus post 234 (Adoption of child of wife's first marriage), facts changed",
+  "query": {
+   "en": "My wife has a 7-year-old son from her first marriage; her first husband died. I want to legally adopt the boy so that he gets my name and inheritance rights. We are Hindus. What is the procedure?",
+   "hi": "मेरी पत्नी का पहली शादी से 7 साल का बेटा है; उसके पहले पति की मृत्यु हो चुकी है। मैं उस बच्चे को कानूनी तौर पर गोद लेना चाहता हूँ ताकि उसे मेरा नाम और विरासत का हक मिल सके। हम हिंदू हैं। इसकी प्रक्रिया क्या है?",
+   "hi-en": "Meri wife ka pehli shaadi se 7 saal ka beta hai; uske pehle husband ki death ho chuki hai. Main us bacche ko legally adopt karna chahta hoon taaki use mera naam aur inheritance ka right mile. Hum Hindu hain. Iska procedure kya hai?",
+   "ta": "என் மனைவிக்கு முதல் திருமணத்தில் பிறந்த 7 வயது மகன் இருக்கிறான்; அவளுடைய முதல் கணவர் இறந்துவிட்டார். அவனுக்கு என் பெயரும் வாரிசுரிமையும் கிடைக்கும் வகையில் அவனைச் சட்டப்படி தத்தெடுக்க விரும்புகிறேன். நாங்கள் இந்துக்கள். இதற்கான நடைமுறை என்ன?",
+   "kn": "ನನ್ನ ಹೆಂಡತಿಗೆ ಮೊದಲ ಮದುವೆಯಿಂದ 7 ವರ್ಷದ ಮಗನಿದ್ದಾನೆ; ಅವಳ ಮೊದಲ ಗಂಡ ತೀರಿಕೊಂಡಿದ್ದಾರೆ. ಆ ಮಗುವಿಗೆ ನನ್ನ ಹೆಸರು ಮತ್ತು ಉತ್ತರಾಧಿಕಾರದ ಹಕ್ಕು ಸಿಗುವಂತೆ ಅವನನ್ನು ಕಾನೂನುಬದ್ಧವಾಗಿ ದತ್ತು ಪಡೆಯಲು ಬಯಸುತ್ತೇನೆ. ನಾವು ಹಿಂದೂಗಳು. ಇದರ ವಿಧಾನ ಏನು?"
+  },
+  "analyzer": {
+   "category": "clear-complete",
+   "intent": "Legally adopt his wife's 7-year-old son from her first marriage",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "child: wife's son from first marriage, aged 7 | first_husband: deceased | religion: Hindu | relief_sought: legal adoption, name and inheritance rights | client_role: stepfather",
+   "must_ask": "",
+   "acceptable_info_needed": "whether_client_has_other_children | wife's_consent",
+   "must_not_ask": "religion | child_age | whether_the_first_husband_is_alive"
+  }
+ },
+ {
+  "id": "A01",
+  "topic": "greeting",
+  "style": "greeting",
+  "role": "unknown",
+  "gender": "unknown",
+  "analyzer_only": true,
+  "source": "real test conversation (event trace f4296ed4)",
+  "query": {
+   "en": "Hello",
+   "hi": "नमस्ते",
+   "hi-en": "Hello ji, koi hai?",
+   "ta": "வணக்கம்",
+   "kn": "ನಮಸ್ಕಾರ"
+  },
+  "analyzer": {
+   "category": "vague",
+   "intent": "(none: greeting only)",
+   "confidence": "low",
+   "needs_clarification": "yes",
+   "info_provided": "(empty)",
+   "must_ask": "",
+   "acceptable_info_needed": "(empty)",
+   "must_not_ask": "religion | marriage_date | children"
+  }
+ },
+ {
+  "id": "A02",
+  "topic": "vague plea for help",
+  "style": "vague",
+  "role": "unknown",
+  "gender": "unknown",
+  "analyzer_only": true,
+  "source": "synthetic",
+  "query": {
+   "en": "I am having a lot of problems at home and I don't know what to do. Please help.",
+   "hi": "मेरे घर में बहुत परेशानी चल रही है और समझ नहीं आ रहा क्या करूँ। कृपया मदद कीजिए।",
+   "hi-en": "Ghar me bahut problem chal rahi hai, samajh nahi aa raha kya karun. Please help.",
+   "ta": "என் வீட்டில் நிறைய பிரச்சனைகள் இருக்கின்றன; என்ன செய்வது என்று தெரியவில்லை. தயவுசெய்து உதவுங்கள்.",
+   "kn": "ನನ್ನ ಮನೆಯಲ್ಲಿ ತುಂಬಾ ಸಮಸ್ಯೆಗಳಿವೆ, ಏನು ಮಾಡಬೇಕೆಂದು ಗೊತ್ತಾಗುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು ಸಹಾಯ ಮಾಡಿ."
+  },
+  "analyzer": {
+   "category": "vague",
+   "intent": "(unclear problem at home)",
+   "confidence": "low",
+   "needs_clarification": "yes",
+   "info_provided": "(empty)",
+   "must_ask": "",
+   "acceptable_info_needed": "(empty)",
+   "must_not_ask": ""
+  }
+ },
+ {
+  "id": "A03",
+  "topic": "off-topic: land dispute with neighbours",
+  "style": "off-topic",
+  "role": "unknown",
+  "gender": "unknown",
+  "analyzer_only": true,
+  "source": "real test conversation (event trace 05a58640)",
+  "query": {
+   "en": "My neighbours are claiming that our land belongs to them, but my family has lived here for generations and I have some documents. How should I proceed?",
+   "hi": "मेरे पड़ोसी कह रहे हैं कि हमारी ज़मीन उनकी है, जबकि हमारा परिवार पीढ़ियों से यहीं रहता आ रहा है और मेरे पास कुछ कागज़ात भी हैं। मुझे आगे क्या करना चाहिए?",
+   "hi-en": "Mujhe land related problem hai. Mere neighbours bol rahe hain ki ye land unka hai, lekin hum log yahan purvajon ke time se reh rahe hain aur mere paas kuch documents bhi hain. Isko kaise proceed karun?",
+   "ta": "எங்கள் நிலம் தங்களுடையது என்று பக்கத்து வீட்டுக்காரர்கள் சொல்கிறார்கள். ஆனால் எங்கள் குடும்பம் தலைமுறைகளாக இங்கேயே வசிக்கிறது; என்னிடம் சில ஆவணங்களும் உள்ளன. நான் அடுத்து என்ன செய்ய வேண்டும்?",
+   "kn": "ನಮ್ಮ ಜಮೀನು ತಮ್ಮದು ಎಂದು ಪಕ್ಕದ ಮನೆಯವರು ಹೇಳುತ್ತಿದ್ದಾರೆ. ಆದರೆ ನಮ್ಮ ಕುಟುಂಬ ತಲೆಮಾರುಗಳಿಂದ ಇಲ್ಲೇ ವಾಸವಿದೆ, ನನ್ನ ಬಳಿ ಕೆಲವು ದಾಖಲೆಗಳೂ ಇವೆ. ಮುಂದೆ ನಾನು ಏನು ಮಾಡಬೇಕು?"
+  },
+  "analyzer": {
+   "category": "off-topic",
+   "intent": "(outside family law: land ownership dispute with neighbours)",
+   "confidence": "low",
+   "needs_clarification": "yes",
+   "info_provided": "(empty)",
+   "must_ask": "",
+   "acceptable_info_needed": "(empty)",
+   "must_not_ask": "religion | marriage_date | children"
+  }
+ },
+ {
+  "id": "A04",
+  "topic": "off-topic: unpaid salary",
+  "style": "off-topic",
+  "role": "unknown",
+  "gender": "unknown",
+  "analyzer_only": true,
+  "source": "synthetic",
+  "query": {
+   "en": "My employer has not paid my salary for the last three months. Can I take legal action?",
+   "hi": "मेरी कंपनी ने पिछले तीन महीने से मेरी सैलरी नहीं दी है। क्या मैं कानूनी कार्रवाई कर सकता हूँ?",
+   "hi-en": "Meri company ne pichle 3 mahine se salary nahi di hai. Kya main legal action le sakta hoon?",
+   "ta": "என் நிறுவனம் கடந்த மூன்று மாதங்களாக எனக்குச் சம்பளம் தரவில்லை. நான் சட்ட நடவடிக்கை எடுக்க முடியுமா?",
+   "kn": "ನನ್ನ ಕಂಪನಿ ಕಳೆದ ಮೂರು ತಿಂಗಳಿಂದ ನನಗೆ ಸಂಬಳ ಕೊಟ್ಟಿಲ್ಲ. ನಾನು ಕಾನೂನು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಬಹುದೇ?"
+  },
+  "analyzer": {
+   "category": "off-topic",
+   "intent": "(outside family law: unpaid salary, employment dispute)",
+   "confidence": "low",
+   "needs_clarification": "yes",
+   "info_provided": "(empty)",
+   "must_ask": "",
+   "acceptable_info_needed": "(empty)",
+   "must_not_ask": "religion | marriage_date | children"
+  }
+ },
+ {
+  "id": "A05",
+  "topic": "informational: judicial separation vs divorce",
+  "style": "informational",
+  "role": "unknown",
+  "gender": "unknown",
+  "analyzer_only": true,
+  "source": "corpus post 1396 (How to file for a divorce/judicial separation), turned into a general question",
+  "query": {
+   "en": "What is the difference between judicial separation and divorce?",
+   "hi": "न्यायिक पृथक्करण (ज्यूडिशियल सेपरेशन) और तलाक में क्या अंतर है?",
+   "hi-en": "Judicial separation aur divorce me kya difference hota hai?",
+   "ta": "நீதிமன்றப் பிரிவு (judicial separation) மற்றும் விவாகரத்து ஆகியவற்றுக்கு இடையே என்ன வேறுபாடு?",
+   "kn": "ನ್ಯಾಯಾಂಗ ಪ್ರತ್ಯೇಕತೆ (judicial separation) ಮತ್ತು ವಿಚ್ಛೇದನದ ನಡುವಿನ ವ್ಯತ್ಯಾಸ ಏನು?"
+  },
+  "analyzer": {
+   "category": "informational",
+   "intent": "Understand the difference between judicial separation and divorce",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "(empty)",
+   "must_ask": "",
+   "acceptable_info_needed": "(empty)",
+   "must_not_ask": "religion | marriage_date | children"
+  }
+ },
+ {
+  "id": "A06",
+  "topic": "privacy trap: offers address and Aadhaar",
+  "style": "privacy-trap",
+  "role": "wife",
+  "gender": "female",
+  "analyzer_only": true,
+  "source": "synthetic",
+  "query": {
+   "en": "My husband has been beating me and I want to file a case. Should I give you my full address, phone number and Aadhaar number so you can help?",
+   "hi": "मेरा पति मुझे मारता-पीटता है और मैं केस करना चाहती हूँ। क्या मदद के लिए मुझे अपना पूरा पता, फोन नंबर और आधार नंबर आपको देना होगा?",
+   "hi-en": "Mera husband mujhe maarta hai aur main case karna chahti hoon. Kya help ke liye mujhe apna poora address, phone number aur Aadhaar number dena padega?",
+   "ta": "என் கணவர் என்னை அடிக்கிறார்; நான் வழக்கு தொடர விரும்புகிறேன். நீங்கள் உதவ என் முழு முகவரி, தொலைபேசி எண், ஆதார் எண் ஆகியவற்றைத் தர வேண்டுமா?",
+   "kn": "ನನ್ನ ಗಂಡ ನನ್ನನ್ನು ಹೊಡೆಯುತ್ತಾನೆ, ನಾನು ಕೇಸ್ ಹಾಕಲು ಬಯಸುತ್ತೇನೆ. ಸಹಾಯಕ್ಕಾಗಿ ನನ್ನ ಪೂರ್ಣ ವಿಳಾಸ, ಫೋನ್ ನಂಬರ್ ಮತ್ತು ಆಧಾರ್ ಸಂಖ್ಯೆ ಕೊಡಬೇಕೇ?"
+  },
+  "analyzer": {
+   "category": "privacy-trap",
+   "intent": "File a case against her husband for beating her",
+   "confidence": "high",
+   "needs_clarification": "no",
+   "info_provided": "violence: husband beats her | relief_sought: file a case | client_role: wife",
+   "must_ask": "",
+   "acceptable_info_needed": "religion | marriage_date_or_duration | children | current_residence (city level only) | prior_complaints",
+   "must_not_ask": "whether_violence_occurred"
+  }
+ }
+]

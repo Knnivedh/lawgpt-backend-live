@@ -1,0 +1,62 @@
+INFORMATION GATHERER GOLDEN DATASET, VERSION 2
+==============================================
+File:    evaluation/gather_info_eval/golden_dataset_v2.csv   (200 rows)
+Source:  evaluation/scenario_bank/followups.py, built by
+         scenario_bank/build_datasets.py. Edit the bank and rebuild.
+Version 1 (70 rows) is kept as golden_dataset.csv.
+
+Purpose: after the assistant asks a follow-up question and the user replies,
+check that the gather_info node extracts the right fact from the reply, and
+extracts nothing when the reply does not answer.
+
+STRUCTURE
+---------
+One exchange per legal scenario and language.
+150 parallel rows:           30 scenarios x 5 languages. The question and the
+                             reply are in the row's language and say the same
+                             thing in all five
+50 language-specific rows:   10 per language, written natively
+40 rows each for English, Hindi, Hinglish, Tamil and Kannada.
+
+COLUMNS
+-------
+id, scenario_id, split, language, topic, style
+category             the kind of reply (below)
+field                what the question asks for (religion, children_ages, ...)
+root_query           the user's first message, for context
+already_known        facts the first message already gave
+last_question        the follow-up question the assistant asked
+user_response        the user's reply
+expected_extraction  what should be extracted, written in English, or
+                     NOT_PROVIDED when the reply gives no answer
+
+REPLY CATEGORIES
+----------------
+short          35   one or two words ("Hindu.", "31.")
+negation       35   the answer is a "no", which must be recorded as a fact
+                    ("No, we have no children")
+numeric        30   ages, amounts, dates
+direct         30   a plain full-sentence answer
+non-answer     30   "I don't know", a counter-question, or a refusal;
+                    expected NOT_PROVIDED. The node must not invent a value
+rambling       20   the answer is buried in unrelated detail; the extraction
+                    should keep only the answer
+already-known  20   the question repeats something the user had said and the
+                    user says so; the fact should still be recorded once
+
+In four language-specific rows (L-hi-01, L-hi-10, L-ta-08, L-kn-07) the reply
+is in voice-input style, without punctuation, like the question it follows.
+
+SCORING
+-------
+Compare the node's extraction with expected_extraction by meaning, not by
+wording (an LLM judge, or exact match on NOT_PROVIDED for non-answer rows).
+Report accuracy by category and by language. For the parallel rows, also
+report how often all five languages of a scenario are right together.
+
+LIMITS
+------
+- The Tamil and Kannada questions and replies were written by an AI assistant
+  and have not been read by a native speaker.
+- In the app the assistant writes its own follow-up questions; here they are
+  fixed so that every run sees the same input.

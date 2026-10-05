@@ -1,0 +1,65 @@
+REASONING PANEL GOLDEN DATASET, VERSION 2
+=========================================
+File:    evaluation/reasoning_eval/golden_dataset_v2.csv   (200 rows)
+Source:  evaluation/scenario_bank/reasoning_pairs.py, built by
+         scenario_bank/build_datasets.py. Edit the bank and rebuild.
+Version 1 (31 rows) is kept as golden_dataset.csv.
+
+Purpose: the analyze_reasoning node explains, for each retrieved past case,
+how much it shaped the answer (a usage score and a short explanation). This
+set checks that it scores related cases high and unrelated cases low, and
+does not claim that an unrelated case supported the answer.
+
+STRUCTURE
+---------
+Each row is one (answer, past case) pair.
+150 parallel rows:           10 scenarios x 5 languages x 3 past cases
+                             (2 related, 1 unrelated)
+50 language-specific rows:   per language, one scenario with 4 past cases
+                             (2 related, 2 unrelated) and two with 3
+40 rows each for English, Hindi, Hinglish, Tamil and Kannada.
+130 rows expect a high score, 70 a low score.
+
+COLUMNS
+-------
+id                         scenario + language + past-case id
+scenario_id, split, language, topic
+user_query                 the user's first message
+case_summary               the facts of the user's case, in English
+reference_response         a short correct answer, in the row's language
+precedent_parent_id        the past case (a forum post in the corpus)
+precedent_title
+precedent_excerpt          its first 400 characters
+expected_relevance         high / low
+expected_usage_score_band  ">= 0.5" for high, "<= 0.3" for low
+rationale                  why
+
+WHERE THE PAST CASES COME FROM
+------------------------------
+Related cases are taken from the retrieval labels for the same scenario
+(labels_retrieval.py), so they are posts already judged to be on the same
+issue. Unrelated cases are posts on a clearly different subject (for example
+an adoption post paired with a domestic-violence question). They stand in
+for a bad retrieval, which is when the panel has been seen to over-claim.
+
+SCORING
+-------
+1. Score band: is the node's usage score inside expected_usage_score_band?
+   Report accuracy for high and low rows separately. The low rows are the
+   important ones.
+2. Over-claiming (LLM judge): for a low row, does the explanation say or
+   imply that the past case supported the answer? This should never happen.
+3. Faithfulness (LLM judge): does the explanation describe the past case
+   correctly, using only what is in the excerpt?
+4. Language: for parallel rows the score for the same past case should not
+   change with the language of the answer.
+
+LIMITS
+------
+- "Related" was judged from each post's title and opening text. Related does
+  not mean the post's expert advice agrees with the reference answer; a judge
+  should not penalise the node for noting a difference.
+- Reference answers were written by an AI assistant and follow the generator
+  rubrics; they need the same lawyer review, and the Tamil and Kannada ones
+  need a native reader.
+- Two labels only (high / low). Borderline cases were left out on purpose.

@@ -1,59 +1,75 @@
 # chunking.py
-import os
+"""
+Split each source item into one parent record and several child chunks
+(hierarchical RAG: search the children, hand the generator the parent).
+
+Chunk sizes are measured with the EMBEDDING MODEL's own tokenizer. The model
+reads at most 512 tokens and silently drops the rest, so a chunk plus its
+title must fit inside that. (An earlier version sized chunks with OpenAI's
+cl100k tokenizer and embedded the whole question in front of every chunk;
+11% of chunks ended up embedded as the question alone.)
+
+Children per item:
+  - the question / summary text, split into chunks   (kind "question")
+  - each expert response, split into chunks          (kind "answer")
+The title is NOT stored in the child text; embedding.py prepends it.
+
+Paths can be overridden with DATA_DIR and CHUNKED_DIR.
+"""
 import json
-import tiktoken
+import os
+
+from tokenizers import Tokenizer
 from tqdm import tqdm
 
-# Define constants
-DATA_DIR = "./data/family_law_domain"
-OUTPUT_DIR = "./data/chunked"
+DATA_DIR = os.getenv("DATA_DIR", "./data/family_law_domain")
+OUTPUT_DIR = os.getenv("CHUNKED_DIR", "./data/chunked")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# Configure tokenization
-ENCODER = tiktoken.get_encoding("cl100k_base")  # same as OpenAI models
-CHUNK_SIZE = 600  # Reduced from 800 to prevent overflow with longer embeddings
-CHUNK_OVERLAP = 80  # Reduced proportionally
-MAX_QUERY_LENGTH = 8000  # Reduced from 9000 for safety
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "bhavyagiri/InLegal-Sbert")
+MODEL_MAX_TOKENS = 512
+TITLE_MAX_TOKENS = 40    # embedding.py prepends the title to every child
+CHUNK_SIZE = 400         # model tokens; 2 specials + 40 title + 400 chunk + separator < 512
+CHUNK_OVERLAP = 60
 
-# Hierarchical RAG: each Q&A item also gets one "parent" record holding its
-# full combined text (query + all expert responses), so retrieval can expand
-# a matched child chunk back to complete, ungrounded-free context.
-PARENT_MAX_TOKENS = 1800
+# Milvus VARCHAR limits (see milvus_store.py). Parents are stored whole; the
+# retriever trims long parents around the matched passage at query time.
+PARENT_MAX_CHARS = 60000
+QUERY_TEXT_MAX_CHARS = 9000
 
-def tokenize_text(text):
-    """Convert text into tokens."""
-    return ENCODER.encode(text)
+TOKENIZER = Tokenizer.from_pretrained(EMBEDDING_MODEL)
+TOKENIZER.no_truncation()
 
-def detokenize_text(tokens):
-    """Convert tokens back to text."""
-    return ENCODER.decode(tokens)
+
+def count_tokens(text):
+    return len(TOKENIZER.encode(text, add_special_tokens=False).ids)
+
 
 def chunk_text(text, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP):
-    """Token-based chunking with overlap - optimized to prevent overflow."""
-    tokens = tokenize_text(text)
+    """Split text into windows of at most chunk_size model tokens.
+
+    Slices the original string by token character offsets, so chunk text is
+    always an exact substring of the input (and therefore of the parent).
+    """
+    offsets = TOKENIZER.encode(text, add_special_tokens=False).offsets
+    if not offsets:
+        return []
+
     chunks = []
     start = 0
-    
-    # Ensure we don't create chunks that are too large
-    while start < len(tokens):
-        end = min(start + chunk_size, len(tokens))
-        chunk = detokenize_text(tokens[start:end])
-        
-        # Verify chunk is not empty
-        if chunk.strip():
+    while start < len(offsets):
+        end = min(start + chunk_size, len(offsets))
+        chunk = text[offsets[start][0]:offsets[end - 1][1]].strip()
+        if chunk:
             chunks.append(chunk)
-        
-        # Move to next chunk with overlap
-        start += chunk_size - overlap
-        
-        # Prevent infinite loop for very small texts
-        if end == len(tokens):
+        if end == len(offsets):
             break
-    
+        start += chunk_size - overlap
     return chunks
 
+
 def process_category_file(file_path, id_offset=0):
-    """Process one JSON file and create chunks in the required format.
+    """Process one JSON file and write its parent and child records.
 
     id_offset shifts parent_id past every item already assigned by files
     processed earlier in this run. Without it, each file's item index resets
@@ -70,88 +86,67 @@ def process_category_file(file_path, id_offset=0):
 
     chunks_list = []
     chunk_id = 0
-    overflow_count = 0
+    skipped = 0
 
     print(f"\n📋 Processing {len(data)} items from {category_name} (parent_id offset {id_offset})")
 
     for local_idx, item in enumerate(tqdm(data, desc=f"Chunking {category_name}")):
         item_idx = id_offset + local_idx
-        query_text = item.get("query-text", "").strip()
-        
-        # Truncate query text if too long
-        if len(query_text) > MAX_QUERY_LENGTH:
-            query_text = query_text[:MAX_QUERY_LENGTH]
-            overflow_count += 1
-            
-        responses = item.get("responses", [])
-        title = item.get("query-title", "")[:500]  # Limit title length
-        citations = item.get("citations", [])
-        url = item.get("query-url", "")[:500]  # Limit URL length
+        query_text = (item.get("query-text") or "").strip()
+        responses = item.get("responses") or []
+        if not isinstance(responses, list):
+            responses = []
+        title = (item.get("query-title") or "")[:500]
+        citations = item.get("citations") or []
+        url = (item.get("query-url") or "")[:500]
 
-        # --- Parent record: full combined text for this Q&A item ---
-        # Used at retrieval time to expand a matched child chunk back to
-        # its complete original context (small-to-big retrieval).
-        combined_responses = "\n\n".join(
+        response_texts = [
             f"Expert {resp.get('responder', 'Expert')}: {resp.get('response-text', '').strip()}"
             for resp in responses
-            if resp.get("response-text", "").strip()
-        )
-        parent_text = f"{query_text}\n\n{combined_responses}".strip()
-        parent_tokens = tokenize_text(parent_text)
-        if len(parent_tokens) > PARENT_MAX_TOKENS:
-            parent_text = detokenize_text(parent_tokens[:PARENT_MAX_TOKENS])
+            if (resp.get("response-text") or "").strip()
+        ]
+        parent_text = "\n\n".join([query_text] + response_texts).strip()
+        if not parent_text:
+            skipped += 1
+            continue
 
-        if parent_text:
+        def record(content, is_parent, kind):
+            nonlocal chunk_id
             chunks_list.append({
-                "content": parent_text,
+                "content": content,
                 "metadata": {
                     "parent_id": item_idx,
                     "chunk_id": chunk_id,
                     "title": title,
-                    "query-text": query_text,
+                    "query-text": query_text[:QUERY_TEXT_MAX_CHARS],
                     "citations": citations,
                     "url": url,
-                    "is_parent": True,
-                }
+                    "is_parent": is_parent,
+                    "kind": kind,
+                },
             })
             chunk_id += 1
 
-        # Combine query + expert responses
-        for resp_idx, resp in enumerate(responses, start=1):
-            response = resp.get("response-text", "").strip()
-            
-            if not response:
-                continue
-                
-            responder = resp.get("responder", "Expert")
-            combined_text = f"Expert {responder}: {response}"
-            
-            # Chunk the response text
-            text_chunks = chunk_text(combined_text)
-            
-            for chunk_text_content in text_chunks:
-                chunks_list.append({
-                    "content": chunk_text_content,
-                    "metadata": {
-                        "parent_id": item_idx,
-                        "chunk_id": chunk_id,
-                        "title": title,
-                        "query-text": query_text,
-                        "citations": citations,
-                        "url": url,
-                        "is_parent": False,
-                    }
-                })
-                chunk_id += 1
+        # Parent: the complete item (question + every response).
+        record(parent_text[:PARENT_MAX_CHARS], True, "parent")
+
+        # Children: the question itself, then each response.
+        for piece in chunk_text(query_text):
+            record(piece, False, "question")
+        for response_text in response_texts:
+            for piece in chunk_text(response_text):
+                record(piece, False, "answer")
 
     with open(output_file, "w", encoding="utf-8") as out:
         json.dump(chunks_list, out, indent=2, ensure_ascii=False)
 
-    print(f"✅ Saved {len(chunks_list)} chunks → {output_file}")
-    if overflow_count > 0:
-        print(f"⚠️  Truncated {overflow_count} query texts to prevent overflow")
+    parents = sum(1 for c in chunks_list if c["metadata"]["is_parent"])
+    print(f"✅ Saved {len(chunks_list)} records ({parents} parents, {len(chunks_list) - parents} children) → {output_file}")
+    if skipped:
+        print(f"⚠️  Skipped {skipped} empty items (no question text and no responses)")
 
     return len(data)
+
 
 if __name__ == "__main__":
     json_files = sorted(f for f in os.listdir(DATA_DIR) if f.endswith(".json") and not f.endswith(".bak"))
@@ -168,4 +163,4 @@ if __name__ == "__main__":
         parent_id_offset += item_count
 
     print("\n🎯 All categories chunked and saved under:", OUTPUT_DIR)
-    print("📊 Chunk size optimized for InLegal-Sbert (768-dim) embeddings")
+    print(f"📊 Chunks sized with the {EMBEDDING_MODEL} tokenizer: {CHUNK_SIZE} tokens, {CHUNK_OVERLAP} overlap")

@@ -1,0 +1,89 @@
+REVALIDATE GOLDEN DATASET — DETAILED INFO
+==========================================
+File:      evaluation/revalidate_eval/golden_dataset.csv
+Generator: evaluation/revalidate_eval/generate_dataset.py
+Rows:      29 (10 scenarios, 1-4 rounds each)
+Purpose:   Evaluate revalidate_information_node (graph.py). It re-runs
+           QueryAnalyzer on a synthetic message built as:
+
+               <root_query>
+
+               My Information:
+               - Key One: value
+               - Key Two: value
+
+           and decides whether more information is still needed. If it
+           finds anything, the graph goes back to gather_info and asks more
+           questions. This is where the "scope creep" seen in manual testing
+           comes from: each call is a fresh judgement with no memory of
+           earlier rounds, so it can keep finding "one more" field.
+
+WHAT EACH ROW REPRESENTS
+------------------------
+One revalidation call at a given point in a conversation. Within a
+scenario, info_collected grows round by round. The last round of most
+scenarios repeats the previous round's input exactly, to test stability:
+the same input should give the same decision.
+
+COLUMNS
+-------
+id                         row number
+scenario_id                S1-S10
+round                      1, 2, 3, ... within the scenario
+topic                      short scenario label
+source                     corpus post or "manual test transcript" / "synthetic"
+root_query                 the user's original question
+info_collected             facts gathered so far ("key: value | key: value");
+                           the harness should format these exactly as
+                           graph.py does (Title Case keys, "- " bullets)
+expected_converged         yes = info_needed should be empty (go to retrieve)
+                           no  = something critical is still missing
+acceptable_still_missing   for "no" rows: the fields that are legitimately
+                           still missing
+scope_creep_fields         examples of fields that would be scope creep for
+                           this scenario (several were actually asked in
+                           manual testing for S1)
+must_not_ask               any key already in info_collected, plus privacy
+                           fields
+notes                      reviewer notes; e.g. S1 round 2 could
+                           reasonably go either way
+
+SCENARIOS
+---------
+S1  eviction / right to reside (the manual test conversation)  4 rounds
+S2  maintenance after desertion                                 4 rounds
+S3  mutual consent divorce                                      3 rounds
+S4  father seeking visitation                                   3 rounds
+S5  dowry harassment                                            3 rounds
+S6  bigamy (religion is decisive)                               3 rounds
+S7  498A defence                                                3 rounds
+S8  informational (void vs voidable): should converge at once   2 rounds
+S9  triple talaq: key facts already present in round 1          1 round
+S10 NRI desertion                                               3 rounds
+
+19 rows expect convergence ("yes"), 10 expect "no".
+
+HOW TO SCORE
+------------
+Per row:
+  1. decision        - converged yes/no matches expected_converged
+  2. no re-ask       - nothing in info_collected is asked again
+  3. scope creep     - count of info_needed items NOT in
+                       acceptable_still_missing (should be 0; an LLM judge
+                       can allow clearly critical extras)
+Per scenario:
+  4. stability       - the repeat round gives the same decision as the
+                       round before it
+  5. rounds-to-converge - how many rounds until "yes"; compare with the
+                       expected round. A model that never converges within
+                       the scenario is the unbounded-loop bug.
+The most important numbers are decision accuracy on the "yes" rows (does
+it know when to stop) and total scope-creep count.
+
+KNOWN LIMITATIONS
+-----------------
+- Whether a field is "critical" is a judgement call; S1 round 2 is
+  deliberately borderline.
+- Even a perfect score here does not remove the need for a hard cap on
+  follow-up questions in code, since one bad call can still restart the
+  loop.

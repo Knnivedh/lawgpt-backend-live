@@ -1,0 +1,70 @@
+GENERATOR GOLDEN DATASET — DETAILED INFO
+=========================================
+File:      evaluation/generator_eval/golden_dataset.csv
+Generator: evaluation/generator_eval/generate_dataset.py
+Rows:      30
+Purpose:   Evaluate nodes/generator.py::generate_response(), the final
+           answer the user reads. Scored by an LLM judge against a rubric
+           per row.
+
+COLUMNS
+-------
+id                          row number
+topic                       legal topic
+language                    language of user_query (en 21, hi 6, hi-en 2, ta 1)
+user_gender                 value to put in state["user_gender"]; must match
+                            the scenario (the manual test mixed these up)
+expected_response_language  language the answer must be in
+user_query                  goes into state["query"] and state["root_query"]
+info_collected              goes into state["info_collected"]
+must_cover                  points a correct answer should make, " | "
+                            separated
+expected_statutes           statutes/sections a good answer would rely on
+must_not_claim              known wrong or harmful claims; any of these is a
+                            hard fail
+notes                       reviewer notes
+
+HOW TO RUN
+----------
+1. For each row, build the state and run retrieve_documents() ONCE.
+   Save the retrieved chunks to a file (freeze them).
+2. Run generate_response() with the frozen chunks. Reruns after generator
+   changes then test the generator only, not retrieval drift.
+3. Give the judge: the question, info_collected, the frozen context, the
+   answer, and the row's rubric.
+
+HOW TO SCORE (per row)
+----------------------
+  1. coverage      - share of must_cover points the answer makes (0-1)
+  2. hard fails    - any must_not_claim present = fail
+  3. grounding     - are the answer's legal claims supported by the frozen
+                     context? Score separately from coverage: an answer
+                     can be correct law but ungrounded, or grounded but
+                     incomplete because retrieval missed a statute.
+  4. language      - answer is in expected_response_language
+  5. role          - answer addresses the user in their actual role
+                     (e.g. the mother-in-law row, the sibling row)
+  6. citation guard - from the logs: did citation_guard remove anything?
+                     Track the removal rate as a free hallucination signal.
+Report results per topic and per language. Comparing English rows with
+their Hindi twins (mutual consent, custody) shows whether answer quality
+drops in Hindi.
+
+IMPORTANT CAVEATS
+-----------------
+- The legal content (must_cover, expected_statutes, must_not_claim) was
+  written by an AI assistant from general knowledge of Indian family law.
+  It has NOT been checked by a lawyer. Please have it reviewed before
+  treating it as ground truth.
+- New criminal codes: IPC, CrPC and the Evidence Act were replaced by the
+  BNS, BNSS and BSA from 1 July 2024. Rows give both numberings (e.g.
+  "s.125 CrPC / s.144 BNSS"). The corpus mostly uses the old numbering, so
+  decide a policy: accept either, or require the new section with the old
+  in brackets.
+- coverage vs grounding conflict: some must_cover points (e.g. Satish
+  Chander Ahuja for the right-to-reside row) may not be in the retrieved
+  context. The generator's prompt tells it to cite only what is in the
+  context, so a grounded answer may legitimately leave them out. Score
+  coverage and grounding separately rather than penalising grounded
+  answers.
+- 30 rows give directional signal, not tight statistics.

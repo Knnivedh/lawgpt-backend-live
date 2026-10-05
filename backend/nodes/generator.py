@@ -202,11 +202,15 @@ YOUR COMPLETE RESPONSE:"""
             logger.warning("⚠️ Response hit the token limit; trimming to the last complete sentence")
             response_content = trim_to_last_sentence(response_content)
 
-        response_content, removed_sections = sanitize_citations(
-            response_content, legal_context, detected_lang
+        guard = sanitize_citations(
+            response_content, legal_context, detected_lang, settings.citation_guard_mode,
+            source_citations=[c.get("metadata", {}).get("citations") for c in retrieved_chunks],
         )
-        if removed_sections:
-            logger.warning(f"⚠️ Removed unverified section citations: {removed_sections}")
+        response_content = guard.text
+        if guard.removed:
+            logger.warning(f"⚠️ Citation guard removed sentences citing: {guard.removed}")
+        if guard.flagged:
+            logger.warning(f"⚠️ Citation guard flagged as unverified: {guard.flagged}")
 
         logger.info(f"✅ Generated response: {len(response_content)} characters")
         
