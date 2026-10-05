@@ -63,6 +63,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from langchain_core.messages import HumanMessage, AIMessage
 
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
+from psycopg.rows import dict_row
+from psycopg_pool import AsyncConnectionPool
 
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
@@ -110,7 +112,20 @@ async def lifespan(app: FastAPI):
     # Convert: postgresql+asyncpg://... → postgresql://...
     pg_dsn = settings.database_url.replace("postgresql+asyncpg://", "postgresql://")
 
-    async with AsyncPostgresSaver.from_conn_string(pg_dsn) as checkpointer:
+    # A pool that tests each connection before lending it out. The database
+    # host (Neon) closes idle connections when it suspends; a single long-lived
+    # connection then failed every chat request until the app was restarted.
+    async with AsyncConnectionPool(
+        pg_dsn,
+        min_size=1,
+        max_size=5,
+        open=False,
+        check=AsyncConnectionPool.check_connection,
+        # autocommit and dict rows are what AsyncPostgresSaver expects;
+        # no prepared statements, since the DSN may point at a pooler.
+        kwargs={"autocommit": True, "prepare_threshold": None, "row_factory": dict_row},
+    ) as checkpointer_pool:
+        checkpointer = AsyncPostgresSaver(checkpointer_pool)
         await checkpointer.setup()
         logger.info("✅ LangGraph checkpointer tables ready")
 
