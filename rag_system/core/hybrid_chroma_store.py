@@ -273,7 +273,7 @@ class HybridChromaStore:
             except Exception as exc:
                 logger.warning(f"Local SentenceTransformer failed ({exc}), checking alternatives...")
 
-        if self.embedding_model is None and (_provider == "nvidia" or _nvidia_key):
+        if self.embedding_model is None and _provider == "nvidia" and os.getenv("ENABLE_REMOTE_NVIDIA_EMBEDDINGS", "false").lower() == "true":
             try:
                 logger.info("Configuring RemoteNvidiaEmbedder for ChromaDB...")
                 remote_emb = RemoteNvidiaEmbedder(api_key=_nvidia_key, dimension=384)
