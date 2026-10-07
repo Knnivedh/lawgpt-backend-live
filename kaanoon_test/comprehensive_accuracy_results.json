@@ -1,0 +1,67 @@
+{
+  "timestamp": "2025-11-01T12:10:51.565036",
+  "summary": {
+    "total": 4,
+    "successful": 4,
+    "failed": 0,
+    "avg_accuracy": 1.0000000208616258,
+    "avg_semantic": 1.0000000298023224,
+    "avg_keyword": 1.0,
+    "avg_latency": 1.2354393005371094,
+    "kaanoon_usage_rate": 1.0
+  },
+  "results": [
+    {
+      "id": "Q1",
+      "category": "Property Law",
+      "metrics": {
+        "semantic_similarity": 1.0,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0
+      },
+      "latency": 1.7459661960601807,
+      "used_kaanoon": true
+    },
+    {
+      "id": "Q2",
+      "category": "Civil Procedure",
+      "metrics": {
+        "semantic_similarity": 1.0,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0
+      },
+      "latency": 1.1793169975280762,
+      "used_kaanoon": true
+    },
+    {
+      "id": "Q3",
+      "category": "Family Law",
+      "metrics": {
+        "semantic_similarity": 1.0,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0
+      },
+      "latency": 1.2216894626617432,
+      "used_kaanoon": true
+    },
+    {
+      "id": "Q4",
+      "category": "Society Law",
+      "metrics": {
+        "semantic_similarity": 1.0000001192092896,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0000000834465026
+      },
+      "latency": 0.7947845458984375,
+      "used_kaanoon": true
+    }
+  ]
+}

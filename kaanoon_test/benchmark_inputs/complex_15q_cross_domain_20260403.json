@@ -1,0 +1,107 @@
+[
+  {
+    "id": "C01",
+    "category": "Cyber Law",
+    "topic": "Data Breach + Consumer + PIL",
+    "question": "A mobile payment and micro-loan app forces users to accept broad data sharing for location, contacts, browsing behavior, and transaction history. Its terms permit opaque algorithmic credit scoring and mandatory arbitration in another state. Two years later a breach exposes user data, users receive phishing and predatory loan calls, and researchers show data sharing with marketing firms. Complaints are filed before Consumer Commission for deficiency and unfair trade practice, while a PIL challenges privacy violations under Article 21 and weak cybersecurity safeguards. What constitutional, statutory, contractual, and procedural issues should courts decide on privacy, consent validity, company liability, PIL maintainability against private entities, and arbitration effect on consumer remedies?",
+    "short_answer": "Key issues include informational privacy under Article 21 (Puttaswamy), purpose limitation and consent validity under data protection principles, and reasonable security duties under IT Act Section 43A and SPDI Rules. Consumer Commission must test deficiency in service and unfair trade practice under Consumer Protection Act 2019 despite clickwrap clauses. Broad consent, opaque scoring, and one-sided arbitration terms may be unfair or unconscionable if not informed and specific. PIL maintainability may still arise where systemic rights impact and public functions are implicated. Arbitration clauses generally do not oust statutory consumer jurisdiction (Emaar MGF line)."
+  },
+  {
+    "id": "C02",
+    "category": "Labour Law",
+    "topic": "AI Hiring Bias + Constitutional Challenge",
+    "question": "A large gig platform uses AI screening to reject job applicants using behavioral, device, and social graph data without disclosure. A group of applicants alleges caste and gender bias, files complaints before labour authorities and data protection bodies, and seeks writ relief claiming violation of equality and privacy values. The company argues private contract freedom and trade secret protection for model logic. What issues should be analyzed on algorithmic transparency, anti-discrimination obligations, consent limits, evidentiary burden for bias, and available judicial and regulatory remedies?",
+    "short_answer": "Adjudication must examine fairness, non-arbitrariness, and privacy impacts in automated decision systems, including explainability and contest rights. Even private actors may face constitutional scrutiny when services are public-impacting or closely regulated. Statutory analysis should include labour protections, data minimization, purpose limitation, and safeguards for sensitive personal data. Trade secret defenses do not fully negate procedural fairness where adverse decisions are automated. Courts and regulators can require audit trails, independent algorithmic audit, disclosure of decisive factors, and corrective compensation where discriminatory exclusion is proved."
+  },
+  {
+    "id": "C03",
+    "category": "Consumer Protection",
+    "topic": "Dark Patterns + Auto-Renewal Billing",
+    "question": "A subscription commerce platform uses dark patterns: hidden unsubscribe flow, pre-checked consent for partner sharing, and repeated nudges that downgrade cancellation. Users are billed after trial expiry and personal data is shared with affiliate lenders for cross-sell. Consumers seek refunds and penalties for unfair trade practice and privacy harm. The platform cites accepted terms and user inaction. What legal questions arise on deceptive design, informed consent, unfair contract terms, and compensation standards?",
+    "short_answer": "Consumer forum should evaluate deceptive interface architecture as unfair trade practice and misleading representation under Consumer Protection Act 2019 and e-commerce fairness principles. Pre-checked boxes and friction-heavy cancellation undermine free, informed consent. Automatic recurring charges without clear advance disclosure may justify refund, compensation, and punitive directions. Data sharing unrelated to core service can breach purpose limitation and reasonable user expectations. Contract acceptance is not a complete defense where terms are non-transparent, one-sided, or contrary to statutory consumer rights."
+  },
+  {
+    "id": "C04",
+    "category": "Health Law",
+    "topic": "Wearable Data + Insurance Underwriting",
+    "question": "A health wearable app partners with insurers and collects heart-rate, sleep, fertility, and location data. Users discover their premiums rose after algorithmic risk tagging, while policy terms never clearly disclosed this secondary use. Some users are denied coverage and receive only template rejection emails. Which constitutional, data governance, insurance, and consumer issues should be examined regarding profiling, consent, explainability, and remedies?",
+    "short_answer": "Sensitive health data processing requires heightened safeguards, explicit purpose specification, and clear notice before secondary underwriting use. Opaque adverse profiling decisions can be tested for procedural fairness, reasoned communication, and non-discrimination. Consumer and insurance forums should assess misrepresentation, deficiency in service, and unfair trade practice where policy impacts were undisclosed. Courts may require disclosure of decision factors, review mechanisms, and rectification channels. Remedies can include premium correction, reconsideration of denial, compensation, and compliance directions for transparent consent architecture."
+  },
+  {
+    "id": "C05",
+    "category": "Education Law",
+    "topic": "EdTech Minors + Predatory Lending",
+    "question": "An edtech app for school students mandates parent consent but embeds a one-click learning loan offer routed to NBFC partners. The app tracks study behavior, microphone activity during classes, and device metadata. Parents allege manipulative design, unauthorized profiling of minors, and debt nudging. The company claims parental acceptance and commercial necessity. What legal issues arise on child data, valid parental consent, unfair inducement, and lender/platform liability allocation?",
+    "short_answer": "Minor-facing platforms must meet stricter fairness and necessity standards for data collection and monetization. Parental consent must be specific, intelligible, and revocable; bundled consent for unrelated lending is vulnerable. Predatory nudging tied to educational dependency can constitute unfair trade practice and exploitative conduct. Joint liability may arise where platform and lender operate integrated acquisition funnels. Authorities can direct child data minimization, disable manipulative loan prompts, mandate granular consent, and order restitution or corrective relief."
+  },
+  {
+    "id": "C06",
+    "category": "Banking & Finance",
+    "topic": "Digital Loan App Harassment + Data Misuse",
+    "question": "A digital lending app accesses contacts and gallery data at install, and recovery agents later send threatening messages to borrower contacts after default. Borrowers allege extortionate conduct, privacy breach, and unauthorized data processing. The company cites contractual permission and recovery necessity. What statutory and procedural framework applies for civil, regulatory, and criminal accountability?",
+    "short_answer": "Contact-list scraping and coercive third-party shaming can violate privacy, data purpose limits, and fair recovery norms. Contractual clauses permitting blanket access may be unconscionable and disproportionate. Liability may arise under consumer law for deficiency and unfair practice, under IT/data rules for unreasonable processing, and under criminal law for intimidation/extortion patterns where facts support. Regulators may impose digital lending compliance mandates, data access restrictions, and grievance redress obligations. Courts can award compensation and injunctive relief against harassment methods."
+  },
+  {
+    "id": "C07",
+    "category": "Constitutional Law",
+    "topic": "Facial Recognition in Smart-City Policing",
+    "question": "A city contracts a private technology vendor to run facial recognition over public CCTV feeds for predictive policing alerts. Citizens challenge indiscriminate surveillance, lack of statutory basis, no retention limits, and absence of independent oversight. Government cites public order and crime prevention. What constitutional proportionality and administrative law tests should govern legality of this system?",
+    "short_answer": "Court should apply legality-necessity-proportionality safeguards: clear legal basis, legitimate state aim, least intrusive means, and robust procedural controls. Bulk surveillance without retention limits, audit logs, redress pathway, or independent oversight risks violating privacy and chilling liberties. Delegation to private vendors does not dilute constitutional obligations where state uses technology for coercive functions. Judicial review should examine bias, false positives, purpose creep, and accountability architecture. Relief may include suspension, strict use protocols, data deletion norms, and periodic judicial or statutory oversight."
+  },
+  {
+    "id": "C08",
+    "category": "Financial Regulation",
+    "topic": "Crypto Exchange Freeze + Due Process",
+    "question": "A crypto exchange freezes thousands of user wallets after receiving enforcement notices about suspicious flows. Genuine users lose access for months without individualized reasons or timeline. The platform says AML compliance and confidentiality prevent detailed disclosure. What issues arise on procedural fairness, proportionality, consumer harm, and regulator-platform-user rights balance?",
+    "short_answer": "AML compliance obligations permit risk controls but do not justify indefinite opaque deprivation without fair process. Decision-making should be risk-tiered, time-bound, and reviewable with reasoned communication where possible. Consumer forums and writ courts may assess deficiency, arbitrariness, and proportionality of blanket freezes. Platform should provide escalation channels, documentary requirements, and periodic status updates consistent with lawful confidentiality. Remedies can include partial unfreeze protocols, compensation for unjustified delay, and supervisory directions on transparent compliance governance."
+  },
+  {
+    "id": "C09",
+    "category": "Competition Law",
+    "topic": "Algorithmic Surge Pricing + Collusion Concern",
+    "question": "Multiple ride-hailing platforms use similar algorithmic surge engines and fare patterns converge during peak hours, causing sharp price spikes. Consumer groups allege tacit algorithmic collusion and exploitative pricing while platforms claim independent dynamic pricing models. What competition, consumer, and evidentiary issues must be assessed?",
+    "short_answer": "Authorities should test whether parallel pricing reflects independent adaptation or anti-competitive coordination facilitated by algorithmic architecture. Evidence may include model design overlap, data-sharing arrangements, signaling mechanisms, and unexplained synchronized pricing behavior. Consumer law analysis covers transparency of surge logic and misleading affordability claims. Competition assessment must separate lawful intelligent pricing from collusive outcomes that reduce market rivalry. Remedies can include algorithmic audit, behavioral commitments, transparency mandates, and penalties where concerted practice is established."
+  },
+  {
+    "id": "C10",
+    "category": "Media Law",
+    "topic": "Deepfake Political Ads + Platform Liability",
+    "question": "During an election cycle, manipulated deepfake videos spread via a major social platform and ad network. Targets seek urgent takedowns, source tracing, and damages for reputational and electoral harm. Platforms claim intermediary status and delayed detection at scale. What legal framework applies to intermediary safe harbor, due diligence, election integrity, and emergency judicial relief?",
+    "short_answer": "Intermediary safe harbor depends on due diligence compliance, prompt action after actual knowledge, and responsible grievance mechanisms. Deepfake election content raises urgency for injunction standards balancing speech with fraud prevention and democratic integrity. Courts may require rapid takedown workflows, provenance tagging, and preservation of forensic evidence for investigation. Liability analysis turns on notice-response timelines, amplification choices, and ad-verification controls. Relief can include platform directions, compensatory claims, and regulatory reporting obligations."
+  },
+  {
+    "id": "C11",
+    "category": "Cyber Law",
+    "topic": "Cloud Data Disclosure + Government Access",
+    "question": "A SaaS provider stores enterprise and citizen records and receives broad government data requests without judicial warrant details. Clients challenge overbroad disclosure, inadequate notice, and cross-border transfer risks. Provider cites statutory compulsion and confidentiality. What legal and constitutional tests should determine validity of disclosure and provider obligations?",
+    "short_answer": "Disclosure requests should be evaluated for statutory authority, scope necessity, and proportionality, including safeguards against fishing expeditions. Providers should follow documented legal process review, minimization, and accountability logging. Confidentiality obligations to clients require lawful balancing and, where permissible, transparency notices. Cross-border transfer and security controls must align with applicable data governance and contractual commitments. Courts can mandate narrowed production, independent review mechanisms, and compliance transparency reporting."
+  },
+  {
+    "id": "C12",
+    "category": "Contract Law",
+    "topic": "BNPL Clickwrap + Hidden Charges",
+    "question": "A buy-now-pay-later feature on an e-commerce checkout preselects installment plans and auto-enables credit insurance with hidden processing charges disclosed only in deep links. Users default and face heavy penalties. They challenge the terms as unconscionable and deceptive. What contractual validity, consumer fairness, and remedial issues arise?",
+    "short_answer": "Adjudication should examine assent quality in clickwrap flows, prominence of material terms, and whether bundled insurance/fees were truly disclosed. Hidden or fragmented disclosures undermine informed consent and may qualify as unfair trade practice. Penalty clauses require reasonableness and cannot operate as oppressive forfeiture in consumer credit contexts. Joint responsibility may attach to platform, lender, and insurance intermediary when flow is integrated. Relief may include charge reversal, penalty moderation, contract reformation, and compliance directions on plain-language disclosures."
+  },
+  {
+    "id": "C13",
+    "category": "Medical Negligence",
+    "topic": "Telemedicine Misdiagnosis + Data Leak",
+    "question": "A telemedicine app misroutes diagnostic reports, leading to delayed treatment, and later suffers a breach exposing consultation notes and prescriptions. Patients file for negligence, privacy harm, and mental distress compensation. Platform argues independent doctor relationship and third-party cyberattack. What liability matrix should be applied across platform, doctors, and processors?",
+    "short_answer": "Liability analysis should separate clinical negligence from platform process failures while recognizing integrated duty of care in digital healthcare delivery. Misrouting medical records and weak security controls can amount to deficiency in service and privacy breach even if attack was external. Vicarious or shared liability depends on role allocation, control, and representation made to patients. Forums should assess causation for delayed treatment and non-pecuniary harms from confidentiality loss. Remedies may include compensation, corrective security measures, audit obligations, and safer record-handling protocols."
+  },
+  {
+    "id": "C14",
+    "category": "Gaming Law",
+    "topic": "Loot Boxes + Minor Protection",
+    "question": "A gaming app markets loot boxes to teenagers using scarcity countdowns and influencer tie-ins, while collecting behavioral telemetry for spend prediction. Parents allege gambling-like mechanics, manipulative monetization, and child data exploitation. The developer claims entertainment product immunity and parental controls. What legal issues must regulators and courts address?",
+    "short_answer": "Core issues include whether random-reward monetization functions like gambling or unfair exploitation, especially for minors. Manipulative urgency design and behavioral targeting can trigger consumer protection and child-safety scrutiny. Data collection from minors must satisfy strict necessity and transparency standards, with profiling limits. Parental control availability is relevant but not a complete defense where default design nudges excessive spending. Remedies may include age-gating, odds disclosure, spending caps, refund frameworks, and restrictions on behavioral ad targeting of minors."
+  },
+  {
+    "id": "C15",
+    "category": "Administrative Law",
+    "topic": "Welfare App Exclusion + Digital Divide",
+    "question": "A state welfare delivery app operated by a private contractor introduces mandatory app-based eKYC and risk scoring. Rural beneficiaries without smartphones are excluded, and some are flagged as fraud with no appeal details. A PIL challenges exclusion, opacity, and delegated decision-making. What constitutional, statutory, and remedial issues should be decided?",
+    "short_answer": "Court should assess arbitrariness, non-discrimination, and dignity impacts where digital-only welfare gates exclude vulnerable populations. Delegation to private contractors does not remove state responsibility for fair, transparent, and reviewable public benefit decisions. Procedural fairness requires notice, reasons, and effective appeal for fraud flags or denial outcomes. Proportionality analysis should consider less restrictive alternatives such as assisted offline channels. Relief may include hybrid access modes, transparent eligibility criteria, auditable scoring logic, and restoration of wrongfully denied benefits."
+  }
+]

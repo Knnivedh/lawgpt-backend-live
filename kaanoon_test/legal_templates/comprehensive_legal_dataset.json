@@ -1,0 +1,218 @@
+{
+  "dataset_version": "1.0",
+  "purpose": "Comprehensive legal training dataset for RAG-enhanced AI lawyer",
+  "categories": [
+    {
+      "category": "Property_Succession_Forgery",
+      "scenarios": [
+        {
+          "case_id": "PROP_001",
+          "case_scenario": "Parents died intestate, and one sibling's spouse forged a will to transfer ancestral land",
+          "legal_category": ["Property Law", "Succession", "Forgery", "Misrepresentation"],
+          "facts": [
+            "Parents died without a will (intestate)",
+            "Three Class I heirs (two brothers and one sister) under Hindu Succession Act",
+            "Elder brother's wife obtained property mutation using forged will",
+            "No consent from other legal heirs",
+            "Municipal records show transfer in her name",
+            "Will signature does not match parent's handwriting"
+          ],
+          "issues": [
+            "Whether the transfer based on forged will is valid?",
+            "What civil remedies are available to defrauded heirs?",
+            "Which IPC sections apply for forgery and cheating?",
+            "Can mutation be cancelled before final judgment?",
+            "What is the limitation period for challenging the transfer?"
+          ],
+          "civil_remedies": {
+            "acts": [
+              "Hindu Succession Act, 1956",
+              "Specific Relief Act, 1963",
+              "Code of Civil Procedure, 1908",
+              "Transfer of Property Act, 1882",
+              "Limitation Act, 1963"
+            ],
+            "sections": [
+              "Section 8, Hindu Succession Act - Class I heirs equal rights",
+              "Section 34, Specific Relief Act - Declaratory suit for void transfer",
+              "Order 39 Rule 1 & 2, CPC - Temporary and perpetual injunction",
+              "Section 6, Hindu Succession Act - Devolution of property",
+              "Article 59, Limitation Act - 3 years for declaratory suit",
+              "Article 65, Limitation Act - 12 years for possession-based suits"
+            ],
+            "actions": [
+              "File partition suit under Section 8 HSA to divide property equally among all Class I heirs",
+              "File declaratory suit under Section 34 SRA to declare will as forged and transfer as void",
+              "Apply for temporary injunction under Order 39 CPC to prevent sale, mortgage, or further alienation",
+              "Seek permanent injunction to restore status quo",
+              "Request forensic examination of will signature and testator's mental capacity",
+              "Demand production of will witnesses under Section 68, Evidence Act"
+            ],
+            "timeline": "File within 3 years from knowledge of fraud (Article 59, Limitation Act)",
+            "court_jurisdiction": "District Court having territorial jurisdiction over property location"
+          },
+          "criminal_remedies": {
+            "acts": ["Indian Penal Code, 1860"],
+            "sections": [
+              "Section 420 - Cheating and dishonestly inducing delivery of property (7 years + fine)",
+              "Section 467 - Forgery of valuable security, will (Life imprisonment or 10 years + fine)",
+              "Section 468 - Forgery for purpose of cheating (7 years + fine)",
+              "Section 471 - Using as genuine a forged document (Punishment as per Sec 467)",
+              "Section 120B - Criminal conspiracy (Same as substantive offense)",
+              "Section 406 - Criminal breach of trust (3 years + fine)",
+              "Section 34 - Common intention (if multiple accused)"
+            ],
+            "actions": [
+              "Lodge FIR at police station under jurisdiction where property located",
+              "Request forensic handwriting analysis of forged will",
+              "Name all co-conspirators (spouse + witnesses + officials if bribed)",
+              "Provide evidence: mutation records, original documents, witness statements",
+              "Request police to seize forged will and all related documents",
+              "Apply for arrest warrant if accused tries to flee",
+              "Inform Sub-Registrar and Revenue Office about criminal case"
+            ],
+            "cognizability": "Cognizable and non-bailable offense under Section 467",
+            "investigation_agency": "Local Police Station → Investigation → Charge Sheet → Trial Court"
+          },
+          "administrative_remedies": {
+            "authorities": [
+              "District Registrar / Sub-Registrar",
+              "Revenue Office / Tehsildar",
+              "Municipal Corporation",
+              "Land Records Office"
+            ],
+            "actions": [
+              "File formal complaint with Registrar to cancel mutation",
+              "Send legal notice under Section 80 CPC before suing government official",
+              "Apply for stay of mutation pending civil suit outcome",
+              "Request mutation records under RTI Act, 2005",
+              "File grievance with Revenue Department for illegal mutation",
+              "Demand inquiry into how mutation was approved without heir consent"
+            ]
+          },
+          "evidence_and_procedure": {
+            "acts": ["Indian Evidence Act, 1872", "Code of Civil Procedure, 1908", "Code of Criminal Procedure, 1973"],
+            "sections": [
+              "Section 63-65, Evidence Act - Documentary evidence and proof",
+              "Section 68, Evidence Act - Proof of execution of will (two attesting witnesses)",
+              "Section 47, Evidence Act - Opinion of handwriting expert",
+              "Section 113, Evidence Act - Presumption of fraud",
+              "Section 114, Evidence Act - Court may presume fact in certain circumstances",
+              "Order 7 Rule 11, CPC - Rejection of plaint",
+              "Section 154, CrPC - FIR registration",
+              "Section 156(3), CrPC - Magistrate order for police investigation"
+            ],
+            "burden_of_proof": {
+              "civil": "Plaintiff (heirs) must prove: (1) Parents died intestate, (2) They are Class I heirs, (3) Will is forged, (4) Transfer is fraudulent",
+              "criminal": "Prosecution must prove beyond reasonable doubt: (1) Document is forged, (2) Accused had knowledge, (3) Intent to cheat",
+              "will_propounder": "Person claiming under will must prove due execution under Sec 68 Evidence Act"
+            },
+            "key_evidence": [
+              "Death certificates of parents",
+              "Birth certificates / family tree proving heirship",
+              "Original will (if exists) for forensic examination",
+              "Handwriting samples of deceased for comparison",
+              "Testimony of attesting witnesses (if will claimed to be genuine)",
+              "Mutation records showing fraudulent transfer",
+              "Bank statements showing suspicious transactions",
+              "Testimony of family members about lack of will execution"
+            ]
+          },
+          "citations": [
+            {
+              "case_name": "Gurdial Singh v. Kanhaiya Lal",
+              "citation": "(AIR 1965 SC 1578)",
+              "court": "Supreme Court of India",
+              "principle": "Forged document has no legal effect; transfer based on it is void ab initio"
+            },
+            {
+              "case_name": "Kalyan Singh v. State of M.P.",
+              "citation": "(2006) 12 SCC 346",
+              "court": "Supreme Court of India",
+              "principle": "Forgery of will with intent to cheat attracts Section 467 + 420 IPC"
+            },
+            {
+              "case_name": "Jaswant Kaur v. Amrit Kaur",
+              "citation": "(1977) 1 SCC 369",
+              "court": "Supreme Court of India",
+              "principle": "Burden on propounder to prove will's valid execution under Section 68 Evidence Act"
+            },
+            {
+              "case_name": "H. Venkatachala Iyengar v. B.N. Thimmajamma",
+              "citation": "(1959) Supp 1 SCR 426",
+              "court": "Supreme Court of India",
+              "principle": "Suspicious circumstances surrounding will execution require strict proof"
+            }
+          ],
+          "procedural_templates": {
+            "fir_draft": {
+              "complainant": "Legal heir (brother/sister)",
+              "accused": "Elder brother's wife (primary), will witnesses (if any), officials (if colluded)",
+              "sections": "467, 468, 471, 420, 120B IPC",
+              "facts_summary": "Parents died intestate in [year]. Accused forged will showing all property to herself. Got mutation done at Municipal Office without heir consent. Will signature does not match parent's handwriting. Request forensic examination and criminal prosecution.",
+              "prayer": "Register FIR, investigate forgery, arrest accused, seize forged will, prosecute under IPC"
+            },
+            "partition_suit_structure": {
+              "plaintiff": "All legal heirs (brothers and sister)",
+              "defendant": "Elder brother's wife + any third-party transferee",
+              "cause_of_action": "Parents died intestate → equal inheritance under HSA → fraudulent transfer needs cancellation → partition required",
+              "reliefs": [
+                "Declare will as forged and void",
+                "Declare transfer/mutation as illegal",
+                "Partition property equally among all Class I heirs",
+                "Permanent injunction against alienation",
+                "Costs of suit"
+              ],
+              "valuation": "Based on market value of property (for court fees)",
+              "court_fees": "As per Court Fees Act + stamp duty"
+            },
+            "declaratory_suit_structure": {
+              "section": "34, Specific Relief Act, 1963",
+              "plaintiff": "Legal heirs",
+              "defendant": "Fraudulent transferee",
+              "declaration_sought": "That will dated [date] is forged; That mutation entry No. [X] is illegal; That plaintiffs have equal rights as Class I heirs",
+              "consequential_relief": "Cancel mutation, restore heirship rights, injunction"
+            }
+          },
+          "output_format": {
+            "answer": "The property transfer based on forged will is void and challengeable through civil partition suit + criminal FIR for forgery under IPC Sections 467, 468, 471, 420.",
+            "analysis_structure": {
+              "para1": "Legal test - Plaintiff must prove: (1) intestate succession, (2) Class I heirship, (3) will forgery, (4) fraudulent mutation",
+              "para2": "MULTI-REMEDY: Civil (partition + declaration + injunction) + Criminal (FIR under Sec 467/420) + Administrative (cancel mutation)",
+              "para3": "Accountability - Criminal via police/courts; Civil via District Court partition decree; Administrative via Registrar",
+              "para4": "Hindu Succession Act Section 8 gives equal rights to all Class I heirs; forged will cannot override statutory succession",
+              "para5": "Burden on will-propounder to prove execution (Sec 68 Evidence Act); forensic handwriting analysis crucial",
+              "para6": "Limitation: 3 years for declaratory suit (Art 59) from knowledge of fraud"
+            },
+            "legal_basis": {
+              "civil_statutes": "Sections 6, 8 HSA + Section 34 SRA + Order 39 CPC",
+              "criminal_statutes": "Sections 420, 467, 468, 471, 120B IPC",
+              "evidence": "Sections 63-68, 113, 114 Evidence Act",
+              "case_law": "Gurdial Singh (1965), Jaswant Kaur (1977), H. Venkatachala Iyengar (1959)"
+            },
+            "conclusion": "File partition suit + FIR simultaneously. Court will declare transfer void, order property partition, and accused faces criminal prosecution for forgery with up to 10 years imprisonment."
+          }
+        }
+      ]
+    }
+  ],
+  "response_templates": {
+    "standard_format": {
+      "structure": "🟩 Answer → 🟨 Analysis (6 paras with MULTI-REMEDY) → 🟦 Legal Basis → 🟧 Conclusion",
+      "mandatory_elements": [
+        "One-line direct answer",
+        "Paragraph 1: Legal requirements/test",
+        "Paragraph 2: COMPREHENSIVE remedies (Civil + Criminal + Administrative + Immediate + Long-term)",
+        "Paragraph 3: Accountability mechanism (WHO enforces, WHAT happens)",
+        "Paragraph 4: Contextual legal concepts",
+        "Paragraph 5: Burden of proof and shifts",
+        "Paragraph 6: Statutory presumptions and evidence",
+        "Primary statutes with section numbers",
+        "Minimum 1-2 case law citations",
+        "Acts & regulations list",
+        "Additional authorities",
+        "3-sentence conclusion with likely outcome"
+      ]
+    }
+  }
+}

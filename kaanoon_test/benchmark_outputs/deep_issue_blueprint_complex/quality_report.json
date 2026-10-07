@@ -1,0 +1,37 @@
+{
+  "request_id": "deep_issue_complex_1777731554",
+  "elapsed_seconds": 17.338,
+  "first_card_seconds": 17.329,
+  "event_count": 20,
+  "card_count": 1,
+  "section_ids": [
+    "l1"
+  ],
+  "blueprint_flags": [],
+  "section_quality_flags": {
+    "l1": [
+      "uncertain_quote_style"
+    ]
+  },
+  "required_term_coverage": {
+    "article_21": true,
+    "sma": true,
+    "conversion": true,
+    "second_marriage": true,
+    "criminal_process": true,
+    "habeas": true,
+    "digital_evidence": true,
+    "love_jihad_status": true,
+    "parental_vs_liberty": true,
+    "state_duty": true
+  },
+  "quality_flags_from_stream": {
+    "l1": [
+      "uncertain_quote_style"
+    ]
+  },
+  "authority_counts": {
+    "l1": 0
+  },
+  "output_chars": 10877
+}

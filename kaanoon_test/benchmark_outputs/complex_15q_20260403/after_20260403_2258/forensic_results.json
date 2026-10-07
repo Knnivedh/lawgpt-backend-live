@@ -1,0 +1,308 @@
+{
+  "summary": {
+    "timestamp": "2026-04-03 23:07:22",
+    "total": 15,
+    "pass_count": 0,
+    "fail_count": 15,
+    "pass_rate": 0.0,
+    "avg_latency_s": 9.704577559997173,
+    "avg_unsupported_case_citations": 0,
+    "high_hallucination_risk_count": 0,
+    "missing_bns_bnss_count": 3,
+    "missing_sedition_current_position_count": 1,
+    "missing_electoral_bond_current_position_count": 1,
+    "weak_subquestion_structure_count": 15
+  },
+  "results": [
+    {
+      "qid": "Q1",
+      "title": "CRIMINAL LAW + EVIDENCE + CONSTITUTIONAL LAW",
+      "status_code": 200,
+      "latency_s": 0.8657071000197902,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "missing_bns_bnss_framing",
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q2",
+      "title": "FAMILY LAW + CONSTITUTIONAL LAW + SUCCESSION",
+      "status_code": 200,
+      "latency_s": 0.8854775999789126,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q3",
+      "title": "ENVIRONMENTAL LAW + CONSTITUTIONAL LAW + TORT",
+      "status_code": 200,
+      "latency_s": 0.9370192000060342,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q4",
+      "title": "COMPANY LAW + INSOLVENCY + FRAUD",
+      "status_code": 200,
+      "latency_s": 0.9607243000064045,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q5",
+      "title": "INTELLECTUAL PROPERTY + COMPETITION LAW + CONTRACTS",
+      "status_code": 200,
+      "latency_s": 1.0553453999455087,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q6",
+      "title": "LABOUR LAW + CONSTITUTIONAL LAW + GIGS",
+      "status_code": 200,
+      "latency_s": 1.0381461000069976,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q7",
+      "title": "BANKING LAW + FRAUD + CONSTITUTIONAL LAW",
+      "status_code": 200,
+      "latency_s": 21.949386699998286,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q8",
+      "title": "CRIMINAL LAW + MEDIA LAW + CONSTITUTIONAL LAW",
+      "status_code": 200,
+      "latency_s": 1.057673999981489,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "missing_bns_bnss_framing",
+        "missing_sedition_current_position",
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q9",
+      "title": "PROPERTY LAW + LAND ACQUISITION + CONSTITUTIONAL LAW",
+      "status_code": 200,
+      "latency_s": 30.549553700024262,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q10",
+      "title": "TAX LAW + CONSTITUTIONAL LAW + INTERNATIONAL LAW",
+      "status_code": 200,
+      "latency_s": 0.9594240000005811,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q11",
+      "title": "ELECTION LAW + CONSTITUTIONAL LAW + CONTEMPT",
+      "status_code": 200,
+      "latency_s": 21.11439329996938,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "missing_electoral_bond_current_position",
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q12",
+      "title": "MEDICAL LAW + CONSUMER LAW + CRIMINAL LAW",
+      "status_code": 200,
+      "latency_s": 0.868509299994912,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "missing_bns_bnss_framing",
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q13",
+      "title": "ADMINISTRATIVE LAW + SERVICE LAW + CONSTITUTIONAL LAW",
+      "status_code": 200,
+      "latency_s": 30.490306799998507,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q14",
+      "title": "INTERNET LAW + DEFAMATION + FREE SPEECH",
+      "status_code": 200,
+      "latency_s": 0.9451694000163116,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    },
+    {
+      "qid": "Q15",
+      "title": "INTERNATIONAL LAW + EXTRADITION + FUNDAMENTAL RIGHTS",
+      "status_code": 200,
+      "latency_s": 31.89182650001021,
+      "query_type": "academic_direct",
+      "answer_len": 223,
+      "unsupported_case_citations": 0,
+      "high_hallucination_risk": false,
+      "answer_downgraded": true,
+      "subq_heading_count": 0,
+      "has_bns_or_bnss": false,
+      "has_vombatkere_or_stay": false,
+      "has_electoral_bond_struck_down_marker": false,
+      "has_unverified_marker": false,
+      "hard_fail_reasons": [
+        "weak_explicit_subquestion_structure"
+      ]
+    }
+  ]
+}

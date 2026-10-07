@@ -1,0 +1,68 @@
+====================================================================
+LAW-GPT retrieval scoring (Task 2)
+====================================================================
+index       : E:\LAW-GPT_new\corpus_intake\statute_v3_staged\STATUTE_DATABASE
+collection  : legal_db_statutes
+ground truth: E:\LAW-GPT_new\azure_backend_stage\kaanoon_test\bench\ground_truth.json (200 items)
+depths      : 5, 10, 20
+
+Cold-opening index (model load ~25-40s)...
+RAG Storage initialized at: E:\LAW-GPT_new\azure_backend_stage\PERMANENT_RAG_FILES
+  collection docs : 9541
+  embedding dim  : 384
+  bm25 index     : present
+  load seconds   : 16.6
+
+Scoring...
+    ... 25/200 questions scored
+    ... 50/200 questions scored
+    ... 75/200 questions scored
+    ... 100/200 questions scored
+    ... 125/200 questions scored
+    ... 150/200 questions scored
+    ... 175/200 questions scored
+    ... 200/200 questions scored
+
+====================================================================
+SCORECARD ------ STAGED_v3_9541
+====================================================================
+  queries scored      : 200
+   recall@5   recall@10  recall@20 
+   0.8600      0.9350      0.9850     
+  MRR                 : 0.7346
+  nDCG@10             : 0.7799
+  hit / no-hit        : 197 / 3
+  FAILURE THRESHOLD   : k=10 reaches recall 0.9350 (bar 90%)
+
+  BY SECTION TYPE
+    stratum                                         n    R@5   R@10   R@20    MRR   nDCG
+    punishment                                     58  0.845  0.948  0.983  0.753  0.797
+    exception                                      57  0.930  0.983  1.000  0.771  0.821
+    procedure                                      57  0.825  0.912  0.965  0.706  0.753
+    definition                                     28  0.821  0.857  1.000  0.680  0.716
+
+  BY ACT
+    stratum                                         n    R@5   R@10   R@20    MRR   nDCG
+    Indian Contract Act 1872                       41  0.976  1.000  1.000  0.757  0.818
+    Bharatiya Nyaya Sanhita 2023                   39  0.872  0.974  1.000  0.781  0.824
+    Transfer of Property Act 1882                  32  0.719  0.844  0.969  0.637  0.677
+    The Companies Act, 1956                        30  0.867  0.933  1.000  0.756  0.795
+    Specific Relief Act 1963                       24  0.875  0.958  1.000  0.694  0.755
+    Consumer Protection Act 2019                   20  0.700  0.800  0.900  0.680  0.703
+    Indian Partnership Act 1932                     3  1.000  1.000  1.000  0.750  0.810
+    Sale of Goods Act 1930                          3  1.000  1.000  1.000  1.000  1.000
+    Insolvency and Bankruptcy Code, 2016            2  1.000  1.000  1.000  0.750  0.816
+    Partnership Act 1932                            2  1.000  1.000  1.000  1.000  1.000
+    Arbitration and Conciliation Act, 1996          1  1.000  1.000  1.000  1.000  1.000
+    Competition Act 2002                            1  1.000  1.000  1.000  0.333  0.500
+    Digital Personal Data Protection Act, 2023      1  1.000  1.000  1.000  1.000  1.000
+    IB Code 2016                                    1  1.000  1.000  1.000  1.000  1.000
+
+  BY LENGTH BUCKET
+    stratum                                         n    R@5   R@10   R@20    MRR   nDCG
+    medium                                         79  0.911  0.975  1.000  0.737  0.793
+    long                                           72  0.708  0.847  0.958  0.570  0.629
+    short                                          49  1.000  1.000  1.000  0.973  0.980
+
+  scoring seconds: 16.1
+WROTE E:\LAW-GPT_new\azure_backend_stage\kaanoon_test\bench\result_staged.json

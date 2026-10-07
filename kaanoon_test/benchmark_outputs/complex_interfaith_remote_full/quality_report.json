@@ -1,0 +1,61 @@
+{
+  "elapsed_seconds": 770.001,
+  "stream_error": "ChunkedEncodingError: Response ended prematurely",
+  "completed_count": 5,
+  "error_count": 0,
+  "section_ids": [
+    "l1",
+    "l2",
+    "l3",
+    "l4",
+    "l5"
+  ],
+  "first_card_seconds": 21.539,
+  "coverage": {
+    "article_21_autonomy": true,
+    "sma": true,
+    "conversion": true,
+    "second_marriage": true,
+    "anti_conversion": true,
+    "criminal": true,
+    "habeas": true,
+    "digital": true,
+    "love_jihad": true,
+    "parental_liberty": true,
+    "state_investigation": true,
+    "both_sides": true,
+    "outcome": false
+  },
+  "quality_flags": {
+    "l1": [
+      "uncertain_quote_style"
+    ],
+    "l2": [],
+    "l3": [],
+    "l4": [
+      "missing_exact_retrieval_status",
+      "missing_framed_issue_constitutional_article21_autonomy",
+      "missing_framed_issue_criminal_kidnapping_confinement",
+      "missing_framed_issue_statutory_forced_conversion_scrutiny",
+      "missing_framed_issue_statutory_sma_conversion_second_marriage",
+      "missing_major_framed_issues",
+      "missing_required_authority_reference",
+      "too_thin"
+    ],
+    "l5": []
+  },
+  "authority_counts": {
+    "l1": 0,
+    "l2": 0,
+    "l3": 0,
+    "l4": 0,
+    "l5": 0
+  },
+  "chars_by_section": {
+    "l1": 9688,
+    "l2": 13933,
+    "l3": 17930,
+    "l4": 129,
+    "l5": 8445
+  }
+}

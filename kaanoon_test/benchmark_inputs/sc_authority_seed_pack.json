@@ -1,0 +1,63 @@
+{
+  "name": "Supreme Court RAG authority seed pack",
+  "purpose": "High-value Indian law authorities that retrieval probes must handle reliably before ranking changes are attempted.",
+  "version": 1,
+  "authorities": [
+    {
+      "id": "privacy_puttaswamy",
+      "domain": "constitutional/privacy",
+      "query": "K.S. Puttaswamy right to privacy state surveillance Article 21 Supreme Court",
+      "expected_terms": ["puttaswamy", "privacy", "article 21"],
+      "minimum_trusted_sources": 2
+    },
+    {
+      "id": "adult_marriage_shafin_jahan",
+      "domain": "privacy/autonomy/adult marriage",
+      "query": "Shafin Jahan Hadiya adult interfaith marriage autonomy habeas corpus Supreme Court",
+      "expected_terms": ["shafin", "hadiya", "marriage", "habeas"],
+      "minimum_trusted_sources": 1
+    },
+    {
+      "id": "religion_expression_bijoe_emmanuel",
+      "domain": "religion/education/expression",
+      "query": "Bijoe Emmanuel freedom of conscience education religious expression Supreme Court",
+      "expected_terms": ["bijoe", "emmanuel", "conscience", "education"],
+      "minimum_trusted_sources": 1
+    },
+    {
+      "id": "religion_sabarimala",
+      "domain": "religion/equality",
+      "query": "Indian Young Lawyers Association Sabarimala Article 25 Article 14 essential religious practice Supreme Court",
+      "expected_terms": ["sabarimala", "article 25", "article 14"],
+      "minimum_trusted_sources": 1
+    },
+    {
+      "id": "basic_structure_kesavananda",
+      "domain": "constitutional/basic structure",
+      "query": "Kesavananda Bharati basic structure doctrine Supreme Court",
+      "expected_terms": ["kesavananda", "basic structure"],
+      "minimum_trusted_sources": 1
+    },
+    {
+      "id": "personal_liberty_maneka",
+      "domain": "constitutional/personal liberty",
+      "query": "Maneka Gandhi Article 21 procedure established by law personal liberty Supreme Court",
+      "expected_terms": ["maneka", "article 21", "personal liberty"],
+      "minimum_trusted_sources": 1
+    },
+    {
+      "id": "criminal_process_lalita_kumari",
+      "domain": "criminal procedure",
+      "query": "Lalita Kumari FIR registration Section 154 CrPC Supreme Court",
+      "expected_terms": ["lalita kumari", "fir", "154"],
+      "minimum_trusted_sources": 1
+    },
+    {
+      "id": "adult_choice_lata_singh",
+      "domain": "adult marriage/protection",
+      "query": "Lata Singh adult marriage choice family opposition Supreme Court",
+      "expected_terms": ["lata singh", "adult", "marriage"],
+      "minimum_trusted_sources": 1
+    }
+  ]
+}

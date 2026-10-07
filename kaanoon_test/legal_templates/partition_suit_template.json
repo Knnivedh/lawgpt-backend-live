@@ -1,0 +1,125 @@
+{
+  "template_name": "Partition Suit Template (Hindu Succession Act)",
+  "template_id": "CIVIL_PARTITION_001",
+  "applicable_law": "Hindu Succession Act, 1956 - Section 8 (Class I heirs)",
+  "court_jurisdiction": "District Court having territorial jurisdiction over property",
+  "format": {
+    "in_the_court_of": "Hon'ble District Judge, [District Name]",
+    "suit_type": "Original Suit No. _____ of 20__",
+    "case_title": "[Plaintiff 1 Name] & Ors. .... Plaintiffs\n                    Versus\n[Defendant Name] .... Defendant",
+    "plaintiffs": [
+      {
+        "name": "[Your Name]",
+        "father_name": "Late [Father's Name]",
+        "age": "[Age]",
+        "address": "[Complete Address]",
+        "description": "Legal heir / Son/Daughter of late [Parent's Name]"
+      },
+      {
+        "name": "[Sibling 2 Name]",
+        "father_name": "Late [Father's Name]",
+        "age": "[Age]",
+        "address": "[Complete Address]",
+        "description": "Legal heir / Son/Daughter of late [Parent's Name]"
+      },
+      {
+        "name": "[Sibling 3 Name]",
+        "father_name": "Late [Father's Name]",
+        "age": "[Age]",
+        "address": "[Complete Address]",
+        "description": "Legal heir / Son/Daughter of late [Parent's Name]"
+      }
+    ],
+    "defendant": {
+      "name": "[Defendant Name, e.g., Elder brother's wife]",
+      "address": "[Defendant Address]",
+      "description": "Person who fraudulently obtained property mutation"
+    },
+    "property_description": {
+      "type": "Residential/Agricultural/Commercial land",
+      "survey_number": "[Survey No./Plot No.]",
+      "area": "[Area in sq. meters/acres]",
+      "boundaries": "North: [Boundary], South: [Boundary], East: [Boundary], West: [Boundary]",
+      "location": "[Complete address with landmarks]",
+      "current_market_value": "Rs. [Amount] (for court fee calculation)",
+      "mutation_entry": "Entry No. [X] in Municipal/Revenue records"
+    },
+    "facts_pleadings": {
+      "para1_introduction": "That the plaintiffs are the legal heirs and Class I heirs of late Sh. [Father's Name] and late Smt. [Mother's Name], who died intestate on [Date] and [Date] respectively.",
+      "para2_heirship": "That under Section 8 of the Hindu Succession Act, 1956, when a Hindu male dies intestate, his property devolves equally upon all Class I heirs. The plaintiffs (son/daughter) and [siblings] are all Class I heirs entitled to equal share.",
+      "para3_property": "That the suit property described above was the self-acquired/ancestral property of late [Father's Name]. No will was ever executed by the deceased.",
+      "para4_fraud": "That the defendant fraudulently obtained mutation of the entire property in her name by producing a forged will dated [Date] before the Municipal/Revenue authorities.",
+      "para5_forgery": "That the said will is forged and fabricated. The signature does not match the deceased's genuine signature. The plaintiffs have filed FIR No. [X] under Sections 467, 420 IPC for forgery.",
+      "para6_no_consent": "That the defendant obtained mutation without knowledge or consent of the plaintiffs, who are entitled legal heirs.",
+      "para7_suit_property": "That the suit property is indivisible in nature and requires partition by metes and bounds through court-appointed commissioner.",
+      "para8_cause_of_action": "That cause of action arose when plaintiffs discovered the fraudulent mutation on [Date]. The suit is within limitation under Article 65 of Limitation Act, 1963.",
+      "para9_jurisdiction": "That this Hon'ble Court has jurisdiction as the suit property is situated within its territorial limits.",
+      "para10_valuation": "That the suit is valued at Rs. [Amount] for court fee purposes and proper court fees have been paid.",
+      "para11_no_alternative": "That no alternative remedy is available and civil suit is the only remedy."
+    },
+    "prayers_reliefs": [
+      "a) Declare that the will dated [Date] purportedly executed by late [Father's Name] is forged, fabricated, and void.",
+      "b) Declare that mutation entry No. [X] dated [Date] is illegal, invalid, and obtained by fraud.",
+      "c) Declare that plaintiffs are entitled to equal share (1/3rd each) in the suit property as Class I heirs under Hindu Succession Act, 1956.",
+      "d) Direct partition of the suit property by metes and bounds through court-appointed commissioner.",
+      "e) Grant permanent injunction restraining defendant from selling, mortgaging, or alienating the suit property.",
+      "f) Grant temporary injunction under Order 39 Rule 1 & 2 CPC pending final decision.",
+      "g) Award costs of the suit to plaintiffs.",
+      "h) Grant any other relief deemed fit by this Hon'ble Court."
+    ],
+    "interim_relief_application": {
+      "order": "Order 39 Rule 1 & 2, CPC",
+      "prayer": "Grant temporary injunction restraining defendant from alienating, selling, or creating third-party rights in suit property pending final decision",
+      "urgency": "Property is in danger of being sold/mortgaged. Irreparable loss and injury to plaintiffs.",
+      "undertaking": "Plaintiffs undertake to compensate defendant if injunction is wrongly granted."
+    },
+    "verification": "I, [Plaintiff 1 Name], do hereby verify that the contents of paras 1 to [X] are true to my personal knowledge and belief.",
+    "plaintiff_signature": "[Signature of Plaintiff 1]",
+    "advocate_signature": "[Signature of Advocate with Enrolment No.]",
+    "date": "[DD/MM/YYYY]",
+    "place": "[City]"
+  },
+  "documents_to_attach": [
+    "Annexure P-1: Death certificate of father",
+    "Annexure P-2: Death certificate of mother",
+    "Annexure P-3: Birth certificates / School certificates proving plaintiffs are children",
+    "Annexure P-4: Property documents (sale deed / title deed)",
+    "Annexure P-5: Mutation records showing fraudulent entry",
+    "Annexure P-6: Copy of forged will (if available)",
+    "Annexure P-7: Handwriting samples of deceased",
+    "Annexure P-8: FIR copy filed for forgery",
+    "Annexure P-9: Legal notice sent to defendant",
+    "Annexure P-10: Valuation certificate from approved valuer"
+  ],
+  "court_fees_calculation": {
+    "basis": "Market value of property share claimed",
+    "formula": "As per Court Fees Act of respective state",
+    "example": "If property value is Rs. 50,00,000 and 3 heirs claim 1/3rd each → Each plaintiff's share = Rs. 16,66,667 → Court fees as per slab"
+  },
+  "procedural_steps": {
+    "step1": "Draft plaint with all facts and annexures",
+    "step2": "Calculate and pay court fees + stamp duty",
+    "step3": "File plaint in District Court registry",
+    "step4": "Court assigns case number and schedules first hearing",
+    "step5": "Simultaneously file application under Order 39 CPC for temporary injunction",
+    "step6": "Serve summons on defendant through court process",
+    "step7": "Defendant files written statement within 30-90 days",
+    "step8": "Court frames issues based on pleadings",
+    "step9": "Plaintiffs lead evidence (documents + witnesses)",
+    "step10": "Cross-examination by defendant",
+    "step11": "Defendant leads evidence",
+    "step12": "Final arguments by both sides",
+    "step13": "Court delivers judgment and decree",
+    "step14": "If partition ordered, court appoints commissioner for physical division",
+    "step15": "Commissioner's report filed and approved",
+    "step16": "Final decree for partition executed"
+  },
+  "time_estimate": "Partition suits typically take 2-5 years depending on court workload and evidence complexity",
+  "legal_notes": {
+    "hindu_succession_act": "Section 8 gives equal rights to all Class I heirs (sons, daughters, widow, mother)",
+    "limitation": "Article 65 - 12 years for possession-based suits; Article 59 - 3 years for declaratory suits from knowledge of fraud",
+    "injunction": "Under Order 39 CPC, court can grant temporary injunction if: (1) Prima facie case, (2) Balance of convenience, (3) Irreparable injury",
+    "partition_right": "Partition is a legal right. Court cannot refuse if property is capable of division.",
+    "third_party_rights": "If defendant has sold to bona fide purchaser for value without notice, plaintiffs may be entitled to damages instead of property recovery"
+  }
+}

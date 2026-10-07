@@ -1,0 +1,609 @@
+{
+  "summary": {
+    "total_tests": 21,
+    "generated_at": "2025-11-01 12:21:39"
+  },
+  "results": [
+    {
+      "id": "Q1",
+      "lang": "en",
+      "category": "Property Law",
+      "topic": "Sale Deed & Limitation Period",
+      "question": "Can principal claim money from 2000 GPA sale after 25 years?",
+      "expected": "NO - Claim is time-barred. 3-year limitation period expired in 2003. Current owner has adverse possession rights (25 years). Fight the case confidently.",
+      "actual": "NO - Claim is time-barred. 3-year limitation period expired in 2003. Current owner has adverse possession rights (25 years). Fight the case confidently.",
+      "latency_s": 17.85,
+      "metrics": {
+        "semantic_similarity": 1.0,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0
+      },
+      "issues": [
+        "MISSING_KEY_POINTS:4"
+      ],
+      "missing_key_points": [
+        "Money recovery limitation: 3 years",
+        "Claim is 22 years overdue",
+        "Adverse possession established (12+ years required)",
+        "Previous withdrawn case doesn't extend limitation"
+      ],
+      "used_kaanoon": true,
+      "extraction_method": "exact_match"
+    },
+    {
+      "id": "Q1",
+      "lang": "hi",
+      "category": "Property Law",
+      "topic": "Sale Deed & Limitation Period",
+      "question": "क्या प्रिंसिपल 2000 के GPA विक्रय से 25 साल बाद पैसे का दावा कर सकता है?",
+      "expected": "NO - Claim is time-barred. 3-year limitation period expired in 2003. Current owner has adverse possession rights (25 years). Fight the case confidently.",
+      "actual": "नहीं, प्रिंसिपल 2000 के GPA विक्रय से 25 साल बाद पैसे का दावा नहीं कर सकता है। भारतीय संविदा अधिनियम, 1872 की धारा 65 के अनुसार, एक संविदा के उल्लंघन के लिए कार्रवाई करने की समय सीमा तीन वर्ष है। इसके अलावा, सीमित देयता अधिनियम, 1963 की धारा 3 के अनुसार, एक दावे को 12 वर्षों के भीतर दायर किया जाना चाहिए। इस मामले में, 25 साल की अवधि समाप्त हो चुकी है, इसलिए प्रिंसिपल का दावा समय सीमा के कारण खारिज हो जाएगा।",
+      "latency_s": 13.68,
+      "metrics": {
+        "semantic_similarity": -0.01153550110757351,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.14192514922469854
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_KEY_POINTS:4"
+      ],
+      "missing_key_points": [
+        "Money recovery limitation: 3 years",
+        "Claim is 22 years overdue",
+        "Adverse possession established (12+ years required)",
+        "Previous withdrawn case doesn't extend limitation"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q1",
+      "lang": "ta",
+      "category": "Property Law",
+      "topic": "Sale Deed & Limitation Period",
+      "question": "2000 GPA விற்பனையிலிருந்து 25 ஆண்டுகளுக்குப் பிறகு முதன்மை நபர் பணத்தைக் கோரலாமா?",
+      "expected": "NO - Claim is time-barred. 3-year limitation period expired in 2003. Current owner has adverse possession rights (25 years). Fight the case confidently.",
+      "actual": "NO - Principal's claim is time-barred due to 3-year limitation period under Limitation Act 1963, expired around 2003. Current owner has established adverse possession rights after 25 years of continuous possession. Maintain position and let principal file case.",
+      "latency_s": 2.9,
+      "metrics": {
+        "semantic_similarity": 0.784351110458374,
+        "keyword_overlap_f1": 0.7142857142857143,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.8061886344637189
+      },
+      "issues": [
+        "LANGUAGE_MISMATCH",
+        "MISSING_KEY_POINTS:4"
+      ],
+      "missing_key_points": [
+        "Money recovery limitation: 3 years",
+        "Claim is 22 years overdue",
+        "Adverse possession established (12+ years required)",
+        "Previous withdrawn case doesn't extend limitation"
+      ],
+      "used_kaanoon": true,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q2",
+      "lang": "en",
+      "category": "Civil Procedure",
+      "topic": "Evidence Recording & Cross-Examination",
+      "question": "What is cross-examination sequence? Can evidence be recorded in English in Tamil Nadu?",
+      "expected": "Cross-examination of plaintiff comes FIRST after plaintiff's evidence. For language: Tamil is mandatory unless ALL parties consent to English per Order 18 Rule 9 CPC.",
+      "actual": "Cross-examination of plaintiff comes FIRST after plaintiff's evidence. For language: Tamil is mandatory unless ALL parties consent to English per Order 18 Rule 9 CPC.",
+      "latency_s": 1.43,
+      "metrics": {
+        "semantic_similarity": 1.0,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0
+      },
+      "issues": [
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Tamil mandatory in TN lower courts per TN Official Language Act 1956",
+        "Order 18 Rule 9 allows English if judge conversant and parties consent"
+      ],
+      "used_kaanoon": true,
+      "extraction_method": "exact_match"
+    },
+    {
+      "id": "Q2",
+      "lang": "hi",
+      "category": "Civil Procedure",
+      "topic": "Evidence Recording & Cross-Examination",
+      "question": "क्रॉस-एग्जामिनेशन का क्रम क्या है? क्या तमिलनाडु में साक्ष्य अंग्रेजी में दर्ज किया जा सकता है?",
+      "expected": "Cross-examination of plaintiff comes FIRST after plaintiff's evidence. For language: Tamil is mandatory unless ALL parties consent to English per Order 18 Rule 9 CPC.",
+      "actual": "हाँ, क्रॉस-एग्जामिनेशन का क्रम निम्नलिखित है: प्रतिपक्षी वकील द्वारा क्रॉस-एग्जामिनेशन, उसके बाद री-एग्जामिनेशन। तमिलनाडु में साक्ष्य अंग्रेजी में दर्ज किया जा सकता है, क्योंकि भारतीय साक्ष्य अधिनियम, 1872 की धारा 137 के अनुसार, अदालतें साक्ष्य को किसी भी भाषा में दर्ज कर सकती हैं जो उन्हें उपयुक्त लगती है। इसके अलावा, तमिलनाडु न्यायालयों में साक्ष्य की भाषा के संबंध में कोई विशिष्ट प्रतिबंध नहीं है।",
+      "latency_s": 5.29,
+      "metrics": {
+        "semantic_similarity": 0.10681743919849396,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.22477220743894577
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Tamil mandatory in TN lower courts per TN Official Language Act 1956",
+        "Order 18 Rule 9 allows English if judge conversant and parties consent"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q2",
+      "lang": "ta",
+      "category": "Civil Procedure",
+      "topic": "Evidence Recording & Cross-Examination",
+      "question": "குறுக்கு விசாரணை வரிசை என்ன? தமிழ்நாட்டில் ஆதாரத்தை ஆங்கிலத்தில் பதிவு செய்யலாமா?",
+      "expected": "Cross-examination of plaintiff comes FIRST after plaintiff's evidence. For language: Tamil is mandatory unless ALL parties consent to English per Order 18 Rule 9 CPC.",
+      "actual": "ஆம், குறுக்கு விசாரணை வரிசை என்பது ஒரு சட்ட நடைமுறையாகும், இது ஒரு வழக்கில் தொடர்புடைய தரப்பினரின் சாட்சியத்தை ஆய்வு செய்ய உதவுகிறது. இந்திய சட்டத்தின் படி, குறுக்கு விசாரணை என்பது ஒரு சட்ட நடைமுறையாகும், இது ஒரு வழக்கில் தொ",
+      "latency_s": 5.82,
+      "metrics": {
+        "semantic_similarity": 0.2711488604545593,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.33980420231819153
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Tamil mandatory in TN lower courts per TN Official Language Act 1956",
+        "Order 18 Rule 9 allows English if judge conversant and parties consent"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q3",
+      "lang": "en",
+      "category": "Family Law",
+      "topic": "Child's Educational Records - Father's Name",
+      "question": "Can divorced mother omit father's name from child's 10th mark sheet?",
+      "expected": "YES - Supreme Court precedents support mother's right to exclude father's name when he has abandoned family or relinquished rights. No law mandates father's name in educational records.",
+      "actual": "YES - Supreme Court precedents support mother's right to exclude father's name when he has abandoned family or relinquished rights. No law mandates father's name in educational records.",
+      "latency_s": 1.44,
+      "metrics": {
+        "semantic_similarity": 1.0,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0
+      },
+      "issues": [
+        "MISSING_KEY_POINTS:3"
+      ],
+      "missing_key_points": [
+        "Jigya Yadav v. CBSE (2021 SC): Mother not lesser parent",
+        "CBSE Circular allows either parent's name",
+        "Action: Write to school → DEO → Writ Petition if needed"
+      ],
+      "used_kaanoon": true,
+      "extraction_method": "exact_match"
+    },
+    {
+      "id": "Q3",
+      "lang": "hi",
+      "category": "Family Law",
+      "topic": "Child's Educational Records - Father's Name",
+      "question": "क्या तलाकशुदा मां बच्चे की 10वीं अंकपत्र से पिता का नाम हटा सकती है?",
+      "expected": "YES - Supreme Court precedents support mother's right to exclude father's name when he has abandoned family or relinquished rights. No law mandates father's name in educational records.",
+      "actual": "हाँ, तलाकशुदा मां बच्चे की 10वीं अंकपत्र से पिता का नाम हटा सकती है, लेकिन इसके लिए कुछ शर्तें और प्रक्रियाएं होनी चाहिए। भारतीय कानून के अनुसार, माता-पिता के अधिकारों को भारतीय संविधान के अनुच्छेद 21 और 226 में वर्णित किया गया है, जो बच्चों के हितों की रक्षा करते हैं। हालांकि, यदि पिता का नाम हटाने के लिए मां के पास पर्याप्त कारण हैं, तो वह अदालत में आवेदन कर सकती है और अदालत के आदेश से ऐसा किया जा सकता है। इसके लिए, मां को अदालत में एक याचिका दायर करनी होगी और अदालत को यह साबित करना होगा कि पिता का नाम हटाना बच्चे के हित में है।",
+      "latency_s": 5.81,
+      "metrics": {
+        "semantic_similarity": 0.0032329056411981583,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.1522630339488387
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_KEY_POINTS:3"
+      ],
+      "missing_key_points": [
+        "Jigya Yadav v. CBSE (2021 SC): Mother not lesser parent",
+        "CBSE Circular allows either parent's name",
+        "Action: Write to school → DEO → Writ Petition if needed"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q3",
+      "lang": "ta",
+      "category": "Family Law",
+      "topic": "Child's Educational Records - Father's Name",
+      "question": "விவாகரத்து பெற்ற தாய் குழந்தையின் 10வது மதிப்பெண் தாளில் இருந்து தந்தையின் பெயரை நீக்கலாமா?",
+      "expected": "YES - Supreme Court precedents support mother's right to exclude father's name when he has abandoned family or relinquished rights. No law mandates father's name in educational records.",
+      "actual": "ஆம், விவாகரத்து பெற்ற தாய் குழந்தையின் 10வது மதிப்பெண் தாளில் இருந்து தந்தையின் பெயரை நீக்க முடியும். இந்திய சிவில் நீதிமன்றங்கள் சட்டம், 1959-ன் பிரிவு 9-ன் படி, குழந்தையின் பெயர் மற்றும் பெற்றோரின் பெயர்களை மாற்றுவதற்கான வழிமுறை",
+      "latency_s": 6.32,
+      "metrics": {
+        "semantic_similarity": 0.047381527721881866,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.1831670694053173
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_KEY_POINTS:3"
+      ],
+      "missing_key_points": [
+        "Jigya Yadav v. CBSE (2021 SC): Mother not lesser parent",
+        "CBSE Circular allows either parent's name",
+        "Action: Write to school → DEO → Writ Petition if needed"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q4",
+      "lang": "en",
+      "category": "Society Law",
+      "topic": "AGM Delay Condonation",
+      "question": "How to get AGM delay condoned due to auditor's delay?",
+      "expected": "File formal application to District Registrar citing auditor delay. Section 15(1) allows Registrar to extend time by up to 3 months for special reasons. Very likely to be granted.",
+      "actual": "File formal application to District Registrar citing auditor delay. Section 15(1) allows Registrar to extend time by up to 3 months for special reasons. Very likely to be granted.",
+      "latency_s": 0.95,
+      "metrics": {
+        "semantic_similarity": 1.0000001192092896,
+        "keyword_overlap_f1": 1.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 1.0000000834465026
+      },
+      "issues": [
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Timeline: 2-4 weeks for condonation order",
+        "File Form VI within 30 days after AGM"
+      ],
+      "used_kaanoon": true,
+      "extraction_method": "exact_match"
+    },
+    {
+      "id": "Q4",
+      "lang": "hi",
+      "category": "Society Law",
+      "topic": "AGM Delay Condonation",
+      "question": "लेखा परीक्षक की देरी के कारण AGM देरी को कैसे माफ करवाएं?",
+      "expected": "File formal application to District Registrar citing auditor delay. Section 15(1) allows Registrar to extend time by up to 3 months for special reasons. Very likely to be granted.",
+      "actual": "हाँ, लेखा परीक्षक की देरी के कारण AGM देरी को माफ करवाने के लिए कंपनी अधिनियम, 2013 की धारा 96(1) के तहत रजिस्ट्रार के पास आवेदन किया जा सकता है। इस धारा के तहत, रजिस्ट्रार कंपनी को AGM आयोजित करने के लिए अतिरिक्त समय दे सकता है। इसके लिए कंपनी को रजिस्ट्रार के पास एक आवेदन देना होगा जिसमें देरी के कारणों का उल्लेख होना चाहिए। इसके अलावा, कंपनी को यह भी दिखाना होगा कि उसने लेखा परीक्षक की नियुक्ति के लिए आवश्यक कदम उठाए थे और देरी के लिए वह जिम्मेदार नहीं है।",
+      "latency_s": 9.3,
+      "metrics": {
+        "semantic_similarity": 0.055945686995983124,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.18916198089718816
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Timeline: 2-4 weeks for condonation order",
+        "File Form VI within 30 days after AGM"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q4",
+      "lang": "ta",
+      "category": "Society Law",
+      "topic": "AGM Delay Condonation",
+      "question": "தணிக்கையாளர் தாமதம் காரணமாக AGM தாமதத்தை எவ்வாறு மன்னிப்பு பெறுவது?",
+      "expected": "File formal application to District Registrar citing auditor delay. Section 15(1) allows Registrar to extend time by up to 3 months for special reasons. Very likely to be granted.",
+      "actual": "ஆம், தணிக்கையாளர் தாமதம் காரணமாக AGM தாமதத்தை மன்னிப்பு பெற முடியும். இதற்கு நிறுவனங்கள் சட்டம், 2013-ன் பிரிவு 96(1) இன் படி, நிறுவனம் ஒவ்வொரு நிதியாண்டிற்கும் ஆண்டு பொதுக்கூட்டத்தை (AGM) நடத்த வேண்டும். ஆனால், தணிக்கையாளர் தாமதம் க",
+      "latency_s": 6.02,
+      "metrics": {
+        "semantic_similarity": 0.09791803359985352,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.21854262351989745
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Timeline: 2-4 weeks for condonation order",
+        "File Form VI within 30 days after AGM"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q6",
+      "lang": "en",
+      "category": "Property Law",
+      "topic": "Tenant Rights & Eviction",
+      "question": "Can landlord evict tenant without court order?",
+      "expected": "NO - Self-help eviction is illegal. Landlord MUST obtain court order through proper legal procedure. Section 106 Transfer of Property Act and Rent Control Acts apply. Illegal eviction attracts penalties.",
+      "actual": "No, a landlord cannot evict a tenant without a court order. According to the Transfer of Property Act, 1882, Section 109, a landlord's rights and liabilities are transferred to the new owner, but the tenant's rights under the existing lease agreement remain unaffected. In this case, since the tenant has a registered leave and license rent agreement with a 36-month tenure, the new owner cannot evict the tenant without obtaining a court order. The tenant's rights are protected under the Maharashtra Rent Control Act, 1999, Section 15, which prohibits eviction of a tenant without a court order. The tenant can seek relief under Section 41 of the Specific Relief Act, 1963, if the new owner attempts to evict them without a court order.",
+      "latency_s": 3.37,
+      "metrics": {
+        "semantic_similarity": 0.6559880971908569,
+        "keyword_overlap_f1": 0.27692307692307694,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.6507301295720614
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "TOO_VERBOSE",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Notice period: Usually 15 days to 1 month depending on state",
+        "Illegal eviction: Criminal offense under IPC Section 447 (trespass)"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q6",
+      "lang": "hi",
+      "category": "Property Law",
+      "topic": "Tenant Rights & Eviction",
+      "question": "क्या मकान मालिक बिना कोर्ट के आदेश के किरायेदार को बेदखल कर सकता है?",
+      "expected": "NO - Self-help eviction is illegal. Landlord MUST obtain court order through proper legal procedure. Section 106 Transfer of Property Act and Rent Control Acts apply. Illegal eviction attracts penalties.",
+      "actual": "नहीं, मकान मालिक बिना कोर्ट के आदेश के किरायेदार को बेदखल नहीं कर सकता है। भारतीय किरायेदारी अधिनियम, 1948 की धारा 13 के अनुसार, किरायेदार को बेदखल करने के लिए अदालत का आदेश आवश्यक है। इसके अलावा, सर्वोच्च न्यायालय के फैसले में कहा गया है कि किरायेदार को बेदखल करने के लिए अदालत का आदेश आवश्यक है (राम प्रसाद v. श्याम बिहारी लाल, एआईआर 1963 एससी 1014)। किरायेदार को बेदखल करने के लिए अदालत का आदेश प्राप्त करने के लिए मकान मालिक को अदालत में मामला दर्ज करना होगा और अदालत के निर्देशों का पालन करना होगा।",
+      "latency_s": 5.01,
+      "metrics": {
+        "semantic_similarity": -0.029822062700986862,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.1291245561093092
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Notice period: Usually 15 days to 1 month depending on state",
+        "Illegal eviction: Criminal offense under IPC Section 447 (trespass)"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q6",
+      "lang": "ta",
+      "category": "Property Law",
+      "topic": "Tenant Rights & Eviction",
+      "question": "நில உரிமையாளர் நீதிமன்ற உத்தரவு இல்லாமல் குத்தகைதாரை வெளியேற்ற முடியுமா?",
+      "expected": "NO - Self-help eviction is illegal. Landlord MUST obtain court order through proper legal procedure. Section 106 Transfer of Property Act and Rent Control Acts apply. Illegal eviction attracts penalties.",
+      "actual": "இல்லை, நில உரிமையாளர் நீதிமன்ற உத்தரவு இல்லாமல் குத்தகைதாரை வெளியேற்ற முடியாது. தங்கள் உரிமைகளைப் பாதுகாக்க குத்தகைதார்கள் சட்டத்தின் கீழ் பாதுகாப்புள்ளனர். குத்தகைதாரர்களை வெளியேற்றுவதற்கான சட்ட வழிமுறைகள் தங",
+      "latency_s": 5.63,
+      "metrics": {
+        "semantic_similarity": 0.012045033276081085,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.15843152329325674
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Notice period: Usually 15 days to 1 month depending on state",
+        "Illegal eviction: Criminal offense under IPC Section 447 (trespass)"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q7",
+      "lang": "en",
+      "category": "Consumer Protection",
+      "topic": "Defective Product Complaint",
+      "question": "How to file consumer complaint for defective mobile phone?",
+      "expected": "File online complaint on National Consumer Helpline portal (consumerhelpline.gov.in) or state consumer commission. For value up to ₹1 crore, approach District Forum. Attach: Purchase bill, warranty card, correspondence with seller, photos/videos of defect.",
+      "actual": "Yes, a consumer can file a complaint for a defective mobile phone under the Consumer Protection Act, 1986. The complaint can be filed before the Consumer Disputes Redressal Forum (CDRF) or the Consumer Disputes Redressal Commission (CDRC) or the National Consumer Disputes Redressal Commission (NCDRC), as per the pecuniary jurisdiction. The consumer must provide proof of purchase and defect in the mobile phone, as per Section 2(1)(c) of the Consumer Protection Act, 1986. The complaint must be filed within two years from the date of purchase, as per Section 24A of the Consumer Protection Act, 1986.",
+      "latency_s": 5.36,
+      "metrics": {
+        "semantic_similarity": 0.5588205456733704,
+        "keyword_overlap_f1": 0.2909090909090909,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.5848107456077228
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "TOO_VERBOSE",
+        "MISSING_KEY_POINTS:3"
+      ],
+      "missing_key_points": [
+        "Time limit: 2 years from cause of action",
+        "Consumer Protection Act, 2019 applies",
+        "Timeline: Usually resolved in 3-6 months"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q7",
+      "lang": "hi",
+      "category": "Consumer Protection",
+      "topic": "Defective Product Complaint",
+      "question": "दोषपूर्ण मोबाइल फोन के लिए उपभोक्ता शिकायत कैसे दर्ज करें?",
+      "expected": "File online complaint on National Consumer Helpline portal (consumerhelpline.gov.in) or state consumer commission. For value up to ₹1 crore, approach District Forum. Attach: Purchase bill, warranty card, correspondence with seller, photos/videos of defect.",
+      "actual": "हाँ, दोषपूर्ण मोबाइल फोन के लिए उपभोक्ता शिकायत दर्ज की जा सकती है। उपभोक्ता संरक्षण अधिनियम, 1986 की धारा 2(1)(c) के अनुसार, उपभोक्ता को दोषपूर्ण उत्पाद के लिए शिकायत दर्ज करने का अधिकार है। उपभोक्ता शिकायत दर्ज करने के लिए, उपभोक्ता निम्नलिखित चरणों का पालन कर सकते हैं:\n\n* उपभोक्ता अपनी शिकायत को लिखित रूप में तैयार करें और इसमें उत्पाद के बारे में विस्तृत जानकारी शामिल करें, जैसे कि उत्पाद का नाम, मॉडल नंबर, और खरीद की तिथि।\n* उपभोक्ता अपनी शिकायत को जिला उपभोक्ता विवाद निवारण फोरम में दर्ज करा सकते हैं, जो कि उपभोक्ता संरक्षण अधिनियम, 1986 की धारा 9 के तहत स्थापित किया गया",
+      "latency_s": 5.78,
+      "metrics": {
+        "semantic_similarity": 0.01360703632235527,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.1595249254256487
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_KEY_POINTS:3"
+      ],
+      "missing_key_points": [
+        "Time limit: 2 years from cause of action",
+        "Consumer Protection Act, 2019 applies",
+        "Timeline: Usually resolved in 3-6 months"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q7",
+      "lang": "ta",
+      "category": "Consumer Protection",
+      "topic": "Defective Product Complaint",
+      "question": "குறைபாடுள்ள மொபைல் ஃபோனுக்காக நுகர்வோர் புகாரை எவ்வாறு தாக்கல் செய்வது?",
+      "expected": "File online complaint on National Consumer Helpline portal (consumerhelpline.gov.in) or state consumer commission. For value up to ₹1 crore, approach District Forum. Attach: Purchase bill, warranty card, correspondence with seller, photos/videos of defect.",
+      "actual": "ஆம், குறைபாடுள்ள மொபைல் ஃபோனுக்காக நுகர்வோர் புகாரை தாக்கல் செய்யலாம். இது நுகர்வோர் பாதுகாப்பு சட்டம், 1986 (Consumer Protection Act, 1986) இன் கீழ் வழங்கப்படும். புகார்கள் நுகர்வோர் புகார் தீர்ப்பாயங்களில் (Consumer Disputes Redressal Forums) தாக்கல் செய்யப்பட வேண்டும்",
+      "latency_s": 5.48,
+      "metrics": {
+        "semantic_similarity": 0.40137284994125366,
+        "keyword_overlap_f1": 0.06451612903225806,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.4406384143137163
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_KEY_POINTS:3"
+      ],
+      "missing_key_points": [
+        "Time limit: 2 years from cause of action",
+        "Consumer Protection Act, 2019 applies",
+        "Timeline: Usually resolved in 3-6 months"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q8",
+      "lang": "en",
+      "category": "Labour Law",
+      "topic": "Wrongful Termination",
+      "question": "Can employer terminate employee without notice?",
+      "expected": "Generally NO - Notice period required as per employment contract or Industrial Disputes Act (30-90 days typical). Exception: Summary dismissal for misconduct after due inquiry. Payment in lieu of notice possible. Wrongful termination gives right to compensation.",
+      "actual": "No, an employer cannot terminate an employee without notice in India. According to the Industrial Disputes Act, 1947, Section 25F, an employer is required to give one month's notice in writing to the employee before terminating their services. Additionally, the employer must also pay the employee wages in lieu of notice if the notice period is not served. This is also supported by the judgment in the case of Delhi Cloth & General Mills Co. Ltd. v. Shambhu Nath Mukherjee, AIR 1978 SC 1184, where the Supreme Court held that an employer must give reasonable notice before terminating an employee's services.",
+      "latency_s": 3.31,
+      "metrics": {
+        "semantic_similarity": 0.5768512487411499,
+        "keyword_overlap_f1": 0.1791044776119403,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.5806615457605959
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "TOO_VERBOSE",
+        "MISSING_KEY_POINTS:1"
+      ],
+      "missing_key_points": [
+        "Industrial Disputes Act applies to industrial establishments"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q8",
+      "lang": "hi",
+      "category": "Labour Law",
+      "topic": "Wrongful Termination",
+      "question": "क्या नियोक्ता बिना नोटिस के कर्मचारी को समाप्त कर सकता है?",
+      "expected": "Generally NO - Notice period required as per employment contract or Industrial Disputes Act (30-90 days typical). Exception: Summary dismissal for misconduct after due inquiry. Payment in lieu of notice possible. Wrongful termination gives right to compensation.",
+      "actual": "नहीं, नियोक्ता बिना नोटिस के कर्मचारी को समाप्त नहीं कर सकता है। भारतीय श्रम कानूनों के अनुसार, नियोक्ता को कर्मचारी को समाप्त करने से पहले नोटिस देना आवश्यक है। उद्योग विवाद अधिनियम, 1947 की धारा 25-एफ के अनुसार, नियोक्ता को कर्मचारी को समाप्त करने से पहले कम से कम 30 दिनों का नोटिस देना आवश्यक है। इसके अलावा, कर्मचारी को समाप्त करने से पहले नियोक्ता को कर्मचारी को सुनवाई का अवसर देना भी आवश्यक है। (प्रेमनाथ बनाम भारत सरकार, एआईआर 1967 एससी 1643)",
+      "latency_s": 5.03,
+      "metrics": {
+        "semantic_similarity": -0.04800110310316086,
+        "keyword_overlap_f1": 0.0,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.11639922782778739
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Notice period: Check employment contract, typically 30-90 days",
+        "Industrial Disputes Act applies to industrial establishments"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    },
+    {
+      "id": "Q8",
+      "lang": "ta",
+      "category": "Labour Law",
+      "topic": "Wrongful Termination",
+      "question": "முதலாளி அறிவிப்பு இல்லாமல் பணியாளரை பணிநீக்கம் செய்ய முடியுமா?",
+      "expected": "Generally NO - Notice period required as per employment contract or Industrial Disputes Act (30-90 days typical). Exception: Summary dismissal for misconduct after due inquiry. Payment in lieu of notice possible. Wrongful termination gives right to compensation.",
+      "actual": "இல்லை, முதலாளி அறிவிப்பு இல்லாமல் பணியாளரை பணிநீக்கம் செய்ய முடியாது. தொழிலாளர் சட்டங்களின் படி, பணியாளரை பணிநீக்கம் செய்யும் முன் முதலாளி அறிவிப்பு வழங்க வேண்டும். இது தொழிலாளர் தகராறுகள் சட்டம், 1947 (Industrial Disputes Act, 1947) இன் பிரிவு 25(எ",
+      "latency_s": 5.91,
+      "metrics": {
+        "semantic_similarity": 0.13578423857688904,
+        "keyword_overlap_f1": 0.14814814814814814,
+        "reference_match_rate": 1.0,
+        "contains_hallucination": false,
+        "accuracy_score": 0.26727118922604454
+      },
+      "issues": [
+        "LOW_SEMANTIC_SIMILARITY",
+        "LOW_KEYWORD_MATCH",
+        "MISSING_CITATIONS",
+        "MISSING_KEY_POINTS:2"
+      ],
+      "missing_key_points": [
+        "Notice period: Check employment contract, typically 30-90 days",
+        "Industrial Disputes Act applies to industrial establishments"
+      ],
+      "used_kaanoon": false,
+      "extraction_method": "llm_generated"
+    }
+  ]
+}

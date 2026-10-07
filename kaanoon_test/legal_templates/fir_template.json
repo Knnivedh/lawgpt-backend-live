@@ -1,0 +1,80 @@
+{
+  "template_name": "FIR Template for Property Forgery Cases",
+  "template_id": "FIR_FORGERY_001",
+  "format": {
+    "to": "Station House Officer, [Police Station Name], [District]",
+    "subject": "FIR under Sections 420, 467, 468, 471, 120B IPC for Forgery of Will and Property Fraud",
+    "complainant_details": {
+      "name": "[Your Full Name]",
+      "father_name": "[Father's Name]",
+      "age": "[Age]",
+      "address": "[Complete Address]",
+      "phone": "[Contact Number]",
+      "relationship_to_deceased": "Son/Daughter of late [Parent's Name]"
+    },
+    "accused_details": {
+      "primary_accused": {
+        "name": "[Accused Name]",
+        "address": "[Accused Address]",
+        "relationship": "[e.g., Elder brother's wife]"
+      },
+      "co_accused": [
+        {
+          "name": "[Witness 1 who attested fake will]",
+          "role": "Attesting witness to forged will"
+        },
+        {
+          "name": "[Any official who helped]",
+          "role": "Municipal/Revenue official who processed illegal mutation"
+        }
+      ]
+    },
+    "facts_of_case": [
+      "1. My father [Name] and mother [Name] died intestate (without will) on [Date].",
+      "2. As per Hindu Succession Act, 1956, Section 8, all Class I heirs (myself, my brother [Name], my sister [Name]) have equal rights in the ancestral property located at [Address].",
+      "3. On [Date], I discovered that accused [Name] has fraudulently obtained mutation of the said property in her name.",
+      "4. The mutation was done on the basis of a forged will purportedly executed by my late father on [Date].",
+      "5. The signature on the will does not match my father's genuine signature. [Attach sample signatures if available]",
+      "6. My father never executed any will, and we (legal heirs) never consented to this transfer.",
+      "7. The accused obtained mutation entry No. [X] from [Municipal/Revenue Office] by submitting the forged will.",
+      "8. This amounts to cheating under Section 420 IPC and forgery under Sections 467, 468, 471 IPC.",
+      "9. The accused acted in criminal conspiracy with [co-accused names] to defraud legal heirs."
+    ],
+    "sections_invoked": {
+      "420": "Cheating and dishonestly inducing delivery of property (Punishment: 7 years + fine)",
+      "467": "Forgery of valuable security, will, or authority to make/transfer property (Punishment: Life imprisonment or 10 years + fine)",
+      "468": "Forgery for purpose of cheating (Punishment: 7 years + fine)",
+      "471": "Using as genuine a forged document (Punishment: As per Section 467)",
+      "120B": "Criminal conspiracy (Punishment: Same as substantive offense)"
+    },
+    "prayer_relief": [
+      "1. Kindly register FIR against the accused under Sections 420, 467, 468, 471, 120B IPC.",
+      "2. Conduct thorough investigation and arrest the accused.",
+      "3. Seize the forged will and all related documents as evidence.",
+      "4. Conduct forensic handwriting examination to prove forgery.",
+      "5. Interrogate attesting witnesses and municipal officials involved.",
+      "6. Inform District Registrar and Revenue Office about pending criminal case to freeze further transactions.",
+      "7. File charge sheet and prosecute accused to the fullest extent of law."
+    ],
+    "verification": "I, [Your Name], solemnly affirm that the above facts are true to the best of my knowledge and belief.",
+    "date": "[DD/MM/YYYY]",
+    "signature": "[Your Signature]"
+  },
+  "supporting_documents": [
+    "Copy of death certificates of parents",
+    "Family tree / birth certificates proving Class I heirship",
+    "Sample signatures of deceased father for comparison",
+    "Copy of alleged forged will",
+    "Mutation records from Municipal/Revenue Office",
+    "Property documents (sale deed, title deed)",
+    "Affidavits from family members stating no will was executed",
+    "Any other relevant documents"
+  ],
+  "legal_notes": {
+    "cognizability": "Section 467 is cognizable and non-bailable. Police must register FIR without delay.",
+    "jurisdiction": "Police station within whose jurisdiction the property is located OR where forgery occurred.",
+    "section_156_3": "If police refuses to register FIR, approach Magistrate under Section 156(3) CrPC for direction to police to investigate.",
+    "zero_fir": "If unsure of jurisdiction, file Zero FIR at any police station, which will be transferred to correct jurisdiction.",
+    "time_limit": "No limitation period for filing FIR in cognizable offenses."
+  }
+}

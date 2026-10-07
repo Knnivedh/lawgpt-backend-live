@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: lawgpt-backend
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: singapore
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: FAST_LLM_MODEL
+        value: qwen/qwen3.8-27b
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_API_KEY_2
+        sync: false
+      - key: CEREBRAS_API_KEY
+        sync: false
+      - key: TOKENROUTER_API_KEY
+        sync: false

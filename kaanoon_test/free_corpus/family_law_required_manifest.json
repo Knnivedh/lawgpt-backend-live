@@ -1,0 +1,259 @@
+{
+  "_README": [
+    "G13 FAMILY-LAW CORPUS GAP MANIFEST - SEED / PLANNING DOCUMENT. NOT INGESTIBLE CORPUS.",
+    "This records WHICH provisions the 5 family-law benchmark questions require and",
+    "where each must be sourced. It contains NO statute text on purpose.",
+    "Fabricated statute text in a legal retrieval system is worse than missing statute",
+    "text: a wrong section quoted with confidence is a professional-harm event.",
+    "",
+    "VERIFIED 2026-05-10 by the CORPUS/RETRIEVAL agent (independent recount):",
+    "  kaanoon_test/free_corpus/statute_chunks.json = 3972 chunks / 39 distinct acts.",
+    "  Companies Act 1956 2043, Consumer Protection 2019 631, BNS 2023 358,",
+    "  Transfer of Property 344, NI Act 252, Indian Contract 188, Specific Relief 44.",
+    "  ZERO chunks for: CrPC, PWDVA 2005, HMA 1955, Hindu Minority & Guardianship 1956,",
+    "  Hindu Adoption 1956, IPC 1860.",
+    "  'Hindu Marriage Act' appears ONCE, as scraped website NAVIGATION MENU text filed",
+    "  under act 'Bharatiya Nyaya Sanhita 2023' (corpus index 357) - not statute text.",
+    "  '498A' appears ONCE, as a cross-reference INSIDE the BNS s.87 chunk.",
+    "  Production BM25 index holds the SAME 3972 docs, so it agrees with free_corpus.",
+    "",
+    "BM25 RANKING IS HEALTHY: 3/3 control probes returned the correct act 5/5 in top-5.",
+    "The failure is CORPUS COVERAGE, not retrieval quality.",
+    "",
+    "See ingestion_notes, and kaanoon_test/test_g13_family_law_retrieval.py."
+  ],
+  "questions": {
+    "hfl_01": {
+      "topic": "Hindu Divorce - Grounds & Process",
+      "gold_sections": [
+        "125",
+        "19",
+        "406",
+        "498A",
+        "6"
+      ]
+    },
+    "hfl_02": {
+      "topic": "Hindu Maintenance & Alimony",
+      "gold_sections": [
+        "127",
+        "25"
+      ]
+    },
+    "hfl_03": {
+      "topic": "Domestic Violence & Counter-Complaint",
+      "gold_sections": [
+        "125",
+        "19",
+        "2",
+        "406",
+        "498A"
+      ]
+    },
+    "hfl_04": {
+      "topic": "Child Custody & Guardianship",
+      "gold_sections": [
+        "125",
+        "498A"
+      ]
+    },
+    "hfl_05": {
+      "topic": "Restitution of Conjugal Rights",
+      "gold_sections": [
+        "13",
+        "9"
+      ]
+    }
+  },
+  "required_provisions": [
+    {
+      "act": "Code of Criminal Procedure, 1973",
+      "short_name": "CrPC",
+      "in_corpus": false,
+      "sections": [
+        {
+          "section": "125",
+          "description": "Order for maintenance of wives, children and parents. The Magistrate may order payment of a monthly allowance for a wife unable to maintain herself, and for children and parents.",
+          "needed_by": [
+            "hfl_01",
+            "hfl_03",
+            "hfl_04"
+          ]
+        },
+        {
+          "section": "126",
+          "description": "Procedure for claiming maintenance - application by the person entitled to it, inquiry, and proof of marital status.",
+          "needed_by": [
+            "hfl_02"
+          ]
+        },
+        {
+          "section": "127",
+          "description": "Arrest and detention in default of payment of maintenance; enforcement of maintenance orders.",
+          "needed_by": [
+            "hfl_02"
+          ]
+        }
+      ]
+    },
+    {
+      "act": "Protection of Women from Domestic Violence Act, 2005",
+      "short_name": "PWDVA",
+      "in_corpus": false,
+      "sections": [
+        {
+          "section": "2",
+          "description": "Definitions - 'domestic violence' (physical, sexual, verbal, emotional or economic abuse; harassment; harm or threats) and the protected persons.",
+          "needed_by": [
+            "hfl_03"
+          ]
+        },
+        {
+          "section": "19",
+          "description": "Duties of police officers - to inform the aggrieved person of her rights, to provide protection measures, and to arrange medical examination.",
+          "needed_by": [
+            "hfl_01",
+            "hfl_03"
+          ]
+        }
+      ]
+    },
+    {
+      "act": "Indian Penal Code, 1860 (repealed -> Bharatiya Nyaya Sanhita, 2023)",
+      "short_name": "IPC / BNS",
+      "in_corpus": false,
+      "sections": [
+        {
+          "section": "406",
+          "description": "Criminal breach of trust.",
+          "needed_by": [
+            "hfl_01",
+            "hfl_03"
+          ],
+          "note": "Cited in gold answers for entrustment of property/dowry. BNS s.316 is the successor."
+        },
+        {
+          "section": "498A",
+          "description": "Husband or relative of the husband of a woman subjecting her to cruelty.",
+          "needed_by": [
+            "hfl_01",
+            "hfl_03",
+            "hfl_04"
+          ],
+          "note": "Repealed, replaced by BNS s.85. Corpus holds only a cross-reference inside the BNS s.87 chunk, not a retrievable provision."
+        }
+      ]
+    },
+    {
+      "act": "Hindu Marriage Act, 1955",
+      "short_name": "HMA",
+      "in_corpus": false,
+      "sections": [
+        {
+          "section": "6",
+          "description": "Divorce - grounds including adultery, cruelty, desertion, conversion, and (post-2017) mental illness or virulent and malignant form of leprosy.",
+          "needed_by": [
+            "hfl_01"
+          ]
+        },
+        {
+          "section": "9",
+          "description": "Restitution of conjugal rights.",
+          "needed_by": [
+            "hfl_05"
+          ]
+        },
+        {
+          "section": "13",
+          "description": "Divorce by mutual consent. Sub-s.(1A), inserted w.e.f. 2019, allows a fresh divorce petition after one year with no resumption of cohabitation following an RCR decree. Sub-s.(2) covers irretrievable breakdown and the two-year / agreed-separation route.",
+          "needed_by": [
+            "hfl_05",
+            "hfl_01"
+          ]
+        }
+      ]
+    },
+    {
+      "act": "Hindu Minority and Guardianship Act, 1956",
+      "short_name": "HMG Act",
+      "in_corpus": false,
+      "sections": [
+        {
+          "section": "4",
+          "description": "Guardian of a minor - natural guardian / court-appointed guardian framework; relevant to child custody (hfl_04).",
+          "needed_by": [
+            "hfl_04"
+          ]
+        },
+        {
+          "section": "25",
+          "description": "Guardian's duty to ward - duty to look after the minor, to provide for education, and to take all steps necessary for the minor's care, maintenance and protection.",
+          "needed_by": [
+            "hfl_02"
+          ],
+          "note": "VERIFY the gold answer's intent for hfl_02 before ingesting - it cites s.25 in a maintenance context."
+        }
+      ]
+    }
+  ],
+  "ingestion_notes": {
+    "chunker": "rag_system/core/statute_chunker.py :: StatuteSectionChunker.process_statute_file(path)",
+    "expected_input": "Per-act JSON, one file per statute, under DATA/Statutes/json/",
+    "observed_source_file_naming": "e.g. Arbitration_and_Conciliation_Act_1996.json (underscored act + year)",
+    "supported_formats": [
+      "chunk-based (--- Section X ---)",
+      "number-based",
+      "marker-based",
+      "monolithic",
+      "generic"
+    ],
+    "loader": "rag_system/core/data_loader_FULL.py :: load_domain_8_statutes() reads data_dir/'Statutes'/'json'",
+    "output_chunk_schema": [
+      "text",
+      "act",
+      "section_number",
+      "section_title",
+      "domain",
+      "source_file",
+      "family"
+    ],
+    "domain_value_for_statutes": "statutes",
+    "family_values_observed": [
+      "other",
+      "criminal"
+    ],
+    "runtime_loader": "kaanoon_test/system_adapters/vectorless_bm25_store.py reads kaanoon_test/free_corpus/statute_chunks.json at startup (line ~309), so a regenerated free_corpus file is picked up with no code change.",
+    "steps": [
+      "1. Obtain VERBATIM bare-act text for HMA 1955, PWDVA 2005, CrPC 1973 and HMG Act 1956 from an authoritative source (India Code / legislative.gov.in) - NOT from memory.",
+      "2. Save as DATA/Statutes/json/Hindu_Marriage_Act_1955.json etc., one act per file.",
+      "3. Run StatuteSectionChunker over those files to emit schema-shaped chunks.",
+      "4. Append the new chunks to kaanoon_test/free_corpus/statute_chunks.json.",
+      "5. Rebuild PERMANENT_RAG_FILES/STATUTE_DATABASE/legal_db_statutes_prod_bm25.pkl and legal_db_statutes_bm25.pkl from the new corpus.",
+      "6. Re-run pytest kaanoon_test/test_g13_family_law_retrieval.py - it must go green."
+    ],
+    "NOTE_ON_REALITY": "Steps 1-2 are BLOCKED on obtaining authoritative text. Nothing in this repo is a family-law bare act: kaanoon_test/indian_kanoon_collection.json holds 196 court JUDGMENTS that merely CITE HMA/PWDVA, and the 39 chunked acts are commercial/criminal. A human must supply authoritative text. This agent deliberately wrote none."
+  },
+  "secondary_defects_found": [
+    {
+      "id": "SECONDARY-1",
+      "severity": "HIGH",
+      "title": "3371 of 3972 chunks (85%) have a MALFORMED section_number",
+      "detail": "Values are subsection markers - '(a)' 345x, '(b)' 345x, '(2)' 287x, '(1)' 278x, '(3)' 200x - not real section numbers. Example: act 'Negotiable Instruments Act 1881', section_number '1.'. Any consumer trusting section_number metadata (citation grounding, provenance, per-section dedup) will mis-behave.",
+      "owner_to_fix": "rag_system/core/statute_chunker.py (NOT owned by this agent)"
+    },
+    {
+      "id": "SECONDARY-2",
+      "severity": "HIGH",
+      "title": "Mega-chunks pollute every retrieved context",
+      "detail": "5 chunks exceed 276,000 chars against a 482-char median. 'Consumer Protection Act 2019 s.2 of 1974' is 824,171 chars of state-amendment footnotes quoting bare numbers like 'Section 125', 'Section 406', 'Section 13', 'Section 9'. BM25 surfaces it for nearly every query.",
+      "owner_to_fix": "rag_system/core/statute_chunker.py (NOT owned by this agent)"
+    },
+    {
+      "id": "SECONDARY-3",
+      "severity": "HIGH",
+      "title": "The measured context_section_recall is almost entirely NUMERIC COINCIDENCE",
+      "detail": "rag_benchmark/metrics.py::sections_in() matches any '(section|sec.) <digits>' string in raw text, so the CPA mega-chunk manufactures gold hits. Measured against act-correct provenance: top-5 = 0 REAL / 3 mentions, top-10 = 0 REAL / 6, top-20 = 1 REAL / 20 (real share 0.05). The true context_section_recall is therefore ~0.00, not the reported 0.20; the 0.42-0.82 seen at deeper K is an artefact.",
+      "owner_to_fix": "rag_benchmark/metrics.py (NOT owned by this agent) - needs act-aware or metadata-aware section matching"
+    }
+  ]
+}

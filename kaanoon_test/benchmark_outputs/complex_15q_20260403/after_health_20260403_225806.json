@@ -1,0 +1,17 @@
+﻿{
+    "status":  "ready",
+    "rag_system_initialized":  true,
+    "rag_initializing":  false,
+    "retrieval_ready":  true,
+    "retrieval":  {
+                      "strict_retrieval_required":  false,
+                      "main_store_ready":  true,
+                      "statute_store_ready":  true,
+                      "pageindex_docs":  0,
+                      "has_any_retrieval":  true
+                  },
+    "last_error":  null,
+    "build_fingerprint":  "quality-pass-20260402-2355",
+    "release_signature":  "lawgpt-quality-pass-20260402-2355",
+    "timestamp":  "2026-04-03T17:28:07.420548"
+}

@@ -1,0 +1,33 @@
+{
+  "system": {
+    "uptime_seconds": 8,
+    "uptime_formatted": "0:00:08",
+    "start_time": "2025-11-01T12:10:43.431486"
+  },
+  "queries": {
+    "total": 4,
+    "by_category": {
+      "Property Law": 1,
+      "Civil Procedure": 1,
+      "Family Law": 1,
+      "Society Law": 1
+    },
+    "last_24h": 4
+  },
+  "performance": {
+    "avg_latency_ms": 1235.38,
+    "min_latency_ms": 794.73,
+    "max_latency_ms": 1745.9,
+    "p95_latency_ms": 1745.9
+  },
+  "errors": {
+    "total": 0,
+    "recent": []
+  },
+  "usage": {
+    "kaanoon_used": 4,
+    "from_cache": 0,
+    "avg_answer_length": 170
+  },
+  "generated_at": "2025-11-01T12:10:51.565508"
+}

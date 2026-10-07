@@ -1,0 +1,252 @@
+{
+  "generated_at": "2026-04-03 23:08:48",
+  "paths": {
+    "before_live": "azure_backend_stage\\kaanoon_test\\benchmark_outputs\\complex_15q_20260403\\before_20260403_2237\\compleqa_live_results.json",
+    "after_live": "azure_backend_stage\\kaanoon_test\\benchmark_outputs\\complex_15q_20260403\\after_20260403_2258\\compleqa_live_results.json",
+    "before_forensic": "azure_backend_stage\\kaanoon_test\\benchmark_outputs\\complex_15q_20260403\\before_20260403_2237\\forensic_results.json",
+    "after_forensic": "azure_backend_stage\\kaanoon_test\\benchmark_outputs\\complex_15q_20260403\\after_20260403_2258\\forensic_results.json"
+  },
+  "health": {
+    "before_status": "degraded",
+    "before_retrieval_ready": false,
+    "after_status": "ready",
+    "after_retrieval_ready": true
+  },
+  "live_summary": {
+    "before": {
+      "total": 15,
+      "successful": 15,
+      "failed": 0,
+      "avg_latency_s": 11.909072346659377,
+      "avg_subquestion_coverage": 1.0,
+      "avg_contract_score": 0.8666666666666667,
+      "language_mismatch_rate": 0.0,
+      "query_type_counts": {
+        "academic_direct": 15
+      }
+    },
+    "after": {
+      "total": 15,
+      "successful": 15,
+      "failed": 0,
+      "avg_latency_s": 25.213497933322408,
+      "avg_subquestion_coverage": 0.0,
+      "avg_contract_score": 0.16666666666666666,
+      "language_mismatch_rate": 0.0,
+      "query_type_counts": {
+        "academic_direct": 15
+      }
+    },
+    "delta": {
+      "avg_latency_s": 13.304425586663031,
+      "avg_subquestion_coverage": -1.0,
+      "avg_contract_score": -0.7000000000000001,
+      "language_mismatch_rate": 0.0
+    }
+  },
+  "forensic_summary": {
+    "before": {
+      "timestamp": "2026-04-03 22:42:47",
+      "total": 15,
+      "pass_count": 12,
+      "fail_count": 3,
+      "pass_rate": 0.8,
+      "avg_latency_s": 2.466820099996403,
+      "avg_unsupported_case_citations": 0.06666666666666667,
+      "high_hallucination_risk_count": 1,
+      "missing_bns_bnss_count": 3,
+      "missing_sedition_current_position_count": 0,
+      "missing_electoral_bond_current_position_count": 0,
+      "weak_subquestion_structure_count": 0
+    },
+    "after": {
+      "timestamp": "2026-04-03 23:07:22",
+      "total": 15,
+      "pass_count": 0,
+      "fail_count": 15,
+      "pass_rate": 0.0,
+      "avg_latency_s": 9.704577559997173,
+      "avg_unsupported_case_citations": 0,
+      "high_hallucination_risk_count": 0,
+      "missing_bns_bnss_count": 3,
+      "missing_sedition_current_position_count": 1,
+      "missing_electoral_bond_current_position_count": 1,
+      "weak_subquestion_structure_count": 15
+    },
+    "delta": {
+      "pass_rate": -0.8,
+      "pass_count": -12,
+      "fail_count": 12,
+      "avg_latency_s": 7.23775746000077,
+      "high_hallucination_risk_count": -1,
+      "weak_subquestion_structure_count": 15
+    }
+  },
+  "per_scenario_delta": [
+    {
+      "qid": "Q1",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 26.317196400021203,
+      "latency_after": 31.03357899998082,
+      "forensic_fails_before": 2,
+      "forensic_fails_after": 2
+    },
+    {
+      "qid": "Q2",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 15.26349039998604,
+      "latency_after": 26.7684507999802,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q3",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 7.734256600029767,
+      "latency_after": 21.28289199998835,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q4",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 7.607687000010628,
+      "latency_after": 11.16572259995155,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q5",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 1.0,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 7.104339999961667,
+      "latency_after": 19.66125419997843,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q6",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 9.353665900009219,
+      "latency_after": 27.542580100009218,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q7",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 1.0,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 9.422442199953366,
+      "latency_after": 32.452100199996494,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q8",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 21.062977999972645,
+      "latency_after": 31.043805499968585,
+      "forensic_fails_before": 1,
+      "forensic_fails_after": 3
+    },
+    {
+      "qid": "Q9",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 7.306837599957362,
+      "latency_after": 29.724348100018688,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q10",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 10.719561300007626,
+      "latency_after": 13.991393300006166,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q11",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 9.599211400025524,
+      "latency_after": 29.57826009998098,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 2
+    },
+    {
+      "qid": "Q12",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 19.084158900019247,
+      "latency_after": 20.899428199976683,
+      "forensic_fails_before": 1,
+      "forensic_fails_after": 2
+    },
+    {
+      "qid": "Q13",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 8.91654499998549,
+      "latency_after": 30.715524400002323,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q14",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 0.8333333333333334,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 10.17593119997764,
+      "latency_after": 21.23388239997439,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    },
+    {
+      "qid": "Q15",
+      "coverage_before": 1.0,
+      "coverage_after": 0.0,
+      "contract_before": 1.0,
+      "contract_after": 0.16666666666666666,
+      "latency_before": 8.967783299973235,
+      "latency_after": 31.10924810002325,
+      "forensic_fails_before": 0,
+      "forensic_fails_after": 1
+    }
+  ]
+}

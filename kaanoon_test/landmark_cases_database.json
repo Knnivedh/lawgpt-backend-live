@@ -1,0 +1,321 @@
+{
+  "landmark_cases": [
+    {
+      "name": "Rarest of Rare Doctrine",
+      "case": "Bachan Singh v. State of Punjab",
+      "year": "1980",
+      "citation": "AIR 1980 SC 898",
+      "description": "The Supreme Court held that death penalty can be imposed only in the 'rarest of rare cases' when the alternative option of life imprisonment is unquestionably foreclosed. The Court must balance aggravating and mitigating circumstances.",
+      "key_principles": [
+        "Death penalty only in rarest of rare cases",
+        "Life imprisonment is the rule, death penalty is the exception",
+        "Aggravating and mitigating circumstances must be balanced",
+        "Alternative sentencing must be considered"
+      ],
+      "alternatives": [
+        "Life imprisonment",
+        "Imprisonment for a term",
+        "Fine"
+      ],
+      "related_sections": ["IPC 302", "CrPC 354(3)"],
+      "keywords": ["death penalty", "capital punishment", "sentencing", "life imprisonment", "rarest of rare"]
+    },
+    {
+      "name": "Basic Structure Doctrine",
+      "case": "Kesavananda Bharati v. State of Kerala",
+      "year": "1973",
+      "citation": "AIR 1973 SC 1461",
+      "description": "The Supreme Court held that while Parliament has wide powers to amend the Constitution, it cannot alter the 'basic structure' of the Constitution. This includes democracy, secularism, federalism, separation of powers, and judicial review.",
+      "key_principles": [
+        "Parliament cannot destroy the basic structure of Constitution",
+        "Supremacy of Constitution",
+        "Republican and democratic form of government",
+        "Secular character of Constitution",
+        "Separation of powers between legislature, executive and judiciary",
+        "Federal character of Constitution"
+      ],
+      "related_articles": ["Article 13", "Article 368"],
+      "keywords": ["constitutional amendment", "basic structure", "judicial review", "democracy", "secularism"]
+    },
+    {
+      "name": "Vishaka Guidelines",
+      "case": "Vishaka v. State of Rajasthan",
+      "year": "1997",
+      "citation": "AIR 1997 SC 3011",
+      "description": "The Supreme Court laid down comprehensive guidelines to prevent sexual harassment of women at workplace. These guidelines remained in force until the Sexual Harassment of Women at Workplace Act, 2013 was enacted.",
+      "key_principles": [
+        "Employers duty to prevent sexual harassment",
+        "Complaints Committee must be established",
+        "Awareness programs mandatory",
+        "Disciplinary action against offenders",
+        "Protection against victimization"
+      ],
+      "related_laws": ["Sexual Harassment of Women at Workplace Act, 2013", "IPC 354A"],
+      "keywords": ["sexual harassment", "workplace", "women safety", "guidelines", "complaints committee"]
+    },
+    {
+      "name": "Right to Privacy",
+      "case": "Justice K.S. Puttaswamy v. Union of India",
+      "year": "2017",
+      "citation": "AIR 2017 SC 4161",
+      "description": "Nine-judge bench unanimously held that Right to Privacy is a fundamental right under Article 21. Privacy is intrinsic to life and liberty. However, it is not absolute and can be restricted by reasonable restrictions.",
+      "key_principles": [
+        "Privacy is a fundamental right under Article 21",
+        "Privacy includes right to informational self-determination",
+        "Can be restricted by reasonable, fair and proportionate laws",
+        "Three-fold test: Legality, legitimate aim, proportionality"
+      ],
+      "related_articles": ["Article 21", "Article 19"],
+      "keywords": ["privacy", "fundamental right", "personal liberty", "data protection", "dignity"]
+    },
+    {
+      "name": "Right to Education",
+      "case": "Mohini Jain v. State of Karnataka",
+      "year": "1992",
+      "citation": "AIR 1992 SC 1858",
+      "description": "The Supreme Court held that Right to Education flows from Right to Life under Article 21. Every citizen has a right to education and the State has an obligation to provide it.",
+      "key_principles": [
+        "Right to education is a fundamental right",
+        "Flows from Article 21",
+        "State has obligation to provide education",
+        "Capitation fees are unconstitutional"
+      ],
+      "related_articles": ["Article 21", "Article 21A", "Article 45"],
+      "related_laws": ["Right to Education Act, 2009"],
+      "keywords": ["education", "fundamental right", "capitation fee", "state obligation"]
+    },
+    {
+      "name": "Maneka Gandhi Doctrine",
+      "case": "Maneka Gandhi v. Union of India",
+      "year": "1978",
+      "citation": "AIR 1978 SC 597",
+      "description": "Landmark judgment that expanded the meaning of 'personal liberty' under Article 21. Held that procedure established by law must be fair, just and reasonable. Article 21 must be read with Article 14 and 19.",
+      "key_principles": [
+        "Procedure must be fair, just and reasonable",
+        "Articles 14, 19 and 21 are interconnected",
+        "Expanded scope of personal liberty",
+        "Natural justice principles must be followed"
+      ],
+      "related_articles": ["Article 21", "Article 14", "Article 19"],
+      "keywords": ["personal liberty", "fair procedure", "natural justice", "right to life"]
+    },
+    {
+      "name": "Triple Talaq",
+      "case": "Shayara Bano v. Union of India",
+      "year": "2017",
+      "citation": "AIR 2017 SC 4609",
+      "description": "The Supreme Court declared the practice of triple talaq (talaq-e-biddat) unconstitutional, arbitrary and violative of Article 14. Held that what is bad in theology is bad in law also.",
+      "key_principles": [
+        "Triple talaq is unconstitutional",
+        "Violates Article 14 (equality)",
+        "Arbitrary and unreasonable practice",
+        "Gender justice must prevail"
+      ],
+      "related_articles": ["Article 14", "Article 15", "Article 21"],
+      "related_laws": ["Muslim Women (Protection of Rights on Marriage) Act, 2019"],
+      "keywords": ["triple talaq", "instant divorce", "gender justice", "muslim personal law", "equality"]
+    },
+    {
+      "name": "Right to Die",
+      "case": "Common Cause v. Union of India",
+      "year": "2018",
+      "citation": "AIR 2018 SC 1665",
+      "description": "The Supreme Court recognized living will and advance medical directive for passive euthanasia. Right to die with dignity is part of right to life under Article 21.",
+      "key_principles": [
+        "Living will is valid",
+        "Passive euthanasia permitted",
+        "Right to die with dignity",
+        "Strict safeguards and procedures"
+      ],
+      "related_articles": ["Article 21"],
+      "keywords": ["euthanasia", "right to die", "living will", "dignity", "medical treatment"]
+    },
+    {
+      "name": "Section 377 Decriminalization",
+      "case": "Navtej Singh Johar v. Union of India",
+      "year": "2018",
+      "citation": "AIR 2018 SC 4321",
+      "description": "The Supreme Court decriminalized consensual homosexual acts between adults by reading down Section 377 IPC. Held that sexual orientation is natural and discrimination based on it violates fundamental rights.",
+      "key_principles": [
+        "Section 377 unconstitutional for consensual acts",
+        "Sexual orientation is natural",
+        "Right to privacy and dignity",
+        "Non-discrimination based on sexual orientation"
+      ],
+      "related_sections": ["IPC 377"],
+      "related_articles": ["Article 14", "Article 15", "Article 19", "Article 21"],
+      "keywords": ["section 377", "homosexuality", "lgbtq rights", "decriminalization", "sexual orientation"]
+    },
+    {
+      "name": "Nirbhaya Case",
+      "case": "Mukesh v. State (NCT of Delhi)",
+      "year": "2017",
+      "citation": "AIR 2017 SC 2161",
+      "description": "Supreme Court upheld death penalty in the Delhi gang rape case. Applied the 'rarest of rare' doctrine considering the brutality and circumstances of the crime.",
+      "key_principles": [
+        "Death penalty upheld for brutal crimes",
+        "Victim impact statement considered",
+        "Society's cry for justice",
+        "Aggravating circumstances outweighed mitigating factors"
+      ],
+      "related_sections": ["IPC 376", "IPC 302", "IPC 120B"],
+      "keywords": ["gang rape", "death penalty", "sexual assault", "brutal crime", "nirbhaya"]
+    },
+    {
+      "name": "Adultery Decriminalization",
+      "case": "Joseph Shine v. Union of India",
+      "year": "2018",
+      "citation": "AIR 2018 SC 4898",
+      "description": "The Supreme Court struck down Section 497 IPC (adultery) as unconstitutional. Held that it treats women as property of husband and violates gender equality.",
+      "key_principles": [
+        "Section 497 unconstitutional",
+        "Women are not property of husband",
+        "Gender equality and dignity",
+        "Sexual autonomy is fundamental right"
+      ],
+      "related_sections": ["IPC 497"],
+      "related_articles": ["Article 14", "Article 15", "Article 21"],
+      "keywords": ["adultery", "decriminalization", "gender equality", "women rights", "dignity"]
+    },
+    {
+      "name": "Anti-Defection Law",
+      "case": "Kihoto Hollohan v. Zachillhu",
+      "year": "1992",
+      "citation": "AIR 1993 SC 412",
+      "description": "The Supreme Court upheld the validity of Tenth Schedule (anti-defection law). Speaker's decision is subject to judicial review on grounds of mala fides, perversity or violation of constitutional mandate.",
+      "key_principles": [
+        "Anti-defection law is constitutional",
+        "Speaker's decision subject to limited judicial review",
+        "Prevents political defections",
+        "Maintains stability of governments"
+      ],
+      "related_constitutional_provisions": ["Tenth Schedule", "Article 102", "Article 191"],
+      "keywords": ["anti-defection", "floor crossing", "speaker", "disqualification", "political stability"]
+    },
+    {
+      "name": "Reservation in Promotions",
+      "case": "Indra Sawhney v. Union of India",
+      "year": "1992",
+      "citation": "AIR 1993 SC 477",
+      "description": "Landmark judgment on reservations. Upheld 50% ceiling on reservations, introduced creamy layer concept for OBCs, and held that reservation in promotions is not a fundamental right.",
+      "key_principles": [
+        "50% ceiling on reservations",
+        "Creamy layer exclusion for OBCs",
+        "No reservation in promotions as fundamental right",
+        "Backwardness must be identified",
+        "Efficiency of administration is paramount"
+      ],
+      "related_articles": ["Article 16", "Article 15"],
+      "keywords": ["reservation", "obc", "creamy layer", "promotion", "social justice", "50% ceiling"]
+    },
+    {
+      "name": "Right to Information",
+      "case": "State of UP v. Raj Narain",
+      "year": "1975",
+      "citation": "AIR 1975 SC 865",
+      "description": "The Supreme Court held that right to information is implicit in right to freedom of speech and expression under Article 19(1)(a). Citizens have a right to know about public acts.",
+      "key_principles": [
+        "Right to information is fundamental right",
+        "Flows from Article 19(1)(a)",
+        "Citizens have right to know",
+        "Government functioning must be transparent"
+      ],
+      "related_articles": ["Article 19(1)(a)"],
+      "related_laws": ["Right to Information Act, 2005"],
+      "keywords": ["right to information", "transparency", "rti", "freedom of speech", "public interest"]
+    },
+    {
+      "name": "Prisoners Rights",
+      "case": "Sunil Batra v. Delhi Administration",
+      "year": "1978",
+      "citation": "AIR 1978 SC 1675",
+      "description": "Landmark judgment on prisoners' rights. Held that prisoners retain all constitutional rights except those taken away by law. Prison officials have duty to protect prisoners.",
+      "key_principles": [
+        "Prisoners have constitutional rights",
+        "Right to human dignity even in prison",
+        "Protection from torture and inhuman treatment",
+        "Prison reforms necessary"
+      ],
+      "related_articles": ["Article 21", "Article 14"],
+      "keywords": ["prisoners rights", "human dignity", "torture", "prison reforms", "custodial violence"]
+    },
+    {
+      "name": "Public Interest Litigation",
+      "case": "S.P. Gupta v. Union of India",
+      "year": "1981",
+      "citation": "AIR 1982 SC 149",
+      "description": "The Supreme Court relaxed the rule of locus standi and held that any member of public can maintain PIL for enforcement of public duty or protection of rights of poor and disadvantaged.",
+      "key_principles": [
+        "Relaxation of locus standi",
+        "PIL for public interest and social justice",
+        "Access to justice for poor",
+        "Judicial activism for public welfare"
+      ],
+      "related_articles": ["Article 32", "Article 226"],
+      "keywords": ["pil", "public interest litigation", "locus standi", "social justice", "access to justice"]
+    },
+    {
+      "name": "Environmental Protection",
+      "case": "M.C. Mehta v. Union of India",
+      "year": "1987",
+      "citation": "AIR 1987 SC 1086",
+      "description": "Series of cases establishing principles of environmental law including 'polluter pays' principle, precautionary principle, and sustainable development. Right to clean environment is part of Article 21.",
+      "key_principles": [
+        "Right to clean environment under Article 21",
+        "Polluter pays principle",
+        "Precautionary principle",
+        "Sustainable development",
+        "Absolute liability for hazardous industries"
+      ],
+      "related_articles": ["Article 21", "Article 48A", "Article 51A(g)"],
+      "related_laws": ["Environment Protection Act, 1986", "Water Act", "Air Act"],
+      "keywords": ["environment", "pollution", "clean air", "sustainable development", "polluter pays"]
+    },
+    {
+      "name": "Dowry Death",
+      "case": "State of Punjab v. Iqbal Singh",
+      "year": "1991",
+      "citation": "AIR 1991 SC 1532",
+      "description": "The Supreme Court interpreted Section 304B IPC (dowry death) and held that presumption under the section can be raised if death occurs within seven years of marriage and harassment for dowry is proved.",
+      "key_principles": [
+        "Presumption of dowry death under Section 304B",
+        "Death within 7 years of marriage",
+        "Harassment for dowry must be proved",
+        "Burden shifts to accused",
+        "Protection of married women"
+      ],
+      "related_sections": ["IPC 304B", "IPC 498A", "Dowry Prohibition Act"],
+      "keywords": ["dowry death", "section 304b", "harassment", "married women", "presumption"]
+    },
+    {
+      "name": "Confession to Police",
+      "case": "State of Punjab v. Baldev Singh",
+      "year": "1999",
+      "citation": "AIR 1999 SC 2378",
+      "description": "The Supreme Court held that confessional statement made to police is inadmissible under Section 25 of Evidence Act. Confession can be made only before Magistrate under Section 164 CrPC.",
+      "key_principles": [
+        "Confession to police inadmissible (Section 25)",
+        "Confession must be before Magistrate (Section 164 CrPC)",
+        "Protection against coerced confessions",
+        "Voluntariness is essential"
+      ],
+      "related_sections": ["Evidence Act Section 25", "CrPC Section 164"],
+      "keywords": ["confession", "police", "inadmissible", "magistrate", "evidence act", "section 25"]
+    },
+    {
+      "name": "Juvenile Justice",
+      "case": "Salil Bali v. Union of India",
+      "year": "2013",
+      "citation": "AIR 2013 SC 3225",
+      "description": "The Supreme Court held that age determination of juvenile must be done at the time of commission of offense, not at the time of trial. Once found to be juvenile, must be dealt under Juvenile Justice Act.",
+      "key_principles": [
+        "Age determined at time of offense",
+        "Benefits of Juvenile Justice Act applicable",
+        "Reformative approach for juveniles",
+        "Best interest of child paramount"
+      ],
+      "related_laws": ["Juvenile Justice Act, 2015", "IPC"],
+      "keywords": ["juvenile", "age determination", "reformative justice", "children", "best interest"]
+    }
+  ]
+}

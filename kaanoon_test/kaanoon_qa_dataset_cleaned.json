@@ -1,0 +1,328 @@
+[
+  {
+    "id": "Q1",
+    "category": "Property Law",
+    "subcategory": "Sale Deed & Limitation",
+    "question_summary": "Can principal claim unpaid money after 25 years from a 2000 GPA sale deed transaction?",
+    "question_detail": "Registered sale deed executed through GPA in 2000 for 4 lakh rupees (cash payment documented). Principal filed possession case in 2006, withdrew in 2019. Now threatening to file case for unpaid amount after 25 years. GPA holder is deceased. Current owner in possession for 25 years with all taxes paid.",
+    "answer_summary": "Principal's claim is time-barred. Fight the case confidently - her legal position is extremely weak due to 22-year limitation bar and adverse possession rights.",
+    "answer_detail": {
+      "recommendation": "Let her file case. No need to settle due to pressure tactics.",
+      "key_legal_issues": [
+        {
+          "issue": "Limitation Period",
+          "explanation": "Money recovery claims have 3-year limitation from debt due date. Transaction in 2000 means limitation expired around 2003 - claim is time-barred by 22 years."
+        },
+        {
+          "issue": "Adverse Possession",
+          "explanation": "25 years of continuous possession, paying taxes, with proper documentation establishes adverse possession rights (12-year requirement satisfied twice over)."
+        },
+        {
+          "issue": "Legal Presumption",
+          "explanation": "Sale deed mentioning consideration as received creates strong presumption of payment."
+        },
+        {
+          "issue": "Innocent Buyer Protection",
+          "explanation": "Current owner purchased from valid GPA holder. Any payment dispute is between principal and attorney, not current owner."
+        },
+        {
+          "issue": "Withdrawn Case Effect",
+          "explanation": "Withdrawn possession case provides no protection for money recovery claim - different causes of action. Order II Rule prevents reagitating same dispute."
+        }
+      ],
+      "defensive_strategy": "Maintain documentation of continuous 25-year possession, all tax payments, and original sale deed showing consideration received."
+    },
+    "legal_references": [
+      "Limitation Act - 3 year limitation for money recovery",
+      "Adverse Possession - 12 year requirement",
+      "Order II Rule CPC - Withdrawal of suit",
+      "Order 23 Rule 2 CPC - Plaintiff bound by limitation",
+      "Section 14 - No benefit for voluntary withdrawals"
+    ],
+    "expert_consensus": "Fight confidently - principal's legal position is hopeless",
+    "confidence_level": "Very High",
+    "expert_count": 10
+  },
+  {
+    "id": "Q2",
+    "category": "Civil Procedure",
+    "subcategory": "Evidence Recording & Language",
+    "question_summary": "What is the sequence of cross-examination in civil suits? Can evidence be recorded in English in Tamil Nadu quasi-judicial bodies?",
+    "question_detail": {
+      "q1": "After plaintiff presents evidence, does cross-examination of plaintiff or defendant come first? (No witnesses, only plaintiff and 2 defendants)",
+      "q2": "In Tamil Nadu quasi-judicial body, chairperson insists on recording evidence in Tamil despite request for English. Can Order 18 Rule 9 CPC be cited to have evidence recorded in English?"
+    },
+    "answer_summary": {
+      "q1": "Cross-examination of plaintiff comes FIRST after plaintiff's evidence. Defendant cross-examines plaintiff before presenting own case.",
+      "q2": "Tamil is mandatory in Tamil Nadu lower courts unless all parties consent to English. Order 18 Rule 9 CPC gives discretionary power but requires consent of all parties."
+    },
+    "answer_detail": {
+      "cross_examination_sequence": [
+        "1. Plaintiff examines himself (files proof affidavit, marks exhibits)",
+        "2. Defendant cross-examines plaintiff",
+        "3. Defendant presents his evidence",
+        "4. Plaintiff cross-examines defendant"
+      ],
+      "language_recording_rules": {
+        "tamil_nadu_position": "Tamil is official language for subordinate courts and quasi-judicial bodies under Tamil Nadu Official Language Act, 1956 (Section 4-A)",
+        "order_18_rule_9_requirements": [
+          "Judge/presiding officer must be conversant with English",
+          "Both/all parties must consent",
+          "Court has discretionary power"
+        ],
+        "current_practice": "Subordinate courts record in Tamil; High Court uses English; Some tribunals (NCLT, RERA, CAT) use English",
+        "action_steps": [
+          "File formal written application citing Order 18 Rule 9 CPC",
+          "Request English recording with proper justification",
+          "Allow defendants to record objections",
+          "Court decides on merits"
+        ],
+        "alternatives_if_tamil_mandated": [
+          "Request English deposition be annexed to record",
+          "Request Tamil translation shown for confirmation before signing",
+          "Request simultaneous English translation",
+          "Ensure written statements in English attached to official record"
+        ]
+      }
+    },
+    "legal_references": [
+      "Order 18 Rules 1-2 CPC - Evidence procedure",
+      "Order 18 Rule 4 CPC - Affidavit in evidence",
+      "Order 18 Rule 9 CPC - When evidence may be taken in English",
+      "Tamil Nadu Official Language Act, 1956 - Section 4-A",
+      "Article 348(1)(b) - English in court proceedings",
+      "Article 350 - Language rights"
+    ],
+    "expert_consensus": "Cross-examination of plaintiff comes first; Tamil is mandatory unless all parties consent to English",
+    "confidence_level": "High",
+    "expert_count": 9
+  },
+  {
+    "id": "Q3",
+    "category": "Family Law",
+    "subcategory": "Child's Educational Records",
+    "question_summary": "Can divorced mother omit father's name from child's 10th standard mark sheet when father relinquished all rights?",
+    "question_detail": "Mother divorced via mutual consent (2017, Madras HC). Ex-husband relinquished all rights to child in settlement, remarried immediately, provided no support. Mother raised child alone since birth. School insists on including father's name from birth certificate in 10th mark sheet. Mother wants to exclude father's name.",
+    "answer_summary": "YES - Mother CAN legally exclude father's name. Strong Supreme Court precedents support this position when father has abandoned family or relinquished rights.",
+    "answer_detail": {
+      "legal_position": "No law in India requires father's name in educational records, especially when father abandoned family or relinquished rights through divorce",
+      "key_supreme_court_precedents": [
+        {
+          "case": "ABC v. State (NCT) - AIR 2015 SC 2569",
+          "ruling": "Birth certificate can be issued in mother's name alone. Authorities cannot force father's name disclosure. Forcing disclosure violates privacy and dignity."
+        },
+        {
+          "case": "Jigya Yadav v. CBSE (2021) 7 SCC 535",
+          "ruling": "Parental details in educational certificates can be corrected/altered. Right to identity, dignity, privacy under Articles 14, 19, 21. 'Law cannot treat mother as lesser parent.'"
+        },
+        {
+          "case": "Shalu Nigam v. Regional Passport Officer (Delhi HC, 2016)",
+          "ruling": "No legal requirement for father's name in official documents where father has abdicated responsibility."
+        }
+      ],
+      "cbse_circular": "CBSE/Coord/AS(C)/112576/2018 confirms name of EITHER parent or guardian may be entered. Where single parent applies, name of either father OR mother shall be recorded.",
+      "action_plan": [
+        {
+          "step": 1,
+          "action": "Write to School Principal",
+          "documents": [
+            "Divorce decree showing father's rights relinquishment",
+            "Affidavit stating sole guardianship",
+            "Supreme Court judgments copies",
+            "Request only mother's name as parent/guardian"
+          ]
+        },
+        {
+          "step": 2,
+          "action": "If refused - Escalate to District Education Officer",
+          "note": "Submit same documents to DEO"
+        },
+        {
+          "step": 3,
+          "action": "If still denied - File Writ Petition",
+          "details": {
+            "type": "Writ Petition for Mandamus under Article 226",
+            "court": "Madras High Court",
+            "respondents": "School, Education Department, Examination Board",
+            "grounds": [
+              "Father relinquished rights in court-approved divorce decree",
+              "Mother is sole caregiver",
+              "Insisting on father's name violates privacy, dignity, equality (Article 21)",
+              "Supreme Court precedents support position"
+            ],
+            "timeline": "1-2 weeks filing, 1-2 months interim orders, 3-6 months final orders",
+            "success_rate": "Very high given specific circumstances"
+          }
+        }
+      ]
+    },
+    "legal_references": [
+      "ABC v. State (NCT) - AIR 2015 SC 2569",
+      "Jigya Yadav v. CBSE (2021) 7 SCC 535",
+      "Shalu Nigam v. Regional Passport Officer (Delhi HC, 2016)",
+      "K.V. Venkatesh v. State of Karnataka (2018)",
+      "Rameshwari Devi v. State of NCT of Delhi (2017)",
+      "Articles 14, 19, 21 - Fundamental Rights",
+      "Article 226 - Writ Petition",
+      "Right to Education Act, 2009",
+      "CBSE Circular CBSE/Coord/AS(C)/112576/2018"
+    ],
+    "expert_consensus": "Mother CAN remove father's name - strong legal precedents support position. File writ petition if needed.",
+    "confidence_level": "Very High",
+    "expert_count": 8,
+    "conflicting_opinions": "Some experts believe biological father's name should be mentioned, but this view is NOT supported by Supreme Court precedents"
+  },
+  {
+    "id": "Q4",
+    "category": "Society Law",
+    "subcategory": "AGM Delay Condonation",
+    "question_summary": "How to obtain condonation for delay in holding AGM of registered society due to auditor's delay?",
+    "question_detail": "Club registered under Tamil Nadu Societies Registration Act, 1975 could not hold AGM by September 30, 2025 due to auditor not providing audited accounts. Informed local Registrar of Societies in advance. What steps to obtain delay condonation?",
+    "answer_summary": "YES - Delay condonation is possible and likely to be granted. Auditor's delay is valid reason. Proactive notification to Registrar demonstrates good faith.",
+    "answer_detail": {
+      "legal_framework": {
+        "section_15_1_proviso": "Registrar may extend time for AGM by up to 3 months for special reason",
+        "section_26_3_rule_25": "AGM must be held within 6 months from financial year close (by Sept 30 if FY ends March 31). Registrar has discretionary power to extend/condone delay for valid reasons"
+      },
+      "step_by_step_process": [
+        {
+          "step": 1,
+          "title": "Prepare Formal Written Application",
+          "details": {
+            "address_to": "District Registrar of Societies, Tamil Nadu",
+            "subject": "Request for condonation of delay in convening Annual General Body Meeting under Section 26(3) of TN Societies Registration Act, 1975",
+            "content_include": [
+              "Reason for delay (auditor's delay)",
+              "Mention of earlier intimation to Registrar",
+              "Proposed new AGM date",
+              "Request to condone delay",
+              "Undertaking to file returns immediately after AGM"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "title": "Pass Executive Committee Resolution",
+          "details": "Hold committee meeting, pass resolution authorizing delay condonation request, get signatures from all committee members, attach to application"
+        },
+        {
+          "step": 3,
+          "title": "Gather Supporting Documents",
+          "documents": [
+            "Society Registration Certificate copy",
+            "Earlier intimation to Registrar copy",
+            "Executive Committee resolution",
+            "Letter from auditor explaining delay (if available)",
+            "Draft AGM notice/agenda",
+            "Form VII (managing committee list if changes)",
+            "Latest Annual Return (Form VI) copy"
+          ]
+        },
+        {
+          "step": 4,
+          "title": "Submit Application",
+          "method": "File physically at District Registrar (Societies) office or use Form GNL-1. Obtain acknowledgement with seal, date, and inward number"
+        },
+        {
+          "step": 5,
+          "title": "Registrar's Review",
+          "process": "Registrar verifies explanation and documents, may call for clarification, checks if reasons are genuine and beyond control, issues written condonation order, permits AGM on later date (usually 30-60 days extension)",
+          "timeline": "2-4 weeks for condonation order"
+        },
+        {
+          "step": 6,
+          "title": "After Receiving Condonation",
+          "actions": [
+            "Conduct AGM immediately on approved date",
+            "Present audited accounts, annual report, auditor's report",
+            "Elect/confirm managing committee",
+            "Record AGM minutes"
+          ]
+        },
+        {
+          "step": 7,
+          "title": "File Annual Returns",
+          "deadline": "Within 30 days of AGM",
+          "file_with_registrar": [
+            "Form VI (Annual Return)",
+            "AGM Minutes",
+            "Audited financial statements",
+            "Auditor's report",
+            "Updated Form VII if office-bearers changed"
+          ]
+        }
+      ],
+      "valid_reasons_accepted": [
+        "Audit delays",
+        "Illness of key office bearers",
+        "Natural calamities",
+        "Circumstances beyond control",
+        "Pandemic-related issues"
+      ],
+      "consequences_without_condonation": [
+        "Violation under Section 36 of the Act",
+        "Office-bearers can be penalized or disqualified",
+        "Society marked non-compliant",
+        "Registrar may appoint authorized officer to convene meeting",
+        "May face regulatory actions"
+      ]
+    },
+    "legal_references": [
+      "Tamil Nadu Societies Registration Act, 1975 - Section 15(1) Proviso",
+      "Tamil Nadu Societies Registration Act, 1975 - Section 26(3)",
+      "Tamil Nadu Societies Registration Act, 1975 - Section 36 (penalties)",
+      "Tamil Nadu Societies Registration Rules, 1978 - Rule 25",
+      "Form VI - Annual Return",
+      "Form VII - List of Managing Committee",
+      "Form GNL-1 - General application form"
+    ],
+    "expert_consensus": "Delay condonation will likely be granted - proceed with formal application citing auditor delay",
+    "confidence_level": "Very High",
+    "expert_count": 8,
+    "reason_for_confidence": "Valid reason (auditor delay beyond control), advance intimation showing good faith, standard provision exists, commonly granted"
+  },
+  {
+    "id": "Q5",
+    "category": "Legal Principles",
+    "subcategory": "General Reference",
+    "title": "Key Legal Concepts Referenced in Dataset",
+    "concepts": {
+      "limitation_period": {
+        "definition": "Time period within which legal action must be initiated",
+        "common_periods": {
+          "money_recovery": "3 years from when debt becomes due",
+          "possession_claims": "12 years for adverse possession",
+          "contract_breach": "3 years from breach date"
+        },
+        "effect": "Claims filed after limitation period expires are time-barred and will be dismissed"
+      },
+      "adverse_possession": {
+        "definition": "Legal doctrine allowing person in continuous, open, hostile possession of property for statutory period to claim ownership",
+        "requirements": [
+          "Continuous possession for 12+ years",
+          "Open and notorious possession",
+          "Hostile to true owner's rights",
+          "Exclusive possession",
+          "Payment of property taxes strengthens claim"
+        ]
+      },
+      "cpc_procedures": {
+        "order_18": "Rules for recording evidence in civil suits",
+        "order_23": "Rules for withdrawal and compromise of suits",
+        "examination_sequence": "Examination-in-chief → Cross-examination → Re-examination"
+      },
+      "fundamental_rights": {
+        "article_14": "Equality before law",
+        "article_19": "Freedom of speech and expression",
+        "article_21": "Right to life and personal liberty (includes privacy and dignity)",
+        "article_226": "Power of High Courts to issue writs"
+      },
+      "writ_petition": {
+        "definition": "Constitutional remedy to enforce fundamental rights",
+        "types": "Habeas Corpus, Mandamus, Certiorari, Prohibition, Quo Warranto",
+        "jurisdiction": "High Court (Article 226), Supreme Court (Article 32)"
+      }
+    }
+  }
+]
+

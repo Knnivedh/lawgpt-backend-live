@@ -1,0 +1,142 @@
+[
+  {
+    "id": "Q1",
+    "category": "Property Law",
+    "topic": "Sale Deed & Limitation Period",
+    "question": "Can principal claim money from 2000 GPA sale after 25 years?",
+    "question_hindi": "क्या प्रिंसिपल 2000 के GPA विक्रय से 25 साल बाद पैसे का दावा कर सकता है?",
+    "question_tamil": "2000 GPA விற்பனையிலிருந்து 25 ஆண்டுகளுக்குப் பிறகு முதன்மை நபர் பணத்தைக் கோரலாமா?",
+    "short_answer": "NO - Claim is time-barred. 3-year limitation period expired in 2003. Current owner has adverse possession rights (25 years). Fight the case confidently.",
+    "answer_hindi": "नहीं - दावा समय-बाधित है। 3 साल की सीमा अवधि 2003 में समाप्त हो गई। वर्तमान मालिक के पास प्रतिकूल कब्जे के अधिकार हैं (25 साल)। मामले को आत्मविश्वास से लड़ें।",
+    "answer_tamil": "இல்லை - கோரிக்கை கால அவகாசம் தாண்டிவிட்டது. 3 வருட வரம்பு காலம் 2003 இல் காலாவதியானது. தற்போதைய உரிமையாளருக்கு எதிர் உடைமை உரிமைகள் உள்ளன (25 ஆண்டுகள்). வழக்கை நம்பிக்கையுடன் எதிர்கொள்ளுங்கள்.",
+    "key_points": [
+      "Money recovery limitation: 3 years",
+      "Claim is 22 years overdue",
+      "Adverse possession established (12+ years required)",
+      "Sale deed shows consideration received",
+      "Previous withdrawn case doesn't extend limitation"
+    ],
+    "confidence_level": "Very High",
+    "expert_count": 10
+  },
+  {
+    "id": "Q2",
+    "category": "Civil Procedure",
+    "topic": "Evidence Recording & Cross-Examination",
+    "question": "What is cross-examination sequence? Can evidence be recorded in English in Tamil Nadu?",
+    "question_hindi": "क्रॉस-एग्जामिनेशन का क्रम क्या है? क्या तमिलनाडु में साक्ष्य अंग्रेजी में दर्ज किया जा सकता है?",
+    "question_tamil": "குறுக்கு விசாரணை வரிசை என்ன? தமிழ்நாட்டில் ஆதாரத்தை ஆங்கிலத்தில் பதிவு செய்யலாமா?",
+    "short_answer": "Cross-examination of plaintiff comes FIRST after plaintiff's evidence. For language: Tamil is mandatory unless ALL parties consent to English per Order 18 Rule 9 CPC.",
+    "answer_hindi": "वादी के साक्ष्य के बाद वादी की जिरह पहले आती है। भाषा के लिए: तमिल अनिवार्य है जब तक कि सभी पक्ष Order 18 Rule 9 CPC के अनुसार अंग्रेजी के लिए सहमत न हों।",
+    "answer_tamil": "வாதியின் சாட்சியத்திற்குப் பிறகு வாதியின் குறுக்கு விசாரணை முதலில் வரும். மொழிக்கு: Order 18 Rule 9 CPC படி அனைத்து தரப்பினரும் ஆங்கிலத்திற்கு சம்மதிக்காவிட்டால் தமிழ் கட்டாயம்.",
+    "key_points": [
+      "Sequence: Plaintiff evidence → Defendant cross-examines plaintiff → Defendant evidence → Plaintiff cross-examines defendant",
+      "Tamil mandatory in TN lower courts per TN Official Language Act 1956",
+      "Order 18 Rule 9 allows English if judge conversant and parties consent",
+      "Can request simultaneous translation or English annexure"
+    ],
+    "confidence_level": "High",
+    "expert_count": 10
+  },
+  {
+    "id": "Q3",
+    "category": "Family Law",
+    "topic": "Child's Educational Records - Father's Name",
+    "question": "Can divorced mother omit father's name from child's 10th mark sheet?",
+    "question_hindi": "क्या तलाकशुदा मां बच्चे की 10वीं अंकपत्र से पिता का नाम हटा सकती है?",
+    "question_tamil": "விவாகரத்து பெற்ற தாய் குழந்தையின் 10வது மதிப்பெண் தாளில் இருந்து தந்தையின் பெயரை நீக்கலாமா?",
+    "short_answer": "YES - Supreme Court precedents support mother's right to exclude father's name when he has abandoned family or relinquished rights. No law mandates father's name in educational records.",
+    "answer_hindi": "हां - सुप्रीम कोर्ट की मिसालें मां के अधिकार का समर्थन करती हैं जब पिता ने परिवार को छोड़ दिया हो या अधिकार त्याग दिए हों। कोई कानून शैक्षिक रिकॉर्ड में पिता का नाम अनिवार्य नहीं करता।",
+    "answer_tamil": "ஆம் - தந்தை குடும்பத்தை கைவிட்டிருந்தால் அல்லது உரிமைகளை விட்டுக்கொடுத்திருந்தால் தாயின் உரிமையை உச்ச நீதிமன்ற முன்னுதாரணங்கள் ஆதரிக்கின்றன. கல்வி பதிவுகளில் தந்தையின் பெயர் கட்டாயம் என்று எந்த சட்டமும் இல்லை.",
+    "key_points": [
+      "ABC v. State (2015 SC): Cannot force father's name disclosure",
+      "Jigya Yadav v. CBSE (2021 SC): Mother not lesser parent",
+      "CBSE Circular allows either parent's name",
+      "Father relinquished all rights in divorce decree",
+      "Action: Write to school → DEO → Writ Petition if needed"
+    ],
+    "confidence_level": "Very High",
+    "expert_count": 10
+  },
+  {
+    "id": "Q4",
+    "category": "Society Law",
+    "topic": "AGM Delay Condonation",
+    "question": "How to get AGM delay condoned due to auditor's delay?",
+    "question_hindi": "लेखा परीक्षक की देरी के कारण AGM देरी को कैसे माफ करवाएं?",
+    "question_tamil": "தணிக்கையாளர் தாமதம் காரணமாக AGM தாமதத்தை எவ்வாறு மன்னிப்பு பெறுவது?",
+    "short_answer": "File formal application to District Registrar citing auditor delay. Section 15(1) allows Registrar to extend time by up to 3 months for special reasons. Very likely to be granted.",
+    "answer_hindi": "लेखा परीक्षक की देरी का हवाला देते हुए जिला रजिस्ट्रार को औपचारिक आवेदन दाखिल करें। Section 15(1) रजिस्ट्रार को विशेष कारणों से 3 महीने तक समय बढ़ाने की अनुमति देता है। बहुत संभावना है कि मंजूर हो जाएगा।",
+    "answer_tamil": "தணிக்கையாளர் தாமதத்தை குறிப்பிட்டு மாவட்ட பதிவாளருக்கு முறையான விண்ணப்பம் தாக்கல் செய்யுங்கள். பிரிவு 15(1) சிறப்பு காரணங்களுக்காக 3 மாதங்கள் வரை நேரத்தை நீட்டிக்க பதிவாளரை அனுமதிக்கிறது. அங்கீகரிக்கப்படுவதற்கான வாய்ப்பு அதிகம்.",
+    "key_points": [
+      "Valid reason: Auditor's delay (beyond society's control)",
+      "Already informed Registrar in advance (good faith)",
+      "Submit: Application + EC Resolution + Supporting documents",
+      "Timeline: 2-4 weeks for condonation order",
+      "File Form VI within 30 days after AGM"
+    ],
+    "confidence_level": "Very High",
+    "expert_count": 10
+  },
+  {
+    "id": "Q6",
+    "category": "Property Law",
+    "topic": "Tenant Rights & Eviction",
+    "question": "Can landlord evict tenant without court order?",
+    "question_hindi": "क्या मकान मालिक बिना कोर्ट के आदेश के किरायेदार को बेदखल कर सकता है?",
+    "question_tamil": "நில உரிமையாளர் நீதிமன்ற உத்தரவு இல்லாமல் குத்தகைதாரை வெளியேற்ற முடியுமா?",
+    "short_answer": "NO - Self-help eviction is illegal. Landlord MUST obtain court order through proper legal procedure. Section 106 Transfer of Property Act and Rent Control Acts apply. Illegal eviction attracts penalties.",
+    "answer_hindi": "नहीं - स्व-सहायता बेदखली अवैध है। मकान मालिक को उचित कानूनी प्रक्रिया के माध्यम से कोर्ट का आदेश प्राप्त करना चाहिए। Section 106 Transfer of Property Act और Rent Control Acts लागू होते हैं। अवैध बेदखली पर दंड लगता है।",
+    "answer_tamil": "இல்லை - சுய-உதவி வெளியேற்றம் சட்டவிரோதம். நில உரிமையாளர் சரியான சட்ட நடைமுறை மூலம் நீதிமன்ற உத்தரவைப் பெற வேண்டும். பிரிவு 106 சொத்து பரிமாற்றச் சட்டம் மற்றும் வாடகை கட்டுப்பாட்டு சட்டங்கள் பொருந்தும். சட்டவிரோத வெளியேற்றத்திற்கு தண்டனை உண்டு.",
+    "key_points": [
+      "Legal eviction requires court decree",
+      "Notice period: Usually 15 days to 1 month depending on state",
+      "Grounds: Non-payment of rent, unauthorized subletting, nuisance, owner's requirement",
+      "Illegal eviction: Criminal offense under IPC Section 447 (trespass)",
+      "Tenant can file suit for injunction and damages"
+    ],
+    "confidence_level": "Very High",
+    "expert_count": 8
+  },
+  {
+    "id": "Q7",
+    "category": "Consumer Protection",
+    "topic": "Defective Product Complaint",
+    "question": "How to file consumer complaint for defective mobile phone?",
+    "question_hindi": "दोषपूर्ण मोबाइल फोन के लिए उपभोक्ता शिकायत कैसे दर्ज करें?",
+    "question_tamil": "குறைபாடுள்ள மொபைல் ஃபோனுக்காக நுகர்வோர் புகாரை எவ்வாறு தாக்கல் செய்வது?",
+    "short_answer": "File online complaint on National Consumer Helpline portal (consumerhelpline.gov.in) or state consumer commission. For value up to ₹1 crore, approach District Forum. Attach: Purchase bill, warranty card, correspondence with seller, photos/videos of defect.",
+    "answer_hindi": "National Consumer Helpline portal (consumerhelpline.gov.in) या राज्य उपभोक्ता आयोग पर ऑनलाइन शिकायत दर्ज करें। ₹1 करोड़ तक के मूल्य के लिए, जिला फोरम से संपर्क करें। संलग्न करें: खरीद बिल, वारंटी कार्ड, विक्रेता के साथ पत्राचार, दोष की फोटो/वीडियो।",
+    "answer_tamil": "National Consumer Helpline portal (consumerhelpline.gov.in) அல்லது மாநில நுகர்வோர் ஆணையத்தில் ஆன்லைன் புகார் தாக்கல் செய்யுங்கள். ₹1 கோடி வரையிலான மதிப்புக்கு, மாவட்ட மன்றத்தை அணுகுங்கள். இணைக்கவும்: வாங்கிய பில், வாரண்டி அட்டை, விற்பனையாளருடனான கடிதப் பரிமாற்றம், குறைபாட்டின் புகைப்படங்கள்/வீடியோக்கள்.",
+    "key_points": [
+      "Jurisdiction: District Forum (up to ₹1 crore), State Commission (₹1-10 crore), National Commission (above ₹10 crore)",
+      "Time limit: 2 years from cause of action",
+      "No court fees for complaints up to ₹5 lakhs",
+      "Consumer Protection Act, 2019 applies",
+      "Timeline: Usually resolved in 3-6 months"
+    ],
+    "confidence_level": "High",
+    "expert_count": 7
+  },
+  {
+    "id": "Q8",
+    "category": "Labour Law",
+    "topic": "Wrongful Termination",
+    "question": "Can employer terminate employee without notice?",
+    "question_hindi": "क्या नियोक्ता बिना नोटिस के कर्मचारी को समाप्त कर सकता है?",
+    "question_tamil": "முதலாளி அறிவிப்பு இல்லாமல் பணியாளரை பணிநீக்கம் செய்ய முடியுமா?",
+    "short_answer": "Generally NO - Notice period required as per employment contract or Industrial Disputes Act (30-90 days typical). Exception: Summary dismissal for misconduct after due inquiry. Payment in lieu of notice possible. Wrongful termination gives right to compensation.",
+    "answer_hindi": "आम तौर पर नहीं - रोजगार अनुबंध या औद्योगिक विवाद अधिनियम के अनुसार नोटिस अवधि आवश्यक (आमतौर पर 30-90 दिन)। अपवाद: उचित जांच के बाद कदाचार के लिए संक्षिप्त बर्खास्तगी। नोटिस के बदले भुगतान संभव। गलत समाप्ति मुआवजे का अधिकार देती है।",
+    "answer_tamil": "பொதுவாக இல்லை - வேலை ஒப்பந்தம் அல்லது தொழிற்துறை தகராறுகள் சட்டத்தின்படி அறிவிப்பு காலம் தேவை (பொதுவாக 30-90 நாட்கள்). விதிவிலக்கு: முறையான விசாரணைக்குப் பிறகு தவறான நடத்தைக்கு சுருக்கமான பணிநீக்கம். அறிவிப்புக்கு பதிலாக பணம் செலுத்துவது சாத்தியம். தவறான பணிநீக்கம் இழப்பீட்டுக்கான உரிமையை அளிக்கிறது.",
+    "key_points": [
+      "Notice period: Check employment contract, typically 30-90 days",
+      "Payment in lieu of notice: Employer can pay salary instead",
+      "Summary dismissal: Only for gross misconduct after domestic inquiry",
+      "Industrial Disputes Act applies to industrial establishments",
+      "Remedy: Approach Labour Commissioner or file suit for compensation"
+    ],
+    "confidence_level": "High",
+    "expert_count": 9
+  }
+]
+

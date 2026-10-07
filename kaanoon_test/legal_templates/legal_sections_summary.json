@@ -1,0 +1,237 @@
+{
+  "database_name": "Comprehensive Indian Legal Sections Summary",
+  "version": "1.0",
+  "last_updated": "2025",
+  "categories": {
+    "property_and_succession": {
+      "hindu_succession_act_1956": [
+        {
+          "section": "6",
+          "title": "Devolution of interest in coparcenary property",
+          "summary": "Property of a Hindu male dying intestate shall devolve according to provisions of this Act. Coparcenary property devolves by survivorship among coparceners.",
+          "key_points": ["Applies to Hindu males", "Intestate succession", "Coparcenary rights", "2005 Amendment gave equal rights to daughters"]
+        },
+        {
+          "section": "8",
+          "title": "General rules of succession in case of males",
+          "summary": "Property of Hindu male dying intestate devolves first upon Class I heirs (widow, sons, daughters, mother) who take simultaneously and to exclusion of others. If no Class I heirs, then Class II heirs inherit.",
+          "key_points": ["Equal share to all Class I heirs", "Widow gets same share as son/daughter", "Daughters have equal rights since 2005 Amendment", "Most frequently used section in partition suits"],
+          "class_i_heirs": ["Son", "Daughter", "Widow", "Mother", "Son of predeceased son", "Daughter of predeceased son", "Son of predeceased daughter", "Daughter of predeceased daughter", "Widow of predeceased son", "Son of predeceased son of predeceased son", "Daughter of predeceased son of predeceased son", "Widow of predeceased son of predeceased son"]
+        },
+        {
+          "section": "15",
+          "title": "General rules of succession in case of female Hindus",
+          "summary": "Property of Hindu female dying intestate devolves first upon sons/daughters and husband equally, then upon husband's heirs, then upon mother and father, then upon father's heirs, then upon mother's heirs.",
+          "key_points": ["Different from male succession", "Husband inherits from wife", "Children get preference"]
+        }
+      ],
+      "transfer_of_property_act_1882": [
+        {
+          "section": "54",
+          "title": "Sale - how made",
+          "summary": "Sale is transfer of ownership in exchange for price paid or promised. Immovable property worth Rs. 100+ must be registered.",
+          "key_points": ["Registration mandatory for property above Rs. 100", "Sale deed required", "Possession transfer essential"]
+        }
+      ]
+    },
+    "criminal_law_ipc": {
+      "cheating_and_fraud": [
+        {
+          "section": "415",
+          "title": "Cheating - Definition",
+          "summary": "Whoever deceives any person fraudulently or dishonestly induces that person to deliver property or consent that any person shall retain property, or intentionally induces that person to do or omit to do anything which he would not do if not deceived, commits cheating.",
+          "key_points": ["Deception + inducement = cheating", "Intent to defraud essential", "Defines what constitutes cheating"]
+        },
+        {
+          "section": "420",
+          "title": "Cheating and dishonestly inducing delivery of property",
+          "summary": "Whoever cheats and thereby dishonestly induces the person deceived to deliver any property or to make/alter/destroy valuable security shall be punished with imprisonment up to 7 years and shall also be liable to fine.",
+          "punishment": "7 years + fine",
+          "nature": "Cognizable, non-bailable, triable by Magistrate",
+          "key_points": ["Most commonly charged section in fraud cases", "Property delivery essential", "Includes bank fraud, investment fraud, property fraud"],
+          "examples": ["Selling property using forged documents", "Cheating in property deals", "Fraudulent investment schemes"]
+        },
+        {
+          "section": "406",
+          "title": "Punishment for criminal breach of trust",
+          "summary": "Whoever commits criminal breach of trust shall be punished with imprisonment up to 3 years or fine or both.",
+          "punishment": "3 years + fine",
+          "nature": "Non-cognizable, bailable, triable by Magistrate",
+          "key_points": ["Entrustment + misappropriation", "Trust relationship essential"]
+        }
+      ],
+      "forgery": [
+        {
+          "section": "463",
+          "title": "Forgery - Definition",
+          "summary": "Whoever makes false document or part of document with intent to cause damage/injury, or to support claim/title, or to cause any person to part with property, commits forgery.",
+          "key_points": ["False making essential", "Intent to defraud necessary", "Document must appear genuine"]
+        },
+        {
+          "section": "464",
+          "title": "Making a false document",
+          "summary": "Person makes false document who dishonestly or fraudulently makes/signs/seals/executes document intending it to be believed that such document was made by authority of person who did not authorize it.",
+          "key_points": ["Dishonest making", "False signature", "Unauthorized execution"]
+        },
+        {
+          "section": "465",
+          "title": "Punishment for forgery",
+          "summary": "Whoever commits forgery shall be punished with imprisonment up to 2 years or fine or both.",
+          "punishment": "2 years + fine",
+          "nature": "Non-cognizable, bailable"
+        },
+        {
+          "section": "467",
+          "title": "Forgery of valuable security, will, etc.",
+          "summary": "Whoever forges document which purports to be valuable security, will, or authority to adopt son, or to make/transfer property, shall be punished with imprisonment for life or up to 10 years and shall also be liable to fine.",
+          "punishment": "Life imprisonment OR 10 years + fine",
+          "nature": "Cognizable, non-bailable, triable by Magistrate of 1st class",
+          "key_points": ["Aggravated form of forgery", "Will forgery falls here", "Property transfer documents", "Most serious forgery offense"],
+          "documents_covered": ["Wills", "Property transfer documents", "Valuable securities", "Power of attorney", "Adoption deeds"]
+        },
+        {
+          "section": "468",
+          "title": "Forgery for purpose of cheating",
+          "summary": "Whoever commits forgery intending that forged document shall be used for purpose of cheating shall be punished with imprisonment up to 7 years and shall also be liable to fine.",
+          "punishment": "7 years + fine",
+          "nature": "Cognizable, non-bailable",
+          "key_points": ["Intent to cheat essential", "Combines forgery + cheating"]
+        },
+        {
+          "section": "471",
+          "title": "Using as genuine a forged document",
+          "summary": "Whoever fraudulently or dishonestly uses as genuine any document which he knows to be forged shall be punished in same manner as if he had forged such document.",
+          "punishment": "Same as punishment for forgery of that document (e.g., life/10 years for will)",
+          "nature": "Cognizable if underlying forgery is cognizable",
+          "key_points": ["Using forged document = forgery", "Knowledge of forgery essential", "Punishment same as forger"]
+        }
+      ],
+      "conspiracy": [
+        {
+          "section": "120A",
+          "title": "Definition of criminal conspiracy",
+          "summary": "When two or more persons agree to do illegal act or legal act by illegal means, such agreement is criminal conspiracy. Provided no agreement except to commit offense shall amount to conspiracy unless some act besides agreement is done.",
+          "key_points": ["Agreement between 2+ persons", "Illegal act or legal act by illegal means", "Overt act required"]
+        },
+        {
+          "section": "120B",
+          "title": "Punishment for criminal conspiracy",
+          "summary": "Whoever is party to criminal conspiracy shall be punished with same punishment as substantive offense. If no express provision, then imprisonment up to 6 months or fine or both.",
+          "punishment": "Same as main offense OR 6 months/fine",
+          "nature": "Depends on substantive offense",
+          "key_points": ["Punished same as main crime", "Can be charged even if substantive offense not committed", "Used when multiple accused collude"]
+        },
+        {
+          "section": "34",
+          "title": "Acts done by several persons in furtherance of common intention",
+          "summary": "When criminal act is done by several persons in furtherance of common intention of all, each is liable as if done by him alone.",
+          "key_points": ["Common intention essential", "All liable for final act", "Prior meeting of minds required"]
+        }
+      ]
+    },
+    "civil_procedure": {
+      "code_of_civil_procedure_1908": [
+        {
+          "order": "7 Rule 11",
+          "title": "Rejection of plaint",
+          "summary": "Plaint shall be rejected where it does not disclose cause of action, or is undervalued, or where suit is barred by law.",
+          "key_points": ["Court can reject plaint at threshold", "Cause of action essential", "Proper valuation required"]
+        },
+        {
+          "order": "39 Rule 1 & 2",
+          "title": "Temporary injunctions",
+          "summary": "Court may grant temporary injunction to restrain defendant where: (1) property in dispute, (2) right to property is seriously disputed, (3) defendant threatens to dispossess/cause injury to property. Court considers: (a) prima facie case, (b) balance of convenience, (c) irreparable injury.",
+          "key_points": ["Temporary relief pending suit", "Three conditions: prima facie case + balance of convenience + irreparable injury", "Most important interim relief", "Granted on urgency basis"],
+          "when_granted": "To preserve status quo and prevent irreparable harm during pendency of suit"
+        }
+      ],
+      "specific_relief_act_1963": [
+        {
+          "section": "34",
+          "title": "Declaratory decree",
+          "summary": "Any person entitled to any legal character, or to any right to property, may institute suit for declaration that he is so entitled. Court may make binding declaration without granting consequential relief.",
+          "key_points": ["Declaration of rights", "No consequential relief required", "Used to declare documents void", "Used in title disputes"],
+          "limitation": "3 years under Article 59, Limitation Act"
+        },
+        {
+          "section": "38",
+          "title": "Perpetual injunction when granted",
+          "summary": "Perpetual injunction can be granted to prevent breach of obligation when compensation in money would not afford adequate relief.",
+          "key_points": ["Permanent relief", "Granted in final decree", "Prevents future violations"]
+        }
+      ]
+    },
+    "evidence_law": {
+      "indian_evidence_act_1872": [
+        {
+          "section": "63",
+          "title": "Primary evidence",
+          "summary": "Primary evidence means document itself produced for inspection of court. Where document in multiple parts, each part is primary evidence.",
+          "key_points": ["Original document", "Best evidence rule"]
+        },
+        {
+          "section": "65",
+          "title": "Secondary evidence",
+          "summary": "Secondary evidence includes certified copies, copies from original by mechanical process, counterparts, oral accounts of contents. Admissible only when original is lost/destroyed or cannot be produced.",
+          "key_points": ["Photocopy not primary evidence", "Original loss must be proved"]
+        },
+        {
+          "section": "68",
+          "title": "Proof of execution of document required by law to be attested",
+          "summary": "If document is required by law to be attested (like will), it cannot be used in evidence until at least one attesting witness has been called to prove execution. Exception if all attesting witnesses deny execution.",
+          "key_points": ["Mandatory for wills", "Two witnesses required", "Burden on propounder", "Most important section for will disputes"],
+          "application": "Will propounder must prove: (1) Testator signed, (2) In sound mind, (3) Free consent, (4) Two witnesses attested"
+        },
+        {
+          "section": "47",
+          "title": "Opinion of handwriting expert",
+          "summary": "When court has to form opinion as to person by whom document was written or signed, opinion of expert on handwriting is relevant.",
+          "key_points": ["Handwriting expert testimony admissible", "Forensic examination", "Used in forgery cases"]
+        },
+        {
+          "section": "113",
+          "title": "Proof of cession of territory",
+          "summary": "For proving cession of territory, court may look at maps, treaties, etc.",
+          "key_points": ["Rarely used", "Territorial disputes"]
+        },
+        {
+          "section": "114",
+          "title": "Court may presume existence of certain facts",
+          "summary": "Court may presume that a person who has possession of stolen goods soon after theft is thief or receiver; that judicial acts have been regularly performed; that common course of business has been followed.",
+          "key_points": ["Judicial presumptions", "Possession of stolen property", "Regular official acts presumed"]
+        }
+      ]
+    },
+    "limitation_act_1963": [
+      {
+        "article": "58",
+        "description": "For declaration",
+        "period": "3 years",
+        "when_starts": "When right to sue accrues",
+        "key_points": ["Declaratory suits", "From knowledge of facts"]
+      },
+      {
+        "article": "59",
+        "description": "For declaration and consequential relief",
+        "period": "3 years",
+        "when_starts": "When right to sue accrues",
+        "key_points": ["Declaration + injunction/partition"]
+      },
+      {
+        "article": "65",
+        "description": "For possession of immovable property",
+        "period": "12 years",
+        "when_starts": "From dispossession",
+        "key_points": ["Property possession suits", "Title disputes"]
+      }
+    ]
+  },
+  "quick_reference": {
+    "property_forgery_case_sections": {
+      "criminal": ["420 IPC (cheating)", "467 IPC (will forgery)", "468 IPC (forgery for cheating)", "471 IPC (using forged document)", "120B IPC (conspiracy)"],
+      "civil": ["Section 8 HSA (inheritance)", "Section 34 SRA (declaration)", "Order 39 CPC (injunction)"],
+      "evidence": ["Section 68 Evidence Act (will proof)", "Section 47 (handwriting expert)"],
+      "limitation": ["Article 59 (3 years from knowledge of fraud)", "Article 65 (12 years for possession)"]
+    }
+  }
+}

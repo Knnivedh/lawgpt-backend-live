@@ -1,0 +1,23 @@
+﻿{
+    "build_fingerprint":  "quality-pass-20260402-2355",
+    "release_signature":  "lawgpt-quality-pass-20260402-2355",
+    "query_type_taxonomy":  [
+                                "academic_direct",
+                                "case_consultation",
+                                "clarification",
+                                "fallback_direct",
+                                "greeting",
+                                "invalid_reference",
+                                "multi_hop",
+                                "out_of_scope",
+                                "research",
+                                "safety_refusal",
+                                "simple",
+                                "simple_direct",
+                                "statute_lookup",
+                                "system_warmup",
+                                "web_search"
+                            ],
+    "query_type_taxonomy_count":  15,
+    "timestamp":  "2026-04-03T17:07:16.063453"
+}

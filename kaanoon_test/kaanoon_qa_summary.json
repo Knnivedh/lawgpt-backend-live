@@ -1,0 +1,87 @@
+[
+  {
+    "id": "Q1",
+    "category": "Property Law",
+    "topic": "Sale Deed & Limitation Period",
+    "question": "Can principal claim money from 2000 GPA sale after 25 years?",
+    "short_answer": "NO - Claim is time-barred. 3-year limitation period expired in 2003. Current owner has adverse possession rights (25 years). Fight the case confidently.",
+    "key_points": [
+      "Money recovery limitation: 3 years",
+      "Claim is 22 years overdue",
+      "Adverse possession established (12+ years required)",
+      "Sale deed shows consideration received",
+      "Previous withdrawn case doesn't extend limitation"
+    ],
+    "outcome": "Very strong defense position"
+  },
+  {
+    "id": "Q2",
+    "category": "Civil Procedure",
+    "topic": "Evidence Recording & Cross-Examination",
+    "question": "What is cross-examination sequence? Can evidence be recorded in English in Tamil Nadu?",
+    "short_answer": "Cross-examination of plaintiff comes FIRST after plaintiff's evidence. For language: Tamil is mandatory unless ALL parties consent to English per Order 18 Rule 9 CPC.",
+    "key_points": [
+      "Sequence: Plaintiff evidence → Defendant cross-examines plaintiff → Defendant evidence → Plaintiff cross-examines defendant",
+      "Tamil mandatory in TN lower courts per TN Official Language Act 1956",
+      "Order 18 Rule 9 allows English if judge conversant and parties consent",
+      "Can request simultaneous translation or English annexure"
+    ],
+    "outcome": "Clear procedural guidance provided"
+  },
+  {
+    "id": "Q3",
+    "category": "Family Law",
+    "topic": "Child's Educational Records - Father's Name",
+    "question": "Can divorced mother omit father's name from child's 10th mark sheet?",
+    "short_answer": "YES - Supreme Court precedents support mother's right to exclude father's name when he has abandoned family or relinquished rights. No law mandates father's name in educational records.",
+    "key_points": [
+      "ABC v. State (2015 SC): Cannot force father's name disclosure",
+      "Jigya Yadav v. CBSE (2021 SC): Mother not lesser parent",
+      "CBSE Circular allows either parent's name",
+      "Father relinquished all rights in divorce decree",
+      "Action: Write to school → DEO → Writ Petition if needed"
+    ],
+    "outcome": "Very strong legal position for mother"
+  },
+  {
+    "id": "Q4",
+    "category": "Society Law",
+    "topic": "AGM Delay Condonation",
+    "question": "How to get AGM delay condoned due to auditor's delay?",
+    "short_answer": "File formal application to District Registrar citing auditor delay. Section 15(1) allows Registrar to extend time by up to 3 months for special reasons. Very likely to be granted.",
+    "key_points": [
+      "Valid reason: Auditor's delay (beyond society's control)",
+      "Already informed Registrar in advance (good faith)",
+      "Submit: Application + EC Resolution + Supporting documents",
+      "Timeline: 2-4 weeks for condonation order",
+      "File Form VI within 30 days after AGM"
+    ],
+    "outcome": "High likelihood of approval"
+  },
+  {
+    "id": "Q5",
+    "category": "Legal Concepts",
+    "topic": "Quick Reference Guide",
+    "key_concepts": {
+      "Limitation Periods": {
+        "Money Recovery": "3 years",
+        "Adverse Possession": "12 years",
+        "Contract Breach": "3 years"
+      },
+      "CPC Key Orders": {
+        "Order 18": "Evidence recording",
+        "Order 23": "Withdrawal of suits",
+        "Order 2 Rule 2": "Precludes splitting claims"
+      },
+      "Constitutional Articles": {
+        "Article 14": "Equality before law",
+        "Article 21": "Life, liberty, privacy, dignity",
+        "Article 226": "High Court writ jurisdiction",
+        "Article 348": "English in High Court",
+        "Article 350": "Language rights"
+      },
+      "Evidence Sequence": "Examination-in-chief → Cross-examination → Re-examination"
+    }
+  }
+]
+

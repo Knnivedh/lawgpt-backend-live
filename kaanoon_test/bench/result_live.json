@@ -1,0 +1,3846 @@
+{
+  "by_act": {
+    "Arbitration and Conciliation Act, 1996": {
+      "hit_any": 1,
+      "mrr": 1.0,
+      "n_queries": 1,
+      "ndcg@10": 1.0,
+      "no_hit": 0,
+      "recall@10": 1.0,
+      "recall@20": 1.0,
+      "recall@5": 1.0
+    },
+    "Bharatiya Nyaya Sanhita 2023": {
+      "hit_any": 21,
+      "mrr": 0.0969,
+      "n_queries": 39,
+      "ndcg@10": 0.1341,
+      "no_hit": 18,
+      "recall@10": 0.3077,
+      "recall@20": 0.5385,
+      "recall@5": 0.2308
+    },
+    "Competition Act 2002": {
+      "hit_any": 0,
+      "mrr": 0.0,
+      "n_queries": 1,
+      "ndcg@10": 0.0,
+      "no_hit": 1,
+      "recall@10": 0.0,
+      "recall@20": 0.0,
+      "recall@5": 0.0
+    },
+    "Consumer Protection Act 2019": {
+      "hit_any": 19,
+      "mrr": 0.6766,
+      "n_queries": 20,
+      "ndcg@10": 0.6982,
+      "no_hit": 1,
+      "recall@10": 0.8,
+      "recall@20": 0.95,
+      "recall@5": 0.75
+    },
+    "Digital Personal Data Protection Act, 2023": {
+      "hit_any": 1,
+      "mrr": 1.0,
+      "n_queries": 1,
+      "ndcg@10": 1.0,
+      "no_hit": 0,
+      "recall@10": 1.0,
+      "recall@20": 1.0,
+      "recall@5": 1.0
+    },
+    "IB Code 2016": {
+      "hit_any": 0,
+      "mrr": 0.0,
+      "n_queries": 1,
+      "ndcg@10": 0.0,
+      "no_hit": 1,
+      "recall@10": 0.0,
+      "recall@20": 0.0,
+      "recall@5": 0.0
+    },
+    "Indian Contract Act 1872": {
+      "hit_any": 40,
+      "mrr": 0.649,
+      "n_queries": 41,
+      "ndcg@10": 0.7141,
+      "no_hit": 1,
+      "recall@10": 0.9268,
+      "recall@20": 0.9756,
+      "recall@5": 0.8537
+    },
+    "Indian Partnership Act 1932": {
+      "hit_any": 3,
+      "mrr": 0.5667,
+      "n_queries": 3,
+      "ndcg@10": 0.6726,
+      "no_hit": 0,
+      "recall@10": 1.0,
+      "recall@20": 1.0,
+      "recall@5": 1.0
+    },
+    "Insolvency and Bankruptcy Code, 2016": {
+      "hit_any": 2,
+      "mrr": 0.75,
+      "n_queries": 2,
+      "ndcg@10": 0.8155,
+      "no_hit": 0,
+      "recall@10": 1.0,
+      "recall@20": 1.0,
+      "recall@5": 1.0
+    },
+    "Partnership Act 1932": {
+      "hit_any": 0,
+      "mrr": 0.0,
+      "n_queries": 2,
+      "ndcg@10": 0.0,
+      "no_hit": 2,
+      "recall@10": 0.0,
+      "recall@20": 0.0,
+      "recall@5": 0.0
+    },
+    "Sale of Goods Act 1930": {
+      "hit_any": 0,
+      "mrr": 0.0,
+      "n_queries": 3,
+      "ndcg@10": 0.0,
+      "no_hit": 3,
+      "recall@10": 0.0,
+      "recall@20": 0.0,
+      "recall@5": 0.0
+    },
+    "Specific Relief Act 1963": {
+      "hit_any": 24,
+      "mrr": 0.635,
+      "n_queries": 24,
+      "ndcg@10": 0.6983,
+      "no_hit": 0,
+      "recall@10": 0.9167,
+      "recall@20": 1.0,
+      "recall@5": 0.875
+    },
+    "The Companies Act, 1956": {
+      "hit_any": 29,
+      "mrr": 0.7124,
+      "n_queries": 30,
+      "ndcg@10": 0.7635,
+      "no_hit": 1,
+      "recall@10": 0.9333,
+      "recall@20": 0.9667,
+      "recall@5": 0.8667
+    },
+    "Transfer of Property Act 1882": {
+      "hit_any": 31,
+      "mrr": 0.6865,
+      "n_queries": 32,
+      "ndcg@10": 0.7355,
+      "no_hit": 1,
+      "recall@10": 0.9062,
+      "recall@20": 0.9688,
+      "recall@5": 0.8438
+    }
+  },
+  "by_length_bucket": {
+    "long": {
+      "hit_any": 57,
+      "mrr": 0.3734,
+      "n_queries": 72,
+      "ndcg@10": 0.4166,
+      "no_hit": 15,
+      "recall@10": 0.5972,
+      "recall@20": 0.7917,
+      "recall@5": 0.5556
+    },
+    "medium": {
+      "hit_any": 73,
+      "mrr": 0.5891,
+      "n_queries": 79,
+      "ndcg@10": 0.6586,
+      "no_hit": 6,
+      "recall@10": 0.8861,
+      "recall@20": 0.9241,
+      "recall@5": 0.7975
+    },
+    "short": {
+      "hit_any": 41,
+      "mrr": 0.6994,
+      "n_queries": 49,
+      "ndcg@10": 0.7204,
+      "no_hit": 8,
+      "recall@10": 0.7959,
+      "recall@20": 0.8367,
+      "recall@5": 0.7551
+    }
+  },
+  "by_section_type": {
+    "definition": {
+      "hit_any": 24,
+      "mrr": 0.4776,
+      "n_queries": 28,
+      "ndcg@10": 0.5264,
+      "no_hit": 4,
+      "recall@10": 0.7143,
+      "recall@20": 0.8571,
+      "recall@5": 0.6071
+    },
+    "exception": {
+      "hit_any": 55,
+      "mrr": 0.6899,
+      "n_queries": 57,
+      "ndcg@10": 0.7506,
+      "no_hit": 2,
+      "recall@10": 0.9474,
+      "recall@20": 0.9649,
+      "recall@5": 0.8772
+    },
+    "procedure": {
+      "hit_any": 48,
+      "mrr": 0.5604,
+      "n_queries": 57,
+      "ndcg@10": 0.6073,
+      "no_hit": 9,
+      "recall@10": 0.7719,
+      "recall@20": 0.8421,
+      "recall@5": 0.7193
+    },
+    "punishment": {
+      "hit_any": 44,
+      "mrr": 0.3976,
+      "n_queries": 58,
+      "ndcg@10": 0.4342,
+      "no_hit": 14,
+      "recall@10": 0.5862,
+      "recall@20": 0.7586,
+      "recall@5": 0.5517
+    }
+  },
+  "collection": "legal_db_statutes",
+  "collection_docs": 3972,
+  "depths": [
+    5,
+    10,
+    20
+  ],
+  "embedding_dim": 384,
+  "failure_threshold": {
+    "bar": 0.9,
+    "recall": null,
+    "threshold_k": null
+  },
+  "has_bm25": true,
+  "index": "E:\\LAW-GPT_new\\azure_backend_stage\\PERMANENT_RAG_FILES\\STATUTE_DATABASE",
+  "label": "LIVE_3972",
+  "overall": {
+    "hit_any": 171,
+    "mrr": 0.5385,
+    "n_queries": 200,
+    "ndcg@10": 0.5866,
+    "no_hit": 29,
+    "recall@10": 0.76,
+    "recall@20": 0.855,
+    "recall@5": 0.7
+  },
+  "per_item": [
+    {
+      "act": "Arbitration and Conciliation Act, 1996",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_arbitration_and_conciliation_act_1996_34",
+      "question": "What procedure does Arbitration and Conciliation Act, 1996 lay down for Application for setting aside arbitral award?",
+      "rank": 1,
+      "section_key": "arbitration and conciliation act 1996::34",
+      "section_number": "34",
+      "section_type": "procedure",
+      "top_keys": [
+        "arbitration and conciliation act 1996::34",
+        "specific relief act 1963::25",
+        "specific relief act 1963::14",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_1",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what steps must be followed for Short title, commencement and application?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::1",
+      "section_number": "1",
+      "section_type": "procedure",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::359",
+        "bharatiya nyaya sanhita 2023::44",
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::221"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_104",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Punishment for murder by life-convict punishable?",
+      "rank": 2,
+      "section_key": "bharatiya nyaya sanhita 2023::104",
+      "section_number": "104",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::105",
+        "bharatiya nyaya sanhita 2023::104",
+        "bharatiya nyaya sanhita 2023::56",
+        "bharatiya nyaya sanhita 2023::110",
+        "bharatiya nyaya sanhita 2023::72"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_105",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Punishment for culpable homicide not amounting to murder?",
+      "rank": 3,
+      "section_key": "bharatiya nyaya sanhita 2023::105",
+      "section_number": "105",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::106",
+        "bharatiya nyaya sanhita 2023::104",
+        "bharatiya nyaya sanhita 2023::105",
+        "bharatiya nyaya sanhita 2023::110",
+        "bharatiya nyaya sanhita 2023::3"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_106",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Causing death by negligence?",
+      "rank": 9,
+      "section_key": "bharatiya nyaya sanhita 2023::106",
+      "section_number": "106",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::103",
+        "bharatiya nyaya sanhita 2023::105",
+        "bharatiya nyaya sanhita 2023::110",
+        "bharatiya nyaya sanhita 2023::104",
+        "bharatiya nyaya sanhita 2023::90"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_109",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Attempt to murder punishable?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::109",
+      "section_number": "109",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::110",
+        "bharatiya nyaya sanhita 2023::104",
+        "bharatiya nyaya sanhita 2023::105",
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::227"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_112",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Petty organised crime?",
+      "rank": 13,
+      "section_key": "bharatiya nyaya sanhita 2023::112",
+      "section_number": "112",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::201",
+        "bharatiya nyaya sanhita 2023::72",
+        "bharatiya nyaya sanhita 2023::104",
+        "bharatiya nyaya sanhita 2023::251"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_116",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what steps must be followed for Permanent privation of the sight of either eye?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::116",
+      "section_number": "116",
+      "section_type": "procedure",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::109",
+        "bharatiya nyaya sanhita 2023::24",
+        "bharatiya nyaya sanhita 2023::252",
+        "bharatiya nyaya sanhita 2023::117"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_124",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Voluntarily causing grievous hurt by use of acid, etc punishable?",
+      "rank": 12,
+      "section_key": "bharatiya nyaya sanhita 2023::124",
+      "section_number": "124",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::125",
+        "bharatiya nyaya sanhita 2023::120",
+        "bharatiya nyaya sanhita 2023::118",
+        "bharatiya nyaya sanhita 2023::123",
+        "bharatiya nyaya sanhita 2023::119"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_139",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Kidnapping or maiming a child for purposes of begging?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::139",
+      "section_number": "139",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::140",
+        "bharatiya nyaya sanhita 2023::98",
+        "bharatiya nyaya sanhita 2023::96",
+        "bharatiya nyaya sanhita 2023::92",
+        "bharatiya nyaya sanhita 2023::94"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_140",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Kidnapping or abducting in order to murder or for ransom?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::140",
+      "section_number": "140",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::141",
+        "bharatiya nyaya sanhita 2023::98",
+        "bharatiya nyaya sanhita 2023::88",
+        "bharatiya nyaya sanhita 2023::143",
+        "bharatiya nyaya sanhita 2023::105"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_156",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Public servant voluntarily allowing prisoner of state or war to punishable?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::156",
+      "section_number": "156",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::157",
+        "bharatiya nyaya sanhita 2023::158",
+        "bharatiya nyaya sanhita 2023::159",
+        "bharatiya nyaya sanhita 2023::203",
+        "bharatiya nyaya sanhita 2023::225"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_169",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, how is Candidate, electoral right defined defined?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::169",
+      "section_number": "169",
+      "section_type": "definition",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::170",
+        "bharatiya nyaya sanhita 2023::172",
+        "bharatiya nyaya sanhita 2023::176",
+        "bharatiya nyaya sanhita 2023::177",
+        "bharatiya nyaya sanhita 2023::338"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_173",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Punishment for bribery?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::173",
+      "section_number": "173",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::174",
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::175",
+        "bharatiya nyaya sanhita 2023::251",
+        "bharatiya nyaya sanhita 2023::252"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_177",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Failure to keep election accounts punishable?",
+      "rank": 5,
+      "section_key": "bharatiya nyaya sanhita 2023::177",
+      "section_number": "177",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::178",
+        "bharatiya nyaya sanhita 2023::175",
+        "bharatiya nyaya sanhita 2023::173",
+        "bharatiya nyaya sanhita 2023::176",
+        "bharatiya nyaya sanhita 2023::177"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_186",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Prohibition of fictitious stamps?",
+      "rank": 12,
+      "section_key": "bharatiya nyaya sanhita 2023::186",
+      "section_number": "186",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::187",
+        "bharatiya nyaya sanhita 2023::251",
+        "bharatiya nyaya sanhita 2023::201",
+        "bharatiya nyaya sanhita 2023::252",
+        "bharatiya nyaya sanhita 2023::3"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_197",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Imputations, assertions prejudicial to national integration?",
+      "rank": 14,
+      "section_key": "bharatiya nyaya sanhita 2023::197",
+      "section_number": "197",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::198",
+        "bharatiya nyaya sanhita 2023::359",
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::211",
+        "bharatiya nyaya sanhita 2023::166"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_208",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Non-attendance in obedience to an order from public servant punishable?",
+      "rank": 5,
+      "section_key": "bharatiya nyaya sanhita 2023::208",
+      "section_number": "208",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::209",
+        "bharatiya nyaya sanhita 2023::196",
+        "bharatiya nyaya sanhita 2023::222",
+        "bharatiya nyaya sanhita 2023::260",
+        "bharatiya nyaya sanhita 2023::208"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_226",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Attempt to commit suicide to compel or restraint exercise of?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::226",
+      "section_number": "226",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::227",
+        "bharatiya nyaya sanhita 2023::108",
+        "bharatiya nyaya sanhita 2023::43",
+        "bharatiya nyaya sanhita 2023::110",
+        "bharatiya nyaya sanhita 2023::124"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_229",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Punishment for false evidence?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::229",
+      "section_number": "229",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::231",
+        "bharatiya nyaya sanhita 2023::233",
+        "bharatiya nyaya sanhita 2023::230",
+        "bharatiya nyaya sanhita 2023::232",
+        "bharatiya nyaya sanhita 2023::237"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_238",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Causing disappearance of evidence of offence, or giving false information punishable?",
+      "rank": 20,
+      "section_key": "bharatiya nyaya sanhita 2023::238",
+      "section_number": "238",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::239",
+        "bharatiya nyaya sanhita 2023::241",
+        "bharatiya nyaya sanhita 2023::213",
+        "bharatiya nyaya sanhita 2023::232",
+        "bharatiya nyaya sanhita 2023::233"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_244",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Fraudulent claim to property to prevent its seizure as forfeited?",
+      "rank": 2,
+      "section_key": "bharatiya nyaya sanhita 2023::244",
+      "section_number": "244",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::245",
+        "bharatiya nyaya sanhita 2023::244",
+        "bharatiya nyaya sanhita 2023::324",
+        "bharatiya nyaya sanhita 2023::321",
+        "bharatiya nyaya sanhita 2023::252"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_253",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Harbouring offender who has escaped from custody or whose apprehension?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::253",
+      "section_number": "253",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::254",
+        "bharatiya nyaya sanhita 2023::159",
+        "bharatiya nyaya sanhita 2023::263",
+        "bharatiya nyaya sanhita 2023::266",
+        "bharatiya nyaya sanhita 2023::264"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_28",
+      "question": "In Bharatiya Nyaya Sanhita 2023, what carve-out or proviso governs Consent known to be given under fear or misconception?",
+      "rank": 6,
+      "section_key": "bharatiya nyaya sanhita 2023::28",
+      "section_number": "28",
+      "section_type": "exception",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::29",
+        "bharatiya nyaya sanhita 2023::26",
+        "bharatiya nyaya sanhita 2023::27",
+        "bharatiya nyaya sanhita 2023::90",
+        "bharatiya nyaya sanhita 2023::44"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_282",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Rash navigation of vessel?",
+      "rank": 4,
+      "section_key": "bharatiya nyaya sanhita 2023::282",
+      "section_number": "282",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::283",
+        "bharatiya nyaya sanhita 2023::329",
+        "bharatiya nyaya sanhita 2023::328",
+        "bharatiya nyaya sanhita 2023::282",
+        "bharatiya nyaya sanhita 2023::285"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_30",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Act done in good faith for benefit of a person?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::30",
+      "section_number": "30",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::28",
+        "bharatiya nyaya sanhita 2023::31",
+        "bharatiya nyaya sanhita 2023::27",
+        "bharatiya nyaya sanhita 2023::17",
+        "bharatiya nyaya sanhita 2023::92"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_314",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Dishonest misappropriation of property punishable?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::314",
+      "section_number": "314",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::315",
+        "bharatiya nyaya sanhita 2023::324",
+        "bharatiya nyaya sanhita 2023::318",
+        "bharatiya nyaya sanhita 2023::316",
+        "bharatiya nyaya sanhita 2023::323"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_316",
+      "question": "What procedure does Bharatiya Nyaya Sanhita 2023 lay down for Criminal breach of trust?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::316",
+      "section_number": "316",
+      "section_type": "procedure",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::317",
+        "bharatiya nyaya sanhita 2023::318",
+        "bharatiya nyaya sanhita 2023::149",
+        "bharatiya nyaya sanhita 2023::249",
+        "bharatiya nyaya sanhita 2023::339"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_330",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for House-trespass and house-breaking?",
+      "rank": 11,
+      "section_key": "bharatiya nyaya sanhita 2023::330",
+      "section_number": "330",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::255",
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::286",
+        "bharatiya nyaya sanhita 2023::221",
+        "bharatiya nyaya sanhita 2023::253"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_331",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Punishment for house-trespass or house breaking punishable?",
+      "rank": 17,
+      "section_key": "bharatiya nyaya sanhita 2023::331",
+      "section_number": "331",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::251",
+        "bharatiya nyaya sanhita 2023::252",
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::72",
+        "bharatiya nyaya sanhita 2023::332"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_337",
+      "question": "What procedure does Bharatiya Nyaya Sanhita 2023 lay down for Forgery of record of Court or of public register, etc?",
+      "rank": 3,
+      "section_key": "bharatiya nyaya sanhita 2023::337",
+      "section_number": "337",
+      "section_type": "procedure",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::338",
+        "bharatiya nyaya sanhita 2023::341",
+        "bharatiya nyaya sanhita 2023::337",
+        "bharatiya nyaya sanhita 2023::242",
+        "bharatiya nyaya sanhita 2023::211"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_344",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Falsification of accounts?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::344",
+      "section_number": "344",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::345",
+        "bharatiya nyaya sanhita 2023::178",
+        "bharatiya nyaya sanhita 2023::359",
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::340"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_358",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Repeal and savings punishable?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::358",
+      "section_number": "358",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::359",
+        "bharatiya nyaya sanhita 2023::252",
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::333"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_38",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for When the right of private defence of the body extends?",
+      "rank": 14,
+      "section_key": "bharatiya nyaya sanhita 2023::38",
+      "section_number": "38",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::40",
+        "bharatiya nyaya sanhita 2023::41",
+        "bharatiya nyaya sanhita 2023::45",
+        "bharatiya nyaya sanhita 2023::43",
+        "bharatiya nyaya sanhita 2023::36"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_43",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what steps must be followed for Commencement and continuance of the right of private defence of?",
+      "rank": 10,
+      "section_key": "bharatiya nyaya sanhita 2023::43",
+      "section_number": "43",
+      "section_type": "procedure",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::41",
+        "bharatiya nyaya sanhita 2023::44",
+        "bharatiya nyaya sanhita 2023::45",
+        "bharatiya nyaya sanhita 2023::42",
+        "bharatiya nyaya sanhita 2023::40"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_45",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how must Abetment of a thing be dealt with procedurally?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::45",
+      "section_number": "45",
+      "section_type": "procedure",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::50",
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::49",
+        "bharatiya nyaya sanhita 2023::48",
+        "bharatiya nyaya sanhita 2023::355"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_56",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Abetment of offence punishable with imprisonment?",
+      "rank": 5,
+      "section_key": "bharatiya nyaya sanhita 2023::56",
+      "section_number": "56",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::251",
+        "bharatiya nyaya sanhita 2023::72",
+        "bharatiya nyaya sanhita 2023::252",
+        "bharatiya nyaya sanhita 2023::56"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_6",
+      "question": "Under Bharatiya Nyaya Sanhita 2023, what is the penalty for Fractions of terms of punishment?",
+      "rank": 20,
+      "section_key": "bharatiya nyaya sanhita 2023::6",
+      "section_number": "6",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::7",
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::201",
+        "bharatiya nyaya sanhita 2023::105",
+        "bharatiya nyaya sanhita 2023::72"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_72",
+      "question": "In Bharatiya Nyaya Sanhita 2023, how is Disclosure of identity of the victim of certain offences, etc punishable?",
+      "rank": null,
+      "section_key": "bharatiya nyaya sanhita 2023::72",
+      "section_number": "72",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::73",
+        "bharatiya nyaya sanhita 2023::338",
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::14",
+        "bharatiya nyaya sanhita 2023::149"
+      ]
+    },
+    {
+      "act": "Bharatiya Nyaya Sanhita 2023",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_bharatiya_nyaya_sanhita_2023_73",
+      "question": "What punishment is prescribed by Bharatiya Nyaya Sanhita 2023 for Printing or publishing any matter relating to Court proceedings without?",
+      "rank": 4,
+      "section_key": "bharatiya nyaya sanhita 2023::73",
+      "section_number": "73",
+      "section_type": "punishment",
+      "top_keys": [
+        "bharatiya nyaya sanhita 2023::74",
+        "bharatiya nyaya sanhita 2023::3",
+        "bharatiya nyaya sanhita 2023::338",
+        "bharatiya nyaya sanhita 2023::73",
+        "bharatiya nyaya sanhita 2023::232"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_108A",
+      "question": "Under Companies Act, 1956, when does Restriction on acquisition of certain shares not apply?",
+      "rank": 1,
+      "section_key": "companies act 1956::108A",
+      "section_number": "108A",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::108A",
+        null,
+        null,
+        null,
+        "companies act 1956::250"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_108C",
+      "question": "In Companies Act, 1956, what carve-out or proviso governs Restriction on the transfer of shares of foreign companies -?",
+      "rank": 1,
+      "section_key": "companies act 1956::108C",
+      "section_number": "108C",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::108C",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_108E",
+      "question": "What exception does Companies Act, 1956 provide in relation to Time within which refusal to be communicated .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::108E",
+      "section_number": "108E",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::108E",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_119",
+      "question": "Under Companies Act, 1956, when does Liability of trustees for debenture holders .- not apply?",
+      "rank": 2,
+      "section_key": "companies act 1956::119",
+      "section_number": "119",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::117B",
+        "companies act 1956::119",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_143",
+      "question": "In Companies Act, 1956, how must Company's register of charges .- be dealt with procedurally?",
+      "rank": 4,
+      "section_key": "companies act 1956::143",
+      "section_number": "143",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        null,
+        null,
+        "companies act 1956::143",
+        "companies act 1956::130"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_151",
+      "question": "What punishment is prescribed by Companies Act, 1956 for Index of members .-?",
+      "rank": 2,
+      "section_key": "companies act 1956::151",
+      "section_number": "151",
+      "section_type": "punishment",
+      "top_keys": [
+        null,
+        "companies act 1956::151",
+        "companies act 1956::116",
+        "companies act 1956::152A",
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_162",
+      "question": "What does Companies Act, 1956 define by Penalty and interpretation .-?",
+      "rank": 9,
+      "section_key": "companies act 1956::162",
+      "section_number": "162",
+      "section_type": "definition",
+      "top_keys": [
+        "companies act 1956::168",
+        "companies act 1956::232",
+        "companies act 1956::116",
+        "companies act 1956::105",
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_171",
+      "question": "In Companies Act, 1956, how must Length of notice for calling meeting .- be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "companies act 1956::171",
+      "section_number": "171",
+      "section_type": "procedure",
+      "top_keys": [
+        "companies act 1956::171",
+        null,
+        null,
+        null,
+        "companies act 1956::166"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_183",
+      "question": "What procedure does Companies Act, 1956 lay down for Right of member to use his votes differently .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::183",
+      "section_number": "183",
+      "section_type": "procedure",
+      "top_keys": [
+        "companies act 1956::183",
+        "companies act 1956::182",
+        null,
+        "companies act 1956::181",
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_191",
+      "question": "Under Companies Act, 1956, what steps must be followed for Resolutions passed at adjourned meetings?",
+      "rank": 1,
+      "section_key": "companies act 1956::191",
+      "section_number": "191",
+      "section_type": "procedure",
+      "top_keys": [
+        "companies act 1956::191",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_192A",
+      "question": "In Companies Act, 1956, how is Passing of resolutions by postal ballot punishable?",
+      "rank": 1,
+      "section_key": "companies act 1956::192A",
+      "section_number": "192A",
+      "section_type": "punishment",
+      "top_keys": [
+        "companies act 1956::192A",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_222",
+      "question": "Under Companies Act, 1956, how is Construction of references to documents annexed to accounts .- defined?",
+      "rank": 1,
+      "section_key": "companies act 1956::222",
+      "section_number": "222",
+      "section_type": "definition",
+      "top_keys": [
+        "companies act 1956::222",
+        null,
+        null,
+        "companies act 1956::216",
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_241",
+      "question": "Under Companies Act, 1956, what steps must be followed for Inspectors' report .-?",
+      "rank": 4,
+      "section_key": "companies act 1956::241",
+      "section_number": "241",
+      "section_type": "procedure",
+      "top_keys": [
+        "companies act 1956::246",
+        null,
+        null,
+        "companies act 1956::241",
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_247",
+      "question": "In Companies Act, 1956, how must Investigation of ownership of company .- be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "companies act 1956::247",
+      "section_number": "247",
+      "section_type": "procedure",
+      "top_keys": [
+        "companies act 1956::247",
+        "companies act 1956::187D",
+        null,
+        "companies act 1956::239",
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_251",
+      "question": "What exception does Companies Act, 1956 provide in relation to Saving for legal advisers and bankers .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::251",
+      "section_number": "251",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::251",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_252",
+      "question": "What does Companies Act, 1956 define by Minimum number of Directors .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::252",
+      "section_number": "252",
+      "section_type": "definition",
+      "top_keys": [
+        "companies act 1956::252",
+        "companies act 1956::258",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_260",
+      "question": "In Companies Act, 1956, what carve-out or proviso governs Additional Directors .-?",
+      "rank": 3,
+      "section_key": "companies act 1956::260",
+      "section_number": "260",
+      "section_type": "exception",
+      "top_keys": [
+        null,
+        null,
+        "companies act 1956::260",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_262",
+      "question": "What exception does Companies Act, 1956 provide in relation to Filling of casual vacancies among Directors .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::262",
+      "section_number": "262",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::262",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_265",
+      "question": "Under Companies Act, 1956, when does Option to company to adopt proportional representation for the appointment not apply?",
+      "rank": 1,
+      "section_key": "companies act 1956::265",
+      "section_number": "265",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::265",
+        null,
+        "companies act 1956::263",
+        null,
+        "companies act 1956::269"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_54",
+      "question": "In Companies Act, 1956, what carve-out or proviso governs Authentication of documents and proceedings .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::54",
+      "section_number": "54",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::54",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_59",
+      "question": "Under Companies Act, 1956, how is Penalty and interpretation .- defined?",
+      "rank": 10,
+      "section_key": "companies act 1956::59",
+      "section_number": "59",
+      "section_type": "definition",
+      "top_keys": [
+        "companies act 1956::168",
+        "companies act 1956::232",
+        "companies act 1956::105",
+        null,
+        "companies act 1956::116"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_60B",
+      "question": "What does Companies Act, 1956 define by Information memorandum .-?",
+      "rank": null,
+      "section_key": "companies act 1956::60B",
+      "section_number": "60B",
+      "section_type": "definition",
+      "top_keys": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_65",
+      "question": "In Companies Act, 1956, what is meant by Interpretation of provisions relating to prospectuses .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::65",
+      "section_number": "65",
+      "section_type": "definition",
+      "top_keys": [
+        "companies act 1956::65",
+        null,
+        null,
+        null,
+        "companies act 1956::162"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_67",
+      "question": "Under Companies Act, 1956, how is Construction of references to offering shares or debentures to the defined?",
+      "rank": 2,
+      "section_key": "companies act 1956::67",
+      "section_number": "67",
+      "section_type": "definition",
+      "top_keys": [
+        null,
+        "companies act 1956::67",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_68B",
+      "question": "Under Companies Act, 1956, when does Initial offer of securities to be in dematerialised form in not apply?",
+      "rank": 1,
+      "section_key": "companies act 1956::68B",
+      "section_number": "68B",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::68B",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_71",
+      "question": "In Companies Act, 1956, how is Effect of irregular allotment .- punishable?",
+      "rank": 1,
+      "section_key": "companies act 1956::71",
+      "section_number": "71",
+      "section_type": "punishment",
+      "top_keys": [
+        "companies act 1956::71",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_77A",
+      "question": "Under Companies Act, 1956, how is Power of company to purchase its own securities - defined?",
+      "rank": 4,
+      "section_key": "companies act 1956::77A",
+      "section_number": "77A",
+      "section_type": "definition",
+      "top_keys": [
+        null,
+        null,
+        null,
+        "companies act 1956::77A",
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_79A",
+      "question": "What does Companies Act, 1956 define by Issue of sweat equity shares?",
+      "rank": 2,
+      "section_key": "companies act 1956::79A",
+      "section_number": "79A",
+      "section_type": "definition",
+      "top_keys": [
+        null,
+        "companies act 1956::79A",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_85",
+      "question": "In Companies Act, 1956, what is meant by Two kinds of share capital .-?",
+      "rank": 13,
+      "section_key": "companies act 1956::85",
+      "section_number": "85",
+      "section_type": "definition",
+      "top_keys": [
+        "companies act 1956::86",
+        null,
+        null,
+        null,
+        "companies act 1956::83"
+      ]
+    },
+    {
+      "act": "The Companies Act, 1956",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_companies_act_1956_99",
+      "question": "What exception does Companies Act, 1956 provide in relation to Reserve liability of limited company .-?",
+      "rank": 1,
+      "section_key": "companies act 1956::99",
+      "section_number": "99",
+      "section_type": "exception",
+      "top_keys": [
+        "companies act 1956::99",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Competition Act 2002",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_competition_act_2002_1",
+      "question": "Under Competition Act 2002, what steps must be followed for Short title, extent and commencement?",
+      "rank": null,
+      "section_key": "competition act 2002::1",
+      "section_number": "1",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_101",
+      "question": "In Consumer Protection Act 2019, how must Power of Central Government to make rules be dealt with procedurally?",
+      "rank": 15,
+      "section_key": "consumer protection act 2019::101",
+      "section_number": "101",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        "consumer protection act 2019::104",
+        "consumer protection act 2019::102",
+        null,
+        "consumer protection act 2019::99"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_103",
+      "question": "What procedure does Consumer Protection Act 2019 lay down for Power of National Commission to make regulations?",
+      "rank": 16,
+      "section_key": "consumer protection act 2019::103",
+      "section_number": "103",
+      "section_type": "procedure",
+      "top_keys": [
+        "consumer protection act 2019::104",
+        "consumer protection act 2019::53",
+        "consumer protection act 2019::70",
+        null,
+        "consumer protection act 2019::66"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_106",
+      "question": "Under Consumer Protection Act 2019, when does Power to remove difficulties not apply?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::106",
+      "section_number": "106",
+      "section_type": "exception",
+      "top_keys": [
+        "consumer protection act 2019::106",
+        "consumer protection act 2019::60",
+        "consumer protection act 2019::103",
+        "consumer protection act 2019::50",
+        "consumer protection act 2019::40"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_18",
+      "question": "In Consumer Protection Act 2019, how must Powers and functions of Central Authority be dealt with procedurally?",
+      "rank": 13,
+      "section_key": "consumer protection act 2019::18",
+      "section_number": "18",
+      "section_type": "procedure",
+      "top_keys": [
+        "consumer protection act 2019::23",
+        null,
+        "consumer protection act 2019::10",
+        "consumer protection act 2019::14",
+        "consumer protection act 2019::13"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_20",
+      "question": "What exception does Consumer Protection Act 2019 provide in relation to Power of Central Authority to recall goods, etc?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::20",
+      "section_number": "20",
+      "section_type": "exception",
+      "top_keys": [
+        "consumer protection act 2019::20",
+        "consumer protection act 2019::16",
+        "consumer protection act 2019::19",
+        "consumer protection act 2019::18",
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_21",
+      "question": "Under Consumer Protection Act 2019, what is the penalty for Power of Central Authority to issue directions and penalties against?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::21",
+      "section_number": "21",
+      "section_type": "punishment",
+      "top_keys": [
+        "consumer protection act 2019::21",
+        "consumer protection act 2019::99",
+        "consumer protection act 2019::88",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_28",
+      "question": "In Consumer Protection Act 2019, what carve-out or proviso governs Establishment of District Consumer Disputes Redressal Commission?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::28",
+      "section_number": "28",
+      "section_type": "exception",
+      "top_keys": [
+        "consumer protection act 2019::28",
+        null,
+        null,
+        "consumer protection act 2019::42",
+        "consumer protection act 2019::53"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_34",
+      "question": "What procedure does Consumer Protection Act 2019 lay down for Jurisdiction of District Commission?",
+      "rank": null,
+      "section_key": "consumer protection act 2019::34",
+      "section_number": "34",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        null,
+        null,
+        "consumer protection act 2019::32",
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_42",
+      "question": "Under Consumer Protection Act 2019, when does Establishment of State Consumer Disputes Redressal Commission not apply?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::42",
+      "section_number": "42",
+      "section_type": "exception",
+      "top_keys": [
+        "consumer protection act 2019::42",
+        "consumer protection act 2019::28",
+        null,
+        null,
+        "consumer protection act 2019::53"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_5",
+      "question": "In Consumer Protection Act 2019, how must Objects of Central Council be dealt with procedurally?",
+      "rank": 2,
+      "section_key": "consumer protection act 2019::5",
+      "section_number": "5",
+      "section_type": "procedure",
+      "top_keys": [
+        "consumer protection act 2019::3",
+        "consumer protection act 2019::5",
+        null,
+        "consumer protection act 2019::4",
+        "consumer protection act 2019::6"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_52",
+      "question": "What procedure does Consumer Protection Act 2019 lay down for Hearing of appeal?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::52",
+      "section_number": "52",
+      "section_type": "procedure",
+      "top_keys": [
+        "consumer protection act 2019::52",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_59",
+      "question": "Under Consumer Protection Act 2019, what steps must be followed for Procedure applicable to National Commission?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::59",
+      "section_number": "59",
+      "section_type": "procedure",
+      "top_keys": [
+        "consumer protection act 2019::59",
+        "consumer protection act 2019::53",
+        null,
+        "consumer protection act 2019::66",
+        "consumer protection act 2019::70"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_72",
+      "question": "In Consumer Protection Act 2019, how is Penalty for noncompliance of order punishable?",
+      "rank": 8,
+      "section_key": "consumer protection act 2019::72",
+      "section_number": "72",
+      "section_type": "punishment",
+      "top_keys": [
+        "consumer protection act 2019::88",
+        null,
+        "consumer protection act 2019::21",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_87",
+      "question": "What exception does Consumer Protection Act 2019 provide in relation to Exceptions to product liability action?",
+      "rank": 5,
+      "section_key": "consumer protection act 2019::87",
+      "section_number": "87",
+      "section_type": "exception",
+      "top_keys": [
+        "consumer protection act 2019::83",
+        null,
+        null,
+        "consumer protection act 2019::84",
+        "consumer protection act 2019::87"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_88",
+      "question": "Under Consumer Protection Act 2019, what is the penalty for Penalty for noncompliance of direction of Central Authority?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::88",
+      "section_number": "88",
+      "section_type": "punishment",
+      "top_keys": [
+        "consumer protection act 2019::88",
+        "consumer protection act 2019::21",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_89",
+      "question": "In Consumer Protection Act 2019, how is Punishment for false or misleading advertisement punishable?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::89",
+      "section_number": "89",
+      "section_type": "punishment",
+      "top_keys": [
+        "consumer protection act 2019::89",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_92",
+      "question": "What punishment is prescribed by Consumer Protection Act 2019 for Cognizance of offence by court?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::92",
+      "section_number": "92",
+      "section_type": "punishment",
+      "top_keys": [
+        "consumer protection act 2019::92",
+        "consumer protection act 2019::89",
+        "consumer protection act 2019::91",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_96",
+      "question": "Under Consumer Protection Act 2019, what is the penalty for Compounding of offences?",
+      "rank": 2,
+      "section_key": "consumer protection act 2019::96",
+      "section_number": "96",
+      "section_type": "punishment",
+      "top_keys": [
+        null,
+        "consumer protection act 2019::96",
+        "consumer protection act 2019::88",
+        null,
+        "consumer protection act 2019::72"
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_97",
+      "question": "In Consumer Protection Act 2019, how is Manner of crediting penalty punishable?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::97",
+      "section_number": "97",
+      "section_type": "punishment",
+      "top_keys": [
+        "consumer protection act 2019::97",
+        null,
+        "consumer protection act 2019::88",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Consumer Protection Act 2019",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_consumer_protection_act_2019_99",
+      "question": "What exception does Consumer Protection Act 2019 provide in relation to Power to give directions by Central Government?",
+      "rank": 1,
+      "section_key": "consumer protection act 2019::99",
+      "section_number": "99",
+      "section_type": "exception",
+      "top_keys": [
+        "consumer protection act 2019::99",
+        null,
+        "consumer protection act 2019::19",
+        "consumer protection act 2019::20",
+        "consumer protection act 2019::106"
+      ]
+    },
+    {
+      "act": "Digital Personal Data Protection Act, 2023",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_digital_personal_data_protection_act_2023_8",
+      "question": "Under Digital Personal Data Protection Act, 2023, what steps must be followed for General obligations of Data Fiduciary?",
+      "rank": 1,
+      "section_key": "digital personal data protection act 2023::8",
+      "section_number": "8",
+      "section_type": "procedure",
+      "top_keys": [
+        "digital personal data protection act 2023::8",
+        "digital personal data protection act 2023::33",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "IB Code 2016",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_ib_code_2016_7",
+      "question": "In IB Code 2016, how must Initiation of corporate insolvency resolution process by financial creditor be dealt with procedurally?",
+      "rank": null,
+      "section_key": "ib code 2016::7",
+      "section_number": "7",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        "insolvency and bankruptcy code 2016::7",
+        "insolvency and bankruptcy code 2016::9",
+        "insolvency and bankruptcy code 2016::10",
+        null
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_124",
+      "question": "Under Indian Contract Act 1872, how is \"Contract of indemnity\" defined.— defined?",
+      "rank": 4,
+      "section_key": "indian contract act 1872::124",
+      "section_number": "124",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::1",
+        "indian contract act 1872::75",
+        "indian contract act 1872::125",
+        "indian contract act 1872::124",
+        "indian contract act 1872::135"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_130",
+      "question": "Under Indian Contract Act 1872, what is the penalty for Revocation of continuing guarantee.—?",
+      "rank": 2,
+      "section_key": "indian contract act 1872::130",
+      "section_number": "130",
+      "section_type": "punishment",
+      "top_keys": [
+        "indian contract act 1872::131",
+        "indian contract act 1872::130",
+        "indian contract act 1872::205",
+        "indian contract act 1872::206",
+        "indian contract act 1872::207"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_133",
+      "question": "In Indian Contract Act 1872, how is Discharge of surety by variance in terms of contract.— punishable?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::133",
+      "section_number": "133",
+      "section_type": "punishment",
+      "top_keys": [
+        "indian contract act 1872::133",
+        "indian contract act 1872::135",
+        "indian contract act 1872::138",
+        "indian contract act 1872::136",
+        "indian contract act 1872::139"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_139",
+      "question": "What punishment is prescribed by Indian Contract Act 1872 for Discharge of surety by creditor's act or omission impairing surety's?",
+      "rank": 2,
+      "section_key": "indian contract act 1872::139",
+      "section_number": "139",
+      "section_type": "punishment",
+      "top_keys": [
+        "indian contract act 1872::135",
+        "indian contract act 1872::139",
+        "indian contract act 1872::138",
+        "indian contract act 1872::136",
+        "indian contract act 1872::134"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_14",
+      "question": "What does Indian Contract Act 1872 define by 'Free consent' defined.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::14",
+      "section_number": "14",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::14",
+        "indian contract act 1872::10",
+        "indian contract act 1872::13",
+        "indian contract act 1872::165",
+        "indian contract act 1872::1"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_142",
+      "question": "In Indian Contract Act 1872, what is meant by Guarantee obtained by misrepresentation, invalid.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::142",
+      "section_number": "142",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::142",
+        "indian contract act 1872::143",
+        "indian contract act 1872::144",
+        "indian contract act 1872::126",
+        "indian contract act 1872::19"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_143",
+      "question": "Under Indian Contract Act 1872, how is Guarantee obtained by concealment, invalid.— defined?",
+      "rank": 2,
+      "section_key": "indian contract act 1872::143",
+      "section_number": "143",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::142",
+        "indian contract act 1872::143",
+        "indian contract act 1872::144",
+        "indian contract act 1872::126",
+        "indian contract act 1872::131"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_145",
+      "question": "Under Indian Contract Act 1872, what steps must be followed for Implied promise to indemnify surety.—?",
+      "rank": 5,
+      "section_key": "indian contract act 1872::145",
+      "section_number": "145",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::125",
+        "indian contract act 1872::9",
+        "indian contract act 1872::7",
+        "indian contract act 1872::40",
+        "indian contract act 1872::145"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_147",
+      "question": "In Indian Contract Act 1872, how is Liability of co-sureties bound in different sums.— punishable?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::147",
+      "section_number": "147",
+      "section_type": "punishment",
+      "top_keys": [
+        "indian contract act 1872::147",
+        "indian contract act 1872::128",
+        "indian contract act 1872::132",
+        "indian contract act 1872::146",
+        "indian contract act 1872::218"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_148",
+      "question": "Under Indian Contract Act 1872, how is 'Bailment', 'bailor' and 'bailee' defined.— defined?",
+      "rank": 14,
+      "section_key": "indian contract act 1872::148",
+      "section_number": "148",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::151",
+        "indian contract act 1872::164",
+        "indian contract act 1872::158",
+        "indian contract act 1872::153",
+        "indian contract act 1872::180"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_149",
+      "question": "Under Indian Contract Act 1872, what steps must be followed for Delivery to bailee how made.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::149",
+      "section_number": "149",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::149",
+        "indian contract act 1872::151",
+        "indian contract act 1872::158",
+        "indian contract act 1872::165",
+        "indian contract act 1872::166"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_16",
+      "question": "In Indian Contract Act 1872, what is meant by 'Undue influence' defined.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::16",
+      "section_number": "16",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::16",
+        "indian contract act 1872::14",
+        "indian contract act 1872::21",
+        "indian contract act 1872::22",
+        "indian contract act 1872::1"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_171",
+      "question": "What exception does Indian Contract Act 1872 provide in relation to Bailments of pledges?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::171",
+      "section_number": "171",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::171",
+        "indian contract act 1872::179",
+        "indian contract act 1872::153",
+        "indian contract act 1872::1",
+        "indian contract act 1872::144"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_172",
+      "question": "What does Indian Contract Act 1872 define by 'Pledge', 'pawnor' and 'pawnee' defined.—?",
+      "rank": 17,
+      "section_key": "indian contract act 1872::172",
+      "section_number": "172",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::178",
+        "indian contract act 1872::179",
+        "indian contract act 1872::174",
+        "indian contract act 1872::175",
+        "indian contract act 1872::173"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_182",
+      "question": "In Indian Contract Act 1872, what is meant by 'Agent' and 'principal' defined.—?",
+      "rank": null,
+      "section_key": "indian contract act 1872::182",
+      "section_number": "182",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::231",
+        "indian contract act 1872::192",
+        "indian contract act 1872::193",
+        "indian contract act 1872::213",
+        "indian contract act 1872::221"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_187",
+      "question": "Under Indian Contract Act 1872, how is Definitions of express and implied authority.— defined?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::187",
+      "section_number": "187",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::187",
+        "indian contract act 1872::9",
+        "indian contract act 1872::207",
+        "indian contract act 1872::197",
+        "indian contract act 1872::205"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_19",
+      "question": "What does Indian Contract Act 1872 define by Voidability of agreements without free consent.—?",
+      "rank": 4,
+      "section_key": "indian contract act 1872::19",
+      "section_number": "19",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::10",
+        "indian contract act 1872::36",
+        "indian contract act 1872::238",
+        "indian contract act 1872::19",
+        "indian contract act 1872::196"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_190",
+      "question": "In Indian Contract Act 1872, what carve-out or proviso governs When agent cannot delegate.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::190",
+      "section_number": "190",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::190",
+        "indian contract act 1872::228",
+        "indian contract act 1872::230",
+        "indian contract act 1872::213",
+        "indian contract act 1872::186"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_192",
+      "question": "What exception does Indian Contract Act 1872 provide in relation to Representation of principal by sub-agent properly appointed—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::192",
+      "section_number": "192",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::192",
+        "indian contract act 1872::193",
+        "indian contract act 1872::217",
+        "indian contract act 1872::213",
+        "indian contract act 1872::231"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_21",
+      "question": "Under Indian Contract Act 1872, what steps must be followed for Effect of mistakes as to law.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::21",
+      "section_number": "21",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::21",
+        "indian contract act 1872::206",
+        "indian contract act 1872::225",
+        "indian contract act 1872::205",
+        "indian contract act 1872::3"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_210",
+      "question": "In Indian Contract Act 1872, what carve-out or proviso governs Termination of sub-agent's authority.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::210",
+      "section_number": "210",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::210",
+        "indian contract act 1872::209",
+        "indian contract act 1872::153",
+        "indian contract act 1872::213",
+        "indian contract act 1872::186"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_212",
+      "question": "What procedure does Indian Contract Act 1872 lay down for Skill and diligence required from agent.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::212",
+      "section_number": "212",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::212",
+        "indian contract act 1872::214",
+        "indian contract act 1872::11",
+        "indian contract act 1872::236",
+        "indian contract act 1872::213"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_224",
+      "question": "Under Indian Contract Act 1872, what is the penalty for Non-liability of employer of agent to do a criminal act.—?",
+      "rank": 3,
+      "section_key": "indian contract act 1872::224",
+      "section_number": "224",
+      "section_type": "punishment",
+      "top_keys": [
+        "indian contract act 1872::235",
+        "indian contract act 1872::234",
+        "indian contract act 1872::224",
+        "indian contract act 1872::233",
+        "indian contract act 1872::190"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_28",
+      "question": "In Indian Contract Act 1872, what carve-out or proviso governs Agreements in restraint of legal proceedings, void.-?",
+      "rank": 3,
+      "section_key": "indian contract act 1872::28",
+      "section_number": "28",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::26",
+        "indian contract act 1872::10",
+        "indian contract act 1872::28",
+        "indian contract act 1872::36",
+        "indian contract act 1872::27"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_31",
+      "question": "Under Indian Contract Act 1872, how is \"Contingent contract\" defined.— defined?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::31",
+      "section_number": "31",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::31",
+        "indian contract act 1872::33",
+        "indian contract act 1872::36",
+        "indian contract act 1872::35",
+        "indian contract act 1872::32"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_32",
+      "question": "Under Indian Contract Act 1872, when does Enforcement of contracts contingent on an event happening.— not apply?",
+      "rank": 4,
+      "section_key": "indian contract act 1872::32",
+      "section_number": "32",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::33",
+        "indian contract act 1872::35",
+        "indian contract act 1872::36",
+        "indian contract act 1872::32",
+        "indian contract act 1872::31"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_37",
+      "question": "In Indian Contract Act 1872, what carve-out or proviso governs Obligation of parties to contract.—?",
+      "rank": 2,
+      "section_key": "indian contract act 1872::37",
+      "section_number": "37",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::10",
+        "indian contract act 1872::37",
+        "indian contract act 1872::1",
+        "indian contract act 1872::22",
+        "indian contract act 1872::226"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_38",
+      "question": "What procedure does Indian Contract Act 1872 lay down for Effect of refusal to accept offer of performance.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::38",
+      "section_number": "38",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::38",
+        "indian contract act 1872::67",
+        "indian contract act 1872::3",
+        "indian contract act 1872::225",
+        "indian contract act 1872::21"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_39",
+      "question": "Under Indian Contract Act 1872, when does Effect of refusal of party to perform promise wholly.— not apply?",
+      "rank": 9,
+      "section_key": "indian contract act 1872::39",
+      "section_number": "39",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::64",
+        "indian contract act 1872::55",
+        "indian contract act 1872::49",
+        "indian contract act 1872::47",
+        "indian contract act 1872::9"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_4",
+      "question": "In Indian Contract Act 1872, how must Communication when complete.— be dealt with procedurally?",
+      "rank": 3,
+      "section_key": "indian contract act 1872::4",
+      "section_number": "4",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::3",
+        "indian contract act 1872::66",
+        "indian contract act 1872::4",
+        "indian contract act 1872::7",
+        "indian contract act 1872::225"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_42",
+      "question": "What exception does Indian Contract Act 1872 provide in relation to Devolution of joint liabilities.—?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::42",
+      "section_number": "42",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::42",
+        "indian contract act 1872::165",
+        "indian contract act 1872::44",
+        "indian contract act 1872::132",
+        "indian contract act 1872::27"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_43",
+      "question": "Under Indian Contract Act 1872, when does Sharing of loss by default in contribution.— not apply?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::43",
+      "section_number": "43",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::43",
+        "indian contract act 1872::159",
+        "indian contract act 1872::124",
+        "indian contract act 1872::140",
+        "indian contract act 1872::146"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_45",
+      "question": "In Indian Contract Act 1872, what carve-out or proviso governs Devolution of joint rights.—?",
+      "rank": 6,
+      "section_key": "indian contract act 1872::45",
+      "section_number": "45",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::165",
+        "indian contract act 1872::42",
+        "indian contract act 1872::44",
+        "indian contract act 1872::1",
+        "transfer of property act 1882::4"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_48",
+      "question": "What procedure does Indian Contract Act 1872 lay down for Application for performance on certain day to be at proper?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::48",
+      "section_number": "48",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::48",
+        "indian contract act 1872::47",
+        "indian contract act 1872::49",
+        "indian contract act 1872::8",
+        "indian contract act 1872::236"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_55",
+      "question": "Under Indian Contract Act 1872, what steps must be followed for Effect of acceptance of performance at time other than that?",
+      "rank": 6,
+      "section_key": "indian contract act 1872::55",
+      "section_number": "55",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::8",
+        "indian contract act 1872::7",
+        "indian contract act 1872::3",
+        "indian contract act 1872::38",
+        "indian contract act 1872::49"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_56",
+      "question": "In Indian Contract Act 1872, what carve-out or proviso governs Agreement to do impossible act.—?",
+      "rank": 3,
+      "section_key": "indian contract act 1872::56",
+      "section_number": "56",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::36",
+        "indian contract act 1872::26",
+        "indian contract act 1872::56",
+        "indian contract act 1872::24",
+        "indian contract act 1872::34"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_57",
+      "question": "What procedure does Indian Contract Act 1872 lay down for Reciprocal promise to do things legal, and also other things?",
+      "rank": 2,
+      "section_key": "indian contract act 1872::57",
+      "section_number": "57",
+      "section_type": "procedure",
+      "top_keys": [
+        "indian contract act 1872::8",
+        "indian contract act 1872::57",
+        "indian contract act 1872::52",
+        "indian contract act 1872::51",
+        "indian contract act 1872::9"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_71",
+      "question": "Under Indian Contract Act 1872, when does Responsibility of finder of goods.— not apply?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::71",
+      "section_number": "71",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::71",
+        "indian contract act 1872::168",
+        "indian contract act 1872::169",
+        "indian contract act 1872::161",
+        "indian contract act 1872::167"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_72",
+      "question": "In Indian Contract Act 1872, what carve-out or proviso governs Of the consequences of breach of contract?",
+      "rank": 4,
+      "section_key": "indian contract act 1872::72",
+      "section_number": "72",
+      "section_type": "exception",
+      "top_keys": [
+        "indian contract act 1872::226",
+        "indian contract act 1872::124",
+        "indian contract act 1872::21",
+        "indian contract act 1872::72",
+        "indian contract act 1872::22"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_73",
+      "question": "Under Indian Contract Act 1872, how is Compensation for loss or damage caused by breach of contract.— defined?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::73",
+      "section_number": "73",
+      "section_type": "definition",
+      "top_keys": [
+        "indian contract act 1872::73",
+        "indian contract act 1872::74",
+        "indian contract act 1872::75",
+        "indian contract act 1872::225",
+        "indian contract act 1872::53"
+      ]
+    },
+    {
+      "act": "Indian Contract Act 1872",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_indian_contract_act_1872_74",
+      "question": "Under Indian Contract Act 1872, what is the penalty for Compensation for breach of contract where penalty stipulated for.-?",
+      "rank": 1,
+      "section_key": "indian contract act 1872::74",
+      "section_number": "74",
+      "section_type": "punishment",
+      "top_keys": [
+        "indian contract act 1872::74",
+        "indian contract act 1872::75",
+        "indian contract act 1872::181",
+        "indian contract act 1872::225",
+        "indian contract act 1872::205"
+      ]
+    },
+    {
+      "act": "Indian Partnership Act 1932",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_partnership_act_1932_2",
+      "question": "In Indian Partnership Act 1932, how must Skip to main content be dealt with procedurally?",
+      "rank": 5,
+      "section_key": "indian partnership act 1932::2",
+      "section_number": "2",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        "indian partnership act 1932::5",
+        null,
+        "indian partnership act 1932::3",
+        "indian partnership act 1932::2"
+      ]
+    },
+    {
+      "act": "Indian Partnership Act 1932",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_indian_partnership_act_1932_3",
+      "question": "What punishment is prescribed by Indian Partnership Act 1932 for \"In light of the responsibility clearly attributed above, Executive?",
+      "rank": 1,
+      "section_key": "indian partnership act 1932::3",
+      "section_number": "3",
+      "section_type": "punishment",
+      "top_keys": [
+        "indian partnership act 1932::3",
+        null,
+        "indian partnership act 1932::5",
+        "indian partnership act 1932::2",
+        null
+      ]
+    },
+    {
+      "act": "Indian Partnership Act 1932",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_indian_partnership_act_1932_5",
+      "question": "Under Indian Partnership Act 1932, what steps must be followed for Pankaj K.P. Shreyaskar?",
+      "rank": 2,
+      "section_key": "indian partnership act 1932::5",
+      "section_number": "5",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        "indian partnership act 1932::5",
+        null,
+        null,
+        "indian partnership act 1932::2"
+      ]
+    },
+    {
+      "act": "Insolvency and Bankruptcy Code, 2016",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_insolvency_and_bankruptcy_code_2016_10",
+      "question": "In Insolvency and Bankruptcy Code, 2016, how must Initiation of corporate insolvency resolution process by corporate applicant be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "insolvency and bankruptcy code 2016::10",
+      "section_number": "10",
+      "section_type": "procedure",
+      "top_keys": [
+        "insolvency and bankruptcy code 2016::10",
+        null,
+        "insolvency and bankruptcy code 2016::7",
+        "insolvency and bankruptcy code 2016::9",
+        "insolvency and bankruptcy code 2016::14"
+      ]
+    },
+    {
+      "act": "Insolvency and Bankruptcy Code, 2016",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_insolvency_and_bankruptcy_code_2016_7",
+      "question": "What procedure does Insolvency and Bankruptcy Code, 2016 lay down for Initiation of corporate insolvency resolution process by financial creditor?",
+      "rank": 2,
+      "section_key": "insolvency and bankruptcy code 2016::7",
+      "section_number": "7",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        "insolvency and bankruptcy code 2016::7",
+        "insolvency and bankruptcy code 2016::9",
+        "insolvency and bankruptcy code 2016::10",
+        "insolvency and bankruptcy code 2016::14"
+      ]
+    },
+    {
+      "act": "Partnership Act 1932",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_partnership_act_1932_1",
+      "question": "Under Partnership Act 1932, when does Short title, extent and commencement not apply?",
+      "rank": null,
+      "section_key": "partnership act 1932::1",
+      "section_number": "1",
+      "section_type": "exception",
+      "top_keys": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Partnership Act 1932",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_partnership_act_1932_5",
+      "question": "In Partnership Act 1932, how must Partnership not created by status be dealt with procedurally?",
+      "rank": null,
+      "section_key": "partnership act 1932::5",
+      "section_number": "5",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        null,
+        null,
+        null,
+        "indian partnership act 1932::5"
+      ]
+    },
+    {
+      "act": "Sale of Goods Act 1930",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_sale_of_goods_act_1930_1",
+      "question": "What procedure does Sale of Goods Act 1930 lay down for Short title, extent and commencement?",
+      "rank": null,
+      "section_key": "sale of goods act 1930::1",
+      "section_number": "1",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        null,
+        null,
+        null,
+        "indian contract act 1872::178"
+      ]
+    },
+    {
+      "act": "Sale of Goods Act 1930",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_sale_of_goods_act_1930_4",
+      "question": "Under Sale of Goods Act 1930, when does Sale and agreement to sell not apply?",
+      "rank": null,
+      "section_key": "sale of goods act 1930::4",
+      "section_number": "4",
+      "section_type": "exception",
+      "top_keys": [
+        null,
+        null,
+        null,
+        null,
+        "indian contract act 1872::178"
+      ]
+    },
+    {
+      "act": "Sale of Goods Act 1930",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_sale_of_goods_act_1930_45",
+      "question": "In Sale of Goods Act 1930, what is meant by “Unpaid seller” defined?",
+      "rank": null,
+      "section_key": "sale of goods act 1930::45",
+      "section_number": "45",
+      "section_type": "definition",
+      "top_keys": [
+        null,
+        null,
+        null,
+        null,
+        "indian contract act 1872::219"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_1",
+      "question": "What exception does Specific Relief Act 1963 provide in relation to Short title, extent and commencement.—?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::1",
+      "section_number": "1",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::1",
+        "specific relief act 1963::43",
+        "specific relief act 1963::36",
+        "specific relief act 1963::4",
+        "specific relief act 1963::9"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_10",
+      "question": "Under Specific Relief Act 1963, when does Cases in which specific performance of contract enforceable.— not apply?",
+      "rank": 12,
+      "section_key": "specific relief act 1963::10",
+      "section_number": "10",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::11",
+        "specific relief act 1963::20",
+        "specific relief act 1963::24",
+        "specific relief act 1963::23",
+        "specific relief act 1963::18"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_11",
+      "question": "In Specific Relief Act 1963, what carve-out or proviso governs Cases in which specific performance of contracts connected with trusts?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::11",
+      "section_number": "11",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::11",
+        "specific relief act 1963::24",
+        "specific relief act 1963::29",
+        "specific relief act 1963::18",
+        "specific relief act 1963::25"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_12",
+      "question": "What exception does Specific Relief Act 1963 provide in relation to Specific performance of part of contract.—?",
+      "rank": 4,
+      "section_key": "specific relief act 1963::12",
+      "section_number": "12",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::24",
+        "specific relief act 1963::11",
+        "specific relief act 1963::16",
+        "specific relief act 1963::12",
+        "specific relief act 1963::18"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_18",
+      "question": "Under Specific Relief Act 1963, when does Non-enforcement except with variation.— not apply?",
+      "rank": 4,
+      "section_key": "specific relief act 1963::18",
+      "section_number": "18",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::9",
+        "specific relief act 1963::3",
+        "specific relief act 1963::4",
+        "specific relief act 1963::18",
+        "specific relief act 1963::11"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_19",
+      "question": "In Specific Relief Act 1963, how must Relief against parties and persons claiming under them by subsequent be dealt with procedurally?",
+      "rank": 4,
+      "section_key": "specific relief act 1963::19",
+      "section_number": "19",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::9",
+        "specific relief act 1963::35",
+        "specific relief act 1963::30",
+        "specific relief act 1963::19",
+        "specific relief act 1963::36"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_2",
+      "question": "Under Specific Relief Act 1963, how is “obligation” includes every duty enforceable by law defined?",
+      "rank": 16,
+      "section_key": "specific relief act 1963::2",
+      "section_number": "2",
+      "section_type": "definition",
+      "top_keys": [
+        "specific relief act 1963::9",
+        "specific relief act 1963::4",
+        "specific relief act 1963::36",
+        "specific relief act 1963::3",
+        "specific relief act 1963::11"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_20",
+      "question": "Under Specific Relief Act 1963, what steps must be followed for Discretion as to decreeing specific performance.—?",
+      "rank": 5,
+      "section_key": "specific relief act 1963::20",
+      "section_number": "20",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::39",
+        "specific relief act 1963::11",
+        "specific relief act 1963::36",
+        "specific relief act 1963::3",
+        "specific relief act 1963::20"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_21",
+      "question": "In Specific Relief Act 1963, how must Power to award compensation in certain cases.— be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::21",
+      "section_number": "21",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::21",
+        "specific relief act 1963::30",
+        "specific relief act 1963::24",
+        "specific relief act 1963::25",
+        "specific relief act 1963::22"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_23",
+      "question": "What procedure does Specific Relief Act 1963 lay down for Liquidation of damages not a bar to specific performance.—?",
+      "rank": 2,
+      "section_key": "specific relief act 1963::23",
+      "section_number": "23",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::24",
+        "specific relief act 1963::23",
+        "specific relief act 1963::5",
+        "specific relief act 1963::9",
+        "specific relief act 1963::7"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_24",
+      "question": "Under Specific Relief Act 1963, what steps must be followed for Bar of suit for compensation for breach after dismissal of?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::24",
+      "section_number": "24",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::24",
+        "specific relief act 1963::21",
+        "specific relief act 1963::23",
+        "specific relief act 1963::33",
+        "specific relief act 1963::40"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_25",
+      "question": "In Specific Relief Act 1963, how must Application of preceding sections to certain awards and testamentary directions be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::25",
+      "section_number": "25",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::25",
+        "specific relief act 1963::4",
+        "specific relief act 1963::39",
+        "specific relief act 1963::1",
+        "specific relief act 1963::9"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_29",
+      "question": "What procedure does Specific Relief Act 1963 lay down for Alternative prayer for rescission in suit for specific performance.—?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::29",
+      "section_number": "29",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::29",
+        "specific relief act 1963::30",
+        "specific relief act 1963::24",
+        "specific relief act 1963::1",
+        "specific relief act 1963::3"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_33",
+      "question": "Under Specific Relief Act 1963, what steps must be followed for Where a defendant successfully resists any suit on the ground—?",
+      "rank": 2,
+      "section_key": "specific relief act 1963::33",
+      "section_number": "33",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::24",
+        "specific relief act 1963::33",
+        "specific relief act 1963::9",
+        "specific relief act 1963::37",
+        "specific relief act 1963::40"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_34",
+      "question": "In Specific Relief Act 1963, what carve-out or proviso governs Discretion of court as to declaration of status or right.—?",
+      "rank": 5,
+      "section_key": "specific relief act 1963::34",
+      "section_number": "34",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::36",
+        "specific relief act 1963::35",
+        "specific relief act 1963::39",
+        "specific relief act 1963::30",
+        "specific relief act 1963::34"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_35",
+      "question": "What procedure does Specific Relief Act 1963 lay down for Effect of declaration.—?",
+      "rank": 9,
+      "section_key": "specific relief act 1963::35",
+      "section_number": "35",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::5",
+        "specific relief act 1963::1",
+        "specific relief act 1963::3",
+        "specific relief act 1963::43",
+        "specific relief act 1963::9"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_37",
+      "question": "Under Specific Relief Act 1963, what steps must be followed for Temporary and perpetual injunctions.—?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::37",
+      "section_number": "37",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::37",
+        "specific relief act 1963::36",
+        "specific relief act 1963::38",
+        "specific relief act 1963::40",
+        "specific relief act 1963::7"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_38",
+      "question": "In Specific Relief Act 1963, what carve-out or proviso governs Perpetual injunction when granted.—?",
+      "rank": 2,
+      "section_key": "specific relief act 1963::38",
+      "section_number": "38",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::37",
+        "specific relief act 1963::38",
+        "specific relief act 1963::41",
+        "specific relief act 1963::40",
+        "specific relief act 1963::39"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_41",
+      "question": "What exception does Specific Relief Act 1963 provide in relation to Injunction when refused.—?",
+      "rank": 3,
+      "section_key": "specific relief act 1963::41",
+      "section_number": "41",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::39",
+        "specific relief act 1963::42",
+        "specific relief act 1963::41",
+        "specific relief act 1963::40",
+        "specific relief act 1963::37"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_42",
+      "question": "Under Specific Relief Act 1963, when does Injunction to perform negative agreement.— not apply?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::42",
+      "section_number": "42",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::42",
+        "specific relief act 1963::40",
+        "specific relief act 1963::39",
+        "specific relief act 1963::37",
+        "specific relief act 1963::41"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_5",
+      "question": "In Specific Relief Act 1963, how must Recovery of specific immovable property.— be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::5",
+      "section_number": "5",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::5",
+        "specific relief act 1963::10",
+        "specific relief act 1963::22",
+        "specific relief act 1963::6",
+        "specific relief act 1963::7"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_6",
+      "question": "What procedure does Specific Relief Act 1963 lay down for Suit by person dispossessed of immovable property.—?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::6",
+      "section_number": "6",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::6",
+        "specific relief act 1963::5",
+        "specific relief act 1963::7",
+        "specific relief act 1963::28",
+        "specific relief act 1963::22"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_7",
+      "question": "Under Specific Relief Act 1963, what steps must be followed for Recovery of specific movable property.—?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::7",
+      "section_number": "7",
+      "section_type": "procedure",
+      "top_keys": [
+        "specific relief act 1963::7",
+        "specific relief act 1963::5",
+        "specific relief act 1963::8",
+        "specific relief act 1963::10",
+        "specific relief act 1963::9"
+      ]
+    },
+    {
+      "act": "Specific Relief Act 1963",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_specific_relief_act_1963_9",
+      "question": "In Specific Relief Act 1963, what carve-out or proviso governs Defences respecting suits for relief based on contract.—?",
+      "rank": 1,
+      "section_key": "specific relief act 1963::9",
+      "section_number": "9",
+      "section_type": "exception",
+      "top_keys": [
+        "specific relief act 1963::9",
+        "specific relief act 1963::24",
+        "specific relief act 1963::36",
+        "specific relief act 1963::30",
+        "specific relief act 1963::35"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_106",
+      "question": "What procedure does Transfer of Property Act 1882 lay down for Duration of certain leases in absence of written contract or?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::106",
+      "section_number": "106",
+      "section_type": "procedure",
+      "top_keys": [
+        "transfer of property act 1882::106",
+        "transfer of property act 1882::117",
+        null,
+        "transfer of property act 1882::110",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_109",
+      "question": "Under Transfer of Property Act 1882, what is the penalty for Rights of lessor’s transferee.—?",
+      "rank": 2,
+      "section_key": "transfer of property act 1882::109",
+      "section_number": "109",
+      "section_type": "punishment",
+      "top_keys": [
+        null,
+        "transfer of property act 1882::109",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_111",
+      "question": "In Transfer of Property Act 1882, how is Determination of lease.— punishable?",
+      "rank": 11,
+      "section_key": "transfer of property act 1882::111",
+      "section_number": "111",
+      "section_type": "punishment",
+      "top_keys": [
+        null,
+        "transfer of property act 1882::116",
+        null,
+        "transfer of property act 1882::109",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_112",
+      "question": "What punishment is prescribed by Transfer of Property Act 1882 for Waiver of forfeiture.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::112",
+      "section_number": "112",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::112",
+        "transfer of property act 1882::7",
+        null,
+        null,
+        "transfer of property act 1882::130"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_119",
+      "question": "Under Transfer of Property Act 1882, what is the penalty for Right of party deprived of thing received in exchange.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::119",
+      "section_number": "119",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::119",
+        "transfer of property act 1882::125",
+        "transfer of property act 1882::49",
+        null,
+        "transfer of property act 1882::39"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_12",
+      "question": "In Transfer of Property Act 1882, what carve-out or proviso governs Condition making interest determinable on insolvency or attempted alienation.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::12",
+      "section_number": "12",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::12",
+        "transfer of property act 1882::32",
+        "transfer of property act 1882::28",
+        "transfer of property act 1882::31",
+        "transfer of property act 1882::10"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_124",
+      "question": "What procedure does Transfer of Property Act 1882 lay down for Gift of existing and future property.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::124",
+      "section_number": "124",
+      "section_type": "procedure",
+      "top_keys": [
+        "transfer of property act 1882::124",
+        "transfer of property act 1882::122",
+        "transfer of property act 1882::125",
+        null,
+        "transfer of property act 1882::128"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_126",
+      "question": "Under Transfer of Property Act 1882, when does Save as aforesaid, a gift cannot be revoked not apply?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::126",
+      "section_number": "126",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::126",
+        "transfer of property act 1882::125",
+        "transfer of property act 1882::124",
+        "transfer of property act 1882::122",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_127",
+      "question": "In Transfer of Property Act 1882, what carve-out or proviso governs Onerous gift to disqualified person.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::127",
+      "section_number": "127",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::127",
+        "transfer of property act 1882::125",
+        "transfer of property act 1882::122",
+        "transfer of property act 1882::126",
+        "transfer of property act 1882::124"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_130",
+      "question": "What procedure does Transfer of Property Act 1882 lay down for Transfer of actionable claim.—?",
+      "rank": 11,
+      "section_key": "transfer of property act 1882::130",
+      "section_number": "130",
+      "section_type": "procedure",
+      "top_keys": [
+        "transfer of property act 1882::131",
+        "transfer of property act 1882::136",
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_17",
+      "question": "Under Transfer of Property Act 1882, when does Direction for accumulation.— not apply?",
+      "rank": 2,
+      "section_key": "transfer of property act 1882::17",
+      "section_number": "17",
+      "section_type": "exception",
+      "top_keys": [
+        null,
+        "transfer of property act 1882::17",
+        null,
+        "transfer of property act 1882::11",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_20",
+      "question": "In Transfer of Property Act 1882, what carve-out or proviso governs When unborn person acquires vested interest on transfer for his?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::20",
+      "section_number": "20",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::20",
+        "transfer of property act 1882::13",
+        "transfer of property act 1882::21",
+        "transfer of property act 1882::19",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_24",
+      "question": "What exception does Transfer of Property Act 1882 provide in relation to Transfer to such of certain persons as survive at some?",
+      "rank": 5,
+      "section_key": "transfer of property act 1882::24",
+      "section_number": "24",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::15",
+        "transfer of property act 1882::14",
+        "transfer of property act 1882::7",
+        null,
+        "transfer of property act 1882::24"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_28",
+      "question": "Under Transfer of Property Act 1882, when does Ulterior transfer conditional on happening or not happening of specified not apply?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::28",
+      "section_number": "28",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::28",
+        "transfer of property act 1882::23",
+        "transfer of property act 1882::30",
+        "transfer of property act 1882::27",
+        "transfer of property act 1882::33"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_29",
+      "question": "In Transfer of Property Act 1882, what carve-out or proviso governs Fulfilment of condition subsequent.—?",
+      "rank": 9,
+      "section_key": "transfer of property act 1882::29",
+      "section_number": "29",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::12",
+        "transfer of property act 1882::33",
+        "transfer of property act 1882::28",
+        null,
+        "transfer of property act 1882::32"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_3",
+      "question": "Under Transfer of Property Act 1882, how is “immoveable property” does not include standing timber, growing crops or defined?",
+      "rank": 7,
+      "section_key": "transfer of property act 1882::3",
+      "section_number": "3",
+      "section_type": "definition",
+      "top_keys": [
+        "transfer of property act 1882::51",
+        null,
+        "transfer of property act 1882::49",
+        "transfer of property act 1882::5",
+        "transfer of property act 1882::41"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_33",
+      "question": "Under Transfer of Property Act 1882, when does Transfer conditional on performance of act, no time being specified not apply?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::33",
+      "section_number": "33",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::33",
+        "transfer of property act 1882::34",
+        "transfer of property act 1882::28",
+        "transfer of property act 1882::23",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_40",
+      "question": "In Transfer of Property Act 1882, how must Burden of obligation imposing restriction on use of land.— be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::40",
+      "section_number": "40",
+      "section_type": "procedure",
+      "top_keys": [
+        "transfer of property act 1882::40",
+        "transfer of property act 1882::11",
+        "transfer of property act 1882::8",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_41",
+      "question": "What exception does Transfer of Property Act 1882 provide in relation to Transfer by ostensible owner.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::41",
+      "section_number": "41",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::41",
+        null,
+        "transfer of property act 1882::6",
+        null,
+        "transfer of property act 1882::39"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_44",
+      "question": "Under Transfer of Property Act 1882, when does Transfer by one co-owner.— not apply?",
+      "rank": 2,
+      "section_key": "transfer of property act 1882::44",
+      "section_number": "44",
+      "section_type": "exception",
+      "top_keys": [
+        null,
+        "transfer of property act 1882::44",
+        null,
+        "transfer of property act 1882::5",
+        "transfer of property act 1882::125"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "short",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_48",
+      "question": "In Transfer of Property Act 1882, what carve-out or proviso governs Priority of rights created by transfer.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::48",
+      "section_number": "48",
+      "section_type": "exception",
+      "top_keys": [
+        "transfer of property act 1882::48",
+        "transfer of property act 1882::28",
+        "transfer of property act 1882::15",
+        "transfer of property act 1882::16",
+        "transfer of property act 1882::120"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_5",
+      "question": "Under Transfer of Property Act 1882, how is “Transfer of property” defined.— defined?",
+      "rank": 2,
+      "section_key": "transfer of property act 1882::5",
+      "section_number": "5",
+      "section_type": "definition",
+      "top_keys": [
+        "transfer of property act 1882::49",
+        "transfer of property act 1882::5",
+        "transfer of property act 1882::15",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_52",
+      "question": "Under Transfer of Property Act 1882, what steps must be followed for Transfer of property pending suit relating thereto.—?",
+      "rank": 4,
+      "section_key": "transfer of property act 1882::52",
+      "section_number": "52",
+      "section_type": "procedure",
+      "top_keys": [
+        null,
+        null,
+        null,
+        "transfer of property act 1882::52",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_57",
+      "question": "In Transfer of Property Act 1882, what is meant by Provision by Court for encumbrances and sale freed therefrom.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::57",
+      "section_number": "57",
+      "section_type": "definition",
+      "top_keys": [
+        "transfer of property act 1882::57",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_63",
+      "question": "What punishment is prescribed by Transfer of Property Act 1882 for Accession to mortgaged property.—?",
+      "rank": 2,
+      "section_key": "transfer of property act 1882::63",
+      "section_number": "63",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::70",
+        "transfer of property act 1882::63",
+        "transfer of property act 1882::91",
+        "transfer of property act 1882::66",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_63A",
+      "question": "Under Transfer of Property Act 1882, what is the penalty for Improvements to mortgaged property.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::63A",
+      "section_number": "63A",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::63A",
+        null,
+        "transfer of property act 1882::66",
+        null,
+        "transfer of property act 1882::91"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_65",
+      "question": "In Transfer of Property Act 1882, how must Implied contracts by mortgagor.— be dealt with procedurally?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::65",
+      "section_number": "65",
+      "section_type": "procedure",
+      "top_keys": [
+        "transfer of property act 1882::65",
+        null,
+        null,
+        "transfer of property act 1882::63",
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_66",
+      "question": "What punishment is prescribed by Transfer of Property Act 1882 for Waste by mortgagor in possession.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::66",
+      "section_number": "66",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::66",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_68",
+      "question": "Under Transfer of Property Act 1882, what is the penalty for Right to sue for mortgage-money.—?",
+      "rank": 3,
+      "section_key": "transfer of property act 1882::68",
+      "section_number": "68",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::67A",
+        "transfer of property act 1882::91",
+        "transfer of property act 1882::68",
+        null,
+        null
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "long",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_72",
+      "question": "In Transfer of Property Act 1882, how is Right of mortgagee in possession.— punishable?",
+      "rank": null,
+      "section_key": "transfer of property act 1882::72",
+      "section_number": "72",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::67A",
+        "transfer of property act 1882::62",
+        "transfer of property act 1882::60",
+        "transfer of property act 1882::68",
+        "transfer of property act 1882::91"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_8",
+      "question": "What exception does Transfer of Property Act 1882 provide in relation to Operation of transfer.—?",
+      "rank": 4,
+      "section_key": "transfer of property act 1882::8",
+      "section_number": "8",
+      "section_type": "exception",
+      "top_keys": [
+        null,
+        null,
+        null,
+        "transfer of property act 1882::8",
+        "transfer of property act 1882::6"
+      ]
+    },
+    {
+      "act": "Transfer of Property Act 1882",
+      "length_bucket": "medium",
+      "n_returned": 20,
+      "qid": "gt_transfer_of_property_act_1882_82",
+      "question": "Under Transfer of Property Act 1882, what is the penalty for Contribution to mortgage-debt.—?",
+      "rank": 1,
+      "section_key": "transfer of property act 1882::82",
+      "section_number": "82",
+      "section_type": "punishment",
+      "top_keys": [
+        "transfer of property act 1882::82",
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "scenario": "interfaith_marriage_autonomy",
+    "detected_family": "interfaith_marriage_autonomy",
+    "detected_domain": "marriage_and_autonomy",
+    "issue_count": 6,
+    "issue_text": "article 21 autonomy and adult choice of spouse whether the adult woman's autonomy, dignity, and choice of spouse under article 21 should prevail absent concrete evidence of coercion. special marriage act validity and annulment threshold whether a marriage solemnized under the special marriage act can be annulled on allegation alone, and what statutory threshold applies if coercion or fraud is alleged. burden of proof for coercion, fraud, or incapacity which party bears the burden to prove coercion, fraud, undue influence, or incapacity, and what weight should be given to the woman's affidavit of voluntary marriage. police complaint versus matrimonial and constitutional remedies whether the dispute belongs in criminal process, matrimonial relief under the special marriage act, habeas/protection proceedings, or a combination of those forums. legal relevance of the 'love jihad' allegation whether the label 'love jihad' has any independent legal standing, or whether only provable coercion, fraud, unlawful confinement, or forced conversion can matter in law. state duty to protect the woman from family threat whether the state must prioritize the adult woman's safety and independent choice where she alleges fear from her own family.",
+    "authority_hints": "- adult choice of spouse and interfaith marriage: shafin jahan v. asokan k.m. / hadiya line should be addressed expressly.\n- adult choice despite family opposition: lata singh v. state of u.p. should be addressed expressly.\n- police protection against family interference: laxmibai chandaragi b. v. state of karnataka should be addressed expressly.\n- state non-interference with voluntary adult relationship choices: shambhu kharwar v. state of uttar pradesh should be considered where factually relevant.\n- statutory anchor: special marriage act, 1954, especially the validity / relief framework for challenging the marriage, must be named directly.",
+    "required_authorities": [
+      "Shafin Jahan v. Asokan K.M. / Hadiya line",
+      "Lata Singh v. State of U.P.",
+      "Laxmibai Chandaragi B. v. State of Karnataka",
+      "Special Marriage Act, 1954",
+      "burden of proof for coercion or fraud"
+    ],
+    "forbidden_carryover_terms": [
+      "indra sarma",
+      "velusamy",
+      "chanmuniya",
+      "domestic violence act"
+    ]
+  },
+  {
+    "scenario": "live_in_relationship_maintenance",
+    "detected_family": "live_in_relationship_maintenance",
+    "detected_domain": "family_law",
+    "issue_count": 6,
+    "issue_text": "relationship in the nature of marriage whether the live-in relationship satisfies the indian-law test for a relationship in the nature of marriage. domestic relationship under the protection of women from domestic violence act whether the claimant falls within the domestic relationship and shared household protections under the protection of women from domestic violence act, 2005. maintenance route without formal marriage whether maintenance can be claimed despite the absence of formal marriage, and through which legal route. proof of cohabitation, holding out, and shared household what facts must show duration, exclusivity, public representation, financial arrangements, and shared household for marriage-like recognition. forum fit for dv protection and maintenance how the court should separate or combine domestic violence act relief, maintenance proceedings, and any other family-law route. cultural norms versus statutory recognition whether cultural disapproval should affect legal recognition where statutory protection and precedent recognize qualifying live-in relationships.",
+    "authority_hints": "- relationship in the nature of marriage: indra sarma v. v.k.v. sarma should be addressed expressly.\n- marriage-like live-in criteria: velusamy v. d. patchaiammal should be addressed expressly.\n- maintenance route without formal marriage: chanmuniya v. virendra kumar singh kushwaha should be addressed expressly.\n- statutory anchor: protection of women from domestic violence act, 2005, especially section 2(f), must be named directly.",
+    "required_authorities": [
+      "Indra Sarma v. V.K.V. Sarma",
+      "Velusamy v. D. Patchaiammal",
+      "Chanmuniya v. Virendra Kumar Singh Kushwaha",
+      "Protection of Women from Domestic Violence Act, 2005",
+      "Section 2(f), Protection of Women from Domestic Violence Act, 2005"
+    ],
+    "forbidden_carryover_terms": [
+      "special marriage act",
+      "love jihad",
+      "hadiya",
+      "choice of spouse",
+      "article 21 adult woman"
+    ]
+  }
+]
