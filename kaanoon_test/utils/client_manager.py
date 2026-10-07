@@ -345,6 +345,11 @@ class SmartCompletionsProxy:
                 kwargs["model"] = os.getenv("CEREBRAS_MODEL", "llama3.1-70b")
                 # logger.info(f"  [🔀 BRIDGE] Mapped model '{original_model}' -> 'llama3.1-70b' for Cerebras")
 
+        if self.provider_type == "openrouter":
+            original_model = kwargs.get("model", "")
+            if not original_model or "llama" in original_model.lower() or "versatile" in original_model.lower() or "instant" in original_model.lower() or "qwen" in original_model.lower():
+                kwargs["model"] = os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3.5-lightning:free")
+
         # Dahl serves the single configured model (deepseek-ai/DeepSeek-V4-Flash-0731
         # by default) regardless of the model string a call site requested, so
         # call sites keep their legacy names.

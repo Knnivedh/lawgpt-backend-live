@@ -373,9 +373,9 @@ def get_laya_agent() -> Optional[Any]:
 
     _LAYA_INIT_ATTEMPTED = True
 
-    # On Azure App Service, avoid dynamic HuggingFace model download during request latency budget
-    if os.environ.get("WEBSITE_SITE_NAME") or os.environ.get("AZURE_APP_SERVICE") or os.environ.get("WEBSITE_OWNER_NAME"):
-        logger.info("[LAYA] Azure App Service container detected: using deterministic sub-millisecond System 1 engine.")
+    # Avoid dynamic HuggingFace model download during request latency budget
+    if os.environ.get("SKIP_LAYA_DOWNLOAD") == "1" or os.environ.get("WEBSITE_SITE_NAME") or os.environ.get("AZURE_APP_SERVICE") or os.environ.get("WEBSITE_OWNER_NAME"):
+        logger.info("[LAYA] Using deterministic sub-millisecond System 1 engine (HuggingFace remote download bypassed).")
         _LAYA_AGENT = None
         return None
 
