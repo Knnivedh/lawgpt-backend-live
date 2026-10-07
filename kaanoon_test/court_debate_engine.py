@@ -444,21 +444,12 @@ class LawGPTLLMClient:
                 "base_url": cfg.OPENROUTER_BASE_URL if cfg else "https://openrouter.ai/api/v1",
                 "models": {
                     "fast": [
-                        "openai/gpt-oss-20b:free",
-                        "openai/gpt-oss-120b:free",
-                        "tencent/hy3-preview:free",
                         "nvidia/nemotron-3.5-lightning:free",
-                        "z-ai/glm-5.2:free",
-                        "minimax/minimax-m3:free",
-                        "nvidia/nemotron-3-super-120b-a12b:free",
+                        "nvidia/nemotron-3-ultra-550b-a55b:free",
                     ],
                     "debate": [
-                        "openai/gpt-oss-120b:free",
-                        "nousresearch/hermes-3-llama-3.1-405b:free",
-                        "z-ai/glm-5.2:free",
+                        "nvidia/nemotron-3.5-lightning:free",
                         "nvidia/nemotron-3-ultra-550b-a55b:free",
-                        "nvidia/nemotron-3-super-120b-a12b:free",
-                        "minimax/minimax-m3:free",
                     ],
                 },
             })
@@ -569,7 +560,7 @@ class LawGPTLLMClient:
         # GLM-5.3 (TokenRouter) is the debate brain: every Court Clash section
         # reasons with full GLM depth first (user directive). Groq is the
         # emergency fallback when GLM rate-limits; OpenRouter free pool after.
-        provider_priority = {"groq": 0, "tokenrouter": 1, "openrouter": 2, "nvidia": 3, "cerebras": 4}
+        provider_priority = {"openrouter": 0, "groq": 1, "tokenrouter": 2, "nvidia": 3, "cerebras": 4}
         ordered: List[Dict[str, Any]] = []
         with self._lock:
             for provider, _priority in sorted(provider_priority.items(), key=lambda item: item[1]):
