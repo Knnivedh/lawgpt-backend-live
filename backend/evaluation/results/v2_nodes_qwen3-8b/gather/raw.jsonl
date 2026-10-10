@@ -1,0 +1,200 @@
+{"id": "P01__en", "output": {"extraction": "The client's religion is Hindu."}}
+{"id": "P01__hi", "output": {"extraction": "The client's religion is Hindu."}}
+{"id": "P01__hi-en", "output": {"extraction": "The client identified themselves as Hindu."}}
+{"id": "P01__ta", "output": {"extraction": "The client stated that their religion is Hindu."}}
+{"id": "P01__kn", "output": {"extraction": "The client stated that their religion is Hindu."}}
+{"id": "P02__en", "output": {"extraction": "The client stated that they do not have any children from this marriage."}}
+{"id": "P02__hi", "output": {"extraction": "The client mentioned that they do not have any children from this marriage."}}
+{"id": "P02__hi-en", "output": {"extraction": "The client stated that they do not have any children."}}
+{"id": "P02__ta", "output": {"extraction": "The client mentioned that they do not have any children from this marriage."}}
+{"id": "P02__kn", "output": {"extraction": "The client stated that they do not have any children from this marriage."}}
+{"id": "P03__en", "output": {"extraction": "The client has two children, one aged 7 and the other aged 10."}}
+{"id": "P03__hi", "output": {"extraction": "The client has two children, one aged 7 years and the other 10 years."}}
+{"id": "P03__hi-en", "output": {"extraction": "The client has two children, one aged 7 years and the other aged 10 years."}}
+{"id": "P03__ta", "output": {"extraction": "The client mentioned that one child is 7 years old and the other is 10 years old."}}
+{"id": "P03__kn", "output": {"extraction": "The client mentioned their children are 7 years and 10 years old."}}
+{"id": "P04__en", "output": {"extraction": "The client has been staying at their parents' house in Pune since last month."}}
+{"id": "P04__hi", "output": {"extraction": "The client has been residing in Pune at her in-laws' place since last month."}}
+{"id": "P04__hi-en", "output": {"extraction": "The client has been residing in Pune with her maternal uncle since the previous month."}}
+{"id": "P04__ta", "output": {"extraction": "The client has been staying at their parents' house in Pune since last month."}}
+{"id": "P04__kn", "output": {"extraction": "The client has been residing at their in-laws' house in Pune since last month."}}
+{"id": "P05__en", "output": {"extraction": "The client currently resides in Bengaluru."}}
+{"id": "P05__hi", "output": {"extraction": "The client currently resides in Bangalore."}}
+{"id": "P05__hi-en", "output": {"extraction": "The client currently resides in Bengaluru."}}
+{"id": "P05__ta", "output": {"extraction": "The client currently resides in Bangalore."}}
+{"id": "P05__kn", "output": {"extraction": "The client currently resides in Bangalore."}}
+{"id": "P06__en", "output": {"extraction": "She is proposing a one-time settlement of 10 lakh rupees and custody of the son in exchange for withdrawing the case."}}
+{"id": "P06__hi", "output": {"extraction": "The client is demanding a lump sum of 10 lakh rupees and custody of her son in exchange for withdrawing the case."}}
+{"id": "P06__hi-en", "output": {"extraction": "The client is willing to compromise by giving 10 lakh rupees and custody of the child in exchange for the case being withdrawn."}}
+{"id": "P06__ta", "output": {"extraction": "The client demands a lump sum of 10 lakh rupees and custody of the son in exchange for withdrawing the case."}}
+{"id": "P06__kn", "output": {"extraction": "The client demands a lump sum of 10 lakh rupees and custody of the son in exchange for withdrawing the case."}}
+{"id": "P07__en", "output": {"extraction": "The client and spouse are not living together; the spouse has been at her parents' house for the last three months."}}
+{"id": "P07__hi", "output": {"extraction": "The client and their partner are no longer living together, as the partner has been staying at their parents' house for the past three months."}}
+{"id": "P07__hi-en", "output": {"extraction": "The client and spouse have been living separately for the past three months."}}
+{"id": "P07__ta", "output": {"extraction": "The client and their partner are not currently living together; the partner has been staying at her mother's house for the past three months."}}
+{"id": "P07__kn", "output": {"extraction": "The client and her spouse are not living together; she has been residing in Tavare house for the past three months."}}
+{"id": "P08__en", "output": {"extraction": "The husband works in a bank and earns about 80,000 rupees a month."}}
+{"id": "P08__hi", "output": {"extraction": "The husband works in a bank and earns approximately 80,000 rupees per month."}}
+{"id": "P08__hi-en", "output": {"extraction": "The husband works in a bank and earns approximately 80,000 rupees per month."}}
+{"id": "P08__ta", "output": {"extraction": "The husband works in a bank and earns approximately 80,000 rupees per month."}}
+{"id": "P08__kn", "output": {"extraction": "The husband works in a bank and earns approximately 80,000 rupees per month."}}
+{"id": "P09__en", "output": {"extraction": "The client earns approximately 45,000 monthly."}}
+{"id": "P09__hi", "output": {"extraction": "The client's monthly income is approximately 45,000 rupees."}}
+{"id": "P09__hi-en", "output": {"extraction": "The client's monthly income is approximately 45,000 rupees."}}
+{"id": "P09__ta", "output": {"extraction": "The client's monthly income is approximately 45,000 rupees."}}
+{"id": "P09__kn", "output": {"extraction": "The client's monthly income is approximately 45,000 rupees."}}
+{"id": "P10__en", "output": {"extraction": "The maintenance has not been paid for 8 months."}}
+{"id": "P10__hi", "output": {"extraction": "The client mentioned that the allowance has not been received for 8 months, totaling 1,20,000 rupees."}}
+{"id": "P10__hi-en", "output": {"extraction": "The client mentioned that maintenance has not been received for 8 months, totaling 1,20,000 rupees."}}
+{"id": "P10__ta", "output": {"extraction": "The client mentioned that the pension has not been provided for 8 months, totaling 1,20,000 rupees."}}
+{"id": "P10__kn", "output": {"extraction": "The client mentioned that life support has not been provided for 8 months, totaling 1,20,000 rupees."}}
+{"id": "P11__en", "output": {"extraction": "The client describes his wife's behavior as cruel, including insults in front of relatives, threats of self-harm, and prolonged silence and neglect of household duties."}}
+{"id": "P11__hi", "output": {"extraction": "The wife's behavior has been cruel, with conflicts with in-laws, threats of suicide, and no communication or cooking for months."}}
+{"id": "P11__hi-en", "output": {"extraction": "The wife's behavior is perceived as cruel, with incidents of insult, suicide threats, and lack of communication over months."}}
+{"id": "P11__ta", "output": {"extraction": "The wife's behavior is considered cruel as she refused to get along with the family from the first year, insulted the client in front of relatives, threatened suicide, stopped talking for months, and did not cook at home."}}
+{"id": "P11__kn", "output": {"extraction": "The wife's behavior is considered cruel as she has not adjusted with the in-laws since the first year, has insulted the client in front of relatives, threatened suicide to accuse them, stopped talking for months, and does not cook at home."}}
+{"id": "P12__en", "output": {"extraction": "She left the matrimonial home in 2022 after a fight with the client's mother."}}
+{"id": "P12__hi", "output": {"extraction": "The mother left the house in 2022 after an argument with the client."}}
+{"id": "P12__hi-en", "output": {"extraction": "The person left home in 2022 after having a disagreement with the mother."}}
+{"id": "P12__ta", "output": {"extraction": "The mother left the house in 2022 after a conflict with the client."}}
+{"id": "P12__kn", "output": {"extraction": "The mother left the house in 2022 after an argument with the client."}}
+{"id": "P13__en", "output": {"extraction": "The marriage was performed under Hindu rites."}}
+{"id": "P13__hi", "output": {"extraction": "The marriage took place according to Hindu rites."}}
+{"id": "P13__hi-en", "output": {"extraction": "The client mentioned that the marriage took place according to Hindu rites."}}
+{"id": "P13__ta", "output": {"extraction": "The client mentioned that the marriage was conducted according to Hindu customs."}}
+{"id": "P13__kn", "output": {"extraction": "The client mentioned that the marriage followed the Hindu tradition."}}
+{"id": "P14__en", "output": {"extraction": "He has permanent residency in that country and remains an Indian citizen."}}
+{"id": "P14__hi", "output": {"extraction": "The client has permanent residency in that country, and their citizenship is still Indian."}}
+{"id": "P14__hi-en", "output": {"extraction": "The user mentioned that the person has permanent residency and holds Indian citizenship."}}
+{"id": "P14__ta", "output": {"extraction": "The individual has permanent residency in that country, but their citizenship is still Indian."}}
+{"id": "P14__kn", "output": {"extraction": "The individual has permanent residence permission there, but their citizenship is still Indian."}}
+{"id": "P15__en", "output": {"extraction": "There is no court order regarding the child's custody at present."}}
+{"id": "P15__hi", "output": {"extraction": "There is no court order regarding the child's custody, and they have not yet gone to court."}}
+{"id": "P15__hi-en", "output": {"extraction": "There is no court order regarding the custody of the children, and the parties have not yet gone to court."}}
+{"id": "P15__ta", "output": {"extraction": "The client mentioned there is no court order regarding the child's custody at the moment."}}
+{"id": "P15__kn", "output": {"extraction": "The client mentioned there is no court order regarding the child's custody and they have not yet gone to court."}}
+{"id": "P16__en", "output": {"extraction": "The client's lawyer filed an interim application in March, but it has not been heard yet."}}
+{"id": "P16__hi", "output": {"extraction": "The client's lawyer filed a temporary application in March, but no hearing has been held yet."}}
+{"id": "P16__hi-en", "output": {"extraction": "The client's lawyer filed an interim application in March, but the hearing has not yet taken place."}}
+{"id": "P16__ta", "output": {"extraction": "The client's lawyer filed the interim application in March, but it has not yet been scheduled for hearing."}}
+{"id": "P16__kn", "output": {"extraction": "The client's lawyer filed the interim application in March, but the hearing has not yet taken place."}}
+{"id": "P17__en", "output": {"extraction": "The client is currently living with her in-laws at her husband's place."}}
+{"id": "P17__hi", "output": {"extraction": "The client is currently staying with her in-laws and has not returned to her parental home."}}
+{"id": "P17__hi-en", "output": {"extraction": "The client is currently staying at the in-laws' house with her husband."}}
+{"id": "P17__ta", "output": {"extraction": "The client is currently staying at her mother-in-law's house with her husband."}}
+{"id": "P17__kn", "output": {"extraction": "The client is currently staying at her in-laws' house with her husband."}}
+{"id": "P18__en", "output": {"extraction": "The couple gave 5 lakh rupees in cash and 200 grams of gold, with a bank receipt as proof for the cash."}}
+{"id": "P18__hi", "output": {"extraction": "The client gave 5 lakh rupees in cash and approximately 200 grams of gold. A bank receipt for the cash is available with them."}}
+{"id": "P18__hi-en", "output": {"extraction": "The client mentioned that 5 lakh cash and approximately 200 grams of gold were given. A bank receipt for the cash is available."}}
+{"id": "P18__ta", "output": {"extraction": "The client mentioned receiving 5 lakh rupees in cash and approximately 200 grams of gold during the marriage, with a bank receipt for the cash."}}
+{"id": "P18__kn", "output": {"extraction": "The client gave 5 lakh rupees in cash and approximately 200 grams of gold during the marriage, and a bank receipt for the cash is available with them."}}
+{"id": "P19__en", "output": {"extraction": "The client has photographs of the wedding and the temple priest is willing to provide a statement."}}
+{"id": "P19__hi", "output": {"extraction": "The client has photos of the wedding and the priest is willing to provide a statement."}}
+{"id": "P19__hi-en", "output": {"extraction": "The client has marriage photos and the priest is ready to provide a statement."}}
+{"id": "P19__ta", "output": {"extraction": "The client has photographs of the marriage and the temple priest is prepared to provide testimony."}}
+{"id": "P19__kn", "output": {"extraction": "The client has wedding photos and the priest is ready to provide testimony."}}
+{"id": "P20__en", "output": {"extraction": "The client does not want a divorce and still hopes for her return."}}
+{"id": "P20__hi", "output": {"extraction": "The client does not want a divorce and still wishes for the person to return."}}
+{"id": "P20__hi-en", "output": {"extraction": "The client does not want a divorce and wishes for the partner to return."}}
+{"id": "P20__ta", "output": {"extraction": "The client does not want a divorce and still wishes for her to return."}}
+{"id": "P20__kn", "output": {"extraction": "The client does not want a divorce and still wishes to continue the relationship."}}
+{"id": "P21__en", "output": {"extraction": "The client identified as Sikh."}}
+{"id": "P21__hi", "output": {"extraction": "The client identified themselves as a Sikh."}}
+{"id": "P21__hi-en", "output": {"extraction": "The client identified themselves as a Sikh."}}
+{"id": "P21__ta", "output": {"extraction": "The client identified themselves as Sikhs."}}
+{"id": "P21__kn", "output": {"extraction": "The client identified themselves as Sikhs."}}
+{"id": "P22__en", "output": {"extraction": "There is no medical report yet, as he has refused to see a doctor."}}
+{"id": "P22__hi", "output": {"extraction": "The client mentioned there is no medical report yet, and the person refuses to go to the doctor."}}
+{"id": "P22__hi-en", "output": {"extraction": "The client mentioned there is no medical report available, as the person refuses to go to the doctor."}}
+{"id": "P22__ta", "output": {"extraction": "The client mentioned there is no medical report or doctor's opinion available, and the person refuses to visit a doctor."}}
+{"id": "P22__kn", "output": {"extraction": "The client mentioned there are no medical reports or doctors' opinions available, and the person refuses to visit a doctor."}}
+{"id": "P23__en", "output": {"extraction": "The client is currently living at their parents' home and has been there for two months."}}
+{"id": "P23__hi", "output": {"extraction": "The client is staying at his parents' place and has been there for two months."}}
+{"id": "P23__hi-en", "output": {"extraction": "The client is currently residing with their maternal uncle and has been staying there for two months."}}
+{"id": "P23__ta", "output": {"extraction": "The client is staying at their parents' house and has been there for two months."}}
+{"id": "P23__kn", "output": {"extraction": "The client is currently residing at their house in Tavare, having moved there two months ago."}}
+{"id": "P24__en", "output": {"extraction": "The client has a daughter aged 3 and a son aged 6."}}
+{"id": "P24__hi", "output": {"extraction": "The client's daughter is 3 years old and the son is 6 years old."}}
+{"id": "P24__hi-en", "output": {"extraction": "The client mentioned that their daughter is 3 years old and their son is 6 years old."}}
+{"id": "P24__ta", "output": {"extraction": "The client mentioned that their daughter is 3 years old and their son is 6 years old."}}
+{"id": "P24__kn", "output": {"extraction": "The client mentioned that their daughter is 3 years old and their son is 6 years old."}}
+{"id": "P25__en", "output": {"extraction": "The mehr has not been paid, and it was fixed at 50,000 rupees."}}
+{"id": "P25__hi", "output": {"extraction": "The client mentioned that the mehar was not given, and an amount of 50,000 rupees was agreed upon."}}
+{"id": "P25__hi-en", "output": {"extraction": "The client stated that no mehr was given, and 50,000 rupaye was paid."}}
+{"id": "P25__ta", "output": {"extraction": "The mahar amount has been fixed at 50,000 rupees, but it has not been paid yet."}}
+{"id": "P25__kn", "output": {"extraction": "The client stated that Mehur did not provide the money, which was supposed to be 50,000 rupees."}}
+{"id": "P26__en", "output": {"extraction": "The partner's age is 31."}}
+{"id": "P26__hi", "output": {"extraction": "The client's partner is 31 years old."}}
+{"id": "P26__hi-en", "output": {"extraction": "The partner's age is 31 years."}}
+{"id": "P26__ta", "output": {"extraction": "The client's spouse is 31 years old."}}
+{"id": "P26__kn", "output": {"extraction": "The client's spouse is 31 years old."}}
+{"id": "P27__en", "output": {"extraction": "The partition between the brothers was not registered; it was only divided by word of mouth."}}
+{"id": "P27__hi", "output": {"extraction": "The division between the brothers is not registered; it was done verbally among themselves."}}
+{"id": "P27__hi-en", "output": {"extraction": "The dispute between the brothers is not registered; they resolved it verbally."}}
+{"id": "P27__ta", "output": {"extraction": "The siblings did not register their separation; they separated verbally among themselves."}}
+{"id": "P27__kn", "output": {"extraction": "The client mentioned that the property division registration has not been done, and the brothers have shared the property verbally."}}
+{"id": "P28__en", "output": {"extraction": "The client built the house themselves in 2018 using retirement money."}}
+{"id": "P28__hi", "output": {"extraction": "The client built the house themselves in 2018 using retirement funds."}}
+{"id": "P28__hi-en", "output": {"extraction": "The client built the house themselves in 2018 using their retirement funds."}}
+{"id": "P28__ta", "output": {"extraction": "The client built the house using their own pension funds in 2018."}}
+{"id": "P28__kn", "output": {"extraction": "The client constructed the house in 2018 using their retirement funds."}}
+{"id": "P29__en", "output": {"extraction": "The couple is still living in the same house but have been sleeping in separate rooms for about four months and communicate little."}}
+{"id": "P29__hi", "output": {"extraction": "The couple is still living together but has been sleeping in separate rooms for four months and communicates with difficulty."}}
+{"id": "P29__hi-en", "output": {"extraction": "The client and spouse are still living in the same house but have been sleeping in separate rooms for about four months due to the child's exams and difficulty in communication."}}
+{"id": "P29__ta", "output": {"extraction": "The client and her in-law are still living in the same house but have been sleeping in separate rooms for about four months and communicate very little."}}
+{"id": "P29__kn", "output": {"extraction": "The couple is still living in the same house but have been sleeping in separate rooms for about four months and communicate little."}}
+{"id": "P30__en", "output": {"extraction": "The client identified their religion as Hindu."}}
+{"id": "P30__hi", "output": {"extraction": "The client mentioned that they are Hindu."}}
+{"id": "P30__hi-en", "output": {"extraction": "The client stated that they are Hindu."}}
+{"id": "P30__ta", "output": {"extraction": "The client stated that they are Hindus."}}
+{"id": "P30__kn", "output": {"extraction": "The client stated that they are Hindus."}}
+{"id": "L-en-01__en", "output": {"extraction": "No case has been filed in court so far; the matter is currently only discussed between the two families."}}
+{"id": "L-en-02__en", "output": {"extraction": "The chargesheet has been filed."}}
+{"id": "L-en-03__en", "output": {"extraction": "The settlement amount was 12 lakhs, and 6 lakhs were paid by demand draft at the first motion."}}
+{"id": "L-en-04__en", "output": {"extraction": "The maintenance term is recorded in clause 4 of the court's divorce decree."}}
+{"id": "L-en-05__en", "output": {"extraction": "The biological father has not been in touch since the divorce and his current address is unknown, though his brother resides in Nagpur."}}
+{"id": "L-en-06__en", "output": {"extraction": "The 2019 paper was signed in front of two neighbours."}}
+{"id": "L-en-07__en", "output": {"extraction": "The daughter currently lives with the client and his parents, with the mother taking her to school and the wife visiting on weekends."}}
+{"id": "L-en-08__en", "output": {"extraction": "The past illness was not disclosed to the groom's family as the doctor stated she was fully cured."}}
+{"id": "L-en-09__en", "output": {"extraction": "The client mentioned being married for 4 years, with the marriage taking place in 2022."}}
+{"id": "L-en-10__en", "output": {"extraction": "The client mentioned that he said the same thing on a family WhatsApp group, and his sister has the screenshots."}}
+{"id": "L-hi-01__hi", "output": {"extraction": "The client has not filed any police complaint or case so far due to fear."}}
+{"id": "L-hi-02__hi", "output": {"extraction": "The client identified themselves as Hindu."}}
+{"id": "L-hi-03__hi", "output": {"extraction": "The marriage took place in 2021, and the client has a three-year-old son."}}
+{"id": "L-hi-04__hi", "output": {"extraction": "The client mentioned that the father did not leave a will."}}
+{"id": "L-hi-05__hi", "output": {"extraction": "The client mentioned that the maintenance has not been provided yet, with an amount of 51,000 rupees agreed upon."}}
+{"id": "L-hi-06__hi", "output": {"extraction": "The property is in the husband's name."}}
+{"id": "L-hi-07__hi", "output": {"extraction": "The marriage certificate was obtained eight days ago at the registrar's office, and a copy is kept by the friend, while the photo is on the client's phone."}}
+{"id": "L-hi-08__hi", "output": {"extraction": "The decree does not mention the child's expenses; it was verbally agreed upon between the parties."}}
+{"id": "L-hi-09__hi", "output": {"extraction": "The client mentioned that their daughter is five years old and currently lives with them."}}
+{"id": "L-hi-10__hi", "output": {"extraction": "The client does not want a divorce but requires monthly expenses and her belongings back."}}
+{"id": "L-hien-01__hi-en", "output": {"extraction": "The client mentioned that FIR has not been filed yet, and only a complaint was made at the women's police station."}}
+{"id": "L-hien-02__hi-en", "output": {"extraction": "The client belongs to the Hindu religion and got married through the Arya Samaj mandir ceremony."}}
+{"id": "L-hien-03__hi-en", "output": {"extraction": "The husband works as a supervisor at a construction company and earns approximately 4000 dirham, which is around 90 thousand rupees."}}
+{"id": "L-hien-04__hi-en", "output": {"extraction": "The divorce decree was issued by the Pune family court in 2024."}}
+{"id": "L-hien-05__hi-en", "output": {"extraction": "The property transfer is being done through a gift deed, with registration planned for the next month."}}
+{"id": "L-hien-06__hi-en", "output": {"extraction": "The client stated that no complaint has been filed so far."}}
+{"id": "L-hien-07__hi-en", "output": {"extraction": "The couple has one daughter who is three years old, and the wife will stay with her. The husband will pay 10 thousand rupees monthly."}}
+{"id": "L-hien-08__hi-en", "output": {"extraction": "The client stated that no will was created by the father."}}
+{"id": "L-hien-09__hi-en", "output": {"extraction": "The client and spouse are currently living together at the client's parents' house."}}
+{"id": "L-hien-10__hi-en", "output": {"extraction": "The client has photos of the first marriage and the former husband confirmed it on the phone."}}
+{"id": "L-ta-01__ta", "output": {"extraction": "The client has not filed any complaint or case with the police so far due to fear of family harm."}}
+{"id": "L-ta-02__ta", "output": {"extraction": "The client's religion is Hindu."}}
+{"id": "L-ta-03__ta", "output": {"extraction": "The client stated that they got married two years ago, in May 2024."}}
+{"id": "L-ta-04__ta", "output": {"extraction": "The wife agrees to the divorce and both are ready to file a joint petition."}}
+{"id": "L-ta-05__ta", "output": {"extraction": "The client is 28 years old, and the other person is 22 years old."}}
+{"id": "L-ta-06__ta", "output": {"extraction": "The client stated that they do not have any income and are staying at home."}}
+{"id": "L-ta-07__ta", "output": {"extraction": "The client has one son who is two years old, and they have been married for four years."}}
+{"id": "L-ta-08__ta", "output": {"extraction": "The client mentioned that they do not have any children yet."}}
+{"id": "L-ta-09__ta", "output": {"extraction": "The client mentioned that the case has been pending for two years."}}
+{"id": "L-ta-10__ta", "output": {"extraction": "The client mentioned that two friends and a temple priest were present as witnesses."}}
+{"id": "L-kn-01__kn", "output": {"extraction": "The wife is not working currently. She worked for one year before marriage."}}
+{"id": "L-kn-02__kn", "output": {"extraction": "The client was given fifteen days to respond to the notice."}}
+{"id": "L-kn-03__kn", "output": {"extraction": "The client mentioned that they are asking for five lakh rupees, and their father has already given two lakh rupees."}}
+{"id": "L-kn-04__kn", "output": {"extraction": "The client earns 18,000 rupees monthly as a private school teacher."}}
+{"id": "L-kn-05__kn", "output": {"extraction": "The first wife is still alive, and there has been no divorce as per the relatives' statement."}}
+{"id": "L-kn-06__kn", "output": {"extraction": "The client's religion is Hindu."}}
+{"id": "L-kn-07__kn", "output": {"extraction": "The client does not want a divorce currently but needs financial support for monthly expenses and the child's future."}}
+{"id": "L-kn-08__kn", "output": {"extraction": "The client mentioned that they do not have any children from this marriage."}}
+{"id": "L-kn-09__kn", "output": {"extraction": "The client mentioned that their husband runs a hardware shop."}}
+{"id": "L-kn-10__kn", "output": {"extraction": "The child is a male and is three years old."}}

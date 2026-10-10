@@ -1,0 +1,130 @@
+{"id": "P01__en__754", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P01__en__2845", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P01__hi__754", "verdict": {"accurate": false, "unsupported": ["Both involve domestic violence/family law issues."], "specific": true}}
+{"id": "P01__hi__2845", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P01__hi-en__754", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P01__hi-en__2845", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P01__ta__754", "verdict": {"accurate": false, "unsupported": ["The precedent was not directly used to generate the Tamil response."], "specific": false}}
+{"id": "P01__ta__2845", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P01__kn__754", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P01__kn__2845", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P02__en__69", "verdict": {"accurate": false, "unsupported": ["Both cases involve Hindu parties (implied by the generated response referencing the Hindu Marriage Act)."], "specific": true}}
+{"id": "P02__en__123", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P02__hi__69", "verdict": {"accurate": false, "unsupported": ["the precedent served only as a high-level confirmation of the topic rather than a direct procedural guide"], "specific": false}}
+{"id": "P02__hi__123", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P02__hi-en__69", "verdict": {"accurate": false, "unsupported": ["Both cases involve parties who are Hindu (implied in the generated response, aligning with the context of the precedent's advice regarding Indian law)."], "specific": true}}
+{"id": "P02__hi-en__123", "verdict": {"accurate": false, "unsupported": ["The case summary indicates the spouse agrees to the divorce, mirroring the context of mutual consent."], "specific": true}}
+{"id": "P02__ta__69", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P02__ta__123", "verdict": {"accurate": false, "unsupported": ["While the final response defaulted to Hindu law (Section 13B) because the Case summary specified a Hindu spouse, the precedent's focus on the complexity of inter-religious divorce likely prompted the expert to select the relevant statutory framework (Hindu Marriage Act) applicable to the case's religion."], "specific": true}}
+{"id": "P02__kn__69", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P02__kn__123", "verdict": {"accurate": false, "unsupported": ["The precedent highlighted the complexity of inter-religious marriage divorce procedures.", "While the final response defaulted to the Hindu Marriage Act (13B) based on the Case Summary's religion, the precedent's focus on religious differences likely prompted the expert to consider the relevant statutory framework for the Hindu spouse, leading to the advice citing the Hindu Marriage Act."], "specific": true}}
+{"id": "P04__en__1186", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P04__en__974", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P04__hi__1186", "verdict": {"accurate": false, "unsupported": ["The precedent provided the foundational legal direction by highlighting the availability of laws against spousal harassment and specifically mentioning the Domestic Violence Act, 2005. This directly led the expert to advise the client to seek protection and relief under Section 12 of the Domestic Violence Act, 2005, and also suggested remedies under IPC 498A, which is related to marital cruelty."], "specific": true}}
+{"id": "P04__hi__974", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P04__hi-en__1186", "verdict": {"accurate": false, "unsupported": ["The precedent explicitly mentions the Domestic Violence Act, 2005, which is the core legal framework used in the response.", "The precedent is a general query/advice piece, while the case summary is a specific factual snapshot."], "specific": true}}
+{"id": "P04__hi-en__974", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P04__ta__1186", "verdict": {"accurate": false, "unsupported": ["The precedent mentions general rights, whereas the response provides specific statutory sections (e.g., Section 12, Section 125, IPC 498A).", "The generated response specifically advise seeking protection, residence, and monetary relief under Section 12 of the Domestic Violence Act."], "specific": true}}
+{"id": "P04__ta__974", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P04__kn__1186", "verdict": {"accurate": false, "unsupported": ["The precedent is a general Q&A format, while the case summary is a specific factual brief."], "specific": true}}
+{"id": "P04__kn__974", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P08__en__1103", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P08__en__86", "verdict": {"accurate": false, "unsupported": ["The precedent mentions specific income details (Husband: 4.5 lac/mon, Wife: 80k/mon) which are different from the case summary (Husband income not specified in summary, Wife income not specified in summary)."], "specific": true}}
+{"id": "P08__hi__1103", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P08__hi__86", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P08__hi-en__1103", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P08__hi-en__86", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P08__ta__1103", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P08__ta__86", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P08__kn__1103", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P08__kn__86", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P12__en__944", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P12__en__163", "verdict": {"accurate": false, "unsupported": ["The case summary focuses on the grounds for obtaining a divorce (desertion/non-consent)."], "specific": false}}
+{"id": "P12__hi__944", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P12__hi__163", "verdict": {"accurate": false, "unsupported": ["The case summary focuses on the grounds for obtaining a divorce when the spouse refuses consent."], "specific": false}}
+{"id": "P12__hi-en__944", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P12__hi-en__163", "verdict": {"accurate": false, "unsupported": ["The case summary focuses on the *procedure* of obtaining a divorce when consent is withheld (Hindu Marriage Act, desertion)."], "specific": false}}
+{"id": "P12__ta__944", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P12__ta__163", "verdict": {"accurate": false, "unsupported": ["The case summary focuses on the *grounds* for divorce when the spouse refuses consent."], "specific": false}}
+{"id": "P12__kn__944", "verdict": {"accurate": false, "unsupported": ["The precedent specifically addresses the grounds of desertion and the requirement of a 2-year period, which directly mirrors the legal advice provided."], "specific": true}}
+{"id": "P12__kn__163", "verdict": {"accurate": false, "unsupported": ["The case summary asks about the *procedure* for divorce when the spouse refuses consent."], "specific": false}}
+{"id": "P15__en__165", "verdict": {"accurate": true, "unsupported": ["However, the generated response opted for a more standard, statutory approach (Hindu Minority and Guardianship Act, Guardians and Wards Act) rather than adopting the immediate writ petition advice, suggesting the precedent served more as a background indicator of the *type* of issue rather than the *specific legal path* taken.", "The precedent offers specific legal avenues (Habeas Corpus, DV Act) which are more immediate than the general statutory advice given in the response."], "specific": true}}
+{"id": "P15__en__131", "verdict": {"accurate": false, "unsupported": ["The precedent is a general query/advice piece, whereas the case summary is a specific legal filing scenario."], "specific": true}}
+{"id": "P15__hi__165", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P15__hi__131", "verdict": {"accurate": false, "unsupported": ["Both cases are governed by Hindu personal law (Hindu Minority and Guardianship Act, 1956).", "The precedent directly established the legal framework (Section 6 of the Hindu Minority and Guardianship Act, 1956) regarding custody of a child under five years.", "This legal basis was used to inform the response that custody generally rests with the mother, while emphasizing that the final decision is based on the child's welfare."], "specific": true}}
+{"id": "P15__hi-en__165", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P15__hi-en__131", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P15__ta__165", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P15__ta__131", "verdict": {"accurate": false, "unsupported": ["Both cases are governed by Hindu personal law principles regarding guardianship.", "The precedent directly addresses custody rights for children under five years old.", "The precedent discusses general custody rights, whereas the case summary involves an immediate dispute over visitation/custody during separation."], "specific": true}}
+{"id": "P15__kn__165", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P15__kn__131", "verdict": {"accurate": false, "unsupported": ["Both cases pertain to Hindu family law context (Precedent explicitly cites Hindu Minority and Guardianship Act, 1956).", "The precedent directly provided the legal basis (Section 6 of the Hindu Minority and Guardianship Act, 1956) that the expert used to state the general rule regarding custody of a child under five years, which was then adapted to advise the mother."], "specific": true}}
+{"id": "P17__en__2470", "verdict": {"accurate": false, "unsupported": ["Both cases touch upon the need for legal recourse against in-laws' actions.", "The precedent established a strong foundation for recognizing in-law cruelty (mental and physical) as grounds for legal action.", "as the precedent validates the severity of harassment by in-laws."], "specific": false}}
+{"id": "P17__en__2563", "verdict": {"accurate": false, "unsupported": ["The precedent directly addresses the legal recourse available to a wife facing dowry demands and abuse, mirroring the core issue in the case summary.", "The precedent provides a detailed list of multiple legal sections (498A IPC, 406 IPC, DV Act), while the generated response provided a slightly condensed, yet functionally equivalent, summary."], "specific": true}}
+{"id": "P17__hi__2470", "verdict": {"accurate": false, "unsupported": ["Both precedents deal with domestic disputes involving cruelty and harassment by in-laws/husband."], "specific": false}}
+{"id": "P17__hi__2563", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P17__hi-en__2470", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P17__hi-en__2563", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P17__ta__2470", "verdict": {"accurate": false, "unsupported": ["The precedent details mental harassment and cruelty by in-laws, which aligns with the case summary's mention of 'harassment' and 'violence' (hitting)."], "specific": true}}
+{"id": "P17__ta__2563", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P17__kn__2470", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P17__kn__2563", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P19__en__261", "verdict": {"accurate": false, "unsupported": ["The precedent mentions the wife's inaction for two years, which is a factual detail not central to the legal advice provided in the generated response."], "specific": true}}
+{"id": "P19__en__225", "verdict": {"accurate": false, "unsupported": ["The precedent is a general query seeking advice, whereas the case summary is a specific legal filing context.", "The precedent mentions custom as a potential exception, which is not the primary focus of the generated response."], "specific": false}}
+{"id": "P19__hi__261", "verdict": {"accurate": false, "unsupported": ["The core issue in both is the legality and criminal implications of bigamy (second marriage during the lifetime of the first spouse).", "The precedent provided the direct legal basis (IPC Section 494) for the criminal aspect of the situation.", "The generated response incorporated this concept by referencing the illegality of the second marriage under IPC Section 494 (though it also correctly added reference to Hindu Marriage Act sections for the civil aspect)."], "specific": true}}
+{"id": "P19__hi__225", "verdict": {"accurate": false, "unsupported": ["The explanation claims that the Hindi response referenced the Hindu Marriage Act (Section 5 and 11), which is not mentioned in the past case text."], "specific": true}}
+{"id": "P19__hi-en__261", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P19__hi-en__225", "verdict": {"accurate": false, "unsupported": ["The precedent is a general query seeking guidance, whereas the case is a specific legal complaint filed by the aggrieved wife.", "The precedent focuses on the husband's intent and legality, while the case focuses on the wife's recourse (filing a complaint).", "The reference to a modern equivalent BNS section 82 (as mentioned in the explanation) is not present in the past case text."], "specific": true}}
+{"id": "P19__ta__261", "verdict": {"accurate": false, "unsupported": ["The precedent mentions the exception for marriages declared void by a court, which is not explicitly discussed in the generated response.", "The precedent directly provided the specific statutory basis (IPC Section 494) for the legal action."], "specific": true}}
+{"id": "P19__ta__225", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P19__kn__261", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P19__kn__225", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P24__en__41", "verdict": {"accurate": false, "unsupported": ["Both involve issues related to Muslim marriage/divorce."], "specific": false}}
+{"id": "P24__en__445", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P24__hi__41", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P24__hi__445", "verdict": {"accurate": false, "unsupported": ["Both cases deal with the validity of divorce given via digital means (Talaqnama/WhatsApp message)."], "specific": true}}
+{"id": "P24__hi-en__41", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P24__hi-en__445", "verdict": {"accurate": false, "unsupported": ["Both cases involve seeking maintenance/financial support for the wife and children."], "specific": true}}
+{"id": "P24__ta__41", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P24__ta__445", "verdict": {"accurate": false, "unsupported": ["The case summary involves instant triple talaq, which is the core issue addressed in the precedent's content ('About muslim divorce')."], "specific": true}}
+{"id": "P24__kn__41", "verdict": {"accurate": false, "unsupported": ["The precedent, which details a husband's distress regarding his wife's behavior and fear of misuse during informal divorce, did not influence the generated response."], "specific": false}}
+{"id": "P24__kn__445", "verdict": {"accurate": false, "unsupported": ["The precedent's core theme—challenging the validity of an invalid Talaqnama—directly supported the response's assertion that the triple talaq in the WhatsApp message is void under the Muslim Women (Protection of Rights on Marriage) Act, 2019."], "specific": true}}
+{"id": "P16__en__180", "verdict": {"accurate": false, "unsupported": ["Both cases involve custody/visitation rights of a child (son aged 4)."], "specific": true}}
+{"id": "P16__en__154", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P16__hi__180", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "P16__hi__154", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P16__hi-en__180", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P16__hi-en__154", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P16__ta__180", "verdict": {"accurate": false, "unsupported": ["Both cases involve ongoing legal proceedings (domestic violence/custody application) while the primary issue (visitation/custody) is pending.", "The precedent provided the underlying legal principle that even when a domestic violence case (similar to the 498A mentioned in the precedent) is pending, the court can still grant interim visitation rights under the Guardians and Wards Act."], "specific": true}}
+{"id": "P16__ta__154", "verdict": {"accurate": false, "unsupported": ["The case summary specifies the application is under the Guardians and Wards Act, whereas the precedent context is broader."], "specific": false}}
+{"id": "P16__kn__180", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "P16__kn__154", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-en-01__en__235", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-en-01__en__324", "verdict": {"accurate": false, "unsupported": ["the case summary is about *negotiating* a specific amount in a mutual consent divorce.", "while the case summary involves specific financial figures and allegations (cruelty/DV)."], "specific": false}}
+{"id": "L-en-03__en__388", "verdict": {"accurate": false, "unsupported": ["The precedent deals with a wife not honoring a post-mediation agreement after a long separation"], "specific": false}}
+{"id": "L-en-03__en__1479", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-en-04__en__480", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-en-04__en__1830", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-hi-01__hi__1902", "verdict": {"accurate": false, "unsupported": ["Both cases involve issues of maintenance/financial support."], "specific": false}}
+{"id": "L-hi-01__hi__1264", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-hi-03__hi__1309", "verdict": {"accurate": false, "unsupported": ["The precedent provided a historical context of prolonged marital breakdown and the legal avenues available when a wife refuses to return.", "This informed the response to suggest filing a petition under Section 9 of the Hindu Marriage Act for the restoration of conjugal rights, which is the primary legal remedy when the wife refuses to return."], "specific": false}}
+{"id": "L-hi-03__hi__1931", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-hi-08__hi__1103", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-hi-08__hi__798", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-hien-01__hi-en__2771", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-hien-01__hi-en__1981", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-hien-03__hi-en__534", "verdict": {"accurate": false, "unsupported": ["Both cases involve a wife seeking maintenance from a husband residing abroad (NRI/Dubai)."], "specific": true}}
+{"id": "L-hien-03__hi-en__2599", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-hien-04__hi-en__663", "verdict": {"accurate": false, "unsupported": ["The precedent highlights the seriousness of 'Wilful disobedience' in Family Court matters.", "The precedent raises the possibility of escalating to the High Court, while the response focuses on immediate enforcement within the same court.", "The precedent established the legal context of 'Wilful disobedience' in Family Court visitation matters.", "This directly informed the response by advising the client that non‑compliance is grounds for legal action, specifically mentioning 'contempt of court' and the possibility of the court altering custody terms, which validates the client's concern about the mother's non‑cooperation."], "specific": true}}
+{"id": "L-hien-04__hi-en__180", "verdict": {"accurate": false, "unsupported": ["The precedent focuses on the initial acquisition/loss of rights, while the case focuses on non-compliance with an existing order."], "specific": false}}
+{"id": "L-ta-01__ta__1902", "verdict": {"accurate": false, "unsupported": ["The precedent mentions the wife's maid, while the case summary focuses on the wife herself."], "specific": true}}
+{"id": "L-ta-01__ta__906", "verdict": {"accurate": false, "unsupported": ["Both situations involve a wife seeking legal recourse against her husband.", "The precedent established a legal context where continuous physical and mental harassment by a husband warrants legal intervention."], "specific": false}}
+{"id": "L-ta-03__ta__1321", "verdict": {"accurate": false, "unsupported": ["The case summary involves dowry demands (Rs 10 lakh more) and harassment under IPC 498A, which is a broader scope than the precedent's focus on property retention."], "specific": true}}
+{"id": "L-ta-03__ta__1552", "verdict": {"accurate": false, "unsupported": ["The precedent deals with the concept of 'stridhan' (woman's property) being claimed/held by in-laws, which mirrors the case's query about jewellery held by in-laws.", "It directly supported the advice to file under Dowry Prohibition Act (for further demands) and IPC 406 (for misappropriation/holding of jewelry), aligning with the case's core issues of demand and possession of valuables.", "The precedent strongly reinforced the legal basis for challenging dowry demands and the right to recover personal property."], "specific": true}}
+{"id": "L-ta-02__ta__1996", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-ta-02__ta__1040", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-kn-01__kn__2873", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-kn-01__kn__2184", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-kn-03__kn__1530", "verdict": {"accurate": true, "unsupported": [], "specific": false}}
+{"id": "L-kn-03__kn__141", "verdict": {"accurate": true, "unsupported": [], "specific": true}}
+{"id": "L-kn-04__kn__2423", "verdict": {"accurate": false, "unsupported": ["The precedent's core advice (mother's preference for young children) is largely superseded or contradicted by the case's facts (child is 6, father earns more)."], "specific": false}}
+{"id": "L-kn-04__kn__491", "verdict": {"accurate": false, "unsupported": ["The precedent's core theme—that custody decisions are not based solely on financial status but on the child's welfare—is reflected in the generated response's opening statement."], "specific": false}}

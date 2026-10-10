@@ -1,0 +1,200 @@
+{"id": "P02__en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P02__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P12__ta__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P12__ta__r2", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P12__ta__r3", "output": {"enough": false, "missing": "whether the marriage was registered under the Special Marriage Act or the Hindu Marriage Act", "raw": "{\n  \"enough\": false,\n  \"missing\": \"whether the marriage was registered under the Special Marriage Act or the Hindu Marriage Act\"\n}"}}
+{"id": "P12__kn__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P12__kn__r2", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P12__kn__r3", "output": {"enough": false, "missing": "whether the marriage was registered under the Special Marriage Act or the Hindu Marriage Act", "raw": "{\n  \"enough\": false,\n  \"missing\": \"whether the marriage was registered under the Special Marriage Act or the Hindu Marriage Act\"\n}"}}
+{"id": "P23__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P23__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P23__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P23__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P23__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P23__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P23__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__ta__r2", "output": {"enough": false, "missing": "religion of the parties", "raw": "{\"enough\": false, \"missing\": \"religion of the parties\"}"}}
+{"id": "P23__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P05__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P05__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P05__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P05__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P05__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P05__ta__r2", "output": {"enough": false, "missing": "religion of the marriage (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the marriage (or the law under which they married)\"\n}"}}
+{"id": "P05__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P05__kn__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P05__kn__r2", "output": {"enough": false, "missing": "religion of the marriage (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the marriage (or the law under which they married)\"\n}"}}
+{"id": "P05__kn__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "P22__en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__hi__r3", "output": {"enough": false, "missing": "whether the marriage was registered under the Special Marriage Act, 1954, or the Hindu Marriage Act, 1955", "raw": "{\n  \"enough\": false,\n  \"missing\": \"whether the marriage was registered under the Special Marriage Act, 1954, or the Hindu Marriage Act, 1955\"\n}"}}
+{"id": "P22__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__ta__r1", "output": {"enough": false, "missing": "religion of the parties or the law under which they married", "raw": "{\"enough\": false, \"missing\": \"religion of the parties or the law under which they married\"}"}}
+{"id": "P22__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P22__kn__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P22__kn__r2", "output": {"enough": false, "missing": "the law under which the marriage was performed", "raw": "{\n  \"enough\": false,\n  \"missing\": \"the law under which the marriage was performed\"\n}"}}
+{"id": "P22__kn__r3", "output": {"enough": false, "missing": "whether the marriage was registered under the Special Marriage Act, 1954, or the Hindu Marriage Act, 1955", "raw": "{\n  \"enough\": false,\n  \"missing\": \"whether the marriage was registered under the Special Marriage Act, 1954, or the Hindu Marriage Act, 1955\"\n}"}}
+{"id": "P29__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P29__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P29__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P29__ta__r2", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "P29__ta__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "P29__kn__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "P29__kn__r2", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "P29__kn__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "P04__en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P04__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P10__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P10__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P10__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P10__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P10__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P19__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P19__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P19__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P19__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P19__ta__r3", "output": {"enough": false, "missing": "whether the marriage was registered under the Special Marriage Act or the Hindu Marriage Act", "raw": "{\n  \"enough\": false,\n  \"missing\": \"whether the marriage was registered under the Special Marriage Act or the Hindu Marriage Act\"\n}"}}
+{"id": "P19__kn__r1", "output": {"enough": false, "missing": "the law under which the client and her husband were married (e.g. Hindu Marriage Act, Special Marriage Act, etc.)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"the law under which the client and her husband were married (e.g. Hindu Marriage Act, Special Marriage Act, etc.)\"\n}"}}
+{"id": "P19__kn__r2", "output": {"enough": false, "missing": "the religion of the law under which they married (or the law under which they are seeking remedy)", "raw": "{\"enough\": false, \"missing\": \"the religion of the law under which they married (or the law under which they are seeking remedy)\"}"}}
+{"id": "P19__kn__r3", "output": {"enough": false, "missing": "the religion under which the client and her husband were married", "raw": "{\n  \"enough\": false,\n  \"missing\": \"the religion under which the client and her husband were married\"\n}"}}
+{"id": "P24__en__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P24__en__r2", "output": {"enough": false, "missing": "the religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"the religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P24__en__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P24__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P24__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P24__hi-en__r1", "output": {"enough": false, "missing": "religion of the law under which the parties married (e.g. Muslim Personal Law, Hindu Marriage Act, etc.)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the law under which the parties married (e.g. Muslim Personal Law, Hindu Marriage Act, etc.)\"\n}"}}
+{"id": "P24__hi-en__r2", "output": {"enough": false, "missing": "whether the marriage was registered under the Special Marriage Act, 1954, or the Muslim Personal Law (Shariat) Application Act, 1937", "raw": "{\n  \"enough\": false,\n  \"missing\": \"whether the marriage was registered under the Special Marriage Act, 1954, or the Muslim Personal Law (Shariat) Application Act, 1937\"\n}"}}
+{"id": "P24__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "P24__ta__r1", "output": {"enough": false, "missing": "the religion under which the parties are married", "raw": "{\n  \"enough\": false,\n  \"missing\": \"the religion under which the parties are married\"\n}"}}
+{"id": "P24__ta__r2", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P24__ta__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P24__kn__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P24__kn__r2", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "P24__kn__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "L-en-01__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-01__en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-en-01__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-01__en__r4", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-05__en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-en-05__en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-en-05__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-04__en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-en-04__en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-en-04__en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hi-03__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hi-03__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-03__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hi-03__hi__r4", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-06__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hi-06__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hi-06__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hi-05__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-05__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hi-05__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hien-02__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hien-02__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hien-02__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hien-02__hi-en__r4", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hien-07__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hien-07__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-07__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-hien-04__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-04__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-04__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-ta-08__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-ta-08__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-ta-08__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-ta-08__ta__r4", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-ta-10__ta__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "L-ta-10__ta__r2", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "L-ta-10__ta__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\"enough\": false, \"missing\": \"religion of the parties (or the law under which they married)\"}"}}
+{"id": "L-ta-04__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-ta-04__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-ta-04__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-kn-05__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-kn-05__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-kn-05__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-kn-05__kn__r4", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-kn-06__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-kn-06__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}
+{"id": "L-kn-06__kn__r3", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "L-kn-08__kn__r1", "output": {"enough": false, "missing": "religion of the parties (or the law under which they married)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the parties (or the law under which they married)\"\n}"}}
+{"id": "L-kn-08__kn__r2", "output": {"enough": false, "missing": "religion of the law under which the parties married (e.g. Muslim Personal Law, Hindu Marriage Act, etc.)", "raw": "{\n  \"enough\": false,\n  \"missing\": \"religion of the law under which the parties married (e.g. Muslim Personal Law, Hindu Marriage Act, etc.)\"\n}"}}
+{"id": "L-kn-08__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\n  \"enough\": true,\n  \"missing\": \"\"\n}"}}

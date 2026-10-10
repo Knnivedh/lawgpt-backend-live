@@ -40,9 +40,8 @@ CONVERSATION PATTERNS
 no -> no -> yes (-> yes)   an essential fact, usually religion (it decides
                            which personal law applies), is still missing after
                            the first reply
-no -> yes -> yes           the last round adds only NOT_PROVIDED for an
-                           optional question. The node must not start asking
-                           again: this is the loop seen in manual testing
+no -> yes -> yes           the last round adds one more optional fact. The
+                           node must not start asking again
 yes -> yes -> yes          the first message was already complete; the node
                            should not ask anything
 
@@ -61,6 +60,10 @@ SCORING
 
 LIMITS
 ------
+- An earlier draft had 24 final rounds in which the user declined an optional
+  question (value NOT_PROVIDED). They now hold a real fact instead, changed on
+  2026-10-09 at the project owner's request, so this set no longer checks
+  that an unanswered optional question does not restart the questioning.
 - Whether a case is "complete enough" is a judgement. The rule used: religion
   is essential only where the answer depends on personal law (divorce
   grounds, annulment, validity of marriage, succession, adoption).

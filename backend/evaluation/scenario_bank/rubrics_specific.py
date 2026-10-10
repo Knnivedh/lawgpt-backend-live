@@ -19,7 +19,7 @@ RUBRICS = {
                "The court will reduce the amount in a mutual consent petition"],
     ),
     "L-en-02": dict(
-        extra="stage_of_case: chargesheet filed | warrant: not known | wife's_location: Ludhiana",
+        extra="stage_of_case: chargesheet filed | warrant: none issued so far | wife's_location: Ludhiana",
         cover=[
             "A passport can be impounded under s.10(3) Passports Act when criminal proceedings are pending or a court has issued a warrant or summons; a look-out circular is opened at the request of the police, usually when an accused avoids the process",
             "Co-operating matters: he should respond through counsel and seek anticipatory bail (s.482 BNSS / s.438 CrPC); arrest is not automatic (Arnesh Kumar v. State of Bihar, 2014)",
@@ -55,7 +55,7 @@ RUBRICS = {
                "He can stop paying because she now works"],
     ),
     "L-en-05": dict(
-        extra="religion: Hindu | daughter's_age: 12 | biological_father_consent: not provided",
+        extra="religion: Hindu | daughter's_age: 12 | biological_father: no contact since the divorce, address unknown",
         cover=[
             "Custody is not parentage: the biological father remains the legal father, and showing the step-father as father generally requires adoption",
             "Adoption under the Hindu Adoptions and Maintenance Act needs the living biological father's consent (s.9) and the child to be under 15 (s.10); step-parent adoption is also possible under the Juvenile Justice Act, 2015 and the Adoption Regulations, 2022 with the consent of both biological parents",
@@ -115,7 +115,7 @@ RUBRICS = {
                "Cases against him can be filed only in Bangalore"],
     ),
     "L-en-10": dict(
-        extra="religion: Hindu | evidence_of_admission: not provided | living_together: no",
+        extra="religion: Hindu | evidence_of_admission: said on a family WhatsApp group; screenshots available | living_together: no",
         cover=[
             "Annulment for fraud under s.12(1)(c) HMA: concealment of a material fact about the husband; the petition must be filed within one year of discovery and she must not have lived with him as wife afterwards, so time is short",
             "Nullity under s.12(1)(a) for non-consummation owing to impotence has no such time limit",
@@ -188,7 +188,7 @@ RUBRICS = {
                "A Muslim wife cannot claim maintenance under s.125 CrPC"],
     ),
     "L-hi-06": dict(
-        extra="religion: Hindu | property: house in father-in-law's name; husband had a plot in his own name | will: not known",
+        extra="religion: Hindu | property: house in father-in-law's name; husband had a plot in his own name | will: none",
         cover=[
             "If the husband left no will, his property goes to his Class I heirs under s.8 Hindu Succession Act: the widow, the children and his mother, in equal shares; his father and brother are not Class I heirs",
             "This covers the plot in his name and his share in any ancestral property; her share is her absolute property (s.14)",
@@ -200,7 +200,7 @@ RUBRICS = {
                "She owns the father-in-law's house"],
     ),
     "L-hi-07": dict(
-        extra="marriage_certificate: yes | city: not given | complaint_filed: none",
+        extra="marriage_certificate: yes | city: Lucknow | complaint_filed: none",
         cover=[
             "Two adults have a right to marry by choice; an inter-caste marriage is lawful (Lata Singh v. State of U.P., 2006; Shakti Vahini v. Union of India, 2018)",
             "They should apply in writing to the Superintendent of Police with the certificate and age proof, and can ask the High Court (Art.226) for police protection",
@@ -236,7 +236,7 @@ RUBRICS = {
                "He can file a criminal case against his wife or the other man"],
     ),
     "L-hi-10": dict(
-        extra="religion: Hindu | current_residence: parents' home | children: none | own_income: none | relief_sought: undecided",
+        extra="religion: Hindu | current_residence: parents' home | children: none | own_income: none | relief_sought: monthly maintenance and return of her belongings, no divorce",
         cover=[
             "She can claim maintenance under s.144 BNSS (s.125 CrPC) and relief under the PWDVA where she lives; if he avoids summons the case proceeds ex parte",
             "Matrimonial options under the HMA: divorce for desertion (two continuous years) or cruelty, or restitution (s.9) if she wants the marriage",
@@ -297,7 +297,7 @@ RUBRICS = {
                "He may stop paying child maintenance in return"],
     ),
     "L-hien-05": dict(
-        extra="religion: Hindu | mode_of_transfer: not known | ancestral_part: none",
+        extra="religion: Hindu | mode_of_transfer: gift deed, registration next month | ancestral_part: none",
         cover=[
             "A father can gift or will his self-acquired property to anyone (s.30 Hindu Succession Act); a daughter, married or not, has no right in it during his lifetime and cannot stop the transfer",
             "Her equal right arises in ancestral (coparcenary) property (s.6), or if he dies without a will (s.8, as a Class I heir with her brother and mother)",
@@ -356,7 +356,7 @@ RUBRICS = {
                "He is legally bound to leave his parents"],
     ),
     "L-hien-10": dict(
-        extra="religion: Hindu | proof_of_first_marriage: not provided | living_together: no, since the discovery",
+        extra="religion: Hindu | proof_of_first_marriage: photographs of the first wedding; first husband confirmed by phone | living_together: no, since the discovery",
         cover=[
             "His marriage is void from the start: she had a living spouse (ss.5(i), 11 HMA)",
             "He can petition for a decree of nullity under s.11; there is no time limit",
@@ -417,7 +417,7 @@ RUBRICS = {
                "A church decree is enough to remarry"],
     ),
     "L-ta-05": dict(
-        extra="ages_of_both: not provided | state: Tamil Nadu",
+        extra="ages_of_both: he is 28, she is 22 | state: Tamil Nadu",
         cover=[
             "Under s.5(iv) HMA the parties must not be within the degrees of prohibited relationship unless the custom governing each of them permits it; uncle and niece are within those degrees (s.3(g))",
             "The marriage is valid only if such a custom is proved: long, continuous and uniform observance (s.3(a)). Marriage with a sister's daughter is a recognised custom in many South Indian communities",
@@ -477,7 +477,7 @@ RUBRICS = {
                "Long separation makes a second marriage legal"],
     ),
     "L-ta-10": dict(
-        extra="religion: Hindu | other_documents: joint rental agreement, Aadhaar cards with the same address | witnesses: not provided",
+        extra="religion: Hindu | other_documents: joint rental agreement, Aadhaar cards with the same address | witnesses: two friends and the temple priest",
         cover=[
             "Registration is not required for a Hindu marriage to be valid (s.8(5) HMA); validity depends on the customary ceremonies (s.7; in Tamil Nadu also s.7A)",
             "Proof: photographs, the priest and others present, temple records, and documents showing them as husband and wife; long cohabitation raises a presumption of marriage",
@@ -502,7 +502,7 @@ RUBRICS = {
                "A graduate wife gets nothing"],
     ),
     "L-kn-02": dict(
-        extra="religion: Hindu | time_given_in_notice: 15 days | wants_reconciliation: not stated | children: none",
+        extra="religion: Hindu | time_given_in_notice: 15 days | wants_reconciliation: yes, if possible | children: none",
         cover=[
             "A legal notice is not a court order; there is no legal duty to reply, but he should reply through an advocate within the time given",
             "The reply should deny the false allegations specifically, state his version and admit nothing, as it can be used later; he should keep a copy and proof of dispatch",
@@ -538,7 +538,7 @@ RUBRICS = {
                "The mother's custody is absolute and the father gets no access"],
     ),
     "L-kn-05": dict(
-        extra="religion: Hindu | first_wife_status: not known | marriage_year: 2020 | proof_of_marriage: wedding photographs and invitation card",
+        extra="religion: Hindu | first_wife_status: alive, not divorced | marriage_year: 2020 | proof_of_marriage: wedding photographs and invitation card",
         cover=[
             "If his first marriage was subsisting, her marriage is void (ss.5(i), 11 HMA) and she is not a legal wife for inheritance",
             "She can still claim maintenance: a woman deceived into such a marriage is treated as a wife under s.125 CrPC / s.144 BNSS (Badshah v. Urmila Badshah Godse, 2013), and the PWDVA covers a relationship in the nature of marriage",
@@ -550,7 +550,7 @@ RUBRICS = {
                "Her child is illegitimate and has no rights"],
     ),
     "L-kn-06": dict(
-        extra="religion: Hindu | city: Mysuru | available_proof: not provided",
+        extra="religion: Hindu | city: Mysuru | available_proof: wedding photographs and temple receipt",
         cover=[
             "Yes: a Hindu marriage can be registered years later under s.8 HMA and the Karnataka rules; there is no time bar, though a late fee may apply",
             "They apply to the Sub-Registrar (Registrar of Marriages) where the marriage took place or where either lives; both must appear",
@@ -598,7 +598,7 @@ RUBRICS = {
                "A husband with no job is exempt from maintenance"],
     ),
     "L-kn-10": dict(
-        extra="child's_age_and_sex: not provided",
+        extra="child's_age_and_sex: boy, aged 3",
         cover=[
             "Under the Hindu Adoptions and Maintenance Act, 1956 a husband adopts with his wife's consent (s.7); the child's father gives in adoption with the mother's consent (s.9); the child must be Hindu, unmarried, under 15 and not already adopted (s.10)",
             "Conditions in s.11: they must not already have a child of the same sex; there must be an actual giving and taking; no payment may be made (s.17)",

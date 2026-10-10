@@ -1,5 +1,0 @@
-{"id": "P01__en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": ["user_marital_status"], "private": [], "scope_creep": ["user_marital_status"]}}
-{"id": "P09__en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["maintenance_amount_requested", "wife_occupation", "husband_occupation"]}}
-{"id": "P17__en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": ["husband's_current_residence"], "scope_creep": ["approximate_age_range", "any_previous_court_cases_or_orders"]}}
-{"id": "A01__en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["legal_issue", "relationship_status"]}}
-{"id": "L-hi-01__hi", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": ["children_age"], "private": [], "scope_creep": ["husband_income", "marital_status", "wife_age", "children_age"]}}

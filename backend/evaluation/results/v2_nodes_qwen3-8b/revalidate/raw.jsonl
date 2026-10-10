@@ -1,0 +1,200 @@
+{"id": "P02__ta__r1", "output": {"needed": ["religion", "number_of_children"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__en__r1", "output": {"needed": ["religion", "date_of_marriage"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__ta__r2", "output": {"needed": ["religion"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__en__r2", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__ta__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P02__en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P02__kn__r1", "output": {"needed": ["religion", "number_of_children"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__hi__r1", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__kn__r2", "output": {"needed": ["religion"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__hi__r2", "output": {"needed": ["religion", "residence_location"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__kn__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P02__hi__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P12__ta__r1", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__hi-en__r1", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__hi-en__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P12__ta__r2", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P02__hi-en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P12__ta__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P12__en__r1", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__kn__r1", "output": {"needed": ["religion", "marriage_date", "legal_grounds_for_divorce"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__en__r2", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__kn__r2", "output": {"needed": ["religion"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P12__kn__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P12__hi__r1", "output": {"needed": ["religion", "marriage_date", "children_details"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__ta__r1", "output": {"needed": ["marriage_date", "religion", "location_of_property"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__hi__r2", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__hi__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P23__ta__r2", "output": {"needed": ["marriage_date", "religion", "location_of_property"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__ta__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P12__hi-en__r1", "output": {"needed": ["religion", "marriage_date", "grounds_for_divorce"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__hi-en__r2", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__kn__r1", "output": {"needed": ["marriage_date", "religion", "location_of_property"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P12__hi-en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P23__kn__r2", "output": {"needed": ["marriage_date", "religion", "location_of_property"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__en__r1", "output": {"needed": ["marriage_date", "religion", "location_of_property", "details_of_property"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__kn__r3", "output": {"needed": ["marriage_date", "location_of_items", "details_of_extramarital_affair", "legal_representation_details"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P23__en__r2", "output": {"needed": ["marriage_date", "religion", "location_of_property", "details_of_jewellery_and_personal_belongs"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__ta__r1", "output": {"needed": ["religion", "date_of_marriage", "reason_for_separation"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__ta__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P23__en__r3", "output": {"needed": ["marriage_date", "location_of_property", "details_of_affair", "status_of_property_ownership"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P05__ta__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P23__hi__r1", "output": {"needed": ["marriage_date", "religion", "location_of_property", "nature_of_property"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__kn__r1", "output": {"needed": ["religion", "marriage_date", "current_residence_of_client"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__kn__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P23__hi__r2", "output": {"needed": ["religion", "marriage_date", "location_of_husband", "nature_of_affair", "details_of_jewellery_and_personal_items"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__kn__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P22__ta__r1", "output": {"needed": ["religion_of_the_parties", "age_of_daughter", "any_previous_legal_proceedings"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__hi__r3", "output": {"needed": ["marriage_date", "location_of_husband", "details_of_affair", "details_of_property_location"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P22__ta__r2", "output": {"needed": ["marriage_registration_status", "husband_age", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__hi-en__r1", "output": {"needed": ["religion", "marriage_date", "location_of_property"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P22__ta__r3", "output": {"needed": ["husband's age", "any prior medical history of the husband", "whether the daughter has sought legal advice or consultation"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P23__hi-en__r2", "output": {"needed": ["marriage_date", "religion", "location_of_husband_residence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P22__kn__r1", "output": {"needed": ["religion_of_married_parties", "age_of_daughter", "any_previous_legal_proceedings"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P23__hi-en__r3", "output": {"needed": ["marriage_date", "location_of_items", "legal_representation"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P22__kn__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P05__en__r1", "output": {"needed": ["religion", "marriage_date", "current_residence_of_client"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__en__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P22__kn__r3", "output": {"needed": ["marriage_registration_details", "husband's age", "any prior attempts to resolve the issue"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P05__en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P29__ta__r1", "output": {"needed": ["religion", "location_of_marriage", "nature_of_evidence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__hi__r1", "output": {"needed": ["marriage_date", "religion", "reason_for_divorce"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P29__ta__r2", "output": {"needed": ["nature_of_affair", "specific_details_of_evidence", "whether_husband_has_known_of_affair", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__hi__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P05__hi__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P29__ta__r3", "output": {"needed": ["nature_of_affair", "location_of_residence", "husband's_name", "details_of_the_other_woman", "financial_status_of_husband"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P05__hi-en__r1", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P29__kn__r1", "output": {"needed": ["religion", "nature_of_affair", "location_of_marriage", "status_of_criminal_case"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__hi-en__r2", "output": {"needed": ["marriage_date", "divorce_type", "wife_residence_status"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P05__hi-en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P29__kn__r2", "output": {"needed": ["nature_of_messages", "duration_of_separation", "location_of_residence", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P22__en__r1", "output": {"needed": ["religion_of_marriage", "age_of_daughter", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P29__kn__r3", "output": {"needed": ["nature_of_affair", "duration_of_affair", "location_of_residence", "legal_representation"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P22__en__r2", "output": {"needed": ["marriage_registration_details", "medical_evidence_of_impotency", "details_of_concealment_by_husband_family"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P04__ta__r1", "output": {"needed": ["abuse_incidents_details", "financial_support_details", "location_of_residence", "children_details"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P22__en__r3", "output": {"needed": ["medical_evidence_status", "husband_consent_to_medical_examination", "legal_steps_taken_so_far"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P04__ta__r2", "output": {"needed": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_actions_taken_so_far"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P22__hi__r1", "output": {"needed": ["religion_of_marriage", "age_of_daughter", "marriage_registration_status"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P04__ta__r3", "output": {"needed": ["abuse_incidents_details", "financial_support_details", "legal_actions_taken_so_far"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P22__hi__r2", "output": {"needed": ["marriage_registration_details", "medical_evidence_of_impotency", "daughter's_age", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P04__kn__r1", "output": {"needed": ["abuse_incidents_details", "financial_support_details", "location_of_residence", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P22__hi__r3", "output": {"needed": ["medical_evidence_status", "legal_representation_status"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P04__kn__r2", "output": {"needed": ["abuse_incident_details", "financial_support_details", "any_legal_actions_taken"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P22__hi-en__r1", "output": {"needed": ["religion_of_marriage", "marriage_registration_status"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P22__hi-en__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P04__kn__r3", "output": {"needed": ["abuse_incident_details", "financial_support_details", "legal_action_taken", "current_residence_details"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P10__ta__r1", "output": {"needed": ["court_case_number", "religion", "location_of_residence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P22__hi-en__r3", "output": {"needed": ["marriage_registration_date", "husband_age", "daughter_age", "any_previous_legal_actions"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P10__ta__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P29__en__r1", "output": {"needed": ["religion", "nature_of_messages", "location_of_marriage"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P10__ta__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P29__en__r2", "output": {"needed": ["husband_name", "location_of_residence", "details_of_affair", "status_of_divorce_proceedings"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P10__kn__r1", "output": {"needed": ["court_case_number", "husband_name", "religion"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P10__kn__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P29__en__r3", "output": {"needed": ["nature_of_messages", "location_of_marriage", "husband's_name", "husband's_age", "son's_age"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P10__kn__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P29__hi__r1", "output": {"needed": ["religion", "nature_of_messages", "location_of_marriage"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__ta__r1", "output": {"needed": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P29__hi__r2", "output": {"needed": ["nature_of_messages", "location_of_marriage", "status_of_divorce_proceedings", "details_of_the_other_woman"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__ta__r2", "output": {"needed": ["date_of_marriage", "location_of_second_marriage", "details_of_second_wife", "any_previous_legal_actions_taken"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P29__hi__r3", "output": {"needed": ["nature_of_messages", "location_of_residence", "details_of_other_woman"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P19__ta__r3", "output": {"needed": ["date_of_second_marriage", "location_of_second_marriage", "name_of_second_wife", "details_of_evidence"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P29__hi-en__r1", "output": {"needed": ["religion", "nature_of_messages", "location_of_marriage"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__kn__r1", "output": {"needed": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P29__hi-en__r2", "output": {"needed": ["nature_of_messages", "duration_of_affair", "any_previous_legal_actions", "location_of_residence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__kn__r2", "output": {"needed": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife", "any_previous_legal_actions_taken"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P29__hi-en__r3", "output": {"needed": ["nature_of_messages", "duration_of_affair", "location_of_messages", "any_previous_legal_actions"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P19__kn__r3", "output": {"needed": ["location_of_temple_marriage", "date_of_temple_marriage", "name_of_second_wife", "details_of_husband's_legal_marriage"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P04__en__r1", "output": {"needed": ["marriage_date", "abuse_incidents_details", "financial_support_details", "location_of_residence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P24__ta__r1", "output": {"needed": ["talaq_details", "marriage_date", "location_of_marriage", "any_previous_legal_proceedings"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P04__en__r2", "output": {"needed": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_actions_taken_so_far"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__ta__r2", "output": {"needed": ["talaq_details", "marriage_date", "location_of_marriage", "any_previous_legal_proceedings"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P04__en__r3", "output": {"needed": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_proceedings_status"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__ta__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P04__hi__r1", "output": {"needed": ["marriage_date", "abuse_incidents_details", "financial_support_details", "location_of_residence", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P24__kn__r1", "output": {"needed": ["date_of_talaq", "marriage_date", "location_of_residence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P04__hi__r2", "output": {"needed": ["abuse_incident_details", "financial_support_details", "legal_action_taken"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__kn__r2", "output": {"needed": ["date_of_talaq", "location_of_event", "husband's intention", "any prior legal proceedings"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P04__hi__r3", "output": {"needed": ["marriage_date", "abuse_incident_details", "financial_support_details", "legal_proceedings_status"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__kn__r3", "output": {"needed": ["talaq_details", "marriage_date", "residence_location"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P04__hi-en__r1", "output": {"needed": ["marriage_date", "abuse_incidents_details", "financial_support_details", "location_of_residence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-ta-08__ta__r1", "output": {"needed": ["religion", "marital_status_of_wife", "any_legal_proceedings_initiated", "reason_for_wife_staying_with_mother"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P04__hi-en__r2", "output": {"needed": ["marriage_date", "abuse_incident_details", "financial_support_details", "legal_actions_taken"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-ta-08__ta__r2", "output": {"needed": ["religion", "marital_status_of_wife", "reason_for_wife_staying_with_parents"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P04__hi-en__r3", "output": {"needed": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_actions_taken"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-ta-08__ta__r3", "output": {"needed": ["marriage_date", "nature_of_quarrel", "any_previous_legal_actions"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P10__en__r1", "output": {"needed": ["court_case_number", "religion", "husband_name", "location_of_residence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-ta-08__ta__r4", "output": {"needed": ["specific_reason_for_quarrel", "any_legal_proceedings_initiated", "wife's intention_to_return"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P10__en__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P10__en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-ta-10__ta__r1", "output": {"needed": ["religion", "date_of_marriage", "details_of_cohabitation"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P10__hi__r1", "output": {"needed": ["court_case_number", "religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P10__hi__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "L-ta-10__ta__r2", "output": {"needed": ["marriage_date", "names_of_parties", "details_of_joint_rental_agreement", "details_of_photographs"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P10__hi__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P10__hi-en__r1", "output": {"needed": ["court_case_number", "husband_name", "religion"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-ta-10__ta__r3", "output": {"needed": ["marriage_date", "location_of_temple", "details_of_joint_rental_agreement", "names_of_witnesses"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P10__hi-en__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "L-ta-04__ta__r1", "output": {"needed": ["specific_divorce_provisions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-ta-04__ta__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "P10__hi-en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-ta-04__ta__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P19__en__r1", "output": {"needed": ["date_of_second_marriage", "location_of_second_marriage", "details_of_any_legal_proceedings_began"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-kn-05__kn__r1", "output": {"needed": ["religion_of_user", "date_of_marriage", "date_of_discovery_of_previous_marriage", "details_of_property_in_question"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__en__r2", "output": {"needed": ["date_of_second_marriage", "location_of_second_marriage", "details_of_evidence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__en__r3", "output": {"needed": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-kn-05__kn__r2", "output": {"needed": ["religion", "marriage_location", "husband's religion", "nature_of_property", "duration_of_marriage"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__hi__r1", "output": {"needed": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-kn-05__kn__r3", "output": {"needed": ["marriage_registration_details", "details_of_previous_marriage", "property_details", "child's_age"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P19__hi__r2", "output": {"needed": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-kn-05__kn__r4", "output": {"needed": ["marriage_registration_details", "location_of_property", "details_of_property_acquired_during_marriage", "details_of_husband's_previous_marriage"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P19__hi__r3", "output": {"needed": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-kn-06__kn__r1", "output": {"needed": ["religion", "marriage_date", "location_of_marriage"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__hi-en__r1", "output": {"needed": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-kn-06__kn__r2", "output": {"needed": ["marriage_date", "temple_name", "spouse_details"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__hi-en__r2", "output": {"needed": ["marriage_date", "location_of_second_marriage", "name_of_second_wife", "details_of_evidence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-kn-06__kn__r3", "output": {"needed": ["marriage_date", "temple_name", "type_of_temple"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-kn-08__kn__r1", "output": {"needed": ["marriage_duration", "iddat_period_status", "mehr_amount"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P19__hi-en__r3", "output": {"needed": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife", "any_previous_legal_actions_taken"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-kn-08__kn__r2", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P24__en__r1", "output": {"needed": ["date_of_talaq", "location_of_event", "details_of_maintenance_claim"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-kn-08__kn__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P24__en__r2", "output": {"needed": ["date_of_talaq", "marriage_date", "location_of_marriage", "status_of_children"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__en__r3", "output": {"needed": ["date_of_talaq", "marriage_date", "location_of_marriage", "any_previous_divorces_or_legal_proceedings"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__hi__r1", "output": {"needed": ["date_of_talaq", "marriage_date", "residence_status"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P24__hi__r2", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "P24__hi__r3", "output": {"needed": ["date_of_marriage", "date_of_talaq", "location_of_marriage", "details_of_mehr"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__hi-en__r1", "output": {"needed": ["date_of_talaq", "marriage_date", "location_of_marriage", "details_of_children"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "P24__hi-en__r2", "output": {"needed": ["marriage_date", "talaq_delivery_method", "husband_intention", "any_previous_talaqs", "husband_residence"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "P24__hi-en__r3", "output": {"needed": ["talaq_delivery_method", "talaq_recognition_by_husband", "location_of_residence"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-en-01__en__r1", "output": {"needed": ["religion", "marital_status_of_children", "nature_of_allegations", "any_previous_legal_actions"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-en-01__en__r2", "output": {"needed": ["religion", "marital_status_of_children", "any_previous_legal_proceedings"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-en-01__en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-en-01__en__r4", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-en-05__en__r1", "output": {"needed": ["religion", "current_husband's_legal_status", "daughter's_age", "marital_status_of_current_husband"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-en-05__en__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "L-en-05__en__r3", "output": {"needed": ["legal_jurisdiction", "current_husband_relationship_status_with_daughter", "daughter's birth certificate details"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-en-04__en__r1", "output": {"needed": ["ex_wife_income_details", "marriage_date_of_current_spouse", "any_legal_provisions_or_agreements_related_to_maintenance"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-en-04__en__r2", "output": {"needed": ["ex_wife_income_details", "maintenance_clause_details", "client_current_income_and_financial_status"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-en-04__en__r3", "output": {"needed": ["ex_wife_current_occupation", "ex_wife_expenses", "client_current_income", "any_legal_changes_or_court_orders"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-hi-03__hi__r1", "output": {"needed": ["religion", "marriage_date", "location_of_parents", "nature_of_threats"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hi-03__hi__r2", "output": {"needed": ["religion", "marital_status", "specific_threats"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hi-03__hi__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-hi-03__hi__r4", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-hi-06__hi__r1", "output": {"needed": ["religion", "marriage_date", "property_type_and_location", "legal_marriage_status"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hi-06__hi__r2", "output": {"needed": ["marriage_date", "husband_property_details", "legal_proceedings_status", "children_age"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hi-06__hi__r3", "output": {"needed": ["husband_death_date", "husband_property_details", "marriage_date", "children_age"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-hi-05__hi__r1", "output": {"needed": ["date_of_first_nikah", "date_of_second_nikah", "marital_status_of_husband_at_time_of_first_nikah", "location_of_marriages"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hi-05__hi__r2", "output": {"needed": ["marriage_date", "location_of_residence", "details_of_second_nikah"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hi-05__hi__r3", "output": {"needed": ["date_of_first_nikah", "date_of_second_nikah", "location_of_residence", "details_of_mehr_agreement"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-hien-02__hi-en__r1", "output": {"needed": ["religion", "marriage_registration_status", "medical_evidence", "family_concealment_evidence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hien-02__hi-en__r2", "output": {"needed": ["religion", "marriage_registration_status", "medical_certificate_details", "family_concealment_evidence"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hien-02__hi-en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-hien-02__hi-en__r4", "output": {"needed": ["marriage_registration_date", "medical_certificate_details", "family_concealment_evidence"], "model_converged": false, "capped": true, "used_fallback": false}}
+{"id": "L-hien-07__hi-en__r1", "output": {"needed": ["religion", "marriage_date"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hien-07__hi-en__r2", "output": {"needed": [], "model_converged": true, "capped": false, "used_fallback": false}}
+{"id": "L-hien-07__hi-en__r3", "output": {"needed": [], "model_converged": true, "capped": true, "used_fallback": false}}
+{"id": "L-hien-04__hi-en__r1", "output": {"needed": ["religion", "child_age", "court_case_number", "ex_wife_name"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hien-04__hi-en__r2", "output": {"needed": ["religion", "children_details", "court_case_number"], "model_converged": false, "capped": false, "used_fallback": false}}
+{"id": "L-hien-04__hi-en__r3", "output": {"needed": ["ex_wife_name", "child_name", "court_case_number", "religion"], "model_converged": false, "capped": true, "used_fallback": false}}

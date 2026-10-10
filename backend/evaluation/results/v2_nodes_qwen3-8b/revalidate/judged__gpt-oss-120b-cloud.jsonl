@@ -1,0 +1,152 @@
+{"id": "P02__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["date_of_marriage"], "acceptable": ["religion"]}}
+{"id": "P02__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": ["marriage_date"], "acceptable": ["religion"]}}
+{"id": "P02__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date"]}}
+{"id": "P02__hi__r2", "verdict": {"reasks": [], "private": ["residence_location"], "scope_creep": [], "acceptable": ["religion"]}}
+{"id": "P02__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date"]}}
+{"id": "P02__ta__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "number_of_children"]}}
+{"id": "P02__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion"]}}
+{"id": "P02__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "number_of_children"]}}
+{"id": "P02__kn__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion"]}}
+{"id": "P12__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date"]}}
+{"id": "P12__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": ["marriage_date"], "acceptable": ["religion"]}}
+{"id": "P12__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date", "children_details"]}}
+{"id": "P12__hi__r2", "verdict": {"reasks": [], "private": [], "scope_creep": ["marriage_date"], "acceptable": ["religion"]}}
+{"id": "P12__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date", "grounds_for_divorce"]}}
+{"id": "P12__hi-en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date"]}}
+{"id": "P12__ta__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date"]}}
+{"id": "P12__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date"]}}
+{"id": "P12__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date", "legal_grounds_for_divorce"]}}
+{"id": "P12__kn__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion"]}}
+{"id": "P23__en__r1", "verdict": {"reasks": [], "private": ["location_of_property"], "scope_creep": [], "acceptable": ["marriage_date", "religion", "details_of_property"]}}
+{"id": "P23__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "religion", "location_of_property", "details_of_jewellery_and_personal_belongs"]}}
+{"id": "P23__en__r3", "verdict": {"reasks": ["details_of_affair"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_property", "status_of_property_ownership"]}}
+{"id": "P23__hi__r1", "verdict": {"reasks": [], "private": ["location_of_property"], "scope_creep": [], "acceptable": ["marriage_date", "religion", "nature_of_property"]}}
+{"id": "P23__hi__r2", "verdict": {"reasks": ["nature_of_affair"], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date", "location_of_husband", "details_of_jewellery_and_personal_items"]}}
+{"id": "P23__hi__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_husband", "details_of_affair", "details_of_property_location"]}}
+{"id": "P23__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date", "location_of_property"]}}
+{"id": "P23__hi-en__r2", "verdict": {"reasks": [], "private": ["location_of_husband_residence"], "scope_creep": [], "acceptable": ["marriage_date", "religion"]}}
+{"id": "P23__hi-en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_items", "legal_representation"]}}
+{"id": "P23__ta__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["location_of_property"], "acceptable": ["marriage_date", "religion"]}}
+{"id": "P23__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "religion", "location_of_property"]}}
+{"id": "P23__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "religion", "location_of_property"]}}
+{"id": "P23__kn__r2", "verdict": {"reasks": [], "private": ["location_of_property"], "scope_creep": [], "acceptable": ["marriage_date", "religion"]}}
+{"id": "P23__kn__r3", "verdict": {"reasks": ["details_of_extramarital_affair"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_items", "legal_representation_details"]}}
+{"id": "P05__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date", "current_residence_of_client"]}}
+{"id": "P05__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["reason_for_divorce"], "acceptable": ["marriage_date", "religion"]}}
+{"id": "P05__hi-en__r2", "verdict": {"reasks": ["wife_residence_status"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "divorce_type"]}}
+{"id": "P05__ta__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["reason_for_separation"], "acceptable": ["religion", "date_of_marriage"]}}
+{"id": "P05__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_date", "current_residence_of_client"]}}
+{"id": "P22__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["age_of_daughter", "any_previous_legal_actions"], "acceptable": ["religion_of_marriage"]}}
+{"id": "P22__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_registration_details", "medical_evidence_of_impotency", "details_of_concealment_by_husband_family"]}}
+{"id": "P22__en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["medical_evidence_status", "husband_consent_to_medical_examination", "legal_steps_taken_so_far"]}}
+{"id": "P22__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion_of_marriage", "age_of_daughter", "marriage_registration_status"]}}
+{"id": "P22__hi__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_registration_details", "medical_evidence_of_impotency", "daughter's_age", "any_previous_legal_actions"]}}
+{"id": "P22__hi__r3", "verdict": {"reasks": ["medical_evidence_status"], "private": [], "scope_creep": [], "acceptable": ["legal_representation_status"]}}
+{"id": "P22__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion_of_marriage", "marriage_registration_status"]}}
+{"id": "P22__hi-en__r3", "verdict": {"reasks": ["marriage_registration_date"], "private": [], "scope_creep": ["husband_age", "daughter_age", "any_previous_legal_actions"], "acceptable": []}}
+{"id": "P22__ta__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion_of_the_parties", "age_of_daughter", "any_previous_legal_proceedings"]}}
+{"id": "P22__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_registration_status", "husband_age", "any_previous_legal_actions"]}}
+{"id": "P22__ta__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["husband's age", "any prior medical history of the husband", "whether the daughter has sought legal advice or consultation"]}}
+{"id": "P22__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["age_of_daughter", "any_previous_legal_proceedings"], "acceptable": ["religion_of_married_parties"]}}
+{"id": "P22__kn__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_registration_details", "husband's age", "any prior attempts to resolve the issue"]}}
+{"id": "P29__en__r1", "verdict": {"reasks": ["nature_of_messages"], "private": [], "scope_creep": [], "acceptable": ["religion", "location_of_marriage"]}}
+{"id": "P29__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["husband_name", "location_of_residence", "details_of_affair", "status_of_divorce_proceedings"]}}
+{"id": "P29__en__r3", "verdict": {"reasks": ["nature_of_messages"], "private": [], "scope_creep": ["location_of_marriage", "husband's_name", "husband's_age"], "acceptable": ["son's_age"]}}
+{"id": "P29__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "nature_of_messages", "location_of_marriage"]}}
+{"id": "P29__hi__r2", "verdict": {"reasks": ["nature_of_messages"], "private": [], "scope_creep": ["location_of_marriage", "details_of_the_other_woman"], "acceptable": ["status_of_divorce_proceedings"]}}
+{"id": "P29__hi__r3", "verdict": {"reasks": [], "private": ["location_of_residence"], "scope_creep": ["details_of_other_woman"], "acceptable": ["nature_of_messages"]}}
+{"id": "P29__hi-en__r1", "verdict": {"reasks": ["nature_of_messages"], "private": [], "scope_creep": [], "acceptable": ["religion", "location_of_marriage"]}}
+{"id": "P29__hi-en__r2", "verdict": {"reasks": ["nature_of_messages"], "private": [], "scope_creep": [], "acceptable": ["duration_of_affair", "any_previous_legal_actions", "location_of_residence"]}}
+{"id": "P29__hi-en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": ["location_of_messages"], "acceptable": ["nature_of_messages", "duration_of_affair", "any_previous_legal_actions"]}}
+{"id": "P29__ta__r1", "verdict": {"reasks": ["nature_of_evidence"], "private": [], "scope_creep": [], "acceptable": ["religion", "location_of_marriage"]}}
+{"id": "P29__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["nature_of_affair", "specific_details_of_evidence", "whether_husband_has_known_of_affair", "any_previous_legal_actions"]}}
+{"id": "P29__ta__r3", "verdict": {"reasks": ["nature_of_affair", "location_of_residence"], "private": [], "scope_creep": ["husband's_name", "details_of_the_other_woman"], "acceptable": ["financial_status_of_husband"]}}
+{"id": "P29__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["nature_of_affair"], "acceptable": ["religion", "location_of_marriage", "status_of_criminal_case"]}}
+{"id": "P29__kn__r2", "verdict": {"reasks": ["nature_of_messages", "duration_of_separation"], "private": ["location_of_residence"], "scope_creep": [], "acceptable": ["any_previous_legal_actions"]}}
+{"id": "P29__kn__r3", "verdict": {"reasks": ["nature_of_affair"], "private": [], "scope_creep": [], "acceptable": ["duration_of_affair", "location_of_residence", "legal_representation"]}}
+{"id": "P04__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incidents_details", "financial_support_details", "location_of_residence"]}}
+{"id": "P04__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_actions_taken_so_far"]}}
+{"id": "P04__en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_proceedings_status"]}}
+{"id": "P04__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incidents_details", "financial_support_details", "location_of_residence", "any_previous_legal_actions"]}}
+{"id": "P04__hi__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["abuse_incident_details", "financial_support_details", "legal_action_taken"]}}
+{"id": "P04__hi__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incident_details", "financial_support_details", "legal_proceedings_status"]}}
+{"id": "P04__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incidents_details", "financial_support_details", "location_of_residence"]}}
+{"id": "P04__hi-en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incident_details", "financial_support_details", "legal_actions_taken"]}}
+{"id": "P04__hi-en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_actions_taken"]}}
+{"id": "P04__ta__r1", "verdict": {"reasks": [], "private": ["location_of_residence"], "scope_creep": [], "acceptable": ["abuse_incidents_details", "financial_support_details", "children_details"]}}
+{"id": "P04__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "abuse_incidents_details", "financial_support_details", "legal_actions_taken_so_far"]}}
+{"id": "P04__ta__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["abuse_incidents_details", "financial_support_details", "legal_actions_taken_so_far"]}}
+{"id": "P04__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["abuse_incidents_details", "financial_support_details", "location_of_residence", "any_previous_legal_actions"]}}
+{"id": "P04__kn__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["abuse_incident_details", "financial_support_details", "any_legal_actions_taken"]}}
+{"id": "P04__kn__r3", "verdict": {"reasks": [], "private": ["current_residence_details"], "scope_creep": [], "acceptable": ["abuse_incident_details", "financial_support_details", "legal_action_taken"]}}
+{"id": "P10__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["court_case_number", "religion", "husband_name", "location_of_residence"]}}
+{"id": "P10__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["court_case_number", "religion", "marriage_date"]}}
+{"id": "P10__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["court_case_number", "husband_name", "religion"]}}
+{"id": "P10__ta__r1", "verdict": {"reasks": [], "private": ["location_of_residence"], "scope_creep": ["religion"], "acceptable": ["court_case_number"]}}
+{"id": "P10__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["religion"], "acceptable": ["court_case_number", "husband_name"]}}
+{"id": "P19__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_second_marriage", "location_of_second_marriage", "details_of_any_legal_proceedings_began"]}}
+{"id": "P19__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_second_marriage", "location_of_second_marriage", "details_of_evidence"]}}
+{"id": "P19__en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife"]}}
+{"id": "P19__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"]}}
+{"id": "P19__hi__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"]}}
+{"id": "P19__hi__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife"]}}
+{"id": "P19__hi-en__r1", "verdict": {"reasks": ["location_of_second_marriage"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "details_of_second_wife"]}}
+{"id": "P19__hi-en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_second_marriage", "name_of_second_wife", "details_of_evidence"]}}
+{"id": "P19__hi-en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife", "any_previous_legal_actions_taken"]}}
+{"id": "P19__ta__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"]}}
+{"id": "P19__ta__r2", "verdict": {"reasks": ["location_of_second_marriage"], "private": [], "scope_creep": [], "acceptable": ["date_of_marriage", "details_of_second_wife", "any_previous_legal_actions_taken"]}}
+{"id": "P19__ta__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_second_marriage", "location_of_second_marriage", "name_of_second_wife", "details_of_evidence"]}}
+{"id": "P19__kn__r1", "verdict": {"reasks": [], "private": [], "acceptable": [], "scope_creep": ["marriage_date", "location_of_second_marriage", "details_of_second_wife"]}}
+{"id": "P19__kn__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_second_marriage", "location_of_second_marriage", "details_of_second_wife", "any_previous_legal_actions_taken"]}}
+{"id": "P19__kn__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["location_of_temple_marriage", "date_of_temple_marriage", "name_of_second_wife", "details_of_husband's_legal_marriage"]}}
+{"id": "P24__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_talaq", "location_of_event", "details_of_maintenance_claim"]}}
+{"id": "P24__en__r2", "verdict": {"reasks": ["status_of_children"], "private": [], "scope_creep": [], "acceptable": ["date_of_talaq", "marriage_date", "location_of_marriage"]}}
+{"id": "P24__en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_talaq", "marriage_date", "location_of_marriage", "any_previous_divorces_or_legal_proceedings"]}}
+{"id": "P24__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_talaq", "marriage_date", "residence_status"]}}
+{"id": "P24__hi__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_marriage", "date_of_talaq", "location_of_marriage", "details_of_mehr"]}}
+{"id": "P24__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_talaq", "marriage_date", "location_of_marriage", "details_of_children"]}}
+{"id": "P24__hi-en__r2", "verdict": {"reasks": ["talaq_delivery_method"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "husband_intention", "any_previous_talaqs", "husband_residence"]}}
+{"id": "P24__hi-en__r3", "verdict": {"reasks": ["talaq_delivery_method"], "private": [], "scope_creep": [], "acceptable": ["talaq_recognition_by_husband", "location_of_residence"]}}
+{"id": "P24__ta__r1", "verdict": {"reasks": ["talaq_details"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_marriage", "any_previous_legal_proceedings"]}}
+{"id": "P24__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["talaq_details", "marriage_date", "location_of_marriage", "any_previous_legal_proceedings"]}}
+{"id": "P24__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_talaq", "marriage_date", "location_of_residence"]}}
+{"id": "P24__kn__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_talaq", "location_of_event", "husband's intention", "any prior legal proceedings"]}}
+{"id": "P24__kn__r3", "verdict": {"reasks": ["talaq_details"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "residence_location"]}}
+{"id": "L-en-01__en__r1", "verdict": {"reasks": ["nature_of_allegations"], "private": [], "scope_creep": ["marital_status_of_children"], "acceptable": ["religion", "any_previous_legal_actions"]}}
+{"id": "L-en-01__en__r2", "verdict": {"reasks": ["any_previous_legal_proceedings"], "private": [], "scope_creep": ["religion", "marital_status_of_children"], "acceptable": []}}
+{"id": "L-en-05__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["religion", "current_husband's_legal_status", "marital_status_of_current_husband"], "acceptable": ["daughter's_age"]}}
+{"id": "L-en-05__en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["legal_jurisdiction", "current_husband_relationship_status_with_daughter", "daughter's birth certificate details"]}}
+{"id": "L-en-04__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["ex_wife_income_details", "marriage_date_of_current_spouse", "any_legal_provisions_or_agreements_related_to_maintenance"]}}
+{"id": "L-en-04__en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["ex_wife_income_details", "maintenance_clause_details", "client_current_income_and_financial_status"]}}
+{"id": "L-en-04__en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["ex_wife_current_occupation", "ex_wife_expenses", "client_current_income", "any_legal_changes_or_court_orders"]}}
+{"id": "L-hi-03__hi__r1", "verdict": {"reasks": ["nature_of_threats"], "private": ["location_of_parents"], "scope_creep": [], "acceptable": ["religion", "marriage_date"]}}
+{"id": "L-hi-03__hi__r2", "verdict": {"reasks": ["marital_status"], "private": [], "scope_creep": [], "acceptable": ["religion", "specific_threats"]}}
+{"id": "L-hi-06__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["marriage_date"], "acceptable": ["religion", "property_type_and_location", "legal_marriage_status"]}}
+{"id": "L-hi-06__hi__r2", "verdict": {"reasks": [], "private": [], "scope_creep": ["children_age"], "acceptable": ["marriage_date", "husband_property_details", "legal_proceedings_status"]}}
+{"id": "L-hi-06__hi__r3", "verdict": {"reasks": [], "private": [], "scope_creep": ["marriage_date"], "acceptable": ["husband_death_date", "husband_property_details", "children_age"]}}
+{"id": "L-hi-05__hi__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_first_nikah", "date_of_second_nikah", "marital_status_of_husband_at_time_of_first_nikah", "location_of_marriages"]}}
+{"id": "L-hi-05__hi__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_residence", "details_of_second_nikah"]}}
+{"id": "L-hi-05__hi__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["date_of_first_nikah", "date_of_second_nikah", "location_of_residence", "details_of_mehr_agreement"]}}
+{"id": "L-hien-02__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_registration_status", "medical_evidence", "family_concealment_evidence"]}}
+{"id": "L-hien-02__hi-en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_registration_status", "medical_certificate_details", "family_concealment_evidence"]}}
+{"id": "L-hien-02__hi-en__r4", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_registration_date", "medical_certificate_details", "family_concealment_evidence"]}}
+{"id": "L-hien-07__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["marriage_date"], "acceptable": ["religion"]}}
+{"id": "L-hien-04__hi-en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["religion"], "acceptable": ["child_age", "court_case_number", "ex_wife_name"]}}
+{"id": "L-hien-04__hi-en__r2", "verdict": {"reasks": [], "private": [], "scope_creep": ["religion"], "acceptable": ["children_details", "court_case_number"]}}
+{"id": "L-hien-04__hi-en__r3", "verdict": {"reasks": [], "private": [], "scope_creep": ["ex_wife_name", "child_name", "religion"], "acceptable": ["court_case_number"]}}
+{"id": "L-ta-08__ta__r1", "verdict": {"reasks": ["marital_status_of_wife"], "private": [], "scope_creep": ["any_legal_proceedings_initiated"], "acceptable": ["religion", "reason_for_wife_staying_with_mother"]}}
+{"id": "L-ta-08__ta__r2", "verdict": {"reasks": ["marital_status_of_wife"], "private": [], "scope_creep": [], "acceptable": ["religion", "reason_for_wife_staying_with_parents"]}}
+{"id": "L-ta-08__ta__r3", "verdict": {"reasks": ["nature_of_quarrel"], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "any_previous_legal_actions"]}}
+{"id": "L-ta-08__ta__r4", "verdict": {"reasks": ["specific_reason_for_quarrel"], "private": [], "scope_creep": [], "acceptable": ["any_legal_proceedings_initiated", "wife's intention_to_return"]}}
+{"id": "L-ta-10__ta__r1", "verdict": {"reasks": ["religion"], "private": [], "scope_creep": [], "acceptable": ["date_of_marriage", "details_of_cohabitation"]}}
+{"id": "L-ta-10__ta__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "names_of_parties", "details_of_joint_rental_agreement", "details_of_photographs"]}}
+{"id": "L-ta-10__ta__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "location_of_temple", "details_of_joint_rental_agreement", "names_of_witnesses"]}}
+{"id": "L-ta-04__ta__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["specific_divorce_provisions"]}}
+{"id": "L-kn-05__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion_of_user", "date_of_marriage", "date_of_discovery_of_previous_marriage", "details_of_property_in_question"]}}
+{"id": "L-kn-05__kn__r2", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["religion", "marriage_location", "husband's religion", "nature_of_property", "duration_of_marriage"]}}
+{"id": "L-kn-05__kn__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_registration_details", "details_of_previous_marriage", "property_details", "child's_age"]}}
+{"id": "L-kn-05__kn__r4", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_registration_details", "location_of_property", "details_of_property_acquired_during_marriage", "details_of_husband's_previous_marriage"]}}
+{"id": "L-kn-06__kn__r1", "verdict": {"reasks": ["marriage_date"], "private": [], "scope_creep": [], "acceptable": ["religion", "location_of_marriage"]}}
+{"id": "L-kn-06__kn__r2", "verdict": {"reasks": ["marriage_date"], "private": [], "scope_creep": [], "acceptable": ["temple_name", "spouse_details"]}}
+{"id": "L-kn-06__kn__r3", "verdict": {"reasks": [], "private": [], "scope_creep": [], "acceptable": ["marriage_date", "temple_name", "type_of_temple"]}}
+{"id": "L-kn-08__kn__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["marriage_duration"], "acceptable": ["iddat_period_status", "mehr_amount"]}}

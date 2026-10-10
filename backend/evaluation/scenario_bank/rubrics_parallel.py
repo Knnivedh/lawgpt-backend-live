@@ -75,7 +75,7 @@ RUBRICS = {
                "A husband can file wherever he happens to live, on that ground alone"],
     ),
     "P06": dict(
-        extra="religion: Hindu | marriage_duration: 6 years | child_lives_with: wife | terms_of_compromise: not known yet",
+        extra="religion: Hindu | marriage_duration: 6 years | child_lives_with: wife | terms_of_compromise: wife wants Rs 10 lakh one-time and custody of the son, and will withdraw the case",
         cover=[
             "Cruelty under s.85 BNS (s.498A IPC) is non-compoundable: the wife cannot simply withdraw it",
             "On a genuine settlement the parties ask the High Court to quash the case under s.528 BNSS (s.482 CrPC) (B.S. Joshi v. State of Haryana; Gian Singh v. State of Punjab)",
@@ -172,7 +172,7 @@ RUBRICS = {
                "She must always get divorced again in India"],
     ),
     "P14": dict(
-        extra="religion: Hindu | daughter's_current_residence: parents' home | relief_sought: undecided",
+        extra="religion: Hindu | daughter's_current_residence: parents' home | relief_sought: maintenance and return of her belongings",
         cover=[
             "She can act in India although he is abroad: an application under the PWDVA and maintenance under s.144 BNSS (s.125 CrPC) can be filed where she lives, and can proceed ex parte once he is served",
             "If there was cruelty or a dowry demand, a complaint under s.85 BNS (s.498A IPC) and the Dowry Prohibition Act; her stridhan can be recovered",
@@ -268,7 +268,7 @@ RUBRICS = {
                "Sikhs have a separate divorce law"],
     ),
     "P22": dict(
-        extra="religion: Hindu | daughter's_own_wishes: wants to end the marriage | medical_evidence: none yet",
+        extra="religion: Hindu | daughter's_own_wishes: wants to end the marriage | medical_evidence: none yet; husband refuses to see a doctor",
         cover=[
             "The marriage is voidable under s.12(1)(a) HMA where it has not been consummated owing to the husband's impotence; the court can grant a decree of nullity",
             "Concealment may also be fraud under s.12(1)(c): that petition must be filed within one year of discovery and she must not live with him as wife after discovering it",
@@ -330,7 +330,7 @@ RUBRICS = {
                "Her parents' consent is required"],
     ),
     "P27": dict(
-        extra="mother: deceased | siblings: two brothers | partition: not known whether registered",
+        extra="mother: deceased | siblings: two brothers | partition: oral, not registered",
         cover=[
             "A daughter is a coparcener by birth with the same rights as a son under s.6 Hindu Succession Act as amended in 2005, whether married or not",
             "Vineeta Sharma v. Rakesh Sharma (2020): this holds whether or not the father was alive on 9 September 2005; only a registered partition or court decree before 20 December 2004 is saved",
@@ -342,7 +342,7 @@ RUBRICS = {
                "Her right depends on her father having been alive on 9 September 2005"],
     ),
     "P28": dict(
-        extra="house: self-acquired, built in 2018 | state: not given | pending_cases_by_daughter_in_law: none",
+        extra="house: self-acquired, built in 2018 | state: Maharashtra | pending_cases_by_daughter_in_law: none",
         cover=[
             "He can apply to the Maintenance Tribunal under the Maintenance and Welfare of Parents and Senior Citizens Act, 2007; under many State rules and High Court rulings the Tribunal or District Magistrate can order eviction of abusive children from a senior citizen's own property",
             "A son has no legal right to stay in his parents' self-acquired house; a civil suit for eviction is the alternative",
@@ -354,7 +354,7 @@ RUBRICS = {
                "A daughter-in-law can never be evicted"],
     ),
     "P29": dict(
-        extra="religion: Hindu | living_together: same house, separate rooms for about four months | child_age: not given",
+        extra="religion: Hindu | living_together: same house, separate rooms for about four months | child_age: 6",
         cover=[
             "Adultery is a ground for divorce under s.13(1)(i) HMA (voluntary sexual intercourse with another person); it may be proved by circumstances, and the conduct also supports mental cruelty (s.13(1)(ia))",
             "There is no criminal case for adultery: s.497 IPC was struck down in Joseph Shine v. Union of India (2018) and the BNS has no such offence, so neither he nor the other woman can be prosecuted",

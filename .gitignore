@@ -37,7 +37,7 @@ backend/data/
 
 # Evaluation: local caches and outputs that hold retrieved corpus text
 backend/evaluation/retrieval_eval/.api_cache.json
-backend/evaluation/results/v2_nodes/*/frozen_context.json
+backend/evaluation/results/*/generator/frozen_context.json
 
 # Old evaluation leftovers
 backend/eval_results/

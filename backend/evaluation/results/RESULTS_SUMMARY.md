@@ -165,3 +165,161 @@ Gold labels were pooled from keyword search and InLegal-SBERT, so precedent scor
 
 Rerankers over bge-small-en-v1.5 + keyword candidates (offline; top-3 / top-5 statutes, top-5 precedents): no reranker 0.81 / 0.87 / 0.60; ms-marco-MiniLM-L-6-v2 0.55 / 0.66 / 0.59; bge-reranker-base 0.67 / 0.77 / 0.59. Both rerankers lower statute hits and leave precedents unchanged.
 
+## 7. All five LLM nodes on the version-2 sets (2026-10-09/10)
+
+- Node model: `meta-llama/Llama-3.1-8B-Instruct`, self-hosted with vLLM 0.31.0 (not through Hugging Face). Judge: `gpt-oss:120b-cloud` via Ollama. One run, no repeats. Settings and dataset hashes: `evaluation/results/v2_nodes_selfhosted/run_config.json`; per-node reports: `summary__gpt-oss-120b-cloud.md` in each node folder.
+- Datasets and judge unreviewed; numbers provisional. The gatherer and revalidation sets no longer contain unanswered questions (replaced 2026-10-09).
+
+| Node | Main measure | Result |
+|---|---|---|
+| Information gatherer | extraction correct | 0.71 (rambling replies 0.35; short 0.86) |
+| Query analyzer | routes correctly / intent correct | 0.92 / 0.90 |
+| Query analyzer | all stated facts captured | 0.40 |
+| Query analyzer | rows with no out-of-scope question / rows asking private details | 0.02 / 0.20 |
+| Query analyzer | off-topic messages recognised | 0 of 14 |
+| Revalidation | decision correct, model alone / with the code's stop rule | 0.30 / 0.70 |
+| Revalidation | stops when it should, model alone | 1 of 140 |
+| Generator | expected legal points covered (mean) | 0.13 (English 0.32, Hindi 0.14, Hinglish 0.08, Kannada 0.06, Tamil 0.05) |
+| Generator | answers making a listed wrong claim | 0.14 (English 0.05, Tamil 0.23) |
+| Generator | right language / right addressee | 0.99 / 0.95 |
+| Generator | answers cut off at the length limit | 0.41 (Tamil 30 of 40, Kannada 27 of 40, English 0) |
+| Reasoning panel | related cases scored high / unrelated scored low | 1.00 / 0.60 |
+| Reasoning panel | unrelated case said to have shaped the answer | 0.91 |
+| Reasoning panel | quoted excerpt not found in the source | 0.47 |
+
+Generator retrieval used `gemma4:31b-cloud` translations, not production's `google/gemma-3-4b-it`.
+
+## 8. Two follow-up experiments with Llama 3.1 8B (2026-10-10)
+
+Same self-hosted model and run folder as section 7 (`evaluation/results/v2_nodes_selfhosted/`).
+
+**Stop decision** (`stop_generic`, `stop_policy`, `stop_twostep`; 200 revalidation rows, scored in code):
+
+| Method | Decision correct | Stops when it should | Asks when it should |
+|---|---|---|---|
+| Current: analyzer re-run, model alone | 0.30 | 1/140 | 59/60 |
+| Current, with the hard stop rule in graph.py | 0.70 | 82/140 | 58/60 |
+| Plain yes/no question to the model | 0.43 | 39/140 | 47/60 |
+| Yes/no with the policy written in the prompt | 0.59 | 108/140 | 10/60 |
+| Two steps: model classifies whether the law depends on religion; code decides | 0.92 | 129/140 | 55/60 |
+
+The two-step rule and the dataset labels follow the same policy (religion is the only essential fact, and only for divorce, restitution, validity of marriage, inheritance and adoption), so 0.92 measures how reliably the method applies that policy. Not built into the app.
+
+**Generator with and without retrieval** (`generator_closedbook`: same question, facts, gender and language instruction; no documents, no citation guard; same rubric and judge, `gpt-oss:120b-cloud`):
+
+| | Full pipeline | Llama alone |
+|---|---|---|
+| Expected legal points covered (mean) | 0.13 | 0.11 |
+| English only | 0.32 | 0.23 |
+| Hindi / Hinglish / Tamil / Kannada | 0.14 / 0.08 / 0.05 / 0.06 | 0.11 / 0.11 / 0.06 / 0.04 |
+| Answers with a listed wrong claim | 0.14 | 0.14 |
+| English only | 0.05 | 0.10 |
+| Names an Act or section | 0.63 | 0.80 |
+| Cut off at the length limit | 0.41 | 0.50 |
+| Right addressee | 0.95 | 0.99 |
+
+Row by row, the pipeline covered more in 50 cases, less in 40, the same in 110.
+
+## 9. Model comparison on the five nodes (2026-10-10)
+
+Each model served with vLLM 0.31.0 on one L40 and dropped into the unchanged pipeline (same prompts, token limits, temperatures). Judge `gpt-oss:120b-cloud`. The generator rows use the same retrieved documents for every model (copied from the Llama run). One run per model. Folders: `v2_nodes_selfhosted` (Llama), `v2_nodes_gemma4-e4b` (Gemma).
+
+| Measure | Llama 3.1 8B | Gemma 4 E4B |
+|---|---|---|
+| Gatherer: extraction correct | 0.71 | 0.68 |
+| Analyzer: routes correctly / intent correct | 0.92 / 0.90 | 0.93 / 0.99 |
+| Analyzer: intent correct, Tamil / Kannada | 0.82 / 0.82 | 1.00 / 1.00 |
+| Analyzer: all stated facts captured | 0.40 | 0.40 |
+| Analyzer: must-ask field asked | 0.86 | 1.00 |
+| Analyzer: rows with no out-of-scope question | 0.02 | 0.12 |
+| Analyzer: rows asking for private details | 0.20 | 0.00 |
+| Analyzer: off-topic messages recognised | 0/14 | 0/14 |
+| Revalidation: stops when it should (model alone) | 1/140 | 0/140 |
+| Revalidation: decision correct with the code's stop rule | 0.70 | 0.70 |
+| Revalidation: rows asking private details, when asking | 0.37 | 0.01 |
+| Generator: expected legal points covered | 0.13 | 0.37 |
+| Generator: English / Hindi / Hinglish / Tamil / Kannada | 0.32 / 0.14 / 0.08 / 0.05 / 0.06 | 0.39 / 0.33 / 0.35 / 0.39 / 0.36 |
+| Generator: answers with a listed wrong claim | 0.14 | 0.06 |
+| Generator: answers cut off at the length limit | 0.41 | 0.00 |
+| Generator: names an Act or section | 0.63 | 0.88 |
+| Generator: right language / right addressee | 0.99 / 0.95 | 0.98 / 0.98 |
+| Reasoning: related past cases scored high | 130/130 | 72/130 |
+| Reasoning: unrelated past cases scored low | 42/70 | 70/70 |
+| Reasoning: unrelated case said to have shaped the answer | 64/70 | 6/70 |
+| Reasoning: quoted excerpt not found in the source | 0.47 | 0.35 |
+
+### Qwen 3 8B added (2026-10-10)
+
+Run folder `v2_nodes_qwen3-8b`; thinking switched off (`--no-thinking`); otherwise as section 9.
+
+| Measure | Llama 3.1 8B | Gemma 4 E4B | Qwen 3 8B |
+|---|---|---|---|
+| Gatherer: extraction correct | 0.71 | 0.68 | 0.73 |
+| Gatherer: on rambling replies | 0.35 | 0.25 | 0.55 |
+| Analyzer: routes correctly / intent correct | 0.92 / 0.90 | 0.93 / 0.99 | 0.92 / 0.96 |
+| Analyzer: all stated facts captured | 0.40 | 0.40 | 0.34 |
+| Analyzer: rows asking for private details | 0.20 | 0.00 | 0.17 |
+| Analyzer: off-topic messages recognised | 0/14 | 0/14 | 0/14 |
+| Revalidation: stops when it should (model alone) | 1/140 | 0/140 | 46/140 |
+| Revalidation: decision correct, model alone / with stop rule | 0.30 / 0.70 | 0.30 / 0.70 | 0.52 / 0.77 |
+| Generator: expected legal points covered | 0.13 | 0.37 | 0.2 |
+| Generator: coverage, English / Hindi / Hinglish / Tamil / Kannada | 0.32 / 0.14 / 0.08 / 0.05 / 0.06 | 0.39 / 0.33 / 0.35 / 0.39 / 0.36 | 0.46 / 0.21 / 0.08 / 0.12 / 0.11 |
+| Generator: answers with a listed wrong claim | 0.14 | 0.06 | 0.15 |
+| Generator: cut off at the length limit | 0.41 | 0 | 0.31 |
+| Generator: names an Act or section | 0.63 | 0.88 | 0.69 |
+| Generator: right language / right addressee | 0.99 / 0.95 | 0.98 / 0.98 | 0.99 / 0.98 |
+| Reasoning: related past cases scored high | 130/130 | 72/130 | 120/130 |
+| Reasoning: unrelated past cases scored low | 42/70 | 70/70 | 69/70 |
+| Reasoning: unrelated case said to have shaped the answer | 64/70 | 6/70 | 11/70 |
+
+### Follow-up experiments with Gemma 4 E4B (2026-10-10)
+
+**Stop decision** (200 revalidation rows): analyzer re-run 0.30 correct (stops 0/140); plain yes/no 0.66 (stops 120/140, asks 12/60); yes/no with the policy in the prompt 0.68 (stops 136/140, asks 0/60); two-step (model classifies, code decides) 0.99 (stops 140/140, asks 59/60). With Llama the two-step method scored 0.92.
+
+**Generator with and without retrieval** (same rubric and judge):
+
+| | Gemma, full pipeline | Gemma alone | Llama, full pipeline | Llama alone |
+|---|---|---|---|---|
+| Expected legal points covered | 0.37 | 0.34 | 0.13 | 0.11 |
+| English / Hindi / Hinglish / Tamil / Kannada | 0.39 / 0.33 / 0.35 / 0.39 / 0.36 | 0.39 / 0.36 / 0.34 / 0.33 / 0.28 | 0.32 / 0.14 / 0.08 / 0.05 / 0.06 | 0.23 / 0.11 / 0.11 / 0.06 / 0.04 |
+| Answers with a listed wrong claim | 0.06 | 0.09 | 0.14 | 0.14 |
+| Statute in knowledge base: coverage / wrong claim | 0.39 / 0.05 | 0.33 / 0.11 | 0.13 / 0.12 | 0.09 / 0.15 |
+| Statute not in knowledge base: coverage | 0.33 | 0.41 | 0.17 | 0.22 |
+| Names an Act or section | 0.88 | 0.97 | 0.63 | 0.80 |
+
+Row by row with Gemma, the pipeline covered more in 69 cases, less in 49, the same in 82.
+
+### Reasoning panel: accuracy of explanations for related past cases (2026-10-10)
+
+`evaluation/judge_reasoning_faithfulness.py`; judge `gpt-oss:120b-cloud`; 130 related pairs per model (129 for Llama, one unreadable output). "Accurate" = every statement about the past case is supported by the text the panel was shown (strict: one unsupported statement fails the row).
+
+| | Llama 3.1 8B | Gemma 4 E4B | Qwen 3 8B |
+|---|---|---|---|
+| Explanation fully accurate | 15/129 | 75/130 | 27/130 |
+| Unsupported statements per explanation (mean) | 1.81 | 0.64 | 1.38 |
+| Names at least one specific similarity | 103/129 | 71/130 | 112/130 |
+
+### Four-model table (2026-10-10)
+
+Ministral 8B run folder: `v2_nodes_ministral-8b` (served with `--tokenizer-mode mistral --config-format mistral --load-format mistral`). All four models have about 8 billion parameters. All 200 rows per node are scored for every model.
+
+| Measure | Llama 3.1 8B | Gemma 4 E4B | Qwen 3 8B | Ministral 8B |
+|---|---|---|---|---|
+| Gatherer: extraction correct | 0.71 | 0.68 | 0.73 | 0.60 |
+| Gatherer: on rambling replies | 0.35 | 0.25 | 0.55 | 0.15 |
+| Analyzer: routes correctly / intent correct | 0.92 / 0.90 | 0.93 / 0.99 | 0.92 / 0.96 | 0.90 / 0.92 |
+| Analyzer: all stated facts captured | 0.40 | 0.40 | 0.34 | 0.27 |
+| Analyzer: must-ask field asked | 0.86 | 1.00 | 1.00 | 0.70 |
+| Analyzer: rows asking for private details | 0.20 | 0.00 | 0.17 | 0.20 |
+| Analyzer: off-topic messages recognised | 0/14 | 0/14 | 0/14 | 0/14 |
+| Revalidation: stops when it should (model alone) | 1/140 | 0/140 | 46/140 | 48/140 |
+| Revalidation: asks more when it should | 59/60 | 60/60 | 58/60 | 46/60 |
+| Generator: expected legal points covered | 0.13 | 0.37 | 0.20 | 0.20 |
+| Generator: English / Hindi / Hinglish / Tamil / Kannada | 0.32 / 0.14 / 0.08 / 0.05 / 0.06 | 0.39 / 0.33 / 0.35 / 0.39 / 0.36 | 0.46 / 0.21 / 0.08 / 0.12 / 0.11 | 0.32 / 0.19 / 0.27 / 0.19 / 0.03 |
+| Generator: answers with a listed wrong claim | 0.14 | 0.06 | 0.15 | 0.10 |
+| Generator: cut off at the length limit | 0.41 | 0.00 | 0.31 | 0.40 |
+| Generator: right language / right addressee | 0.99 / 0.95 | 0.98 / 0.98 | 0.99 / 0.98 | 0.96 / 0.93 |
+| Reasoning: related past cases scored high | 130/130 | 72/130 | 120/130 | 130/130 |
+| Reasoning: unrelated past cases scored low | 42/70 | 70/70 | 69/70 | 15/70 |
+| Reasoning: unrelated case said to have shaped the answer | 64/70 | 6/70 | 11/70 | 57/70 |
+

@@ -1,4 +1,0 @@
-{"id": "P02__en__r1", "output": {"needed": ["religion", "state_of_residence", "whether_children_are_involved"], "model_converged": false, "capped": false, "used_fallback": false}}
-{"id": "P23__ta__r2", "output": {"needed": ["husband_occupation", "husband_affair_details", "husband_residence_address", "marriage_date", "client_income"], "model_converged": false, "capped": false, "used_fallback": false}}
-{"id": "P29__hi__r3", "output": {"needed": ["husband's_current_relationship_status_with_the_other_woman", "husband's_income_and_financial_contributions_to_the_family", "whether_the_client_wants_maintenance_or_custody"], "model_converged": false, "capped": true, "used_fallback": false}}
-{"id": "P19__en__r1", "output": {"needed": ["husband_current_residence", "marriage_date_with_second_woman", "client_husband_marriage_certificate_details"], "model_converged": false, "capped": false, "used_fallback": false}}

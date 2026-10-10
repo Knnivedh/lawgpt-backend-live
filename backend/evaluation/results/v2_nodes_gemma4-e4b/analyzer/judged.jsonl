@@ -1,0 +1,39 @@
+{"id": "P01__en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["marital_status_details", "jurisdiction_location"]}}
+{"id": "P01__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["marital_status", "jurisdiction_location"]}}
+{"id": "P02__hi", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "pass", "reasks": [], "private": ["residence_jurisdiction"], "scope_creep": ["residence_jurisdiction"]}}
+{"id": "P02__kn", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state"]}}
+{"id": "P03__hi-en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["jurisdiction_city_state"]}}
+{"id": "P04__en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": ["current_residence_status", "current_living_arrangement"], "scope_creep": ["current_residence_status", "current_living_arrangement"]}}
+{"id": "P04__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["current_residence_status", "current_living_arrangement"]}}
+{"id": "P05__hi", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "pass", "reasks": ["current_residence_of_parties"], "private": [], "scope_creep": ["current_residence_of_parties"]}}
+{"id": "P05__kn", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["marital_status_details"]}}
+{"id": "P06__hi-en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["Jurisdiction_State"]}}
+{"id": "P07__en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": ["Jurisdiction_of_residence"], "scope_creep": ["Jurisdiction_of_residence"]}}
+{"id": "P07__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["property_ownership_details"]}}
+{"id": "P08__hi", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["marital_status"]}}
+{"id": "P08__kn", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["marital_status_at_separation", "jurisdiction_state"]}}
+{"id": "P09__hi-en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["marriage_status_and_duration"]}}
+{"id": "P10__en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["jurisdiction_and_court_details", "order_document_status"]}}
+{"id": "P10__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state", "court_case_number_or_details"]}}
+{"id": "P11__hi", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": ["jurisdiction_city_state"], "scope_creep": ["jurisdiction_city_state"]}}
+{"id": "P11__kn", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state", "marital_status_details"]}}
+{"id": "P12__hi-en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state", "grounds_for_divorce"]}}
+{"id": "P13__en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["citizenship_status"]}}
+{"id": "P13__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": []}}
+{"id": "P14__hi", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["jurisdiction_of_marriage"]}}
+{"id": "P14__kn", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["nature_of_the_dispute"]}}
+{"id": "P15__hi-en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": ["marital_status"], "private": ["jurisdiction_city_state"], "scope_creep": ["jurisdiction_city_state"]}}
+{"id": "P16__en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state", "details_of_domestic_violence_allegation"]}}
+{"id": "P16__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["Jurisdiction_State", "Nature_of_Domestic_Violence_Allegations"]}}
+{"id": "P17__hi", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": [], "private": ["state_of_residence"], "scope_creep": ["details_of_incidents"]}}
+{"id": "P17__kn", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["state_of_residence"]}}
+{"id": "P18__hi-en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state"]}}
+{"id": "P19__en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "na", "reasks": ["date_of_second_marriage"], "private": [], "scope_creep": ["date_of_first_marriage", "jurisdiction_city_state"]}}
+{"id": "P19__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": ["date_of_second_marriage"], "private": [], "scope_creep": ["jurisdiction_city_state"]}}
+{"id": "P20__hi", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": ["nature_of_decree"], "private": [], "scope_creep": ["jurisdiction_state"]}}
+{"id": "P20__kn", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "na", "reasks": ["type_of_decree"], "private": [], "scope_creep": ["jurisdiction_state"]}}
+{"id": "P21__hi-en", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state"]}}
+{"id": "P22__en", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["jurisdiction_state", "legal_status_of_marriage"]}}
+{"id": "P22__ta", "verdict": {"intent": "pass", "facts": "pass", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["Jurisdiction_State", "Legal_Status_of_Marriage"]}}
+{"id": "P23__hi", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": []}}
+{"id": "P23__kn", "verdict": {"intent": "pass", "facts": "partial", "must_ask": "pass", "reasks": [], "private": [], "scope_creep": ["jurisdiction_city_state"]}}

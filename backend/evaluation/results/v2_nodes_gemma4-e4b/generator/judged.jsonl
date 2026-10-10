@@ -1,0 +1,39 @@
+{"id": "P01__en", "verdict": {"covered": [true, false, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P01__ta", "verdict": {"covered": [true, false, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P02__hi", "verdict": {"covered": [true, true, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P02__kn", "verdict": {"covered": [true, true, false, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P03__hi-en", "verdict": {"covered": [false, true, false, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P04__en", "verdict": {"covered": [true, true, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P04__ta", "verdict": {"covered": [true, true, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P05__hi", "verdict": {"covered": [true, true, false, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P05__kn", "verdict": {"covered": [true, true, false, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P06__hi-en", "verdict": {"covered": [true, true, false, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P07__en", "verdict": {"covered": [true, false, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P07__ta", "verdict": {"covered": [true, false, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": false}}
+{"id": "P08__hi", "verdict": {"covered": [false, false, false, true], "wrong_claims": [false, false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P08__kn", "verdict": {"covered": [true, false, false, false], "wrong_claims": [false, false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P09__hi-en", "verdict": {"covered": [false, true, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": false}}
+{"id": "P10__en", "verdict": {"covered": [true, true, false, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P10__ta", "verdict": {"covered": [true, true, false, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P11__hi", "verdict": {"covered": [false, true, false, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P11__kn", "verdict": {"covered": [true, true, false, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P12__hi-en", "verdict": {"covered": [true, false, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P13__en", "verdict": {"covered": [true, false, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P13__ta", "verdict": {"covered": [true, false, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P14__hi", "verdict": {"covered": [true, true, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": false, "cites_statute": true}}
+{"id": "P14__kn", "verdict": {"covered": [false, false, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": false}}
+{"id": "P15__hi-en", "verdict": {"covered": [true, true, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P16__en", "verdict": {"covered": [true, false, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P16__ta", "verdict": {"covered": [true, true, false, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P17__hi", "verdict": {"covered": [true, false, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P17__kn", "verdict": {"covered": [true, false, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P18__hi-en", "verdict": {"covered": [false, true, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P19__en", "verdict": {"covered": [true, false, false, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P19__ta", "verdict": {"covered": [true, false, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P20__hi", "verdict": {"covered": [false, true, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P20__kn", "verdict": {"covered": [false, true, true, false], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P21__hi-en", "verdict": {"covered": [false, false, false, true], "wrong_claims": [true, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P22__en", "verdict": {"covered": [true, false, false, false], "wrong_claims": [false, false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P22__ta", "verdict": {"covered": [true, false, false, false], "wrong_claims": [false, false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P23__hi", "verdict": {"covered": [true, false, true, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}
+{"id": "P23__kn", "verdict": {"covered": [true, false, false, true], "wrong_claims": [false, false], "language_ok": true, "addressee_ok": true, "cites_statute": true}}

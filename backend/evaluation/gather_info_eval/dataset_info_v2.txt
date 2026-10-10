@@ -6,8 +6,7 @@ Source:  evaluation/scenario_bank/followups.py, built by
 Version 1 (70 rows) is kept as golden_dataset.csv.
 
 Purpose: after the assistant asks a follow-up question and the user replies,
-check that the gather_info node extracts the right fact from the reply, and
-extracts nothing when the reply does not answer.
+check that the gather_info node extracts the right fact from the reply.
 
 STRUCTURE
 ---------
@@ -27,18 +26,15 @@ root_query           the user's first message, for context
 already_known        facts the first message already gave
 last_question        the follow-up question the assistant asked
 user_response        the user's reply
-expected_extraction  what should be extracted, written in English, or
-                     NOT_PROVIDED when the reply gives no answer
+expected_extraction  what should be extracted, written in English
 
 REPLY CATEGORIES
 ----------------
-short          35   one or two words ("Hindu.", "31.")
-negation       35   the answer is a "no", which must be recorded as a fact
+short          37   one or two words ("Hindu.", "31.")
+negation       46   the answer is a "no", which must be recorded as a fact
                     ("No, we have no children")
-numeric        30   ages, amounts, dates
-direct         30   a plain full-sentence answer
-non-answer     30   "I don't know", a counter-question, or a refusal;
-                    expected NOT_PROVIDED. The node must not invent a value
+numeric        31   ages, amounts, dates
+direct         46   a plain full-sentence answer
 rambling       20   the answer is buried in unrelated detail; the extraction
                     should keep only the answer
 already-known  20   the question repeats something the user had said and the
@@ -50,12 +46,18 @@ is in voice-input style, without punctuation, like the question it follows.
 SCORING
 -------
 Compare the node's extraction with expected_extraction by meaning, not by
-wording (an LLM judge, or exact match on NOT_PROVIDED for non-answer rows).
+wording (an LLM judge).
 Report accuracy by category and by language. For the parallel rows, also
 report how often all five languages of a scenario are right together.
 
 LIMITS
 ------
+- Every reply in this set contains a real answer. An earlier draft had 30
+  rows where the user dodged the question (expected output NOT_PROVIDED);
+  they were replaced with real answers on 2026-10-09 at the project owner's
+  request. This set therefore does not measure whether the node invents a
+  fact when the reply has none. Version 1 (golden_dataset.csv) still has 8
+  such rows.
 - The Tamil and Kannada questions and replies were written by an AI assistant
   and have not been read by a native speaker.
 - In the app the assistant writes its own follow-up questions; here they are

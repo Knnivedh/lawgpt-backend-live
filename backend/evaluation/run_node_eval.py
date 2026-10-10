@@ -8,7 +8,16 @@ Evaluation harness for the five LLM nodes, on the version-2 golden datasets.
 
 Nodes: gather, analyzer, revalidate, generator, reasoning.
 
-The node under test runs exactly as in the app (Llama through Hugging Face).
+The node under test runs exactly as in the app (Llama through Hugging Face),
+or, with --llm-endpoint, the same Llama model served from your own machine:
+
+    # on the GPU server
+    CUDA_VISIBLE_DEVICES=1 vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000
+    # on this machine, after: ssh -N -L 8000:localhost:8000 <server>
+    python evaluation/run_node_eval.py --node all --llm-endpoint http://localhost:8000/v1 --run-name v2_nodes_selfhosted
+
+Only the model call changes; prompts, token limits and temperatures stay the
+node's own. Results of different runs are kept apart by --run-name.
 The judge is a different model, gemma4:31b-cloud through Ollama, so judging
 uses no Hugging Face credit. Checks that plain code can make are made in code.
 
@@ -43,8 +52,13 @@ from langchain_ollama import ChatOllama  # noqa: E402
 
 from config import settings  # noqa: E402
 
-OUT = EVAL / "results" / "v2_nodes"
-JUDGE_MODEL = settings.ollama_translation_model
+OUT = EVAL / "results" / "v2_nodes"   # replaced by --run-name
+SYSTEM_MODEL = f"`{settings.llm_model}` (Hugging Face)"
+LLM_ENDPOINT = None   # set by --llm-endpoint
+LLM_MODEL = settings.llm_model
+NO_THINKING = False   # --no-thinking: ask the endpoint's chat template to skip the reasoning pass (Qwen 3)
+JUDGE_MODEL = settings.ollama_translation_model   # replaced by --judge-model
+JUDGE_REASONING = False   # reasoning models (gpt-oss) judge with a short thinking pass
 PAUSE = 1.0  # seconds between system calls, to stay under provider burst limits
 PRIVACY_WORDS = ("address", "phone", "mobile", "email", "aadhaar", "aadhar", "pan_", "pan ", "bank", "workplace", "employer")
 SCRIPTS = {"Hindi": (0x0900, 0x097F), "Tamil": (0x0B80, 0x0BFF), "Kannada": (0x0C80, 0x0CFF)}
@@ -52,10 +66,45 @@ SCRIPTS = {"Hindi": (0x0900, 0x097F), "Tamil": (0x0B80, 0x0BFF), "Kannada": (0x0
 
 # ── plumbing ────────────────────────────────────────────────────────────────
 
+class EndpointChat:
+    """
+    The node's own chat model, served from an OpenAI-compatible endpoint (vLLM,
+    Ollama, TGI) instead of Hugging Face. Keeps the node's token limit and
+    temperature.
+    """
+    ROLES = {"system": "system", "human": "user", "ai": "assistant"}
+
+    def __init__(self, base_url, model, max_tokens, temperature, top_p=None):
+        self.url = base_url.rstrip("/") + "/chat/completions"
+        self.model, self.max_tokens, self.temperature, self.top_p = model, max_tokens, temperature, top_p
+
+    def invoke(self, messages, *args, **kwargs):
+        import requests
+        from langchain_core.messages import AIMessage
+        payload = {"model": self.model, "max_tokens": self.max_tokens, "temperature": self.temperature,
+                   "messages": [{"role": self.ROLES.get(m.type, "user"), "content": m.content} for m in messages]}
+        if self.top_p is not None:  # otherwise the server applies its own default
+            payload["top_p"] = self.top_p
+        if NO_THINKING:
+            payload["chat_template_kwargs"] = {"enable_thinking": False}
+        response = requests.post(self.url, json=payload, timeout=600)
+        response.raise_for_status()
+        data = response.json()
+        choice, usage = data["choices"][0], data.get("usage") or {}
+        return AIMessage(content=choice["message"].get("content") or "",
+                         response_metadata={"finish_reason": choice.get("finish_reason"), "token_usage": usage},
+                         usage_metadata={"input_tokens": usage.get("prompt_tokens", 0),
+                                         "output_tokens": usage.get("completion_tokens", 0),
+                                         "total_tokens": usage.get("total_tokens", 0)})
+
+
 class CountingLLM:
     """Stands in for a node's chat model: counts calls, tokens and failures."""
 
     def __init__(self, inner):
+        if LLM_ENDPOINT:
+            endpoint = inner.llm  # the HuggingFaceEndpoint holding this node's settings
+            inner = EndpointChat(LLM_ENDPOINT, LLM_MODEL, endpoint.max_new_tokens, endpoint.temperature, endpoint.top_p)
         self.inner = inner
         self.calls = self.errors = self.input_tokens = self.output_tokens = 0
         self.last_error = ""
@@ -73,6 +122,24 @@ class CountingLLM:
         self.input_tokens += usage.get("input_tokens") or tokens.get("prompt_tokens") or 0
         self.output_tokens += usage.get("output_tokens") or tokens.get("completion_tokens") or 0
         return response
+
+
+def wait_for_endpoint(minutes=30):
+    """Poll a self-hosted endpoint until it answers again. False if it stays down, or if there is none."""
+    if not LLM_ENDPOINT:
+        return False
+    import requests
+    deadline = time.time() + minutes * 60
+    print(f"endpoint unreachable at {time.strftime('%H:%M')}; waiting up to {minutes} min for it to return", flush=True)
+    while time.time() < deadline:
+        try:
+            if requests.get(LLM_ENDPOINT.rstrip("/") + "/models", timeout=8).ok:
+                print(f"endpoint back at {time.strftime('%H:%M')}", flush=True)
+                return True
+        except Exception:
+            pass
+        time.sleep(15)
+    return False
 
 
 def read_jsonl(path):
@@ -119,8 +186,10 @@ def judge(prompt):
     global _judge
     if _judge is None:
         headers = {"Authorization": f"Bearer {settings.ollama_api_key}"} if settings.ollama_api_key else None
-        _judge = ChatOllama(model=JUDGE_MODEL, base_url=settings.ollama_base_url, temperature=0, num_predict=900,
-                            reasoning=False, format="json", client_kwargs={"headers": headers} if headers else {})
+        # 127.0.0.1, not localhost: the Ollama app listens on IPv4 only
+        _judge = ChatOllama(model=JUDGE_MODEL, base_url=settings.ollama_base_url.replace("localhost", "127.0.0.1"),
+                            temperature=0, num_predict=4000 if JUDGE_REASONING else 900, reasoning=JUDGE_REASONING,
+                            format="json", client_kwargs={"headers": headers} if headers else {})
     text = str(_judge.invoke(
         "You are grading the output of a legal-assistant component against a reference. Be strict and literal. "
         "Reply with one JSON object only, using exactly the keys asked for.\n\n" + prompt).content)
@@ -528,10 +597,169 @@ class Reasoning:
 NODES = {n.name: n for n in (Gather, Analyzer, Revalidate, Generator, Reasoning)}
 
 
+# ── experiments (not part of --node all) ────────────────────────────────────
+
+def direct_llm(max_tokens, temperature):
+    """A counted chat model for experiments that call the model without going through a node."""
+    if not LLM_ENDPOINT:
+        sys.exit("This experiment needs --llm-endpoint.")
+    llm = CountingLLM.__new__(CountingLLM)
+    llm.inner = EndpointChat(LLM_ENDPOINT, LLM_MODEL, max_tokens, temperature, 0.95)
+    llm.calls = llm.errors = llm.input_tokens = llm.output_tokens = 0
+    llm.last_error = ""
+    return llm
+
+
+class ClosedBook(Generator):
+    """
+    Baseline for the generator: the same model answers from its own knowledge,
+    with the same question, facts, gender and language instruction, but no
+    retrieved documents and no citation guard. Scored with the generator's rubric.
+    """
+    name = "generator_closedbook"
+
+    def setup(self):
+        self.llm = direct_llm(2048, 0.3)  # the generator's own limits
+
+    def run(self, row):
+        from langchain_core.messages import HumanMessage, SystemMessage
+        from citation_guard import trim_to_last_sentence
+        from lang_utils import build_language_instruction, detect_language
+        language = detect_language(row["user_query"])
+        facts = "\n".join(f"- {k.replace('_', ' ')}: {v}" for k, v in parse_facts(row["info_collected"]).items())
+        prompt = (f"A person in India needs help with a family-law problem.\n\nTheir question: {row['user_query']}\n\n"
+                  f"Facts gathered in follow-up:\n{facts}\n\nThe user's gender: {row['user_gender']}.\n\n"
+                  "Give practical legal guidance under Indian law. Cite the relevant Acts and sections. "
+                  "Use empathetic, professional, simple language." + build_language_instruction(language))
+        response = self.llm.invoke([SystemMessage(content="You are a knowledgeable assistant for Indian family law."),
+                                    HumanMessage(content=prompt)])
+        answer = response.content.strip()
+        truncated = (response.response_metadata or {}).get("finish_reason") == "length"
+        if truncated:
+            answer = trim_to_last_sentence(answer)
+        return {"answer": answer, "detected_language": language, "retrieved": [], "guard_removed": [],
+                "guard_flagged": [], "truncated": truncated}
+
+
+STOP_GENERIC = (
+    "Decide whether the assistant can give useful first legal guidance now, or must ask one more question. "
+    "Ask only if an essential fact is missing.")
+STOP_POLICY = (
+    "Decide whether the assistant should answer now or ask ONE more question.\n"
+    "Answer now unless an essential fact is missing. A fact is essential only if the applicable law or the "
+    "available remedy changes with it. In Indian family law that is mainly the religion of the parties (or the law "
+    "under which they married), and only when the question is about grounds or procedure for divorce, annulment, "
+    "validity of a marriage, inheritance or adoption. Protection from domestic violence, maintenance under "
+    "Section 125 CrPC, cruelty or dowry complaints, enforcement of an existing court order and custody under the "
+    "Guardians and Wards Act do not depend on religion. Income, addresses, exact dates, evidence and other details "
+    "are useful but never essential: the answer can state what it assumes.")
+
+
+class StopCheck:
+    """
+    The 'do we know enough?' decision as a question of its own: the model returns
+    yes or no and, if no, the single missing fact. It is not asked to list what
+    else it would like to know. Scored in code against the revalidation labels.
+    """
+    folder = "revalidate_eval"
+
+    def setup(self):
+        self.llm = direct_llm(120, 0.1)
+
+    def run(self, row):
+        from langchain_core.messages import HumanMessage, SystemMessage
+        facts = "\n".join(f"- {k.replace('_', ' ')}: {v}" for k, v in parse_facts(row["info_collected"]).items())
+        prompt = (f"User's question: {row['root_query']}\n\nFacts known so far:\n{facts}\n\n{self.instruction}\n\n"
+                  'Reply with JSON only: {"enough": true or false, "missing": "<the one essential missing fact, or empty>"}')
+        text = self.llm.invoke([SystemMessage(content="You decide whether a legal assistant has enough information. Reply with JSON only."),
+                                HumanMessage(content=prompt)]).content
+        match = re.search(r"\{.*?\}", text, re.S)
+        try:
+            data = json.loads(match.group(0)) if match else {}
+        except json.JSONDecodeError:
+            data = {}
+        enough = data.get("enough")
+        if isinstance(enough, str):
+            enough = enough.strip().lower() == "true"
+        return {"enough": enough if isinstance(enough, bool) else None, "missing": str(data.get("missing") or ""), "raw": text[:200]}
+
+    def judge_prompt(self, row, out):
+        return None
+
+    def score(self, row, out, verdict):
+        expected = row["expected_converged"] == "yes"
+        stops = out["enough"] is True   # an unreadable reply counts as "ask", the cautious reading
+        capped = int(row["round"]) - 1 >= 2 or len(parse_facts(row["info_collected"])) >= 7
+        return {"expected": expected, "ok": stops == expected, "ok_with_cap": (stops or capped) == expected, "stops": stops,
+                "unreadable": out["enough"] is None,
+                "asks_religion": (not stops) and bool(re.search(r"relig|personal law|rites|faith|hindu|muslim|christian", out["missing"], re.I))}
+
+    def report(self, rows):
+        s = lambda r: r["score"]
+        yes, no = [r for r in rows if s(r)["expected"]], [r for r in rows if not s(r)["expected"]]
+        right_asks = [r for r in no if not s(r)["stops"]]
+        lines = ["| Metric | This check alone | With the code's stop rule |", "|---|---|---|",
+                 f"| Decision correct, all rows | {rate(rows, lambda r: s(r)['ok'])} | {rate(rows, lambda r: s(r)['ok_with_cap'])} |",
+                 f"| Should stop: stops | {rate(yes, lambda r: s(r)['ok'])} | {rate(yes, lambda r: s(r)['ok_with_cap'])} |",
+                 f"| Should ask more: asks more | {rate(no, lambda r: s(r)['ok'])} | {rate(no, lambda r: s(r)['ok_with_cap'])} |",
+                 "", "| Other | Value |", "|---|---|",
+                 f"| When it rightly asks, the missing fact it names is religion / applicable law | {rate(right_asks, lambda r: s(r)['asks_religion'])} |",
+                 f"| Replies that could not be read as yes or no | {rate(rows, lambda r: s(r)['unreadable'])} |",
+                 f"| Parallel rounds with the same decision in all five languages | "
+                 f"{parallel_agreement(rows, lambda r: s(r)['stops'])} stop, {parallel_agreement(rows, lambda r: not s(r)['stops'])} ask |",
+                 "", "Baseline on the same rows (the analyzer re-run on the collected facts): decision correct 0.30 alone, "
+                 "0.70 with the stop rule; stops when it should 1 of 140."]
+        cols = [("correct", lambda g: rate(g, lambda r: s(r)["ok"]))]
+        return lines + breakdown("By language", rows, "language", cols) + breakdown("By round", rows, "round", cols)
+
+
+class StopGeneric(StopCheck):
+    name, instruction = "stop_generic", STOP_GENERIC
+
+
+class StopPolicy(StopCheck):
+    name, instruction = "stop_policy", STOP_POLICY
+
+
+RELIGION_KNOWN = re.compile(r"relig|hindu|muslim|islam|christian|sikh|parsi|jain|buddh|rites|special marriage|nikah|church", re.I)
+
+
+class StopTwoStep(StopCheck):
+    """
+    The decision split in two. The model answers one narrow question: does the
+    applicable law for this problem depend on the parties' religion? Code then
+    applies the rule: ask (for religion) only if it does and religion is not yet
+    known; otherwise answer.
+    """
+    name = "stop_twostep"
+
+    def run(self, row):
+        from langchain_core.messages import HumanMessage, SystemMessage
+        prompt = (f"User's question: {row['root_query']}\n\n"
+                  "Is this question mainly about one of the following?\n"
+                  "- getting, opposing or speeding up a divorce (grounds, procedure, mutual consent, alimony on divorce)\n"
+                  "- restitution of conjugal rights (getting a spouse to come back)\n"
+                  "- annulment, or whether a marriage is valid, can be registered or can be proved\n"
+                  "- inheritance or a share in family property\n"
+                  "- adoption\n"
+                  "Answer false for questions that are only about domestic violence, maintenance, dowry or cruelty "
+                  "complaints, child custody or visitation, enforcing an existing court order, or criminal cases.\n\n"
+                  'Reply with JSON only: {"personal_law": true or false}')
+        text = self.llm.invoke([SystemMessage(content="You classify family-law questions. Reply with JSON only."),
+                                HumanMessage(content=prompt)]).content
+        depends = bool(re.search(r'"personal_law"\s*:\s*true', text, re.I))
+        known = bool(RELIGION_KNOWN.search(row["info_collected"]))
+        return {"enough": not (depends and not known), "missing": "religion" if depends and not known else "",
+                "personal_law": depends, "religion_known": known, "raw": text[:120]}
+
+
+EXPERIMENTS = {n.name: n for n in (ClosedBook, StopGeneric, StopPolicy, StopTwoStep)}
+
+
 # ── driver ──────────────────────────────────────────────────────────────────
 
-def evaluate(name, limit, use_judge, languages):
-    spec = NODES[name]()
+def evaluate(name, limit, use_judge, languages, judge_only=False):
+    spec = {**NODES, **EXPERIMENTS}[name]()
     out_dir = OUT / name
     out_dir.mkdir(parents=True, exist_ok=True)
     rows = load_rows(spec.folder)
@@ -542,29 +770,36 @@ def evaluate(name, limit, use_judge, languages):
         step = max(1, len(rows) // limit)
         rows = rows[::step][:limit]
 
-    raw_path, judged_path = out_dir / "raw.jsonl", out_dir / "judged.jsonl"
+    # verdicts, scores and the report are kept per judge model; node outputs are shared
+    tag = "" if JUDGE_MODEL == settings.ollama_translation_model else "__" + re.sub(r"[^A-Za-z0-9.]+", "-", JUDGE_MODEL)
+    raw_path, judged_path = out_dir / "raw.jsonl", out_dir / f"judged{tag}.jsonl"
     raw, judged = read_jsonl(raw_path), read_jsonl(judged_path)
-    todo = [r for r in rows if r["id"] not in raw]
+    todo = [] if judge_only else [r for r in rows if r["id"] not in raw]
     stopped = ""
     if todo:
         spec.setup()
-        failures = 0
         for row in todo:
-            errors_before = spec.llm.errors
-            try:
-                output = spec.run(row)
-            except Exception as e:  # a node that raises instead of falling back
-                spec.llm.errors += 1
-                spec.llm.last_error = str(e)[:300]
-                output = None
-            if output is None or spec.llm.errors > errors_before:
-                failures += 1
-                if failures >= 3:
-                    stopped = f"Stopped after 3 failed model calls in a row. Last error: {spec.llm.last_error}"
-                    break
-                time.sleep(5)
-                continue
-            failures = 0
+            output, attempts = None, 0
+            while output is None:
+                errors_before = spec.llm.errors
+                try:
+                    output = spec.run(row)
+                except Exception as e:  # a node that raises instead of falling back
+                    spec.llm.errors += 1
+                    spec.llm.last_error = str(e)[:300]
+                    output = None
+                if spec.llm.errors > errors_before:
+                    output = None
+                if output is None:
+                    attempts += 1
+                    # three failures on one row: the endpoint is probably unreachable (a dropped
+                    # tunnel); wait for it to come back instead of giving up on the run
+                    if attempts >= 3 and not wait_for_endpoint():
+                        stopped = f"Stopped: 3 failed model calls on one row and the endpoint did not come back. Last error: {spec.llm.last_error}"
+                        break
+                    time.sleep(5)
+            if stopped:
+                break
             raw[row["id"]] = {"id": row["id"], "output": output}
             append_jsonl(raw_path, raw[row["id"]])
             time.sleep(PAUSE)
@@ -610,32 +845,51 @@ def evaluate(name, limit, use_judge, languages):
     usage = json.loads(usage_path.read_text()) if usage_path.exists() else {}
     header = [f"# {name}: evaluation on the version-2 dataset", "",
               f"- Dataset: `evaluation/{spec.folder}/golden_dataset_v2.csv`; rows scored: {len(results)} of {len(rows)}",
-              f"- System model: `{settings.llm_model}` (Hugging Face) | judge: `{JUDGE_MODEL}` (Ollama)",
+              f"- System model: {SYSTEM_MODEL} | judge: `{JUDGE_MODEL}` (Ollama)",
               f"- System calls so far: {usage.get('calls', 0)}; tokens in {usage.get('input_tokens', 0)}, out {usage.get('output_tokens', 0)}",
               "- Dataset labels and judge verdicts have not been reviewed by a person; treat the numbers as provisional."]
     if stopped:
         header.append(f"- **Incomplete:** {stopped.strip()}")
     summary = header + [""] + (spec.report(results) if results else ["No rows scored."])
-    (out_dir / "summary.md").write_text("\n".join(summary) + "\n", encoding="utf-8")
-    with open(out_dir / "scored.jsonl", "w", encoding="utf-8") as f:
+    (out_dir / f"summary{tag}.md").write_text("\n".join(summary) + "\n", encoding="utf-8")
+    with open(out_dir / f"scored{tag}.jsonl", "w", encoding="utf-8") as f:
         for r in results:
             f.write(json.dumps({"id": r["row"]["id"], "output": r["output"], "verdict": r["verdict"], "score": r["score"]},
                                ensure_ascii=False) + "\n")
     print("\n".join(summary[:6 + 16]))
-    print(f"[{name}] report: {out_dir / 'summary.md'}\n")
+    print(f"[{name}] report: {out_dir / f'summary{tag}.md'}\n")
     return not stopped
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--node", required=True, choices=list(NODES) + ["all"])
+    parser.add_argument("--node", required=True, choices=list(NODES) + list(EXPERIMENTS) + ["all"])
     parser.add_argument("--limit", type=int, help="score only this many rows (a pilot)")
     parser.add_argument("--languages", help="comma-separated subset, e.g. English,Tamil")
     parser.add_argument("--no-judge", action="store_true")
+    parser.add_argument("--judge-only", action="store_true", help="judge the saved node outputs; make no node calls")
+    parser.add_argument("--judge-model", help="Ollama model to judge with, e.g. gpt-oss:120b-cloud (default: gemma4:31b-cloud)")
+    parser.add_argument("--llm-endpoint", help="OpenAI-compatible base URL serving the node model, e.g. http://localhost:8000/v1")
+    parser.add_argument("--llm-model", help="model name at that endpoint (default: the app's LLM_MODEL)")
+    parser.add_argument("--no-thinking", action="store_true",
+                        help="switch off the model's reasoning pass (needed for Qwen 3, whose reasoning otherwise lands in the output)")
+    parser.add_argument("--run-name", default="v2_nodes", help="results folder under evaluation/results/")
+    parser.add_argument("--pause", type=float, help="seconds between system calls (default 1.0; 0 is fine for your own server)")
     args = parser.parse_args()
     languages = {x.strip().lower() for x in args.languages.split(",")} if args.languages else None
+    global OUT, LLM_ENDPOINT, LLM_MODEL, SYSTEM_MODEL, PAUSE, JUDGE_MODEL, JUDGE_REASONING, NO_THINKING
+    NO_THINKING = args.no_thinking
+    if args.judge_model:
+        JUDGE_MODEL = args.judge_model
+        JUDGE_REASONING = "medium" if "gpt-oss" in JUDGE_MODEL else False
+    OUT = EVAL / "results" / args.run_name
+    if args.pause is not None:
+        PAUSE = args.pause
+    if args.llm_endpoint:
+        LLM_ENDPOINT, LLM_MODEL = args.llm_endpoint, args.llm_model or settings.llm_model
+        SYSTEM_MODEL = f"`{LLM_MODEL}` served at {LLM_ENDPOINT}"
     for name in (list(NODES) if args.node == "all" else [args.node]):
-        if not evaluate(name, args.limit, not args.no_judge, languages):
+        if not evaluate(name, args.limit, not args.no_judge, languages, args.judge_only):
             sys.exit(1)
 
 

@@ -1,0 +1,44 @@
+{
+ "run": "v2_nodes_gemma4-e4b",
+ "dates": "2026-10-10",
+ "code": {
+  "git_commit": "e9f6d09",
+  "uncommitted_changes": true
+ },
+ "system_model": {
+  "name": "google/gemma-4-E4B-it",
+  "served_with": "vLLM 0.31.0 on one NVIDIA L40, full-precision weights",
+  "flags": "--max-model-len 32768 --gpu-memory-utilization 0.45",
+  "model_revision": "not pinned (latest at download, 2026-10-09)",
+  "sampling": "each node's own temperature (0.1 to 0.3) and top_p 0.95; no seed set",
+  "repeats": 1
+ },
+ "judge": {
+  "name": "gpt-oss:120b-cloud",
+  "via": "Ollama cloud",
+  "temperature": 0,
+  "reasoning": "medium",
+  "output": "JSON"
+ },
+ "generator_retrieval": {
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "collection": "indian_family_law_cases_bge_small",
+  "translation_model": "gemma4:31b-cloud (Ollama); production uses google/gemma-3-4b-it",
+  "keyword_weight": 2.0,
+  "vector_weight": 1.0,
+  "statutes_returned": 5,
+  "cases_returned": 5,
+  "note": "retrieved documents copied from the Llama run (identical inputs for both models)"
+ },
+ "datasets_sha256": {
+  "gather_info_eval": "c62583e977106fce",
+  "query_analyzer_eval": "8b87dfdccef31f5d",
+  "revalidate_eval": "f60ce68275c594d6",
+  "generator_eval": "5650032cf10174fa",
+  "reasoning_eval": "14115ff453335763"
+ },
+ "tokens": "see usage.json per node (parallel streams; totals may undercount)",
+ "notes": [
+  "Outputs produced in parallel streams, in two sessions (the tunnel dropped after six minutes)."
+ ]
+}

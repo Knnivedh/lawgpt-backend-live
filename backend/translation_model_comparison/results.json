@@ -1,0 +1,884 @@
+{
+  "queries": [
+    {
+      "lang": "hi",
+      "query": "तलाक के बाद बच्चे की कस्टडी किसे मिलती है?",
+      "reference": "Who gets custody of the child after divorce?"
+    },
+    {
+      "lang": "hi",
+      "query": "मेरे पति ने मुझे तलाक का नोटिस नहीं दिया है, क्या मैं भरण-पोषण मांग सकती हूँ?",
+      "reference": "My husband has not given me a divorce notice; can I claim maintenance?"
+    },
+    {
+      "lang": "hi",
+      "query": "दहेज उत्पीड़न की शिकायत कैसे दर्ज करें?",
+      "reference": "How do I file a complaint of dowry harassment?"
+    },
+    {
+      "lang": "hi",
+      "query": "मेरी शादी 2019 में हुई थी और मेरे ससुराल वालों ने मुझे 2023 में घर से निकाल दिया, क्या मुझे घर में रहने का अधिकार है?",
+      "reference": "I got married in 2019 and my in-laws threw me out of the house in 2023; do I have a right to reside in the house?"
+    },
+    {
+      "lang": "ta",
+      "query": "விவாகரத்திற்குப் பிறகு பராமரிப்புத் தொகை எப்படி நிர்ணயிக்கப்படுகிறது?",
+      "reference": "How is the maintenance amount determined after divorce?"
+    },
+    {
+      "lang": "te",
+      "query": "గృహ హింస చట్టం కింద ఫిర్యాదు ఎలా చేయాలి?",
+      "reference": "How do I file a complaint under the domestic violence act?"
+    },
+    {
+      "lang": "bn",
+      "query": "বিবাহবিচ্ছেদের পর সন্তানের অভিভাবকত্ব কীভাবে নির্ধারিত হয়?",
+      "reference": "How is custody of the child determined after divorce?"
+    },
+    {
+      "lang": "mr",
+      "query": "माझ्या पतीने मला घटस्फोट दिलेला नाही पण तो दुसरे लग्न करत आहे, हे कायदेशीर आहे का?",
+      "reference": "My husband has not given me a divorce but he is marrying again; is this legal?"
+    },
+    {
+      "lang": "hi-en",
+      "query": "Mera husband domestic violence karta hai, maintenance kaise le sakti hoon?",
+      "reference": "My husband commits domestic violence; how can I get maintenance?"
+    },
+    {
+      "lang": "hi-en",
+      "query": "Meri wife ne mujhe chhod diya hai aur 5 saal se alag rehti hai, kya main divorce le sakta hoon?",
+      "reference": "My wife has left me and has been living separately for 5 years; can I get a divorce?"
+    },
+    {
+      "lang": "ta-en",
+      "query": "Divorce case ல custody எப்படி decide பண்றாங்க?",
+      "reference": "How is custody decided in a divorce case?"
+    },
+    {
+      "lang": "gu",
+      "query": "શું પત્ની પતિની મિલકતમાં ભાગ માંગી શકે છે, જો લગ્ન 10 વર્ષ પહેલાં થયા હોય?",
+      "reference": "Can a wife claim a share in her husband's property if the marriage took place 10 years ago?"
+    }
+  ],
+  "raw_untranslated_jaccard_vs_reference": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "rows": [
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 3.34,
+      "error": null,
+      "translation": "Who gets custody of the child after a divorce?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.8
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 1.6,
+      "error": null,
+      "translation": "My husband has not served me with a divorce notice, can I claim maintenance?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.2
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 1.5,
+      "error": null,
+      "translation": "How to file a complaint about dowry harassment?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.111
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 2.64,
+      "error": null,
+      "translation": "My marriage took place in 2019, and my in-laws evicted me from the house in 2023, do I have the right to reside in the house?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.4
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 1.1,
+      "error": null,
+      "translation": "How is maintenance amount determined after a divorce?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.333
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 1.38,
+      "error": null,
+      "translation": "How to file a complaint under the Protection of Women from Domestic Violence Act?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.111
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 1.66,
+      "error": null,
+      "translation": "How is custody of a child determined after a divorce?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.4
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 2.25,
+      "error": null,
+      "translation": "Is it legal for my husband not to have given me a divorce, but for him to be marrying another woman?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.143
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 1.12,
+      "error": null,
+      "translation": "My husband is committing domestic violence, how can I get maintenance?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.6
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 0.9,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.39,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-4b-it",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.54,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 0.38,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 0.44,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 0.52,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 0.54,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 0.97,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 0.53,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 0.93,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 0.47,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 0.8,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 0.39,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.77,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-12b-it",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.36,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 0.39,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 0.41,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 0.38,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 0.7,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 1.18,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 0.65,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.37,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.47,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 0.41,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 1.33,
+      "error": null,
+      "translation": "My husband has not given me a notice of divorce, can I ask for maintenance?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.2
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 1.04,
+      "error": null,
+      "translation": "How to lodge a complaint of dowry harassment?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.125
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 2.47,
+      "error": null,
+      "translation": "My marriage took place in 2019 and my in-laws evicted me from the house in 2023, do I have the right to live in the house?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.286
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 1.17,
+      "error": null,
+      "translation": "After the marriage certificate, how is the maintenance allowance determined?",
+      "fact_score": 0.5,
+      "retrieval_jaccard_vs_reference": 0.0
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 1.04,
+      "error": null,
+      "translation": "How to file a complaint under the Domestic Violence Act?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.125
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 1.13,
+      "error": null,
+      "translation": "How is the custodianship of a child determined after a divorce?",
+      "fact_score": 0.5,
+      "retrieval_jaccard_vs_reference": 0.286
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 1.41,
+      "error": null,
+      "translation": "My husband has not given me a talaq, but he is getting married to another woman, is this legal?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.143
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 1.11,
+      "error": null,
+      "translation": "My husband is doing domestic violence, how can I get maintenance?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.5
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 1.68,
+      "error": null,
+      "translation": "My wife has left me and we have been separated for 5 years, can I get a divorce?",
+      "fact_score": 1.0,
+      "retrieval_jaccard_vs_reference": 0.6
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.38,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.1-8B-Instruct",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.58,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 0.47,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 0.48,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 0.77,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 0.39,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 0.42,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 0.35,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 0.38,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 0.41,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.42,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "meta-llama/Llama-3.3-70B-Instruct",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.44,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 0.42,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 0.45,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 0.41,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 0.47,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 0.39,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 0.36,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 0.39,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 0.41,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 0.45,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.38,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.4,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 0.39,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 0.33,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 0.38,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 0.53,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 0.6,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 0.54,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 0.5,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 0.8,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 2.35,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 1.3,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.36,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.59,
+      "error": "400: {\"error\":{\"message\":\"The requested model 'Qwen/Qwen2.5-7B-Instruct' is not supported by any provider you have enabled.\",",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 0,
+      "lang": "hi",
+      "latency_s": 0.58,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 1,
+      "lang": "hi",
+      "latency_s": 0.71,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 2,
+      "lang": "hi",
+      "latency_s": 0.51,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 3,
+      "lang": "hi",
+      "latency_s": 0.51,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 4,
+      "lang": "ta",
+      "latency_s": 0.69,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 5,
+      "lang": "te",
+      "latency_s": 0.51,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 6,
+      "lang": "bn",
+      "latency_s": 0.7,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 7,
+      "lang": "mr",
+      "latency_s": 0.76,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 8,
+      "lang": "hi-en",
+      "latency_s": 0.38,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 9,
+      "lang": "hi-en",
+      "latency_s": 0.47,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 10,
+      "lang": "ta-en",
+      "latency_s": 0.43,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "q": 11,
+      "lang": "gu",
+      "latency_s": 0.43,
+      "error": "402: {\"error\":\"You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Provide",
+      "translation": null
+    }
+  ]
+}

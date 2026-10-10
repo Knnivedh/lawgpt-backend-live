@@ -9,14 +9,12 @@ node should now stop asking (converged) and, if not, what it may still ask.
 Three patterns:
   no -> no -> yes       an essential fact (usually religion, which decides the
                         applicable law) is still missing after the first reply
-  no -> yes -> yes      the last round adds only a non-answer to an optional
-                        question; the node must not reopen the questioning
+  no -> yes -> yes      the last round adds an optional fact; the node must
+                        not reopen the questioning
   yes -> yes -> yes     the first message was already complete
 
 Each round: (facts added, converged, what may still be asked, note)
 """
-
-NA = "NOT_PROVIDED"
 
 ROUNDS = {
     # ── parallel ────────────────────────────────────────────────────────────
@@ -50,21 +48,21 @@ ROUNDS = {
         rounds=[
             ("", "no", "religion | client_current_city | marriage_date", "Only the first message."),
             ("religion: Hindu | client_current_city: Bengaluru", "yes", "", "Enough to answer the jurisdiction question."),
-            (f"grounds_for_divorce: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("grounds_for_divorce: constant quarrels; living apart for a year", "yes", "", "Extra fact; still complete."),
         ]),
     "P22": dict(
         creep="wedding_expenses | husband's_income | details_of_intimacy",
         rounds=[
             ("", "no", "religion | medical_evidence | daughter's_own_wishes", "Only the first message."),
             ("religion: Hindu | daughter's_own_wishes: wants to end the marriage", "yes", "", "Enough to answer."),
-            (f"medical_evidence: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("medical_evidence: none yet; husband refuses to see a doctor", "yes", "", "Extra fact; still complete."),
         ]),
     "P29": dict(
         creep="identity_of_the_other_woman | husband's_salary | how_she_got_into_the_phone",
         rounds=[
             ("", "no", "religion | whether_living_together | child_age", "Only the first message."),
             ("religion: Hindu | living_together: same house, separate rooms for about four months", "yes", "", "Enough to answer."),
-            (f"whether_she_wants_maintenance_or_custody: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("wants: divorce, maintenance and custody of the son", "yes", "", "Extra fact; still complete."),
         ]),
     "P04": dict(
         creep="husband's_salary_details | caste | wedding_expenses | details_of_each_incident",
@@ -101,14 +99,14 @@ ROUNDS = {
             ("", "no", "religion | wife's_income | any_case_already_filed", "Only the first message."),
             ("any_case_filed: none, only discussions between the families", "no", "religion | wife's_income", "Religion is still unknown."),
             ("religion: Hindu | wife_income: about Rs 30,000/month", "yes", "", "All essentials known."),
-            (f"assets: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("assets: no property; savings of about Rs 4 lakh", "yes", "", "Extra fact; still complete."),
         ]),
     "L-en-05": dict(
         creep="reason_for_first_divorce | present_husband's_income | maintenance_from_ex-husband",
         rounds=[
             ("", "no", "religion | daughter's_age | whether_biological_father_consents_or_can_be_traced", "Only the first message."),
             ("religion: Hindu | daughter's_age: 12", "yes", "", "Enough to answer."),
-            (f"biological_father_consent: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("biological_father: no contact since the divorce, address unknown", "yes", "", "Extra fact; still complete."),
         ]),
     "L-en-04": dict(
         creep="new_wife's_income | reason_for_the_2019_divorce | wedding_details",
@@ -124,14 +122,14 @@ ROUNDS = {
             ("", "no", "religion | reason_wife_left | children | marriage_date", "Only the first message."),
             ("marriage_year: 2021 | children: one son aged 3", "no", "religion | reason_wife_left", "Religion is still unknown."),
             ("religion: Hindu | reason_wife_left: quarrels with his mother", "yes", "", "All essentials known."),
-            (f"wife_income: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("wife_income: none, homemaker", "yes", "", "Extra fact; still complete."),
         ]),
     "L-hi-06": dict(
         creep="cause_of_husband's_death | children's_school | remarriage_plans",
         rounds=[
             ("", "no", "religion | whose_name_the_property_is_in | whether_husband_left_a_will", "Only the first message."),
             ("religion: Hindu | property: house in father-in-law's name; husband had a plot in his own name", "yes", "", "Enough to answer."),
-            (f"will: {NA}", "yes", "", "The user does not know; do not reopen."),
+            ("will: none", "yes", "", "Extra fact; still complete."),
         ]),
     "L-hi-05": dict(
         creep="second_wife's_details | sect | husband's_reason",
@@ -154,7 +152,7 @@ ROUNDS = {
         rounds=[
             ("", "no", "religion | children | whether_settlement_terms_are_final", "Only the first message."),
             ("religion: Hindu | children: one daughter aged 3, to stay with the wife; Rs 10,000/month agreed", "yes", "", "Enough to answer."),
-            (f"date_of_first_motion: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("date_of_first_motion: last month", "yes", "", "Extra fact; still complete."),
         ]),
     "L-hien-04": dict(
         creep="reason_for_divorce | ex-wife's_new_partner | maintenance_paid",
@@ -170,14 +168,14 @@ ROUNDS = {
             ("", "no", "religion | reason_wife_left | children", "Only the first message."),
             ("children: none", "no", "religion | reason_wife_left", "Religion is still unknown."),
             ("religion: Hindu | reason_wife_left: quarrel with his mother", "yes", "", "All essentials known."),
-            (f"wife_employment: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("wife_employment: not working", "yes", "", "Extra fact; still complete."),
         ]),
     "L-ta-10": dict(
         creep="other_woman's_details | caste | husband's_income",
         rounds=[
             ("", "no", "religion | witnesses_to_the_wedding | other_documents_showing_them_as_spouses", "Only the first message."),
             ("religion: Hindu | other_documents: joint rental agreement, Aadhaar cards with the same address", "yes", "", "Enough to answer."),
-            (f"witnesses_to_the_wedding: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("witnesses_to_the_wedding: two friends and the temple priest", "yes", "", "Extra fact; still complete."),
         ]),
     "L-ta-04": dict(
         creep="church_denomination | detailed_reasons | income",
@@ -193,14 +191,14 @@ ROUNDS = {
             ("", "no", "religion | whether_the_first_wife_is_alive_and_undivorced | proof_of_marriage", "Only the first message."),
             ("marriage_year: 2020 | proof_of_marriage: wedding photographs and invitation card", "no", "religion", "Religion is still unknown."),
             ("religion: Hindu", "yes", "", "All essentials known."),
-            (f"first_wife_status: {NA}", "yes", "", "The user does not know; do not reopen."),
+            ("first_wife_status: alive, not divorced", "yes", "", "Extra fact; still complete."),
         ]),
     "L-kn-06": dict(
         creep="visa_country | spouse's_income | reason_for_not_registering",
         rounds=[
             ("", "no", "religion | state_or_city | available_proof_of_the_wedding", "Only the first message."),
             ("religion: Hindu | city: Mysuru", "yes", "", "Enough to answer."),
-            (f"available_proof_of_the_wedding: {NA}", "yes", "", "The user did not answer an optional question; do not reopen."),
+            ("available_proof_of_the_wedding: photographs and temple receipt", "yes", "", "Extra fact; still complete."),
         ]),
     "L-kn-08": dict(
         creep="sect | reason_for_talaq | husband's_new_marriage",

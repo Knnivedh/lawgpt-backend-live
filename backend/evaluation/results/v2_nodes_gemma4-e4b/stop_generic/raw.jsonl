@@ -1,0 +1,200 @@
+{"id": "P02__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P02__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__en__r1", "output": {"enough": false, "missing": "Jurisdiction (which state or country the divorce will take place in)", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction (which state or country the divorce will take place in)\"}"}}
+{"id": "P12__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P12__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P23__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__en__r1", "output": {"enough": false, "missing": "Jurisdiction/Governing Law (e.g., which state's laws apply, or if there are specific matrimonial laws relevant to the parties' nationality/religion)", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction/Governing Law (e.g., which state's laws apply, or if there are specific matrimonial laws relevant to the parties' nationality/religion)\"}"}}
+{"id": "P05__en__r2", "output": {"enough": false, "missing": "Jurisdiction/Governing Law preference (e.g., which state's laws should apply, or if there is a specific legal basis for filing that dictates jurisdiction)", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction/Governing Law preference (e.g., which state's laws should apply, or if there is a specific legal basis for filing that dictates jurisdiction)\"}"}}
+{"id": "P05__en__r3", "output": {"enough": false, "missing": "Jurisdiction/State of residence for filing", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction/State of residence for filing\"}"}}
+{"id": "P05__hi__r1", "output": {"enough": false, "missing": "क्या आप हिंदू विवाह अधिनियम, 1955 के तहत तलाक के लिए आवेदन कर रहे हैं, या कोई अन्य कानून लागू होता है?", "raw": "{\"enough\": false, \"missing\": \"क्या आप हिंदू विवाह अधिनियम, 1955 के तहत तलाक के लिए आवेदन कर रहे हैं, या कोई अन्य कानून लागू होता है?\"}"}}
+{"id": "P05__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__hi-en__r1", "output": {"enough": false, "missing": "Jurisdiction for divorce (e.g., which court has jurisdiction based on residency or matrimonial home)", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction for divorce (e.g., which court has jurisdiction based on residency or matrimonial home)\"}"}}
+{"id": "P05__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__kn__r1", "output": {"enough": false, "missing": "ವಿಚ್ಛೇದನಕ್ಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ನಿಮ್ಮ ಮತ್ತು ನಿಮ್ಮ ಹೆಂಡತಿಯವರ ನಡುವಿನ ವೈವಾಹಿಕ ಸಂಬಂಧದ ಸ್ಥಿತಿ (ಉದಾಹರಣೆಗೆ, ವಿಚ್ಛೇದನ ಪ್ರಕ್ರಿಯೆ ಪ್ರಾರಂಭವಾಗಿದೆಯೇ ಅಥವಾ ಇಲ್ಲವೇ) ಮತ್ತು ನೀವು ಯಾವ ರೀತಿಯ ವಿಚ್ಛೇದನವನ್ನು ಬಯಸುತ್ತೀರಿ (ಉದಾಹರಣೆಗೆ, ಪರಸ್ಪರ ಒಪ್ಪಿಗೆಯಿಂದ ಅಥವಾ ನ್ಯಾಯಾಲಯದ ಮೂಲಕ) ಎಂಬುದು.", "raw": "{\"enough\": false, \"missing\": \"ವಿಚ್ಛೇದನಕ್ಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ನಿಮ್ಮ ಮತ್ತು ನಿಮ್ಮ ಹೆಂಡತಿಯವರ ನಡುವಿನ ವೈವಾಹಿಕ ಸಂಬಂಧದ ಸ್ಥಿತಿ (ಉದಾಹರಣೆಗೆ, ವಿಚ್ಛೇದನ ಪ್ರಕ್ರಿಯೆ ಪ್ರಾರಂಭವಾಗಿದೆಯೇ ಅಥವಾ ಇಲ್ಲವೇ) ಮತ್ತು ನೀವು ಯಾವ ರೀತಿಯ ವಿಚ್ಛೇ"}}
+{"id": "P05__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P05__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__en__r3", "output": {"enough": false, "missing": "Jurisdiction (which country/state the marriage took place in)", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction (which country/state the marriage took place in)\"}"}}
+{"id": "P22__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__hi-en__r3", "output": {"enough": false, "missing": "Is the husband willing to undergo a medical examination, or is there any documentation/evidence of the impotency?", "raw": "{\"enough\": false, \"missing\": \"Is the husband willing to undergo a medical examination, or is there any documentation/evidence of the impotency?\"}"}}
+{"id": "P22__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P22__kn__r3", "output": {"enough": false, "missing": "Is the client seeking divorce under Hindu Marriage Act, 1955, or is she considering other remedies?", "raw": "{\"enough\": false, \"missing\": \"Is the client seeking divorce under Hindu Marriage Act, 1955, or is she considering other remedies?\"}"}}
+{"id": "P29__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P29__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P04__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P10__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__en__r1", "output": {"enough": false, "missing": "Jurisdiction (which country/state the parties reside in)", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction (which country/state the parties reside in)\"}"}}
+{"id": "P19__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi-en__r1", "output": {"enough": false, "missing": "Is the second marriage legally recognized under Hindu law, or is it a religious ceremony only?", "raw": "{\"enough\": false, \"missing\": \"Is the second marriage legally recognized under Hindu law, or is it a religious ceremony only?\"}"}}
+{"id": "P19__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__kn__r1", "output": {"enough": false, "missing": "The specific jurisdiction (state/country) where the marriage took place and where the client resides.", "raw": "{\"enough\": false, \"missing\": \"The specific jurisdiction (state/country) where the marriage took place and where the client resides.\"}"}}
+{"id": "P19__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P19__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__ta__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "P24__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-01__en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-01__en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-01__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-01__en__r4", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-en-05__en__r1", "output": {"enough": false, "missing": "The legal status of the current husband (e.g., is he legally recognized as a father, or is the relationship informal?)", "raw": "{\"enough\": false, \"missing\": \"The legal status of the current husband (e.g., is he legally recognized as a father, or is the relationship informal?)\"}"}}
+{"id": "L-en-05__en__r2", "output": {"enough": false, "missing": "The legal status of the current husband (e.g., is he legally recognized as a father, or is the relationship informal?)", "raw": "{\"enough\": false, \"missing\": \"The legal status of the current husband (e.g., is he legally recognized as a father, or is the relationship informal?)\"}"}}
+{"id": "L-en-05__en__r3", "output": {"enough": false, "missing": "Jurisdiction (which state/country the client resides in)", "raw": "{\"enough\": false, \"missing\": \"Jurisdiction (which state/country the client resides in)\"}"}}
+{"id": "L-en-04__en__r1", "output": {"enough": false, "missing": "The specific jurisdiction (country/state) where the divorce and maintenance order were granted.", "raw": "{\"enough\": false, \"missing\": \"The specific jurisdiction (country/state) where the divorce and maintenance order were granted.\"}"}}
+{"id": "L-en-04__en__r2", "output": {"enough": false, "missing": "The specific jurisdiction (country/state) where the divorce decree was issued.", "raw": "{\"enough\": false, \"missing\": \"The specific jurisdiction (country/state) where the divorce decree was issued.\"}"}}
+{"id": "L-en-04__en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-03__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-03__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-03__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-03__hi__r4", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-06__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-06__hi__r2", "output": {"enough": false, "missing": "पति की ज़मीन-जायदाद (plot) के संबंध में कोई कानूनी दस्तावेज़ (जैसे वसीयत, या संपत्ति का स्वामित्व प्रमाण) उपलब्ध है या नहीं?", "raw": "{\"enough\": false, \"missing\": \"पति की ज़मीन-जायदाद (plot) के संबंध में कोई कानूनी दस्तावेज़ (जैसे वसीयत, या संपत्ति का स्वामित्व प्रमाण) उपलब्ध है या नहीं?\"}"}}
+{"id": "L-hi-06__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-05__hi__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-05__hi__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hi-05__hi__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-02__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-02__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-02__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-02__hi-en__r4", "output": {"enough": false, "missing": "Is there any written documentation or evidence (like a medical report or affidavit) confirming the husband's inability to consummate the marriage?", "raw": "{\"enough\": false, \"missing\": \"Is there any written documentation or evidence (like a medical report or affidavit) confirming the husband's inability to consummate the marriage?\"}"}}
+{"id": "L-hien-07__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-07__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-07__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-04__hi-en__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-04__hi-en__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-hien-04__hi-en__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-ta-08__ta__r1", "output": {"enough": false, "missing": "Is there any mutual agreement or legal document (like a marriage certificate or divorce agreement) that addresses separation or marital obligations?", "raw": "{\"enough\": false, \"missing\": \"Is there any mutual agreement or legal document (like a marriage certificate or divorce agreement) that addresses separation or marital obligations?\"}"}}
+{"id": "L-ta-08__ta__r2", "output": {"enough": false, "missing": "Is there any mutual agreement or legal document (like a marriage certificate) available?", "raw": "{\"enough\": false, \"missing\": \"Is there any mutual agreement or legal document (like a marriage certificate) available?\"}"}}
+{"id": "L-ta-08__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-ta-08__ta__r4", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-ta-10__ta__r1", "output": {"enough": false, "missing": "உறவின் தன்மை மற்றும் சாட்சிகள் (Witnesses to the marriage or cohabitation)", "raw": "{\"enough\": false, \"missing\": \"உறவின் தன்மை மற்றும் சாட்சிகள் (Witnesses to the marriage or cohabitation)\"}"}}
+{"id": "L-ta-10__ta__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-ta-10__ta__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-ta-04__ta__r1", "output": {"enough": false, "missing": "திருமணத்தின் சட்டப்பூர்வமான தன்மை (உதாரணமாக, எந்த நாட்டின்/மாநிலத்தின் சட்டத்தின் கீழ் பதிவு செய்யப்பட்டது)", "raw": "{\"enough\": false, \"missing\": \"திருமணத்தின் சட்டப்பூர்வமான தன்மை (உதாரணமாக, எந்த நாட்டின்/மாநிலத்தின் சட்டத்தின் கீழ் பதிவு செய்யப்பட்டது)\"}"}}
+{"id": "L-ta-04__ta__r2", "output": {"enough": false, "missing": "திருமணத்தின் சட்டப்பூர்வமான இடம் (State/Country)", "raw": "{\"enough\": false, \"missing\": \"திருமணத்தின் சட்டப்பூர்வமான இடம் (State/Country)\"}"}}
+{"id": "L-ta-04__ta__r3", "output": {"enough": false, "missing": "திருமணத்தின் சட்டப்பூர்வமான இடம் (State/Country)", "raw": "{\"enough\": false, \"missing\": \"திருமணத்தின் சட்டப்பூர்வமான இடம் (State/Country)\"}"}}
+{"id": "L-kn-05__kn__r1", "output": {"enough": false, "missing": "ವಿವಾಹದ ಕಾನೂನುಗಳು ಮತ್ತು ಸಂಬಂಧದ ಸ್ವರೂಪ (ಉದಾಹರಣೆಗೆ, ವಿವಾಹದ ಪ್ರಮಾಣಪತ್ರದ ಪ್ರಕಾರ ಕಾನೂನು ಮಾನ್ಯತೆ, ವಿಚ್ಛೇದನ ಪ್ರಕ್ರಿಯೆಗಳು ಇತ್ಯಾದಿ)", "raw": "{\"enough\": false, \"missing\": \"ವಿವಾಹದ ಕಾನೂನುಗಳು ಮತ್ತು ಸಂಬಂಧದ ಸ್ವರೂಪ (ಉದಾಹರಣೆಗೆ, ವಿವಾಹದ ಪ್ರಮಾಣಪತ್ರದ ಪ್ರಕಾರ ಕಾನೂನು ಮಾನ್ಯತೆ, ವಿಚ್ಛೇದನ ಪ್ರಕ್ರಿಯೆಗಳು ಇತ್ಯಾದಿ)\"}"}}
+{"id": "L-kn-05__kn__r2", "output": {"enough": false, "missing": "ವಿವಾಹದ ಕಾನೂನುಗಳು ಮತ್ತು ಸಂಬಂಧದ ಸ್ವರೂಪ (ಉದಾಹರಣೆಗೆ, ವಿವಾಹವು ಕಾನೂನುಬದ್ಧವಾಗಿ ಮಾನ್ಯವಾಗಿದೆಯೇ, ಅಥವಾ ಇದು ಸಾಂಪ್ರದಾಯಿಕ/ಸಾಂಸ್ಕೃತಿಕ ವಿವಾಹವೇ ಎಂಬುದನ್ನು ಸ್ಪಷ್ಟಪಡಿಸುವುದು ಅಗತ್ಯ)", "raw": "{\"enough\": false, \"missing\": \"ವಿವಾಹದ ಕಾನೂನುಗಳು ಮತ್ತು ಸಂಬಂಧದ ಸ್ವರೂಪ (ಉದಾಹರಣೆಗೆ, ವಿವಾಹವು ಕಾನೂನುಬದ್ಧವಾಗಿ ಮಾನ್ಯವಾಗಿದೆಯೇ, ಅಥವಾ ಇದು ಸಾಂಪ್ರದಾಯಿಕ/ಸಾಂಸ್ಕೃತಿಕ ವಿವಾಹವೇ ಎಂಬುದನ್ನು ಸ್ಪಷ್ಟಪಡಿಸುವುದು ಅಗತ್ಯ)\"}"}}
+{"id": "L-kn-05__kn__r3", "output": {"enough": false, "missing": "Is the marriage legally valid under Hindu law, considering the husband's prior marriage (i.e., was the marriage bigamous or voidable)?", "raw": "{\"enough\": false, \"missing\": \"Is the marriage legally valid under Hindu law, considering the husband's prior marriage (i.e., was the marriage bigamous or voidable)?\"}"}}
+{"id": "L-kn-05__kn__r4", "output": {"enough": false, "missing": "ವಿವಾಹದ ಕಾನೂನುಗಳ ಅಡಿಯಲ್ಲಿ, ಮೊದಲ ಹೆಂಡತಿ ಜೀವಂತವಾಗಿದ್ದಾಗ ಎರಡನೇ ವಿವಾಹವು ಕಾನೂನುಬದ್ಧವಾಗಿ ಮಾನ್ಯವಾಗಿದೆಯೇ ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸಲು, ವಿವಾಹದ ಕಾನೂನುಗಳ ನಿರ್ದಿಷ್ಟ ನಿಯಮಗಳು ಮತ್ತು ಆ ಸಂದರ್ಭದ ಕಾನೂನು ಪರಿಸ್ಥಿತಿಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿ ಅಗತ್ಯವಿದೆ.", "raw": "{\"enough\": false, \"missing\": \"ವಿವಾಹದ ಕಾನೂನುಗಳ ಅಡಿಯಲ್ಲಿ, ಮೊದಲ ಹೆಂಡತಿ ಜೀವಂತವಾಗಿದ್ದಾಗ ಎರಡನೇ ವಿವಾಹವು ಕಾನೂನುಬದ್ಧವಾಗಿ ಮಾನ್ಯವಾಗಿದೆಯೇ ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸಲು, ವಿವಾಹದ ಕಾನೂನುಗಳ ನಿರ್ದಿಷ್ಟ ನಿಯಮಗಳು ಮತ್ತು ಆ ಸಂದರ್ಭದ ಕಾ"}}
+{"id": "L-kn-06__kn__r1", "output": {"enough": false, "missing": "ಮದುವೆಯು ಯಾವ ರಾಜ್ಯದಲ್ಲಿ ನಡೆಯಿತು (State of marriage)", "raw": "{\"enough\": false, \"missing\": \"ಮದುವೆಯು ಯಾವ ರಾಜ್ಯದಲ್ಲಿ ನಡೆಯಿತು (State of marriage)\"}"}}
+{"id": "L-kn-06__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-kn-06__kn__r3", "output": {"enough": false, "missing": "ಗಂಡ ಮತ್ತು ಹೆಂಡತಿಯವರ ಸಂಪೂರ್ಣ ಹೆಸರುಗಳು ಮತ್ತು ಹುಟ್ಟಿದ ದಿನಾಂಕಗಳು", "raw": "{\"enough\": false, \"missing\": \"ಗಂಡ ಮತ್ತು ಹೆಂಡತಿಯವರ ಸಂಪೂರ್ಣ ಹೆಸರುಗಳು ಮತ್ತು ಹುಟ್ಟಿದ ದಿನಾಂಕಗಳು\"}"}}
+{"id": "L-kn-08__kn__r1", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-kn-08__kn__r2", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}
+{"id": "L-kn-08__kn__r3", "output": {"enough": true, "missing": "", "raw": "{\"enough\": true, \"missing\": \"\"}"}}

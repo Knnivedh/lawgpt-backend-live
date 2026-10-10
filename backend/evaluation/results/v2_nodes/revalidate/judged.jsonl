@@ -1,4 +1,0 @@
-{"id": "P02__en__r1", "verdict": {"reasks": [], "private": [], "scope_creep": ["state_of_residence"], "acceptable": ["religion", "whether_children_are_involved"]}}
-{"id": "P23__ta__r2", "verdict": {"reasks": ["husband_affair_details"], "private": ["husband_residence_address"], "scope_creep": ["husband_occupation", "client_income"], "acceptable": ["marriage_date"]}}
-{"id": "P29__hi__r3", "verdict": {"reasks": [], "private": [], "scope_creep": ["husband's_current_relationship_status_with_the_other_woman", "husband's_income_and_financial_contributions_to_the_family"], "acceptable": ["whether_the_client_wants_maintenance_or_custody"]}}
-{"id": "P19__en__r1", "verdict": {"reasks": ["marriage_date_with_second_woman"], "private": ["husband_current_residence"], "scope_creep": ["client_husband_marriage_certificate_details"], "acceptable": []}}

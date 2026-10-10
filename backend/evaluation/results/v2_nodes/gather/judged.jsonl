@@ -1,5 +1,0 @@
-{"id": "P01__en", "verdict": {"verdict": "pass", "concise": true, "reason": "The system extraction states the same fact as the expected extraction."}}
-{"id": "P09__en", "verdict": {"verdict": "pass", "concise": true, "reason": "The system extraction captures the same factual information (monthly income of 45,000) as the expected extraction."}}
-{"id": "P17__en", "verdict": {"verdict": "pass", "concise": true, "reason": "The system extraction captures the same factual information as the expected extraction without adding external facts or omitting key details."}}
-{"id": "P25__en", "verdict": {"verdict": "pass", "concise": true, "reason": "The system extraction captures all the facts from the expected extraction (non-payment and the amount of 50,000 rupees) without adding external information."}}
-{"id": "L-hi-01__hi", "verdict": {"verdict": "pass", "concise": true, "reason": "The system extraction accurately captures all facts from the user reply: the negation (no complaint) and the reason (fear), matching the expected extraction."}}
