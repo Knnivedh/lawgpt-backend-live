@@ -42,3 +42,8 @@ backend/evaluation/results/*/generator/frozen_context.json
 # Old evaluation leftovers
 backend/eval_results/
 backend/evaluation.zip
+
+*.db
+*.sqlite
+.env
+__pycache__/

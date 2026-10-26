@@ -147,7 +147,7 @@ def _search_texts(combined_query: str, detected_language: str) -> Tuple[str, str
 def connect_and_load():
     """Connect to Milvus using URI + token and load collection."""
     try:
-        connections.connect(alias="default", uri=MILVUS_URI, token=MILVUS_TOKEN)
+        connections.connect(alias="default", uri=MILVUS_URI, token=MILVUS_TOKEN, timeout=1.0)
         loaded_collection = Collection(COLLECTION_NAME)
         loaded_collection.load()
         print(f"Connected to Milvus collection: {COLLECTION_NAME}")
@@ -161,39 +161,101 @@ collection = connect_and_load()
 
 _keyword_index: Optional[KeywordIndex] = None
 _keyword_index_lock = threading.Lock()
+_parent_store: Dict[int, Dict] = {}
 
 
 def _get_keyword_index() -> Optional[KeywordIndex]:
-    """Build the BM25 index over parent documents on first use (one Milvus scan)."""
-    global _keyword_index
-    if _keyword_index is not None or not collection:
+    """Build the BM25 index over parent documents on first use (Milvus or local chunked files)."""
+    global _keyword_index, _parent_store
+    if _keyword_index is not None:
         return _keyword_index
     with _keyword_index_lock:
         if _keyword_index is not None:
             return _keyword_index
         started = time.time()
         index = KeywordIndex()
+
+        if collection is not None:
+            try:
+                iterator = collection.query_iterator(
+                    expr="is_parent == true",
+                    output_fields=["parent_id", "title", "content", "category", "citations", "url", "query_text"],
+                    batch_size=500,
+                )
+                while True:
+                    batch = iterator.next()
+                    if not batch:
+                        break
+                    for row in batch:
+                        pid = row["parent_id"]
+                        title = row.get("title") or ""
+                        content = row.get("content") or ""
+                        cat = row.get("category") or ""
+                        _parent_store[pid] = {
+                            "parent_id": pid,
+                            "title": title,
+                            "content": content,
+                            "category": cat,
+                            "citations": row.get("citations", ""),
+                            "url": row.get("url", ""),
+                            "query_text": row.get("query_text", ""),
+                        }
+                        index.add(pid, title, content, cat)
+                iterator.close()
+                index.finalize()
+                _keyword_index = index
+                logger.info("Keyword index built from Milvus: %d documents in %.1fs", len(index), time.time() - started)
+                return _keyword_index
+            except Exception as e:
+                logger.warning("Milvus query_iterator failed; falling back to local files: %s", e)
+
+        # Local fallback from data/chunked/*.json
         try:
-            iterator = collection.query_iterator(
-                expr="is_parent == true",
-                output_fields=["parent_id", "title", "content", "category"],
-                batch_size=500,
-            )
-            while True:
-                batch = iterator.next()
-                if not batch:
-                    break
-                for row in batch:
-                    index.add(row["parent_id"], row.get("title") or "", row.get("content") or "",
-                              row.get("category") or "")
-            iterator.close()
+            import json
+            from pathlib import Path
+            base_dir = Path(__file__).resolve().parent.parent
+            chunk_files = [
+                base_dir / "data" / "chunked" / "family_law_chunks.json",
+                base_dir / "data" / "chunked" / "family_law_2_chunks.json",
+            ]
+            loaded_count = 0
+            for chunk_file in chunk_files:
+                if not chunk_file.exists():
+                    continue
+                with open(chunk_file, "r", encoding="utf-8") as cf:
+                    chunks_data = json.load(cf)
+                is_law_cat = "2" in chunk_file.name
+                default_cat = "family_law_2" if is_law_cat else "family_law"
+                for item in chunks_data:
+                    meta = item.get("metadata", {})
+                    if meta.get("is_parent"):
+                        pid = meta.get("parent_id")
+                        if pid is None:
+                            continue
+                        title = meta.get("title") or ""
+                        content = item.get("content") or ""
+                        cat = meta.get("category") or default_cat
+                        citations = meta.get("citations") or []
+                        url = meta.get("url") or ""
+                        query_txt = meta.get("query-text") or meta.get("query_text") or ""
+                        _parent_store[pid] = {
+                            "parent_id": pid,
+                            "title": title,
+                            "content": content,
+                            "category": cat,
+                            "citations": citations,
+                            "url": url,
+                            "query_text": query_txt,
+                        }
+                        index.add(pid, title, content, cat)
+                        loaded_count += 1
+            index.finalize()
+            _keyword_index = index
+            logger.info("✅ Keyword index built from local chunked data: %d parents in %.1fs", loaded_count, time.time() - started)
+            return _keyword_index
         except Exception as e:
-            logger.warning("Keyword index build failed; using vector search only: %s", e)
+            logger.error("Failed to build local keyword index: %s", e, exc_info=True)
             return None
-        index.finalize()
-        _keyword_index = index
-        logger.info("Keyword index built: %d documents in %.1fs", len(index), time.time() - started)
-        return _keyword_index
 
 
 def _law_limit_for_context() -> int:
@@ -296,7 +358,7 @@ def _expand_to_parents(child_chunks: List[Dict]) -> List[Dict]:
     the generator sees complete original context instead of a truncated piece
     it would otherwise have to fill in gaps for on its own.
     """
-    if not child_chunks or not collection:
+    if not child_chunks:
         return child_chunks
 
     # Input order is the ranking (vector score, or the merged order in hybrid
@@ -314,16 +376,20 @@ def _expand_to_parents(child_chunks: List[Dict]) -> List[Dict]:
         return child_chunks
 
     ids_expr = ", ".join(str(pid) for pid in ranked_parent_ids)
-    try:
-        parent_rows = collection.query(
-            expr=f"is_parent == true and parent_id in [{ids_expr}]",
-            output_fields=OUTPUT_FIELDS,
-        )
-    except Exception as e:
-        print(f"Parent expansion query failed, falling back to child chunks: {e}")
-        return [best_by_parent[pid] for pid in ranked_parent_ids if best_by_parent[pid].get("content")]
+    parent_rows = []
+    if collection is not None:
+        try:
+            parent_rows = collection.query(
+                expr=f"is_parent == true and parent_id in [{ids_expr}]",
+                output_fields=OUTPUT_FIELDS,
+            )
+        except Exception as e:
+            print(f"Parent expansion query failed, falling back to parent_store: {e}")
 
     parent_by_id = {row.get("parent_id"): row for row in parent_rows}
+    for pid in ranked_parent_ids:
+        if pid not in parent_by_id and pid in _parent_store:
+            parent_by_id[pid] = _parent_store[pid]
 
     expanded = []
     for parent_id in ranked_parent_ids:
@@ -494,12 +560,64 @@ def retrieve_documents(state: FamilyLawState) -> Dict:
     - 3 law/act documents by default, or 5 when the configured context window is large.
     """
     combined_query = _build_retrieval_text(state)
-
-    if not collection:
-        return {"retrieved_chunks": [], "sources": []}
-
     detected_language = state.get("detected_language") or "en"
     embed_text, keyword_text = _search_texts(combined_query, detected_language)
+
+    if not collection:
+        index = _get_keyword_index()
+        if index is not None:
+            case_limit = settings.retrieval_cases_top_k
+            law_limit = _law_limit_for_context()
+            case_hits = index.search(keyword_text, limit=case_limit, categories=settings.retrieval_case_categories)
+            if not case_hits:
+                case_hits = index.search(keyword_text, limit=case_limit)
+            law_hits = index.search(keyword_text, limit=law_limit, categories=settings.retrieval_law_categories)
+            if not law_hits:
+                law_hits = index.search(keyword_text, limit=law_limit)
+
+            case_chunks = [
+                {
+                    "content": (_parent_store.get(pid, {}).get("content") or "")[:600],
+                    "score": min(float(score) / 10.0, 0.99),
+                    "metadata": {
+                        "parent_id": pid,
+                        "title": _parent_store.get(pid, {}).get("title"),
+                        "url": _parent_store.get(pid, {}).get("url"),
+                        "category": _parent_store.get(pid, {}).get("category"),
+                        "citations": _parent_store.get(pid, {}).get("citations"),
+                    },
+                    "retrieval_group": "legal_case",
+                    "matched_by": "keyword",
+                }
+                for pid, score in case_hits
+            ]
+            law_chunks = [
+                {
+                    "content": (_parent_store.get(pid, {}).get("content") or "")[:600],
+                    "score": min(float(score) / 10.0, 0.99),
+                    "metadata": {
+                        "parent_id": pid,
+                        "title": _parent_store.get(pid, {}).get("title"),
+                        "url": _parent_store.get(pid, {}).get("url"),
+                        "category": _parent_store.get(pid, {}).get("category"),
+                        "citations": _parent_store.get(pid, {}).get("citations"),
+                    },
+                    "retrieval_group": "law_or_act",
+                    "matched_by": "keyword",
+                }
+                for pid, score in law_hits
+            ]
+            for chunk in case_chunks:
+                chunk["retrieval_group"] = "legal_case"
+            for chunk in law_chunks:
+                chunk["retrieval_group"] = "law_or_act"
+            expanded_case_chunks = _expand_to_parents(case_chunks)
+            expanded_law_chunks = _expand_to_parents(law_chunks)
+            retrieved_chunks = _dedupe_chunks(expanded_case_chunks + expanded_law_chunks)
+            sources = _sources_from_chunks(retrieved_chunks)
+            logger.info("✅ Retrieved offline BM25 chunks: %d case, %d law (total %d)", len(case_chunks), len(law_chunks), len(retrieved_chunks))
+            return {"retrieved_chunks": retrieved_chunks, "sources": sources}
+        return {"retrieved_chunks": [], "sources": []}
 
     # One space between prefix and question whether or not the setting kept its
     # trailing space (.env files and hosting dashboards often strip it).

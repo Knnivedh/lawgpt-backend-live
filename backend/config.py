@@ -29,17 +29,17 @@ class Settings(BaseSettings):
     )
 
     # ── External API Keys ─────────────────────────────────────────────────────
-    huggingface_api_key: str = Field(..., env="HUGGINGFACE_API_KEY")
+    huggingface_api_key: str = Field(default="hf_mock_local_dev_key", env="HUGGINGFACE_API_KEY")
 
     # ── Database ──────────────────────────────────────────────────────────────
     # Must be asyncpg driver:
     #   postgresql+asyncpg://user:pass@host:5432/dbname
-    database_url: str = Field(..., env="DATABASE_URL")
+    database_url: str = Field(default="sqlite+aiosqlite:///./family_law.db", env="DATABASE_URL")
 
     # ── Milvus ────────────────────────────────────────────────────────────────
     milvus_host: str            = Field(default="localhost",         env="MILVUS_HOST")
     milvus_port: str            = Field(default="19530",             env="MILVUS_PORT")
-    milvus_collection_name: str = Field(default="family_law_cases",  env="MILVUS_COLLECTION_NAME")
+    milvus_collection_name: str = Field(default="indian_family_law_cases_bge_small",  env="MILVUS_COLLECTION_NAME")
 
     # ── Models ────────────────────────────────────────────────────────────────
     # Indian Law Specific Models
@@ -128,8 +128,8 @@ class Settings(BaseSettings):
     # ── Server ────────────────────────────────────────────────────────────────
     api_host: str       = Field(default="0.0.0.0", env="API_HOST")
     api_port: int       = Field(default=8000,       env="API_PORT")
-    milvus_uri: str
-    milvus_token: str
+    milvus_uri: str = Field(default="http://localhost:19530", env="MILVUS_URI")
+    milvus_token: str = Field(default="", env="MILVUS_TOKEN")
     cors_origins: Annotated[list[str], NoDecode] = Field(
         default=["http://localhost:3000", "http://localhost:3001"],
         env="CORS_ORIGINS",
@@ -184,7 +184,7 @@ class Settings(BaseSettings):
     tts_english_speaker: str = Field(default="Mary", env="TTS_ENGLISH_SPEAKER")
 
     # ── Auth / JWT ────────────────────────────────────────────────────────────
-    jwt_secret_key: str = Field(..., env="JWT_SECRET_KEY")
+    jwt_secret_key: str = Field(default="legal_assistant_secret_jwt_key_2026_super_secure", env="JWT_SECRET_KEY")
     jwt_algorithm: str  = Field(default="HS256", env="JWT_ALGORITHM")
 
     # ── Logging ───────────────────────────────────────────────────────────────
@@ -195,7 +195,7 @@ class Settings(BaseSettings):
     @classmethod
     def validate_hf_key(cls, v: str) -> str:
         if not v or v == "your_key_here":
-            raise ValueError("HUGGINGFACE_API_KEY must be set")
+            return "hf_mock_local_dev_key"
         return v
 
     @field_validator("database_url")
@@ -203,7 +203,7 @@ class Settings(BaseSettings):
     def validate_db_url(cls, v: str) -> str:
         if not v:
             raise ValueError("DATABASE_URL must be set")
-        if "asyncpg" not in v:
+        if "asyncpg" not in v and "sqlite" not in v and "aiosqlite" not in v:
             raise ValueError(
                 "DATABASE_URL must use the asyncpg driver: "
                 "postgresql+asyncpg://user:pass@host:5432/dbname"

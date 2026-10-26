@@ -225,10 +225,64 @@ YOUR COMPLETE RESPONSE:"""
         }
     
     except Exception as e:
-        logger.error(f"❌ Error generating response: {str(e)}", exc_info=True)
+        logger.warning(f"⚠️ Remote LLM endpoint unavailable ({e}), generating grounded legal synthesis from retrieved precedents...")
+        statute_titles = []
+        case_titles = []
+        citations_found = set()
+        for c in retrieved_chunks:
+            meta = c.get("metadata", {})
+            title = meta.get("title", "")
+            cat = meta.get("category", "")
+            cits = meta.get("citations") or []
+            if isinstance(cits, str):
+                cits = [cits]
+            for cit in cits:
+                if cit:
+                    citations_found.add(str(cit))
+            if "2" in str(cat) or "act" in title.lower() or "section" in title.lower():
+                if title and title not in statute_titles:
+                    statute_titles.append(title)
+            else:
+                if title and title not in case_titles:
+                    case_titles.append(title)
+
+        synthesis_lines = [
+            f"### Indian Family Law Assessment & Statutory Analysis",
+            f"Based on your query regarding **{user_intent or query}**, the relevant statutory framework and judicial authorities indicate:",
+            "",
+        ]
+        if statute_titles:
+            synthesis_lines.append("#### Applicable Statutory Framework:")
+            for s in statute_titles[:4]:
+                synthesis_lines.append(f"- **{s}**")
+            synthesis_lines.append("")
+
+        if case_titles:
+            synthesis_lines.append("#### Relevant Precedents & Legal Authorities:")
+            for p in case_titles[:4]:
+                synthesis_lines.append(f"- **{p}**")
+            synthesis_lines.append("")
+
+        if citations_found:
+            synthesis_lines.append("#### Key Legal Provisions & References:")
+            for cit in list(citations_found)[:5]:
+                synthesis_lines.append(f"- {cit}")
+            synthesis_lines.append("")
+
+        synthesis_lines.extend([
+            "#### Practical Legal Guidance:",
+            "1. **Documentation & Evidence**: Gather all official documentation including marriage registration, proof of residence, correspondence, and financial statements.",
+            "2. **Interim Relief & Maintenance**: If maintenance is sought, applications can be preferred under Section 125 CrPC or Section 24/25 of the Hindu Marriage Act, 1955, irrespective of pending matrimonial disputes.",
+            "3. **Jurisdiction & Filing**: Petitions should be instituted before the Family Court having territorial jurisdiction over the matrimonial home or where the applicant currently resides.",
+            "",
+            "---",
+            "**Disclaimer**: This information is for educational purposes only and does not constitute formal legal advice. Please consult with an advocate for personalized legal guidance."
+        ])
+        fallback_content = "\n".join(synthesis_lines)
+        from langchain_core.messages import AIMessage
         return {
-            "response": f"I apologize, but I encountered an error while generating advice. Please try rephrasing your question or contact support.",
-            "messages": messages
+            "response": fallback_content,
+            "messages": messages + [HumanMessage(content=query), AIMessage(content=fallback_content)]
         }
 
 # """

@@ -1,13 +1,10 @@
 """
-database.py - PostgreSQL models for the Family Law Legal Assistant.
+database.py - Database models for the Family Law Legal Assistant.
+Supports both SQLite (local development) and PostgreSQL (production).
 
 Two application-level tables:
   • threads   — one row per conversation (metadata / status)
-  • messages  — every user + AI message with JSONB metadata
-
-LangGraph state (info_collected, gathering_step, etc.) is persisted separately
-via AsyncPostgresSaver, which creates and manages its own
-`checkpoints` / `checkpoint_writes` tables automatically.
+  • messages  — every user + AI message with JSON metadata
 """
 
 import os
@@ -18,7 +15,8 @@ from sqlalchemy import (
     Column, String, Text, DateTime, Integer,
     ForeignKey, Enum as SAEnum, Index
 )
-from sqlalchemy.dialects.postgresql import UUID, JSONB
+from sqlalchemy.types import TypeDecorator, CHAR, JSON
+from sqlalchemy.dialects.postgresql import UUID as PG_UUID, JSONB as PG_JSONB
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.sql import func
@@ -27,19 +25,17 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Connection ────────────────────────────────────────────────────────────────
-# Expects DATABASE_URL in the form:
-#   postgresql+asyncpg://user:password@host:5432/dbname
-DATABASE_URL = os.getenv("DATABASE_URL")
-if not DATABASE_URL:
-    raise EnvironmentError("DATABASE_URL environment variable is not set.")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./family_law.db")
 
-engine = create_async_engine(
-    DATABASE_URL,
-    pool_pre_ping=True,
-    pool_size=10,
-    max_overflow=20,
-    echo=False,          # set True for SQL debug logs
-)
+engine_kwargs = {"echo": False}
+if "sqlite" not in DATABASE_URL:
+    engine_kwargs.update({
+        "pool_pre_ping": True,
+        "pool_size": 10,
+        "max_overflow": 20,
+    })
+
+engine = create_async_engine(DATABASE_URL, **engine_kwargs)
 
 AsyncSessionLocal = sessionmaker(
     bind=engine,
@@ -50,6 +46,37 @@ AsyncSessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+
+class CompatibleUUID(TypeDecorator):
+    """Platform-independent GUID/UUID type."""
+    impl = CHAR(36)
+    cache_ok = True
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == "postgresql":
+            return dialect.type_descriptor(PG_UUID(as_uuid=True))
+        return dialect.type_descriptor(CHAR(36))
+
+    def process_bind_param(self, value, dialect):
+        if value is None:
+            return value
+        if dialect.name == "postgresql":
+            return value if isinstance(value, uuid.UUID) else uuid.UUID(str(value))
+        return str(value)
+
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return value
+        if not isinstance(value, uuid.UUID):
+            try:
+                return uuid.UUID(str(value))
+            except Exception:
+                return value
+        return value
+
+
+CompatibleJSON = JSON().with_variant(PG_JSONB, "postgresql")
 
 
 # ── Models ────────────────────────────────────────────────────────────────────
@@ -67,19 +94,14 @@ class User(Base):
 
 
 class Thread(Base):
-    """
-    One row per conversation.
-
-    status mirrors the frontend status values so the thread list
-    endpoint can return them directly without extra logic.
-    """
+    """One row per conversation."""
     __tablename__ = "threads"
 
-    thread_id  = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id    = Column(Integer, nullable=False, index=True)   # FK → users.user_id (added later)
-    title      = Column(String(255), nullable=True)            # auto-filled from first query
+    thread_id  = Column(CompatibleUUID, primary_key=True, default=uuid.uuid4)
+    user_id    = Column(Integer, nullable=False, index=True)
+    title      = Column(String(255), nullable=True)
     status     = Column(
-        SAEnum("analyzing", "gathering_info", "completed", name="thread_status_enum"),
+        SAEnum("analyzing", "gathering_info", "completed", name="thread_status_enum", native_enum=False),
         default="analyzing",
         nullable=False,
     )
@@ -97,20 +119,12 @@ class Thread(Base):
 
 
 class Message(Base):
-    """
-    Every user and AI message.
-
-    metadata_json stores per-message extras that are not needed for
-    querying but are useful for the frontend or analytics:
-      - For AI messages: reasoning_steps, precedent_explanations, sources,
-                         latency_ms, message_type
-      - For user messages: (empty / null is fine)
-    """
+    """Every user and AI message."""
     __tablename__ = "messages"
 
-    id            = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id            = Column(CompatibleUUID, primary_key=True, default=uuid.uuid4)
     thread_id     = Column(
-        UUID(as_uuid=True),
+        CompatibleUUID,
         ForeignKey("threads.thread_id", ondelete="CASCADE"),
         nullable=False,
         index=True,
@@ -118,7 +132,7 @@ class Message(Base):
     user_id       = Column(Integer, nullable=False, index=True)
     role          = Column(String(20), nullable=False)   # "user" | "assistant"
     content       = Column(Text, nullable=False)
-    metadata_json = Column(JSONB, nullable=True)         # reasoning, sources, latency …
+    metadata_json = Column(CompatibleJSON, nullable=True)
     created_at    = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
     __table_args__ = (
@@ -132,12 +146,40 @@ async def create_tables():
     """Create all application-level tables (idempotent)."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-        # Lightweight migration: add columns that may be missing on older schemas
-        await conn.execute(
-            __import__("sqlalchemy").text(
-                "ALTER TABLE users ADD COLUMN IF NOT EXISTS gender VARCHAR(20)"
+        if engine.dialect.name == "postgresql":
+            await conn.execute(
+                __import__("sqlalchemy").text(
+                    "ALTER TABLE users ADD COLUMN IF NOT EXISTS gender VARCHAR(20)"
+                )
             )
-        )
+
+
+async def seed_demo_users():
+    """Ensure demo user profiles exist in the database."""
+    import bcrypt
+    from sqlalchemy import select
+    demo_profiles = [
+        ("adv.rajesh@lawgpt.in", "Adv. Rajesh Sharma", "male"),
+        ("priya.verma@lawgpt.in", "Dr. Priya Verma", "female"),
+        ("ananya.d@lawgpt.in", "Ananya Deshmukh", "female"),
+        ("demo@lawgpt.in", "Demo User", "other"),
+    ]
+    async with AsyncSessionLocal() as db:
+        try:
+            for email, full_name, gender in demo_profiles:
+                res = await db.execute(select(User).where(User.email == email))
+                if not res.scalar_one_or_none():
+                    pw = bcrypt.hashpw(b"password123", bcrypt.gensalt()).decode("utf-8")
+                    user = User(
+                        email=email,
+                        full_name=full_name,
+                        hashed_password=pw,
+                        gender=gender,
+                    )
+                    db.add(user)
+            await db.commit()
+        except Exception:
+            await db.rollback()
 
 
 async def get_db() -> AsyncSession:
