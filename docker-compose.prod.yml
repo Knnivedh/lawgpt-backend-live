@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # ── 1. Nginx Reverse Proxy with Let's Encrypt SSL ───────────────────────────
+  reverse-proxy:
+    image: jonasal/nginx-certbot:latest
+    container_name: legal-nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - CERTBOT_EMAIL=admin@yourdomain.com
+    volumes:
+      - ./nginx_conf:/etc/nginx/user_conf.d:ro
+      - certbot_letsencrypt:/etc/letsencrypt
+    depends_on:
+      - frontend
+      - backend
+
+  # ── 2. Next.js Web Frontend (Production) ────────────────────────────────────
+  frontend:
+    build:
+      context: ../ai-legal-assistance-system/vercel_frontend
+      dockerfile: Dockerfile
+    container_name: legal-frontend
+    restart: always
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=https://api.yourdomain.com
+    expose:
+      - "3000"
+
+  # ── 3. FastAPI + LangGraph Backend (Production) ─────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: legal-backend
+    restart: always
+    env_file:
+      - ./backend/.env.production
+    expose:
+      - "8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - backend_logs:/app/logs
+      - backend_data:/app/data
+
+  # ── 4. PostgreSQL Database (State Checkpointer) ─────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: legal-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: legal_admin
+      POSTGRES_PASSWORD: StrongProductionPassword123!
+      POSTGRES_DB: family_law_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U legal_admin -d family_law_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    expose:
+      - "5432"
+
+volumes:
+  postgres_data:
+  backend_logs:
+  backend_data:
+  certbot_letsencrypt:

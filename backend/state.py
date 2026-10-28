@@ -29,20 +29,36 @@ class FamilyLawState(MessagesState):
 
     # ── Analysis phase ────────────────────────────────────────────────────────
     root_query:            Optional[str]
+    query_type:            Optional[str]   # general_question | personal_situation | unclear
     user_intent:           Optional[str]
     analysis_complete:     bool
     needs_clarification:   bool
     clarification_question: Optional[str]
+    # Text the user has sent while intent was still unclear; combined with the
+    # next reply so the analyzer sees the whole story, not just the last line.
+    clarification_context: Optional[str]
+    clarification_count:   int
 
     # ── Information collection phase ──────────────────────────────────────────
     in_gathering_phase:     bool
     has_sufficient_info:    bool
     info_collected:         Dict[str, str]
     info_needed_list:       List[Dict[str, str]]
+    # Model-written plain-English label per field, shown to the client in the UI.
+    field_labels:           Dict[str, str]
     needs_more_info:        bool
     follow_up_question:     Optional[str]
     gathering_step:         int
     current_question_target: Optional[str]
+    # True between asking a follow-up question and reading the user's reply.
+    # The reply is always the next turn's `query`, so no message counting.
+    awaiting_answer:        bool
+    questions_asked:        int
+    asked_questions:        List[str]
+
+    # Text extracted from a document the client attached (judgment, petition,
+    # notice ...). Read by the analyzer, gatherer and generator for the whole thread.
+    document_context:       Optional[str]
 
     # ── Re-validation ─────────────────────────────────────────────────────────
     revalidation_mode:  bool

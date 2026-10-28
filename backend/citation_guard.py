@@ -110,6 +110,8 @@ _GENERIC_ACT_RE = re.compile(
 _ACT_LEADING_JUNK = {
     "under", "the", "as", "per", "in", "of", "and", "see", "by", "both", "also", "section", "sections",
     "this", "that", "said", "to", "from", "on", "for", "with", "further", "however", "act",
+    "while", "since", "because", "although", "though", "if", "when", "once", "unless", "whether", "such",
+    "any", "an", "a", "our", "your", "their", "its", "it", "but", "so", "then", "thus", "therefore", "now",
 }
 
 _PARTY = r"[A-Z][A-Za-z.'’-]*(?:\s+(?:[A-Z][A-Za-z.'’-]*|of|and|the|&)){0,5}"
@@ -179,7 +181,9 @@ def _generic_act_mentions(text: str, known: List[_Mention]) -> List[_Mention]:
         words = m.group(1).split()
         while len(words) > 1 and words[0].lower() in _ACT_LEADING_JUNK:
             words = words[1:]
-        if len(words) >= 3:  # at least two name words before "Act"
+        # at least two real name words before "Act" ("While the Act" has none)
+        name_words = [w for w in words[:-1] if w.lower() not in _ACT_LEADING_JUNK]
+        if len(words) >= 3 and len(name_words) >= 2:
             mentions.append(_Mention(m.start(), m.end(), " ".join(words)))
     return mentions
 
@@ -362,15 +366,21 @@ def sanitize_citations(
 
     for line in answer.split("\n"):
         kept = []
-        for sentence in split_sentences(line):
+        drop_line = False
+        is_list_item = bool(re.match(r"^\s*(?:\d+[.)]|[-*•])\s", line))
+        for position, sentence in enumerate(split_sentences(line)):
             issues = find_issues(sentence, context)
             blocking = [label for kind, label in issues if kind in remove_kinds]
             if blocking:
                 removed.extend(blocking)
+                # A list item that opens with the unsupported claim: what follows only
+                # elaborates it, so keeping the tail would leave an orphan sentence.
+                if position == 0 and is_list_item:
+                    drop_line = True
             else:
                 flagged.extend(label for _, label in issues)
                 kept.append(sentence)
-        kept_lines.append(" ".join(kept))
+        kept_lines.append("" if drop_line else " ".join(kept))
 
     removed = sorted(set(removed))
     flagged = sorted(set(flagged))
@@ -378,6 +388,8 @@ def sanitize_citations(
         return GuardResult(answer, [], [])
 
     cleaned = re.sub(r"\n{3,}", "\n\n", "\n".join(kept_lines)).strip() if removed else answer.strip()
+    if removed:
+        cleaned = renumber_lists(cleaned)
     if not cleaned:
         return GuardResult(answer, [], [])
 
@@ -388,6 +400,40 @@ def sanitize_citations(
         items = "; ".join(label.split(" ", 1)[1] for label in flagged)
         cleaned += "\n\n" + FLAGGED_NOTE[lang].format(items=items)
     return GuardResult(cleaned, removed, flagged)
+
+
+_NUMBERED_ITEM = re.compile(r"^(\s*)(\d+)([.)])(\s+)")
+_BLOCK_BREAK = re.compile(r"^\s*(?:\*\*|#|---)")
+
+
+def renumber_lists(text: str) -> str:
+    """
+    Close the gap left in a numbered list when the guard removed an item (1, 2, 4, 5 -> 1, 2, 3, 4).
+
+    A list is a run of numbered lines; a heading, bold title or rule starts a new one.
+    Lists that are already consecutive are left alone.
+    """
+    out, run, expected = [], [], None
+
+    def flush():
+        nonlocal run, expected
+        numbers = [int(m.group(2)) for _, m in run]
+        # A run that opens at 2 or 3 lost its first item(s) to the guard; one that skips numbers lost a middle one.
+        start = 1 if numbers and numbers[0] in (2, 3) else (numbers[0] if numbers else 1)
+        if numbers and numbers != list(range(start, start + len(numbers))):
+            for offset, (idx, m) in enumerate(run):
+                out[idx] = f"{m.group(1)}{start + offset}{m.group(3)}{m.group(4)}" + out[idx][m.end():]
+        run, expected = [], None
+
+    for line in text.split("\n"):
+        if _BLOCK_BREAK.match(line):
+            flush()
+        m = _NUMBERED_ITEM.match(line)
+        out.append(line)
+        if m:
+            run.append((len(out) - 1, m))
+    flush()
+    return "\n".join(out)
 
 
 def trim_to_last_sentence(text: str) -> str:

@@ -79,14 +79,9 @@ def analyze_reasoning(state: FamilyLawState) -> Dict:
         # Initialize explainer
         explainer = DynamicReasoningExplainer()
         
-        # Step 1: Generate reasoning chain
+        # Step 1: Generate reasoning chain (use fast deterministic extraction for low latency)
         logger.info("📊 Generating reasoning chain...")
-        reasoning_steps_objects = explainer.generate_reasoning_chain(
-            user_intent=user_intent,
-            info_collected=info_collected,
-            response=response,
-            retrieved_chunks=retrieved_chunks
-        )
+        reasoning_steps_objects = explainer._fallback_reasoning(response, retrieved_chunks)
         
         # Convert to dict format
         reasoning_steps = [
@@ -105,15 +100,12 @@ def analyze_reasoning(state: FamilyLawState) -> Dict:
         
         logger.info(f"   ✓ Generated {len(reasoning_steps)} reasoning steps")
         
-        # Step 2: Analyze precedent usage
+        # Step 2: Analyze precedent usage (fast heuristic alignment without 60s LLM stall)
         logger.info("📚 Analyzing precedent usage...")
-        case_summary = create_case_summary(info_collected, user_intent)
-        
-        precedent_usages = explainer.generate_all_precedent_explanations(
-            case_summary=case_summary,
-            retrieved_chunks=retrieved_chunks,
-            response=response
-        )
+        precedent_usages = [
+            explainer._fallback_precedent_usage(chunk, i)
+            for i, chunk in enumerate(retrieved_chunks[:5])
+        ]
         
         # Convert to dict format
         precedent_explanations = [

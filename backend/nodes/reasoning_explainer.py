@@ -14,7 +14,8 @@ import logging
 import re
 from pydantic import BaseModel
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from llm_utils import invoke_llm
+import re
 from citation_guard import excerpt_in_source
 import os
 
@@ -162,22 +163,8 @@ CRITICAL RULES:
 YOUR ANALYSIS (JSON only):"""
 
     def __init__(self, huggingface_api_key: str = None):
-        """Initialize with LLM for analysis."""
-        from config import get_settings
-        settings = get_settings()
-        
-        api_key = huggingface_api_key or settings.huggingface_api_key
-        
-        self.llm = ChatHuggingFace(
-            llm=HuggingFaceEndpoint(
-                repo_id=settings.llm_model,
-                huggingfacehub_api_token=api_key,
-                task="text-generation",
-                max_new_tokens=2048,
-                temperature=0.3,  # Lower temp for more analytical reasoning
-            )
-        )
-    
+        """Model calls go through llm_utils.invoke_llm (LLM_CHAIN)."""
+
     def generate_reasoning_chain(
         self,
         user_intent: str,
@@ -210,8 +197,9 @@ YOUR ANALYSIS (JSON only):"""
                 HumanMessage(content=prompt)
             ]
             
-            llm_response = self.llm.invoke(conversation)
-            response_text = llm_response.content.strip()
+            llm_response = invoke_llm(conversation, purpose="main", max_tokens=1500, temperature=0.2, deadline=60)
+            raw_c = re.sub(r'<think>.*?</think>', '', llm_response.content, flags=re.DOTALL).strip()
+            response_text = raw_c
             
             # Parse JSON
             reasoning_data = self._extract_json(response_text)
@@ -271,8 +259,9 @@ YOUR ANALYSIS (JSON only):"""
                 HumanMessage(content=prompt)
             ]
             
-            llm_response = self.llm.invoke(conversation)
-            response_text = llm_response.content.strip()
+            llm_response = invoke_llm(conversation, purpose="main", max_tokens=1500, temperature=0.2, deadline=60)
+            raw_c = re.sub(r'<think>.*?</think>', '', llm_response.content, flags=re.DOTALL).strip()
+            response_text = raw_c
             
             # Parse JSON
             usage_data = self._extract_json(response_text)
@@ -318,15 +307,18 @@ YOUR ANALYSIS (JSON only):"""
         
         explanations = []
         
-        # Analyze top 5 precedents
+        # Analyze top 2 precedents with LLM, use fallback heuristic for others for fast response
         for i, chunk in enumerate(retrieved_chunks[:5]):
             try:
-                usage = self.analyze_precedent_usage(
-                    precedent=chunk,
-                    precedent_index=i,
-                    case_summary=case_summary,
-                    response=response
-                )
+                if i < 2:
+                    usage = self.analyze_precedent_usage(
+                        precedent=chunk,
+                        precedent_index=i,
+                        case_summary=case_summary,
+                        response=response
+                    )
+                else:
+                    usage = self._fallback_precedent_usage(chunk, i)
                 explanations.append(usage)
                 
                 logger.info(f"   Precedent {i+1}: "

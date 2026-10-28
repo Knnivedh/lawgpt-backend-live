@@ -8,11 +8,13 @@ Key changes from the local-file version:
   3. All node logic is unchanged.
 """
 
+from langchain_core.messages import AIMessage
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 
+from config import get_settings
 from state import FamilyLawState
-from nodes.query_analyzer import QueryAnalyzer, normalize_info_needed_list
+from nodes.query_analyzer import QueryAnalyzer, gap_is_known, normalize_info_needed_list
 from nodes.information_gatherer import InformationGatherer
 from nodes.retriever import retrieve_documents
 from nodes.generator import generate_response
@@ -23,8 +25,26 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# After this many clarification questions in a row, answer with what we have
+# instead of asking "could you clarify?" forever.
+MAX_CLARIFICATION_ROUNDS = 2
 
-# ── Node functions (unchanged logic) ─────────────────────────────────────────
+DEFAULT_CLARIFICATION_QUESTION = (
+    "Could you tell me a little more about your situation? For example, is this about "
+    "divorce, maintenance, child custody, domestic violence, dowry or property?"
+)
+
+
+def _merge_labels(state, needed):
+    """Remember the model-written label of every field asked about."""
+    labels = dict(state.get("field_labels") or {})
+    for item in needed or []:
+        if item.get("label"):
+            labels[item["field"]] = item["label"]
+    state["field_labels"] = labels
+
+
+# ── Node functions ────────────────────────────────────────────────────────────
 
 @log_node_execution("analyze_query")
 def analyze_query_node(state: FamilyLawState) -> FamilyLawState:
@@ -41,24 +61,45 @@ def analyze_query_node(state: FamilyLawState) -> FamilyLawState:
         return state
 
     try:
-        logger.info(f"🔍 === {'RE-' if is_revalidation else ''}ANALYZING QUERY ===")
         is_update = state.get("is_update", False)
         if is_update:
             logger.info("📝 Processing information update/correction")
 
+        # A reply to our clarification question means little on its own
+        # ("my husband"), so analyse it together with what came before it.
+        pending = state.get("clarification_context") if state.get("needs_clarification") else None
+        analysis_text = f"{pending}\n{state['query']}" if pending else state["query"]
+        logger.info(f"🔍 === {'RE-' if is_revalidation else ''}ANALYZING QUERY ===")
+        if pending:
+            logger.info("   (combined with the earlier message the user was clarifying)")
+
         agent = QueryAnalyzer()
-        response = agent.analyze_query(state)
+        response = agent.analyze_query({**state, "query": analysis_text})
 
         intent_confidence = response.get("intent_confidence", "low")
+        rounds = state.get("clarification_count", 0) or 0
 
-        if intent_confidence == "low" or not response.get("user_intent"):
-            state["needs_clarification"]   = True
-            state["clarification_question"] = "Could you please provide more details about your legal situation?"
-            return state
+        is_general = response.get("query_type") == "general_question"
+        if (intent_confidence == "low" or not response.get("user_intent")) and not is_general:
+            if rounds < MAX_CLARIFICATION_ROUNDS:
+                state["needs_clarification"]    = True
+                state["clarification_context"]  = analysis_text
+                state["clarification_count"]    = rounds + 1
+                state["clarification_question"] = (
+                    response.get("clarification_question") or DEFAULT_CLARIFICATION_QUESTION
+                )
+                logger.info(f"   ❓ Intent unclear — clarification round {rounds + 1}")
+                return state
+            logger.info("   Intent still unclear after clarification — answering with what we have")
 
-        state["user_intent"]      = response.get("user_intent")
+        state["user_intent"]      = response.get("user_intent") or "Seeking Indian family law guidance"
+        if response.get("query_type"):
+            state["query_type"]   = response["query_type"]
         state["info_needed_list"] = response.get("info_needed_list", [])
+        _merge_labels(state, state["info_needed_list"])
         state["has_sufficient_info"] = response.get("has_sufficient_info", False)
+        if response.get("detected_language"):
+            state["detected_language"] = response["detected_language"]
 
         new_info = response.get("info_collected", {})
         if is_update:
@@ -72,28 +113,35 @@ def analyze_query_node(state: FamilyLawState) -> FamilyLawState:
 
         logger.info(f"   Intent: {state['user_intent']}")
         logger.info(f"   Info collected: {list(state['info_collected'].keys())}")
-        logger.info(f"   Info needed: {state['info_needed_list']}")
-        logger.info(f"   Sufficient: {state['has_sufficient_info']}")
+        logger.info(f"   Info needed: {[i['field'] for i in state['info_needed_list']]}")
 
-        state["needs_clarification"] = False
-        if not is_update and state["user_intent"]:
-            state["root_query"] = state["query"]
+        state["needs_clarification"]   = False
+        state["clarification_context"] = None
+        if not is_update:
+            # Retrieval searches on root_query, so it must hold the whole
+            # problem statement, including anything said during clarification.
+            state["root_query"] = analysis_text
         if not state["info_needed_list"]:
             state["has_sufficient_info"] = True
             state["in_gathering_phase"]  = False
         else:
-            state["in_gathering_phase"] = True
-            state["gathering_step"]     = 0
-        
+            state["has_sufficient_info"] = False
+            state["in_gathering_phase"]  = True
+            state["gathering_step"]      = 0
+            state["awaiting_answer"]     = False
+            state["questions_asked"]     = 0
+            state["asked_questions"]     = []
 
         state["is_update"] = False
         return state
 
     except Exception as e:
-        logger.error(f"❌ Query Analyzer failed: {e}", exc_info=True)
+        logger.error(f"❌ Query Analyzer failed — skipping information gathering: {e}", exc_info=True)
         state["has_sufficient_info"] = True
         state["analysis_complete"]   = True
         state["in_gathering_phase"]  = False
+        state["needs_clarification"] = False
+        state["root_query"] = state.get("root_query") or state["query"]
         return state
 
 
@@ -112,6 +160,11 @@ def gather_information_node(state: FamilyLawState) -> FamilyLawState:
         state["needs_more_info"]         = response.get("needs_more_info", False)
         state["gathering_step"]          = response.get("gathering_step", 0)
         state["current_question_target"] = response.get("current_question_target")
+        state["awaiting_answer"]         = response.get("awaiting_answer", False)
+        state["questions_asked"]         = response.get("questions_asked", 0)
+        state["asked_questions"]         = response.get("asked_questions", state.get("asked_questions") or [])
+        if response.get("user_gender"):
+            state["user_gender"] = response["user_gender"]
 
         logger.info(f"   ✓ Collected: {len(state['info_collected'])} items")
         logger.info(f"   ✓ Needed: {len(state['info_needed_list'])} items")
@@ -125,10 +178,11 @@ def gather_information_node(state: FamilyLawState) -> FamilyLawState:
         return state
 
     except Exception as e:
-        logger.error(f"❌ Information Gatherer failed: {e}", exc_info=True)
+        logger.error(f"❌ Information Gatherer failed — answering without more questions: {e}", exc_info=True)
         state["has_sufficient_info"] = True
         state["in_gathering_phase"]  = False
         state["needs_more_info"]     = False
+        state["awaiting_answer"]     = False
         return state
 
 
@@ -138,8 +192,17 @@ def revalidate_information_node(state: FamilyLawState) -> FamilyLawState:
     try:
         info_collected = state.get("info_collected", {})
 
-        if state.get("revalidation_count", 0) >= 2 or len(info_collected) >= 7:
-            logger.warning("⚠️  Maximum re-validation attempts reached")
+        asked = state.get("questions_asked", 0)
+        min_asked = get_settings().family_min_questions
+        general = state.get("query_type") == "general_question"
+        # Collected facts alone (info_collected) do not end the interview before the minimum
+        # number of questions: rich answers fill many fields while the client was asked little.
+        if (
+            state.get("revalidation_count", 0) >= 3
+            or (len(info_collected) >= 7 and (asked >= min_asked or general))
+            or asked >= InformationGatherer.MAX_FOLLOW_UP_QUESTIONS
+        ):
+            logger.info("⏭️  Question budget used — moving on to retrieval")
             state.update({
                 "has_sufficient_info": True,
                 "in_gathering_phase":  False,
@@ -161,8 +224,13 @@ def revalidate_information_node(state: FamilyLawState) -> FamilyLawState:
         temp_state["in_gathering_phase"] = False
 
         agent    = QueryAnalyzer()
-        response = agent.analyze_query(temp_state)
-        additional_needed = normalize_info_needed_list(response.get("info_needed_list", []))
+        response = agent.analyze_query(temp_state, mode="revalidate")
+        # Never re-ask something already answered (or already declined).
+        labels = state.get("field_labels") or {}
+        additional_needed = [
+            item for item in normalize_info_needed_list(response.get("info_needed_list", []))
+            if not gap_is_known(item, info_collected, labels)
+        ]
 
         if additional_needed:
             logger.info(f"⚠️  Re-validation found {len(additional_needed)} missing items")
@@ -170,6 +238,7 @@ def revalidate_information_node(state: FamilyLawState) -> FamilyLawState:
             merged = {item["field"]: item for item in current}
             for item in additional_needed:
                 merged[item["field"]] = item
+            _merge_labels(state, additional_needed)
             state.update({
                 "info_needed_list":    list(merged.values()),
                 "in_gathering_phase":  True,
@@ -192,6 +261,7 @@ def revalidate_information_node(state: FamilyLawState) -> FamilyLawState:
     except Exception as e:
         logger.error(f"❌ Re-validation failed: {e}", exc_info=True)
         state["has_sufficient_info"] = True
+        state["revalidation_mode"]   = False
         return state
 
 
@@ -216,11 +286,13 @@ def analyze_reasoning_node(state: FamilyLawState) -> FamilyLawState:
     return state
 
 
-# ── Routing functions (unchanged) ─────────────────────────────────────────────
+# ── Routing functions ─────────────────────────────────────────────────────────
 
 def route_after_analysis(state: FamilyLawState) -> str:
     if state.get("needs_clarification", False):
         return "clarify"
+    if state.get("in_gathering_phase", False):
+        return "gather_info"
     if state.get("has_sufficient_info", False) or not state.get("info_needed_list", []):
         return "retrieve"
     return "gather_info"
@@ -238,21 +310,29 @@ def route_after_revalidation(state: FamilyLawState) -> str:
     return "retrieve" if state.get("has_sufficient_info", False) else "gather_info"
 
 
+# The question nodes also record what the assistant asked as an AIMessage, so
+# the generator's conversation context shows both sides of the interview.
+
 def format_clarification_response(state: FamilyLawState) -> dict:
+    question = state.get("clarification_question") or DEFAULT_CLARIFICATION_QUESTION
     return {
-        "response":     state.get("clarification_question", "Could you please clarify your legal situation?"),
+        "response":     question,
         "sources":      [],
         "message_type": "clarification",
+        "messages":     [AIMessage(content=question)],
     }
 
 
 def format_follow_up_response(state: FamilyLawState) -> dict:
+    question = state.get("follow_up_question") or "Could you provide more details?"
     return {
-        "response":      state.get("follow_up_question", "Could you provide more details?"),
-        "sources":       [],
-        "message_type":  "information_gathering",
+        "response":       question,
+        "sources":        [],
+        "message_type":   "information_gathering",
         "info_collected": state.get("info_collected", {}),
-        "info_needed":   state.get("info_needed_list", []),
+        "info_needed":    state.get("info_needed_list", []),
+        "field_labels":   state.get("field_labels", {}),
+        "messages":       [AIMessage(content=question)],
     }
 
 

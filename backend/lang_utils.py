@@ -75,6 +75,9 @@ def detect_language(text: str) -> str:
         from langdetect import DetectorFactory, detect, LangDetectException
         DetectorFactory.seed = 0  # langdetect is random by default: same text, different answer
         code = detect(text)
+        # If detected language is not a supported Indic language, treat as English
+        if code not in LANGUAGE_NAMES or code not in ("hi", "bn", "te", "mr", "ta", "gu", "kn", "ml", "pa", "or", "as", "ur"):
+            code = "en"
         logger.debug(f"[lang_utils] detected language: {code!r} for text: {text[:60]!r}")
         return code
     except Exception as e:

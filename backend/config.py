@@ -26,10 +26,13 @@ class Settings(BaseSettings):
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,
+        extra="ignore",
     )
 
     # ── External API Keys ─────────────────────────────────────────────────────
     huggingface_api_key: str = Field(default="hf_mock_local_dev_key", env="HUGGINGFACE_API_KEY")
+    dahl_api_key: str = Field(default="", env="DAHL_API_KEY")
+    dahl_base_url: str = Field(default="https://inference.dahl.global/v1", env="DAHL_BASE_URL")
 
     # ── Database ──────────────────────────────────────────────────────────────
     # Must be asyncpg driver:
@@ -43,7 +46,47 @@ class Settings(BaseSettings):
 
     # ── Models ────────────────────────────────────────────────────────────────
     # Indian Law Specific Models
-    llm_model: str        = Field(default="meta-llama/Llama-3.1-8B-Instruct", env="LLM_MODEL")
+    llm_model: str        = Field(default="deepseek-ai/DeepSeek-V4-Flash-0731", env="LLM_MODEL")
+    fallback_llm_model: str = Field(default="MiniMaxAI/MiniMax-M2.7", env="FALLBACK_LLM_MODEL")
+
+    # Ordered "provider:model" chains used by llm_utils.invoke_llm. The first
+    # provider that answers wins. LLM_CHAIN is for the final answer, and
+    # LLM_CHAIN_FAST is for intake (analysis, follow-up questions, extraction),
+    # kept on other Groq models so the two do not share one rate limit.
+    llm_chain: str = Field(
+        default="groq:openai/gpt-oss-120b,openrouter:nvidia/nemotron-3-ultra-550b-a55b:free,openrouter:nvidia/nemotron-3.5-super-vl:free,openrouter:nvidia/nemotron-3.5-lightning:free,"
+                "dahl:deepseek-ai/DeepSeek-V4-Flash-0731",
+        env="LLM_CHAIN",
+    )
+    # answer review (second pass): a different Groq model from the draft, so it has its own token budget
+    llm_chain_review: str = Field(
+        default="groq:qwen/qwen3.8-27b,groq:openai/gpt-oss-20b,groq:openai/gpt-oss-120b,"
+                "dahl:deepseek-ai/DeepSeek-V4-Flash-0731,openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+        env="LLM_CHAIN_REVIEW",
+    )
+    answer_review: bool = Field(default=True, env="ANSWER_REVIEW")
+
+    # intake analysis: the larger model finds the gaps (separate rate limit from question writing)
+    llm_chain_analyze: str = Field(
+        # gpt-oss-120b is kept free for the final answer: its 8,000 tokens/minute left room for
+        # only one draft, and a gap analysis just before it caused a rate limit and a slow fallback.
+        default="groq:qwen/qwen3.8-27b,groq:openai/gpt-oss-20b,groq:openai/gpt-oss-120b,"
+                "openrouter:nvidia/nemotron-3.5-super-vl:free,openrouter:nvidia/nemotron-3-ultra-550b-a55b:free,dahl:deepseek-ai/DeepSeek-V4-Flash-0731,dahl:zai-org/GLM-5.3-Flash",
+        env="LLM_CHAIN_ANALYZE",
+    )
+    # follow-up questions and answer extraction
+    llm_chain_fast: str = Field(
+        default="groq:qwen/qwen3.8-27b,groq:openai/gpt-oss-20b,groq:openai/gpt-oss-120b,"
+                "openrouter:nvidia/nemotron-3.5-super-vl:free,openrouter:nvidia/nemotron-3-ultra-550b-a55b:free,dahl:deepseek-ai/DeepSeek-V4-Flash-0731,dahl:zai-org/GLM-5.3-Flash",
+        env="LLM_CHAIN_FAST",
+    )
+    groq_api_key: str        = Field(default="", env="GROQ_API_KEY")
+    openrouter_api_keys: str = Field(default="", env="OPENROUTER_API_KEYS")  # comma-separated, rotated on 429
+    dahl_api_key_2: str      = Field(default="", env="DAHL_API_KEY_2")
+
+    # Family-law intake: how many follow-up questions a personal case gets.
+    family_min_questions: int = Field(default=5, env="FAMILY_MIN_QUESTIONS")
+    family_max_questions: int = Field(default=8, env="FAMILY_MAX_QUESTIONS")
     embedding_model: str  = Field(default="bhavyagiri/InLegal-Sbert", env="EMBEDDING_MODEL")
     embedding_dimension: int = Field(default=768, env="EMBEDDING_DIMENSION")
     # Text put in front of a question before it is embedded. Some models are
@@ -184,13 +227,26 @@ class Settings(BaseSettings):
     tts_english_speaker: str = Field(default="Mary", env="TTS_ENGLISH_SPEAKER")
 
     # ── Auth / JWT ────────────────────────────────────────────────────────────
-    jwt_secret_key: str = Field(default="legal_assistant_secret_jwt_key_2026_super_secure", env="JWT_SECRET_KEY")
+    jwt_secret_key: str = Field(default="", env="JWT_SECRET_KEY")  # empty = random per-process secret (see validator)
     jwt_algorithm: str  = Field(default="HS256", env="JWT_ALGORITHM")
 
     # ── Logging ───────────────────────────────────────────────────────────────
     log_level: str = Field(default="INFO", env="LOG_LEVEL")
 
     # ── Validators ────────────────────────────────────────────────────────────
+    @field_validator("jwt_secret_key")
+    @classmethod
+    def ensure_jwt_secret(cls, v: str) -> str:
+        if v and v != "legal_assistant_secret_jwt_key_2026_super_secure":
+            return v
+        import secrets
+        import logging
+        logging.getLogger(__name__).warning(
+            "JWT_SECRET_KEY is not set (or is the old public default): using a random secret, "
+            "so login tokens stop working after a restart. Set JWT_SECRET_KEY in .env."
+        )
+        return secrets.token_urlsafe(48)
+
     @field_validator("huggingface_api_key")
     @classmethod
     def validate_hf_key(cls, v: str) -> str:

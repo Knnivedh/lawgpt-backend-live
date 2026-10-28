@@ -48,12 +48,13 @@ logger.info("=" * 80)
 # ── Imports ───────────────────────────────────────────────────────────────────
 import json
 import os
+import re
 import tempfile
 import time
 import traceback
 import uuid
 from contextlib import asynccontextmanager
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from fastapi import FastAPI, HTTPException, Request, BackgroundTasks, Depends, status, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -198,11 +199,18 @@ class AuthResponse(BaseModel):
     user:         dict
 
 
+MAX_DOCUMENT_CHARS = 20000
+
+
 class ChatRequest(BaseModel):
     query:             str           = Field(..., min_length=1, max_length=2000)
     thread_id:         Optional[str] = Field(None, description="UUID; omit to start a new conversation")
     include_reasoning: bool          = Field(default=True)
     include_prediction: bool         = Field(default=True)
+    # Text of a document the client attached (from /documents/extract). Only
+    # sent on the turn it is attached; the thread keeps it after that.
+    document_text:     Optional[str] = Field(None, max_length=MAX_DOCUMENT_CHARS)
+    document_name:     Optional[str] = Field(None, max_length=255)
 
     @field_validator("query")
     @classmethod
@@ -358,6 +366,11 @@ class DirectQueryRequest(BaseModel):
 
 @app.post("/query")
 @app.post("/api/query")
+@limiter.limit(f"{settings.rate_limit_per_minute}/minute")
+async def handle_direct_query_endpoint(request: Request, body: DirectQueryRequest):
+    return await handle_direct_query(body)
+
+
 async def handle_direct_query(body: DirectQueryRequest):
     """
     Direct synchronous query endpoint providing full RAG retrieval & legal analysis
@@ -410,22 +423,65 @@ async def handle_direct_query(body: DirectQueryRequest):
                     "headline": content_snippet
                 })
 
-    top_statute_names = [s["act"] for s in statutes[:3]]
-    top_case_names = [c["title"] for c in cases[:3]]
+    top_statute_names = [s["act"] for s in statutes[:4]]
+    top_case_names = [c["title"] for c in cases[:4]]
     
-    lay_summary = (
-        f"Based on the Indian Family Law statutory corpus: Your query regarding '{body.query}' is primarily governed by "
-        + (", ".join(top_statute_names) if top_statute_names else "the Hindu Marriage Act, 1955 and Section 125 CrPC")
-        + ". Under established judicial procedure, parties are entitled to seek interim maintenance, protection orders, and custody evaluations while matrimonial proceedings are pending."
-    )
-    
-    expert_summary = (
-        f"Jurisprudential Analysis: Scrutiny of provisions under "
-        + (", ".join(top_statute_names) if top_statute_names else "HMA 1955 and Code of Criminal Procedure")
-        + " demonstrates concurrent jurisdiction of Family Courts and Magistrate Courts. Key authorities including "
-        + (", ".join(top_case_names) if top_case_names else "landmark Supreme Court directives")
-        + " mandate full financial disclosure affidavits to forestall suppression of income and ensure expeditious interim relief."
-    )
+    # Direct legal generation with Dahl DeepSeek / MiniMax model
+    core_answer = None
+    try:
+        from nodes.generator import generate_response
+        state["retrieved_chunks"] = retrieved_chunks
+        gen_res = generate_response(state)
+        ans = gen_res.get("response", "")
+        if ans and len(ans.strip()) > 30:
+            core_answer = ans.strip()
+    except Exception as e:
+        logger.info(f"Direct legal generation fallback: {e}")
+        try:
+            import httpx
+            with httpx.Client(timeout=4.0) as client:
+                resp = client.post("http://localhost:8000/api/query", json={"question": body.query})
+                if resp.status_code == 200:
+                    d = resp.json()
+                    ans = d.get("response", {}).get("answer") or d.get("answer")
+                    if ans and len(ans.strip()) > 50:
+                        core_answer = ans.strip()
+        except Exception as net_err:
+            logger.info(f"Port 8000 check: {net_err}")
+
+    if core_answer:
+        lay_summary = core_answer
+        expert_summary = (
+            f"**Statutory & Judicial Framework Analysis**\n\n"
+            f"- **Primary Statutes Applicable**: {', '.join(top_statute_names) if top_statute_names else 'Indian Family Law statutes'}\n"
+            f"- **Key Judicial Authorities**: {', '.join(top_case_names) if top_case_names else 'Relevant Precedents'}\n\n"
+            f"**Comprehensive Legal Opinion**:\n{core_answer}"
+        )
+    else:
+        # Fallback intelligent extraction from retrieved parent chunks
+        excerpts = []
+        for c in retrieved_chunks[:3]:
+            content = (c.get("content") or "").strip()
+            if content:
+                excerpts.append(content[:250])
+        grounded_context = "\n\n".join([f"• {e}..." for e in excerpts]) if excerpts else "Relevant provisions under Indian Family Law."
+        lay_summary = (
+            f"Based on Indian Family Law provisions and retrieved judicial authorities:\n\n"
+            f"Regarding your query on '{body.query}':\n\n"
+            f"**Applicable Law & Principles**:\n"
+            f"{grounded_context}\n\n"
+            f"**Remedies & Recommendations**:\n"
+            f"1. Institute proceedings before the competent Family Court under {', '.join(top_statute_names[:2]) if top_statute_names else 'the applicable statutory enactment'}.\n"
+            f"2. Apply for interim relief or urgent orders supported by comprehensive documentary evidence.\n\n"
+            f"---\n*Disclaimer: This analysis is for educational purposes only and does not constitute formal legal counsel.*"
+        )
+        expert_summary = (
+            f"**Formal Legal Assessment**:\n\n"
+            f"Jurisdiction and statutory interpretation under {', '.join(top_statute_names) if top_statute_names else 'governing family law codes'}.\n\n"
+            f"Precedent Authorities Analyzed:\n"
+            + "\n".join([f"- **{name}**" for name in top_case_names])
+            + f"\n\n{lay_summary}"
+        )
 
     return {
         "structured_query": {
@@ -442,6 +498,105 @@ async def handle_direct_query(body: DirectQueryRequest):
         "mode": body.mode
     }
 
+
+
+# ── Document text extraction (shared by uploads) ─────────────────────────────
+
+MAX_UPLOAD_BYTES = 10 * 1024 * 1024
+
+
+def _extract_document_text(filename: str, raw_bytes: bytes) -> Tuple[str, Optional[str]]:
+    """
+    Return (text, warning) for an uploaded PDF / DOCX / TXT.
+
+    `warning` explains why little or no text came out (scanned PDF, image, old
+    .doc), so callers can tell the user instead of analysing an empty file.
+    """
+    from io import BytesIO
+    name = (filename or "").lower()
+
+    if name.endswith(".pdf"):
+        try:
+            from pypdf import PdfReader
+            reader = PdfReader(BytesIO(raw_bytes))
+            text = "\n".join(t for t in (p.extract_text() for p in reader.pages) if t).strip()
+        except Exception as e:
+            logger.warning(f"PDF extraction error: {e}")
+            return "", "This PDF could not be read."
+        if not text:
+            return "", "No text found in this PDF. It may be a scanned image; please type the key details instead."
+        return text, None
+    if name.endswith(".docx"):
+        try:
+            from docx import Document
+            doc = Document(BytesIO(raw_bytes))
+            return "\n".join(p.text for p in doc.paragraphs if p.text).strip(), None
+        except Exception as e:
+            logger.warning(f"DOCX extraction error: {e}")
+            return "", "This Word file could not be read."
+    if name.endswith(".doc"):
+        return "", "Old .doc files are not supported. Please save it as .docx or PDF and attach it again."
+    if name.endswith(".txt"):
+        return raw_bytes.decode("utf-8", errors="ignore").strip(), None
+    if name.endswith((".jpg", ".jpeg", ".png")):
+        return "", "Images are not read yet (no OCR). Please type the key details from the document."
+    return "", "Unsupported file type. Please attach a PDF, DOCX or TXT file."
+
+
+@app.post("/documents/extract")
+@limiter.limit(f"{settings.rate_limit_per_minute}/minute")
+async def extract_document(request: Request, file: UploadFile = File(...)):
+    """Extract text from an attached document so the consultation can use it."""
+    raw_bytes = await file.read()
+    if len(raw_bytes) > MAX_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="File size exceeds 10MB limit.")
+    if not raw_bytes:
+        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+    text, warning = _extract_document_text(file.filename or "", raw_bytes)
+    return {
+        "filename": file.filename,
+        "chars": len(text),
+        "text": text[:MAX_DOCUMENT_CHARS],
+        "truncated": len(text) > MAX_DOCUMENT_CHARS,
+        "warning": warning,
+    }
+
+
+# ── Document & Judgment File Upload Endpoint ─────────────────────────────────
+@app.post("/judgment-file")
+@limiter.limit(f"{settings.rate_limit_per_minute}/minute")
+async def handle_judgment_file(
+    request: Request,
+    file: UploadFile = File(...),
+    query: Optional[str] = Form(None),
+    mode: Optional[str] = Form(None),
+):
+    """
+    Handle document attachments (PDF, DOCX, TXT) up to 10MB limit.
+    Extracts text and produces structured legal analysis, statutes, and precedents.
+    """
+    raw_bytes = await file.read()
+    if len(raw_bytes) > MAX_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="File size exceeds 10MB limit.")
+    if not raw_bytes:
+        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+
+    filename = (file.filename or "uploaded_document").lower()
+    extracted_text, warning = _extract_document_text(filename, raw_bytes)
+    if warning and not extracted_text:
+        raise HTTPException(status_code=422, detail=warning)
+
+    user_query = (query or "").strip()
+    if user_query:
+        query_str = f"{user_query}\n\n[Attached Document Context: {filename}]\n{extracted_text[:1200]}".strip()
+        dummy_req = DirectQueryRequest(query=query_str, mode=mode or "family")
+    else:
+        query_str = (extracted_text[:1500] if extracted_text else f"Analysis of legal document {filename}").strip()
+        dummy_req = DirectQueryRequest(query=query_str, mode="document")
+    res = await handle_direct_query(dummy_req)
+    res["structured_query"]["facts"] = (user_query or f"File: {filename}") + ("\n\n[Attached File Excerpt]:\n" + extracted_text[:350] if extracted_text else "")
+    res["mode"] = mode or "document"
+    return res
 
 # ── ASR (voice input) endpoint ────────────────────────────────────────────────
 
@@ -714,7 +869,6 @@ async def chat_stream(
             initial_state = {
                 "query":              chat_request.query,
                 "messages":           [HumanMessage(content=chat_request.query)],
-                "user_gender":        current_user.gender or "unknown",
                 "include_reasoning":  chat_request.include_reasoning,
                 "include_prediction": chat_request.include_prediction,
                 # Pre-detect query language so all nodes have it from turn 1
@@ -728,6 +882,13 @@ async def chat_stream(
                 "message_type":       None,
                 "name": current_user.full_name or "the client",
             }
+            # Only send gender when the account knows it. Sending "unknown" on
+            # every turn overwrote the gender the gatherer had learned in this thread.
+            if current_user.gender:
+                initial_state["user_gender"] = current_user.gender
+            if chat_request.document_text and chat_request.document_text.strip():
+                doc_name = chat_request.document_name or "attached document"
+                initial_state["document_context"] = f"[{doc_name}]\n{chat_request.document_text.strip()}"
 
             yield f"data: {json.dumps({'type': 'metadata', 'thread_id': thread_id})}\n\n"
 
@@ -757,6 +918,8 @@ async def chat_stream(
             reasoning_steps        = []
             precedent_explanations = []
             final_state            = {}
+            inside_think           = False
+            think_buf              = ""
 
             family_law_app = getattr(request.app.state, "family_law_app", None)
             if family_law_app is None:
@@ -795,6 +958,19 @@ async def chat_stream(
                     sources = output.get("sources", [])
                     yield f"data: {json.dumps({'type': 'sources', 'sources': sources})}\n\n"
 
+                # Generate completed - emit legal response immediately without waiting for background reasoning
+                elif kind == "on_chain_end" and event.get("name") == "generate":
+                    output = event.get("data", {}).get("output", {})
+                    resp_val = output.get("response", "")
+                    if resp_val:
+                        cleaned = re.sub(r"<think>.*?</think>", "", resp_val, flags=re.DOTALL).strip()
+                        if not accumulated_response:
+                            accumulated_response = cleaned
+                            message_type = "final_response"
+                            yield f"data: {json.dumps({'type': 'token', 'content': cleaned})}\n\n"
+                        else:
+                            accumulated_response = cleaned
+
                 # LLM token streaming, from the generate node only. gather_info also
                 # calls the model to extract the user's answer as JSON; streaming that
                 # put {"extracted_answer": ...} at the top of the final answer. Its
@@ -802,9 +978,37 @@ async def chat_stream(
                 elif kind == "on_chat_model_stream" and event.get("metadata", {}).get("langgraph_node") == "generate":
                     content = event["data"]["chunk"].content
                     if content:
-                        message_type = "final_response"
-                        accumulated_response += content
-                        yield f"data: {json.dumps({'type': 'token', 'content': content})}\n\n"
+                        think_buf += content
+                        if inside_think:
+                            if "</think>" in think_buf:
+                                _, _, after = think_buf.partition("</think>")
+                                inside_think = False
+                                think_buf = ""
+                                if after:
+                                    message_type = "final_response"
+                                    accumulated_response += after
+                                    yield f"data: {json.dumps({'type': 'token', 'content': after})}\n\n"
+                        elif "<think>" in think_buf:
+                            before, _, remainder = think_buf.partition("<think>")
+                            if before:
+                                message_type = "final_response"
+                                accumulated_response += before
+                                yield f"data: {json.dumps({'type': 'token', 'content': before})}\n\n"
+                            inside_think = True
+                            think_buf = remainder
+                            if "</think>" in think_buf:
+                                _, _, after = think_buf.partition("</think>")
+                                inside_think = False
+                                think_buf = ""
+                                if after:
+                                    message_type = "final_response"
+                                    accumulated_response += after
+                                    yield f"data: {json.dumps({'type': 'token', 'content': after})}\n\n"
+                        else:
+                            message_type = "final_response"
+                            accumulated_response += think_buf
+                            yield f"data: {json.dumps({'type': 'token', 'content': think_buf})}\n\n"
+                            think_buf = ""
 
                 # Graph completed
                 elif kind == "on_chain_end" and event.get("name") == "LangGraph":
@@ -813,11 +1017,14 @@ async def chat_stream(
                     reasoning_steps        = output.get("reasoning_steps", [])
                     precedent_explanations = output.get("precedent_explanations", [])
 
-                    # The streamed tokens are the model's raw text. The generate node
-                    # then trims a cut-off ending, runs the citation guard and adds the
-                    # disclaimer; send and save that final text, not the raw stream.
-                    if message_type == "final_response" and output.get("response"):
-                        accumulated_response = output["response"]
+                    # Ensure accumulated_response is populated from generated response
+                    # and token event is yielded to SSE stream if not already streamed
+                    if output.get("response"):
+                        cleaned_resp = re.sub(r"<think>.*?</think>", "", output["response"], flags=re.DOTALL).strip()
+                        if not accumulated_response:
+                            yield f"data: {json.dumps({'type': 'token', 'content': cleaned_resp})}\n\n"
+                        accumulated_response = cleaned_resp
+                        message_type = message_type or "final_response"
 
                     if reasoning_steps:
                         yield f"data: {json.dumps({'type': 'reasoning', 'steps': reasoning_steps})}\n\n"
@@ -851,9 +1058,13 @@ async def chat_stream(
                 "response":     accumulated_response,
                 "thread_id":    thread_id,
             }
-            if message_type == "information_gathering":
-                completion["info_collected"] = final_state.get("info_collected", {})
-                completion["info_needed"]    = final_state.get("info_needed_list", [])
+            # The intake summary is useful on every turn: the UI shows what has
+            # been gathered so far, and the final answer's "facts" panel too.
+            completion["info_collected"] = final_state.get("info_collected", {}) or {}
+            completion["info_needed"]    = final_state.get("info_needed_list", []) or []
+            completion["user_intent"]    = final_state.get("user_intent")
+            completion["field_labels"]   = final_state.get("field_labels", {}) or {}
+            completion["sources"]        = sources
             if reasoning_steps:
                 completion["reasoning_steps"] = reasoning_steps
             if precedent_explanations:

@@ -1,0 +1,56 @@
+# ── Coolify / Dokploy Self-Hosted Stack Compose ──────────────────────────────────
+# Place this in your Coolify/Dokploy dashboard as a "Docker Compose" Application.
+# Works out-of-the-box on a $3.50 - $5/mo VPS (Hetzner, DigitalOcean, Contabo).
+
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: law_gpt_backend
+    restart: unless-stopped
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - WORKERS=2
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+    volumes:
+      - backend_data:/app/data
+      - backend_logs:/app/logs
+    networks:
+      - law_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    container_name: law_gpt_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      - PORT=3000
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    networks:
+      - law_network
+
+networks:
+  law_network:
+    driver: bridge
+
+volumes:
+  backend_data:
+  backend_logs:

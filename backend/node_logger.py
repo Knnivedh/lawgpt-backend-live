@@ -7,6 +7,8 @@ enabling comprehensive evaluation and debugging.
 
 import json
 import logging
+import os
+import threading
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -14,6 +16,11 @@ from functools import wraps
 import traceback
 
 logger = logging.getLogger(__name__)
+
+# Requests run concurrently and all write the same files; without a lock the
+# summary's read-modify-write corrupted it ("Extra data" JSON errors).
+_LOG_LOCK = threading.Lock()
+MAX_SUMMARY_ENTRIES = 500
 
 
 class NodeExecutionLogger:
@@ -76,7 +83,7 @@ class NodeExecutionLogger:
             
             # Save to node-specific log file
             node_log_file = conv_dir / f"{node_name}_executions.jsonl"
-            with open(node_log_file, "a", encoding="utf-8") as f:
+            with _LOG_LOCK, open(node_log_file, "a", encoding="utf-8") as f:
                 f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
             
             # Update conversation summary
@@ -153,42 +160,48 @@ class NodeExecutionLogger:
             return str(value)[:200]
     
     def _update_conversation_summary(
-        self, 
-        conversation_id: str, 
-        node_name: str, 
+        self,
+        conversation_id: str,
+        node_name: str,
         log_entry: Dict[str, Any]
     ) -> None:
-        """Update high-level conversation summary."""
+        """Update high-level conversation summary (serialised: requests run concurrently)."""
         conv_dir = self.get_conversation_log_dir(conversation_id)
         summary_file = conv_dir / "execution_summary.json"
-        
-        # Load existing summary
-        if summary_file.exists():
-            with open(summary_file, "r", encoding="utf-8") as f:
-                summary = json.load(f)
-        else:
-            summary = {
-                "conversation_id": conversation_id,
-                "started_at": datetime.now().isoformat(),
-                "node_executions": [],
-                "total_execution_time": 0,
-                "node_counts": {}
-            }
-        
-        # Update summary
-        summary["node_executions"].append({
-            "node_name": node_name,
-            "timestamp": log_entry["timestamp"],
-            "execution_time": log_entry["execution_time_seconds"],
-            "success": log_entry["success"]
-        })
-        summary["total_execution_time"] += log_entry["execution_time_seconds"]
-        summary["node_counts"][node_name] = summary["node_counts"].get(node_name, 0) + 1
-        summary["last_updated"] = datetime.now().isoformat()
-        
-        # Save summary
-        with open(summary_file, "w", encoding="utf-8") as f:
-            json.dump(summary, f, indent=2, ensure_ascii=False)
+
+        with _LOG_LOCK:
+            summary = None
+            if summary_file.exists():
+                try:
+                    with open(summary_file, "r", encoding="utf-8") as f:
+                        summary = json.load(f)
+                except (json.JSONDecodeError, OSError):
+                    summary = None  # corrupt from an earlier crash: start a fresh one
+            if summary is None:
+                summary = {
+                    "conversation_id": conversation_id,
+                    "started_at": datetime.now().isoformat(),
+                    "node_executions": [],
+                    "total_execution_time": 0,
+                    "node_counts": {}
+                }
+
+            summary["node_executions"].append({
+                "node_name": node_name,
+                "timestamp": log_entry["timestamp"],
+                "execution_time": log_entry["execution_time_seconds"],
+                "success": log_entry["success"]
+            })
+            summary["node_executions"] = summary["node_executions"][-MAX_SUMMARY_ENTRIES:]
+            summary["total_execution_time"] += log_entry["execution_time_seconds"]
+            summary["node_counts"][node_name] = summary["node_counts"].get(node_name, 0) + 1
+            summary["last_updated"] = datetime.now().isoformat()
+
+            # Write atomically so a crash or a concurrent reader never sees half a file
+            tmp_file = summary_file.with_suffix(".json.tmp")
+            with open(tmp_file, "w", encoding="utf-8") as f:
+                json.dump(summary, f, indent=2, ensure_ascii=False)
+            os.replace(tmp_file, summary_file)
     
     def create_evaluation_report(self, conversation_id: str) -> Dict[str, Any]:
         """

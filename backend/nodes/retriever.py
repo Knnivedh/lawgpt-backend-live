@@ -496,8 +496,16 @@ def _build_retrieval_text(state: FamilyLawState) -> str:
     embedding toward alimony/financial matches and crowded out sharper
     "right to reside" results that root_query alone found. Not doing that
     for now; root_query alone tested best.
+
+    Exception: when the client attached a document and only wrote a short
+    note ("please review this"), that note says nothing to search on, so the
+    start of the document is added.
     """
-    return state.get("root_query") or state.get("query") or ""
+    text = state.get("root_query") or state.get("query") or ""
+    document = (state.get("document_context") or "").strip()
+    if document and len(text.split()) < 15:
+        text = f"{text}\n{document[:600]}".strip()
+    return text
 
 
 def _excluded_expr() -> Optional[str]:

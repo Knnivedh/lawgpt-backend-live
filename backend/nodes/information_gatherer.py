@@ -12,8 +12,11 @@ from typing import Any, Dict, List
 import os
 import json
 import logging
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+import re
 from lang_utils import detect_language, build_language_instruction, get_language_name
+from nodes.query_analyzer import gap_is_known
+from config import get_settings
+from llm_utils import extract_json, invoke_llm, looks_like_reasoning, strip_think
 
 logger = logging.getLogger(__name__)
 
@@ -32,10 +35,13 @@ def normalize_info_needed_list(raw_items: Any) -> List[Dict[str, str]]:
             field = item.get("field")
             if not field:
                 continue
-            normalized.append({
+            entry = {
                 "field": str(field),
                 "reason": str(item.get("reason", "")),
-            })
+            }
+            if item.get("label"):
+                entry["label"] = str(item["label"]).strip()
+            normalized.append(entry)
         elif isinstance(item, str):
             if item in {"field", "reason"}:
                 continue
@@ -56,17 +62,30 @@ SITUATION:
 - Client's Query: {root_query}
 - Client's Gender: {gender}
 - Information already collected: {info_collected}
+- Client's attached document (excerpt): {document}
 - Next information needed: {current_target}
 - Why this is needed: {current_reason}
 
+QUESTIONS YOU HAVE ALREADY ASKED (in order):
+{asked_questions}
+
 YOUR TASK:
-Ask ONE clear, empathetic question to gather: {current_target}
+Think about this client's situation, then ask ONE clear, empathetic question to gather: {current_target}
 
 CRITICAL RULES:
 1. If client's gender is already known, DO NOT ask about it again
-2. Ask ONLY about {current_target} that support the case - be specific and direct
+2. Ask ONLY about {current_target}, tied to this client's own story - be specific and direct
 3. Be empathetic and professional. Use simple, clear language
 4. Reference previously collected information naturally
+5. If the client already gave this information anywhere above (including the document), do not ask for it again; ask about what is still unknown
+6. Do not repeat, or reword, any question you have already asked. Do not start with the same sympathy phrase as your earlier questions
+7. Output ONLY the question, spoken directly to the client ("you"). No notes, no reasoning, no preamble
+8. Do not state anything the client has not told you (never assume marital status, children, income, who is at fault). Work out who the client is and who the other people are before you ask
+9. Do not state legal rules, conclusions or advice in the question; ask only
+10. Never ask for names, exact addresses, phone numbers or ID numbers
+11. Ask exactly ONE question: a single sentence ending in a question mark, with no second part ("and also ...") and no list
+12. Never treat the other side's acts (a talaq, a notice, a threat, an eviction) as legally valid or effective; describe them neutrally, for example "the talaq messages you received"
+13. Do not open with a stock line such as "I'm sorry you're going through this". If you show empathy, tie it to a specific detail the client gave, or just ask
 {lang_instruction}
 
 YOUR QUESTION:"""
@@ -151,183 +170,299 @@ Response (JSON only, no other text):
 """
 
     
+    # The analyzer finds 5-8 gaps for a personal case; after this many
+    # follow-up questions we answer with what we have (FAMILY_MAX_QUESTIONS).
+    MAX_FOLLOW_UP_QUESTIONS = get_settings().family_max_questions
+    NOT_PROVIDED_TEXT = "Not provided by the client"
+
     def __init__(self, huggingface_api_key: str = None):
-        """Initialize the InformationGatherer with LLM."""
-        from config import get_settings
-        settings = get_settings()
-        
-        api_key = huggingface_api_key or settings.huggingface_api_key
-        
-        self.llm = ChatHuggingFace(
-            llm=HuggingFaceEndpoint(
-                repo_id=settings.llm_model,
-                huggingfacehub_api_token=api_key,
-                task="text-generation",
-                max_new_tokens=256,
-                temperature=0.1,  # Lower temperature for more consistent extraction
-            )
-        )
-    
+        """Model calls go through llm_utils.invoke_llm (LLM_CHAIN_FAST)."""
+
     def gather_next_information(self, state: Dict) -> Dict:
         """
-        Main logic: Extract answer from previous response OR ask next question.
+        Main logic: record the answer to the last question, then ask the next one.
+
+        The user's reply to a follow-up question is always the `query` of the
+        next turn, so `awaiting_answer` + `current_question_target` say exactly
+        what it answers. (Counting HumanMessages broke after re-validation: the
+        same reply was extracted again as the answer to a brand-new field.)
         """
         query = state["query"]
-        root_query = state.get("root_query", query)
-        messages = state.get("messages", [])
-        info_collected = dict(state.get("info_collected", {}))
+        root_query = state.get("root_query") or query
+        info_collected = dict(state.get("info_collected") or {})
         info_needed_list = normalize_info_needed_list(state.get("info_needed_list", []))
-        if not info_needed_list and state.get("current_question_target"):
-            info_needed_list = [{
-                "field": state["current_question_target"],
-                "reason": "",
-            }]
-        user_intent = state.get("user_intent", "legal advice")
-        gathering_step = state.get("gathering_step", 0)
-        gender = state.get("user_gender", "unknown")
-        name = state.get("name", "the client")
+        user_intent = state.get("user_intent") or "legal advice"
+        gathering_step = state.get("gathering_step", 0) or 0
+        questions_asked = state.get("questions_asked", 0) or 0
+        gender = state.get("user_gender") or "unknown"
+        name = state.get("name") or "the client"
+        current_target = state.get("current_question_target")
+        asked_questions = list(state.get("asked_questions") or [])
 
-        logger.info(f"\nUser name:{name}, Gender:{gender}, Intent: {user_intent}\n")
-        
-        logger.info(f"=== Gathering Step {gathering_step} ===")
-        logger.info(f"Info needed: {info_needed_list}")
+        logger.info(f"=== Gathering Step {gathering_step} (questions asked: {questions_asked}) ===")
+        logger.info(f"Info needed: {[i['field'] for i in info_needed_list]}")
         logger.info(f"Info collected: {list(info_collected.keys())}")
-        
-        # STEP 1: Extract answer from previous response if applicable
-        if gathering_step > 0 and info_needed_list:
-            # current_target = state.get("current_question_target") or info_needed_list[0]
-            current_item = info_needed_list[0]
 
-            current_target = (
-                state.get("current_question_target")
-                or current_item["field"]
+        # STEP 1: this turn's message answers the question asked last turn
+        if state.get("awaiting_answer") and current_target:
+            last_question = state.get("follow_up_question", "")
+            logger.info(f"Extracting answer for: {current_target}")
+            extracted = self._extract_information(
+                last_question=last_question,
+                user_response=query,
+                info_target=current_target,
             )
+            logger.info(f"Extracted: {extracted}")
 
-            current_reason = current_item.get("reason", "")
-            
-            # Get user's response
-            user_messages = [m for m in messages if m.__class__.__name__ == "HumanMessage"]
-            # print(user_messages)
-            if len(user_messages) > gathering_step:
-                last_user_msg = user_messages[-1]
-                print(last_user_msg)
-                last_question = state.get("follow_up_question", "")
-                
-                logger.info(f"Extracting answer for: {current_target}")
-                logger.info(f"Question was: {last_question}")
-                logger.info(f"User response: {last_user_msg.content[:100]}...")
-                
-                # Extract the information  
-                extracted = self._extract_information(
-                    last_question=last_question,
-                    user_response=last_user_msg.content,
-                    info_target=current_target
-                )
-                
-                logger.info(f"Extracted: {extracted}")
-                
-                # Store the answer
-                if extracted and extracted != "NOT_PROVIDED":
-                    # Special handling for gender
-                    if current_target == "user_gender":
-                        extracted = self._normalize_gender(extracted)
-                        info_collected["user_gender"] = extracted
-                        state["user_gender"] = extracted
-                        logger.info(f"✓ Gender identified and stored: {extracted}")
-                    else:
-                        info_collected[current_target] = extracted
-                        logger.info(f"✓ Stored: {current_target} = {extracted}")
-                    
-                    # Remove from needed list
-                    info_needed_list = [
-                        item for item in info_needed_list
-                        if item["field"] != current_target
-                    ]
-                else:
-                    # Store in additional_info if not the target answer
-                    additional = info_collected.get("additional_info", "")
-                    info_collected["additional_info"] = f"{additional}\n{last_user_msg.content}".strip()
-                    logger.warning(f"Could not extract {current_target}, stored in additional_info")
-        
-        # STEP 2: Check if done
+            # Keep the client's own words whatever the extraction says: a reply
+            # often answers a different question ("My son is 6") and the next
+            # question must not ask for it again.
+            additional = info_collected.get("additional_info", "")
+            info_collected["additional_info"] = f"{additional}\n{query}".strip()
+
+            if extracted and extracted != "NOT_PROVIDED" and not self._is_non_answer(extracted):
+                if "gender" in current_target.lower():
+                    extracted = self._normalize_gender(extracted)
+                    gender = extracted
+                info_collected[current_target] = extracted
+            else:
+                # Record it and move on: asking the same thing again only
+                # stalls the consultation, and the generator can say what is unknown.
+                info_collected[current_target] = self.NOT_PROVIDED_TEXT
+                logger.info(f"No usable answer for {current_target}; marked as not provided")
+
+            # The same reply often answers other open questions too ("No children
+            # and no other obligations"); record those so they are not asked again.
+            others = [i for i in info_needed_list
+                      if i["field"] != current_target and i["field"] not in info_collected]
+            if others:
+                for field, value in self._extract_other_answers(last_question, query, others).items():
+                    info_collected[field] = value
+                    logger.info(f"Also answered by this reply: {field}")
+
+        # Drop anything already known (answered, declined, or volunteered earlier)
+        labels = state.get("field_labels") or {}
+        info_needed_list = [item for item in info_needed_list if not gap_is_known(item, info_collected, labels)]
+        if gender != "unknown":
+            info_needed_list = [item for item in info_needed_list if item["field"] != "user_gender"]
+
+        done = {
+            "needs_more_info": False,
+            "info_collected": info_collected,
+            "info_needed_list": [],
+            "gathering_step": gathering_step,
+            "current_question_target": None,
+            "awaiting_answer": False,
+            "questions_asked": questions_asked,
+            "user_gender": gender if gender != "unknown" else None,
+        }
+
+        # STEP 2: check if done
         if not info_needed_list:
             logger.info("✓ All information collected!")
-            return {
-                "needs_more_info": False,
-                "info_collected": info_collected,
-                "info_needed_list": [],
-                "gathering_step": gathering_step,
-                "current_question_target": None
-            }
-        
-        # Generate next question
-        next_item = info_needed_list[0]
+            return done
+        if questions_asked >= self.MAX_FOLLOW_UP_QUESTIONS:
+            logger.info(f"✓ Asked {questions_asked} questions; answering with what we have")
+            return done
 
-        next_target = next_item["field"]
-        next_reason = next_item.get("reason", "")
-        print(f"Next target: {next_target}, reason: {next_reason}")
-        
-        # Skip if gender already collected
-        if next_target == "user_gender" and state.get("user_gender") != "unknown":
-            logger.info("Gender already known, skipping...")
-            info_needed_list = [
-                item for item in info_needed_list
-                if item["field"] != "user_gender"
-            ]
-            if not info_needed_list:
-                return {
-                    "needs_more_info": False,
-                    "info_collected": info_collected,
-                    "info_needed_list": [],
-                    "gathering_step": gathering_step,
-                    "current_question_target": None
-                }
-            next_item = info_needed_list[0]
-            next_target = next_item["field"]
-            next_reason = next_item.get("reason", "")
-        
-        logger.info(f"Generating question for: {next_target}")
-
-        # Read language from state (set by query_analyzer)
+        # STEP 3: choose and ask the most useful missing fact
         detected_lang = state.get("detected_language") or detect_language(root_query)
-        
-        next_question = self._generate_question(
+        next_item, next_question = self._choose_and_ask(
             name=name,
             gender=gender,
             root_query=root_query,
             user_intent=user_intent,
             info_collected=info_collected,
-            current_target=next_target,
-            current_reason=next_reason,
-            all_remaining=info_needed_list,
+            remaining=info_needed_list,
             detected_lang=detected_lang,
+            document=state.get("document_context") or "",
+            asked_questions=asked_questions,
         )
-        
+        next_target = next_item["field"]
+        logger.info(f"Asking about: {next_target}")
+        # Asked item goes first so the extraction on the next turn and the "still to ask" list agree.
+        info_needed_list = [next_item] + [i for i in info_needed_list if i["field"] != next_target]
+
         return {
             "needs_more_info": True,
             "follow_up_question": next_question,
             "info_collected": info_collected,
             "info_needed_list": info_needed_list,
             "gathering_step": gathering_step + 1,
-            "current_question_target": next_target
+            "current_question_target": next_target,
+            "awaiting_answer": True,
+            "questions_asked": questions_asked + 1,
+            "asked_questions": asked_questions + [next_question],
+            "user_gender": gender if gender != "unknown" else None,
         }
+
+    NEXT_QUESTION_PROMPT = """You are a compassionate Indian FAMILY LAW advocate interviewing a client.
+
+SITUATION:
+- Client's name: {name}
+- Client's message: {root_query}
+- Client's gender: {gender}
+- Information already collected: {info_collected}
+- Client's attached document (excerpt): {document}
+
+STILL UNKNOWN (open items; the id is before the colon):
+{open_items}
+
+QUESTIONS YOU HAVE ALREADY ASKED (in order):
+{asked_questions}
+
+YOUR TASK:
+1. Think like an advocate about THIS client. Of the open items, which ONE would most change your advice if you knew it right now? Choose it; it need not be the first one listed, and it should not be "date of marriage" unless that really decides the remedy.
+2. Ask about that one thing in ONE clear, empathetic question.
+
+RULES:
+- Output ONLY the JSON below; the question is spoken directly to the client ("you"), with no notes or reasoning.
+- Do not state anything the client has not told you (never assume marital status, children, income, who is at fault). Work out who the client is and who the other people are first.
+- Do not state legal rules, conclusions or advice; ask only. Never treat the other side's acts (a talaq, a notice, a threat, an eviction) as legally valid; describe them neutrally.
+- Never ask for names, exact addresses, phone numbers or ID numbers.
+- Ask exactly ONE question: a single sentence ending in a question mark, with no second part ("and also ...") and no list.
+- Do not repeat or reword a question you already asked, and do not ask for anything already collected.
+- Do not open with a stock phrase ("I'm sorry you're going through this", "To determine...", "To help me understand..."). Tie any empathy to a specific detail the client gave, or just ask.
+{lang_instruction}
+
+Reply with ONLY this JSON: {{"field": "<exact id of the open item you chose>", "question": "<your question>"}}"""
+
+    def _choose_and_ask(self, *, name, gender, root_query, user_intent, info_collected, remaining,
+                        detected_lang, document, asked_questions):
+        """
+        Pick the open item that matters most for this client right now and ask about it.
+
+        The analyzer lists the gaps in no particular order, and a fixed list order made
+        every case start with the same question. One model call both chooses the gap and
+        writes the question; if that fails the first open item is asked the old way.
+        """
+        first = remaining[0]
+        if len(remaining) > 1:
+            lang_instruction = build_language_instruction(detected_lang)
+            valid = {i["field"] for i in remaining}
+            prompt = self.NEXT_QUESTION_PROMPT.format(
+                name=name,
+                gender=gender,
+                root_query=root_query,
+                info_collected=self._format_info_collected(info_collected) or "None yet",
+                document=document.strip()[:1500] if document and document.strip() else "None",
+                open_items="\n".join(
+                    f"- {i['field']}: {i.get('label') or i['field'].replace('_', ' ')}"
+                    + (f" ({i['reason']})" if i.get("reason") else "")
+                    for i in remaining
+                ),
+                asked_questions="\n".join(f"{n}. {q}" for n, q in enumerate(asked_questions, 1)) or "None yet",
+                lang_instruction=lang_instruction,
+            )
+            try:
+                response = invoke_llm(
+                    [SystemMessage(content="You are an empathetic attorney. Reply with only the JSON."),
+                     HumanMessage(content=prompt)],
+                    purpose="fast", max_tokens=700, temperature=0.4, deadline=35,
+                    validate=lambda text: self._parse_choice(text, valid),
+                )
+                field, question = self._parse_choice(strip_think(response.content), valid)
+                return next(i for i in remaining if i["field"] == field), question
+            except Exception as exc:
+                logger.warning(f"Could not choose the next question ({type(exc).__name__}: {str(exc)[:100]}); asking the first open item")
+
+        question = self._generate_question(
+            name=name, gender=gender, root_query=root_query, user_intent=user_intent,
+            info_collected=info_collected, current_target=first.get("label") or first["field"],
+            current_reason=first.get("reason", ""), all_remaining=remaining, detected_lang=detected_lang,
+            document=document, asked_questions=asked_questions,
+        )
+        return first, question
+
+    def _parse_choice(self, text: str, valid_fields):
+        """(field, question) from the model's JSON, or ValueError so the chain moves on."""
+        data = extract_json(text)
+        field = str(data.get("field") or "").strip()
+        question = self._clean_question(str(data.get("question") or ""))
+        if field not in valid_fields:
+            raise ValueError(f"unknown field {field!r}")
+        self._check_question(question)
+        return field, question
     
+    # Models sometimes describe a missing answer instead of returning
+    # NOT_PROVIDED ("The client did not confirm their religion ...").
+    _NON_ANSWER_RE = re.compile(
+        r"\b(?:did not|didn't|does not|doesn't|has not|hasn't|not)\s+"
+        r"(?:provide|specify|confirm|mention|answer|state|say|share|give|disclose)\w*"
+        r"|\bnot provided\b|\bno (?:relevant )?(?:information|answer|details)\b",
+        re.IGNORECASE,
+    )
+
+    def _is_non_answer(self, extracted: str) -> bool:
+        return bool(self._NON_ANSWER_RE.search(extracted or ""))
+
+    OTHER_ANSWERS_PROMPT = """A family-law lawyer asked a client a question and the client replied.
+The lawyer still has these open questions:
+{open_items}
+
+QUESTION JUST ASKED: {question}
+CLIENT'S REPLY: {reply}
+
+Which of the open questions does the reply ALREADY answer clearly (even though it was not asked)?
+Return ONLY JSON: {{"answers": {{"<field id>": "one short sentence stating the answer in the client's own terms"}}}}
+Include a field only if the reply states the answer; never guess, and never include a field the reply does not
+address. If none, return {{"answers": {{}}}}."""
+
+    def _extract_other_answers(self, question: str, reply: str, open_items: List[Dict[str, str]]) -> Dict[str, str]:
+        """Answers the reply gives to open gaps other than the one just asked."""
+        listing = "\n".join(
+            f"- {i['field']}: {i.get('label') or i['field'].replace('_', ' ')}" for i in open_items
+        )
+        prompt = self.OTHER_ANSWERS_PROMPT.format(open_items=listing, question=question or "(opening message)", reply=reply)
+        try:
+            response = invoke_llm(
+                [SystemMessage(content="Extract answers. Return only JSON."), HumanMessage(content=prompt)],
+                purpose="fast", max_tokens=600, temperature=0.0, deadline=30, validate=extract_json,
+            )
+            answers = extract_json(response.content).get("answers") or {}
+        except Exception as exc:
+            logger.warning(f"Could not check the reply against other open questions: {type(exc).__name__}")
+            return {}
+        valid = {i["field"] for i in open_items}
+        return {
+            str(f): str(v).strip()
+            for f, v in answers.items()
+            if f in valid and v and not self._is_non_answer(str(v)) and str(v).strip().upper() != "NOT_PROVIDED"
+        }
+
+    # Signs the model wrote notes about the client rather than to them.
+    _META_RE = re.compile(
+        r"^\s*the client\b|other things the client said|information already collected|"
+        r"\bthis information is in\b|\bnext information needed\b",
+        re.IGNORECASE,
+    )
+
+    @staticmethod
+    def _clean_question(text: str) -> str:
+        question = (text or "").strip()
+        if "YOUR QUESTION:" in question:
+            question = question.split("YOUR QUESTION:")[-1].strip()
+        return question.strip('"\'').strip()
+
+    def _check_question(self, text: str) -> None:
+        question = self._clean_question(text)
+        if len(question) < 10 or "?" not in question:
+            raise ValueError("no question in reply")
+        if self._META_RE.search(question) or looks_like_reasoning(question):
+            raise ValueError("reply describes the client or narrates the task instead of asking")
+        # One question at a time: a second "?" or a very long reply is several questions in one
+        if question.count("?") > 1 or len(question) > 450:
+            raise ValueError("more than one question in the reply")
+
     def _normalize_gender(self, text: str) -> str:
         """Normalize gender responses to consistent values."""
         text_lower = text.lower().strip()
         
-        # Female indicators
-        if any(word in text_lower for word in ["wife", "woman", "female", "girl", "she", "her"]):
+        words = set(re.findall(r"[a-z]+", text_lower))
+        # Whole words only: "the", "she" and "there" all contain "he".
+        if words & {"wife", "woman", "female", "girl", "she", "her", "f"}:
             return "female"
-        
-        # Male indicators
-        if any(word in text_lower for word in ["husband", "man", "male", "boy", "he", "him"]):
-            return "male"
-        
-        # Direct answers
-        if "f" == text_lower[0]:
-            return "female"
-        if "m" == text_lower[0]:
+        if words & {"husband", "man", "male", "boy", "he", "him", "m"}:
             return "male"
         
         return text
@@ -343,10 +478,14 @@ Response (JSON only, no other text):
         current_reason: str,
         all_remaining: List[Dict[str, str]],
         detected_lang: str = "en",
+        document: str = "",
+        asked_questions: List[str] = (),
     ) -> str:
         """Generate a focused question in the user's language."""
-        
+
         collected_str = self._format_info_collected(info_collected)
+        asked_str = "\n".join(f"{i}. {q}" for i, q in enumerate(asked_questions, 1)) or "None yet"
+        document_str = document.strip()[:1500] if document and document.strip() else "None"
         lang_instruction = build_language_instruction(detected_lang)
         if lang_instruction:
             logger.info(f"🌐 Asking follow-up question in: {get_language_name(detected_lang)} ({detected_lang})")
@@ -357,8 +496,11 @@ Response (JSON only, no other text):
             root_query=root_query,
             user_intent=user_intent.replace("_", " ").title(),
             info_collected=collected_str or "None yet",
-            current_target=current_target.replace("_", " ").title(),
+            # model-written labels are already readable; only prettify raw field ids
+            current_target=current_target if " " in current_target else current_target.replace("_", " ").title(),
             current_reason=current_reason,
+            document=document_str,
+            asked_questions=asked_str,
             lang_instruction=lang_instruction,
         )
         
@@ -368,19 +510,19 @@ Response (JSON only, no other text):
                 HumanMessage(content=prompt)
             ]
             
-            response = self.llm.invoke(conversation)
-            question = response.content.strip()
-            
-            # Clean response
-            if "YOUR QUESTION:" in question:
-                question = question.split("YOUR QUESTION:")[-1].strip()
-            question = question.strip('"\'')
-            
-            return question
+            # A reply that is empty, or the model's notes about the client
+            # instead of a question to them, fails validation and the chain
+            # moves to the next model.
+            response = invoke_llm(conversation, purpose="fast", max_tokens=800, temperature=0.1, deadline=30,
+                                  validate=self._check_question)
+            return self._clean_question(strip_think(response.content))
         
         except Exception as e:
-            logger.error(f"Error generating question: {e}")
-            return f"Could you please provide information about your {current_target.replace('_', ' ')}?"
+            logger.error(f"⚠️ Question writer FALLBACK (every model failed): {e}")
+            # Last resort only. The target may be a model-written label ("Proof you have of his
+            # refusal to pay") or a raw field id, so quote it rather than splice it into a sentence.
+            topic = current_target.replace("_", " ").strip().rstrip("?.")
+            return f"Could you tell me about this: {topic[:1].lower() + topic[1:]}?"
     
     def _extract_information(
         self, 
@@ -395,10 +537,9 @@ Response (JSON only, no other text):
         
         # Gender-specific quick extraction
         if "gender" in info_target.lower():
-            if any(word in user_lower for word in ["wife", "woman", "female", "girl", "she"]):
-                return "female"
-            if any(word in user_lower for word in ["husband", "man", "male", "boy", "he"]):
-                return "male"
+            normalized = self._normalize_gender(user_response)
+            if normalized in ("female", "male"):
+                return normalized
         
         # Simple yes/no to actual values
         if "yes" in user_lower and len(user_lower) < 10:
@@ -420,8 +561,10 @@ Response (JSON only, no other text):
                 HumanMessage(content=prompt)
             ]
             
-            response = self.llm.invoke(conversation)
-            response_text = response.content.strip()
+            response = invoke_llm(conversation, purpose="fast", max_tokens=800, temperature=0.1, deadline=30,
+                                  validate=extract_json)
+            content_clean = strip_think(response.content)
+            response_text = content_clean
             
             # Parse JSON
             if "```json" in response_text:
@@ -435,7 +578,6 @@ Response (JSON only, no other text):
             except:
                 # Fallback: look for the pattern
                 if '"extracted_answer"' in response_text:
-                    import re
                     match = re.search(r'"extracted_answer":\s*"([^"]+)"', response_text)
                     extracted = match.group(1) if match else user_response.strip()
                 else:
@@ -458,6 +600,10 @@ Response (JSON only, no other text):
         
         formatted = []
         for key, value in info_collected.items():
-            if key != "additional_info":  # Skip additional_info in display
+            if key != "additional_info":
                 formatted.append(f"- {key.replace('_', ' ').title()}: {value}")
+        # Replies that didn't answer the question asked often answer a later
+        # one ("My son is 6"); show them so that fact isn't asked for again.
+        if info_collected.get("additional_info"):
+            formatted.append(f"- Other things the client said: {info_collected['additional_info']}")
         return "\n".join(formatted)

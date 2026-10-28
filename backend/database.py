@@ -154,10 +154,25 @@ async def create_tables():
             )
 
 
+GUEST_EMAIL = "guest@local.invalid"
+
+
 async def seed_demo_users():
-    """Ensure demo user profiles exist in the database."""
+    """Ensure demo user profiles and the shared guest account exist in the database."""
     import bcrypt
+    import secrets
     from sqlalchemy import select
+    async with AsyncSessionLocal() as db:
+        try:
+            res = await db.execute(select(User).where(User.email == GUEST_EMAIL))
+            if not res.scalar_one_or_none():
+                # Random password nobody knows: the guest row exists only so
+                # unauthenticated chats have an owner; it cannot be signed into.
+                unusable = bcrypt.hashpw(secrets.token_bytes(32), bcrypt.gensalt()).decode("utf-8")
+                db.add(User(email=GUEST_EMAIL, full_name="", hashed_password=unusable, gender=None))
+                await db.commit()
+        except Exception:
+            await db.rollback()
     demo_profiles = [
         ("adv.rajesh@lawgpt.in", "Adv. Rajesh Sharma", "male"),
         ("priya.verma@lawgpt.in", "Dr. Priya Verma", "female"),
