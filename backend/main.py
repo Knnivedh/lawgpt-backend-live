@@ -403,6 +403,30 @@ async def handle_direct_query(body: DirectQueryRequest):
             res["financial_forensics"] = fin_forensics
         return res
 
+    # ── Specialized Court Judgment Analysis & QA (mode="judgment") ─────────
+    elif active_mode == "judgment":
+        from advanced_legal_engine import analyze_court_judgment
+        res = analyze_court_judgment(body.query, "query_judgment", user_query=body.query, chat_history=body.chat_history)
+        if guardrail_advice:
+            res["lay_summary"] = guardrail_advice + "\n\n---\n\n" + res.get("lay_summary", "")
+            res["expert_summary"] = guardrail_advice + "\n\n---\n\n" + res.get("expert_summary", "")
+        res["guardrail_evaluation"] = guardrail_meta
+        if fin_forensics.get("income_forensics") or (fin_forensics.get("num_discrepancies_flagged", 0) > 0):
+            res["financial_forensics"] = fin_forensics
+        return res
+
+    # ── Specialized Interactive Contract & Document Risk Auditor (mode="document") ──
+    elif active_mode == "document":
+        from advanced_legal_engine import audit_contract_document
+        res = audit_contract_document(body.query, "query_document", user_query=body.query, chat_history=body.chat_history)
+        if guardrail_advice:
+            res["lay_summary"] = guardrail_advice + "\n\n---\n\n" + res.get("lay_summary", "")
+            res["expert_summary"] = guardrail_advice + "\n\n---\n\n" + res.get("expert_summary", "")
+        res["guardrail_evaluation"] = guardrail_meta
+        if fin_forensics.get("income_forensics") or (fin_forensics.get("num_discrepancies_flagged", 0) > 0):
+            res["financial_forensics"] = fin_forensics
+        return res
+
     """
     Direct synchronous query endpoint providing full RAG retrieval & legal analysis
     from the 3,000+ Indian Family Law case & statutory parents.
