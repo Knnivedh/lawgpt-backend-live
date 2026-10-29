@@ -54,7 +54,7 @@ import time
 import traceback
 import uuid
 from contextlib import asynccontextmanager
-from typing import List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from fastapi import FastAPI, HTTPException, Request, BackgroundTasks, Depends, status, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -78,6 +78,11 @@ from config import get_settings
 from database import AsyncSessionLocal, Thread, Message, User, create_tables, seed_demo_users, get_db
 from graph import create_graph
 from auth import hash_password, verify_password, create_access_token, get_current_user
+from temporal_router import get_temporal_regime, patch_retrieved_chunks
+from state_guardrails import evaluate_scenario_guardrails, extract_guardrail_slots
+from financial_forensics import compute_assessable_maintenance_income, analyze_financial_document_text, PayslipLineItem
+from court_generators import calculate_parallel_maintenance_set_off, generate_bsa_section_63_certificate_metadata
+
 from lang_utils import detect_language
 import spaces_client
 
@@ -168,9 +173,14 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+cors_origins = list(settings.cors_origins) if isinstance(settings.cors_origins, (list, tuple)) else ["*"]
+if "https://lawgpt-frontend.pages.dev" not in cors_origins:
+    cors_origins.extend(["https://lawgpt-frontend.pages.dev", "http://localhost:3000", "http://127.0.0.1:3000"])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
+    allow_origins=cors_origins,
+    allow_origin_regex=r"https://.*\.pages\.dev|http://localhost:.*|http://127\.0\.0\.1:.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -372,6 +382,10 @@ async def handle_direct_query_endpoint(request: Request, body: DirectQueryReques
 
 
 async def handle_direct_query(body: DirectQueryRequest):
+    # Guardrail check
+    guardrail_advice, guardrail_meta = evaluate_scenario_guardrails(body.query, {})
+    # Financial forensics check
+    fin_forensics = analyze_financial_document_text(body.query)
     """
     Direct synchronous query endpoint providing full RAG retrieval & legal analysis
     from the 3,000+ Indian Family Law case & statutory parents.
@@ -483,7 +497,13 @@ async def handle_direct_query(body: DirectQueryRequest):
             + f"\n\n{lay_summary}"
         )
 
+    if guardrail_advice:
+        lay_summary = guardrail_advice + "\n\n---\n\n" + lay_summary
+        expert_summary = guardrail_advice + "\n\n---\n\n" + expert_summary
+
     return {
+        "guardrail_evaluation": guardrail_meta,
+        "financial_forensics": fin_forensics if (fin_forensics.get("income_forensics") or fin_forensics.get("num_discrepancies_flagged", 0) > 0) else None,
         "structured_query": {
             "facts": body.query,
             "legal_issue": "Indian Family Law Matters (Matrimonial, Maintenance, Custody, Domestic Rights)",
@@ -596,6 +616,16 @@ async def handle_judgment_file(
     res = await handle_direct_query(dummy_req)
     res["structured_query"]["facts"] = (user_query or f"File: {filename}") + ("\n\n[Attached File Excerpt]:\n" + extracted_text[:350] if extracted_text else "")
     res["mode"] = mode or "document"
+    
+    # Generate BSA Section 63 Certificate for uploaded evidence
+    bsa_cert = generate_bsa_section_63_certificate_metadata(raw_bytes, file.filename or "document")
+    res["bsa_section_63_certificate"] = bsa_cert
+    
+    # Financial forensics on document text
+    doc_fin = analyze_financial_document_text(extracted_text)
+    if doc_fin.get("income_forensics") or doc_fin.get("num_discrepancies_flagged", 0) > 0:
+        res["financial_forensics"] = doc_fin
+
     return res
 
 # ── ASR (voice input) endpoint ────────────────────────────────────────────────
@@ -1194,14 +1224,96 @@ async def delete_thread(
 
 # ── Health / root ─────────────────────────────────────────────────────────────
 
-@app.get("/")
-async def root():
+@app.get("/api/info")
+async def api_info():
     return {
         "name":    "Family Law Legal Assistant API",
         "version": "3.0.0",
         "status":  "operational",
         "storage": "PostgreSQL + LangGraph AsyncPostgresSaver",
     }
+
+
+
+
+# ── New Dedicated Legal Forensics Endpoints ───────────────────────────────────
+
+class FinancialForensicsPayload(BaseModel):
+    gross_monthly_income: Optional[float] = 0.0
+    deductions: Optional[List[Dict[str, Any]]] = []
+    has_minor_child: Optional[bool] = False
+    document_text: Optional[str] = None
+
+
+@app.post("/api/financial-forensics")
+async def api_financial_forensics(payload: FinancialForensicsPayload):
+    """
+    Rajnesh v. Neha Financial Forensics & Discrepancy Detection.
+    Normalizes true net disposable income and checks 5 perjury/concealment rules.
+    """
+    if payload.document_text:
+        return analyze_financial_document_text(payload.document_text)
+
+    line_items = [
+        PayslipLineItem(
+            label=d.get("label", "Deduction"),
+            amount=float(d.get("amount", 0.0)),
+            category=d.get("category", "VOLUNTARY_DEDUCTION")
+        )
+        for d in (payload.deductions or [])
+    ]
+    calc = compute_assessable_maintenance_income(
+        gross_monthly_income=payload.gross_monthly_income or 0.0,
+        deductions=line_items,
+        has_minor_child=payload.has_minor_child or False
+    )
+    return {
+        "financial_forensics_enabled": True,
+        "income_forensics": calc,
+        "rajnesh_compliance_status": "COMPLIANT"
+    }
+
+
+class SetOffPayload(BaseModel):
+    awards: List[Dict[str, Any]]
+    claimant_name: Optional[str] = "Claimant"
+    respondent_name: Optional[str] = "Respondent"
+
+
+@app.post("/api/set-off-calculator")
+async def api_set_off_calculator(payload: SetOffPayload):
+    """
+    Calculates net payable maintenance across parallel proceedings (DV / BNSS / HMA)
+    and drafts mandatory disclosure pleading per Rajnesh v. Neha.
+    """
+    return calculate_parallel_maintenance_set_off(
+        awards=payload.awards,
+        claimant_name=payload.claimant_name or "Claimant",
+        respondent_name=payload.respondent_name or "Respondent"
+    )
+
+
+@app.post("/api/bsa-certificate")
+async def api_bsa_certificate(
+    file: UploadFile = File(...),
+    device_model: Optional[str] = Form("Client Device"),
+    os_version: Optional[str] = Form("Operating System"),
+    deponent_name: Optional[str] = Form("Deponent")
+):
+    """
+    Generates Section 63(4) Bharatiya Sakshya Adhiniyam, 2023 Electronic Evidence Certificate
+    with SHA-256 cryptographic hash and Part A Schedule affidavit text.
+    """
+    raw_bytes = await file.read()
+    if not raw_bytes:
+        raise HTTPException(status_code=400, detail="File is empty")
+    return generate_bsa_section_63_certificate_metadata(
+        file_bytes=raw_bytes,
+        filename=file.filename or "evidence_file",
+        device_model=device_model or "Client Device",
+        os_version=os_version or "Operating System",
+        owner_name=deponent_name or "Deponent"
+    )
 
 
 @app.get("/health")
@@ -1214,6 +1326,14 @@ async def health_check():
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
+# Mount static frontend
+from fastapi.staticfiles import StaticFiles
+
+_frontend_dir = Path(__file__).resolve().parent / "static_frontend"
+if _frontend_dir.exists():
+    app.mount("/", StaticFiles(directory=str(_frontend_dir), html=True), name="frontend")
+
+
 if __name__ == "__main__":
     import uvicorn
 

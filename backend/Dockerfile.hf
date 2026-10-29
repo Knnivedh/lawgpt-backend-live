@@ -7,33 +7,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Set up a new non-root user with UID 1000 (Required by Hugging Face Spaces)
-RUN useradd -m -u 1000 user
+WORKDIR /app
+
+# Install uv for ultra-fast package resolution
+RUN pip install --no-cache-dir uv
+
+# Install torch CPU first for smaller image and faster build
+RUN uv pip install --no-cache-dir --system torch --index-url https://download.pytorch.org/whl/cpu
+
+# Copy requirements and install
+COPY requirements.txt ./
+RUN uv pip install --no-cache-dir --system -r requirements.txt
+
+# Create non-root user (UID 1000 required by Hugging Face Spaces)
+RUN useradd -m -u 1000 user && \
+    chown -R user:user /app
+
+# Switch to non-root user
 USER user
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
-WORKDIR $HOME/app
-
-# Install uv for fast Python package installation
-RUN pip install --no-cache-dir --user uv
-
-# Copy dependencies first for caching
-COPY --chown=user:user pyproject.toml ./
-
-# Install project dependencies into user environment
-RUN uv pip install --no-cache-dir --system -e "."
-
-# Copy full application source
+# Copy application source
 COPY --chown=user:user . .
 
-# Ensure writable directories exist
+# Ensure runtime directories exist
 RUN mkdir -p logs data/chunked data/embeddings /tmp/data
 
-# Hugging Face Spaces expects traffic on port 7860
+# Hugging Face Spaces serves on port 7860
 EXPOSE 7860
 
-# Launch Uvicorn on 0.0.0.0:7860
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]

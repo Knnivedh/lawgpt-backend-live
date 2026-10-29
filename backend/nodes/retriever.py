@@ -13,6 +13,7 @@ from embedding_client import HuggingFaceEmbeddingClient
 from lang_utils import looks_like_hinglish
 from translation_client import QueryTranslator, TranslationError
 from state import FamilyLawState
+from temporal_router import patch_retrieved_chunks
 
 logger = logging.getLogger(__name__)
 
@@ -622,6 +623,7 @@ def retrieve_documents(state: FamilyLawState) -> Dict:
             expanded_case_chunks = _expand_to_parents(case_chunks)
             expanded_law_chunks = _expand_to_parents(law_chunks)
             retrieved_chunks = _dedupe_chunks(expanded_case_chunks + expanded_law_chunks)
+            retrieved_chunks = patch_retrieved_chunks(retrieved_chunks, combined_query)
             sources = _sources_from_chunks(retrieved_chunks)
             logger.info("✅ Retrieved offline BM25 chunks: %d case, %d law (total %d)", len(case_chunks), len(law_chunks), len(retrieved_chunks))
             return {"retrieved_chunks": retrieved_chunks, "sources": sources}
@@ -692,6 +694,7 @@ def retrieve_documents(state: FamilyLawState) -> Dict:
     expanded_law_chunks = _expand_to_parents(law_chunks)
 
     retrieved_chunks = _dedupe_chunks(expanded_case_chunks + expanded_law_chunks)
+    retrieved_chunks = patch_retrieved_chunks(retrieved_chunks, combined_query)
     sources = _sources_from_chunks(retrieved_chunks)
 
     print(
