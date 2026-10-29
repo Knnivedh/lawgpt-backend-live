@@ -372,6 +372,8 @@ async def auth_me(current_user: User = Depends(get_current_user)):
 class DirectQueryRequest(BaseModel):
     query: str = Field(..., min_length=1)
     mode: Optional[str] = "family"
+    context: Optional[str] = None
+    chat_history: Optional[List[Dict[str, Any]]] = None
 
 
 @app.post("/query")
@@ -386,6 +388,21 @@ async def handle_direct_query(body: DirectQueryRequest):
     guardrail_advice, guardrail_meta = evaluate_scenario_guardrails(body.query, {})
     # Financial forensics check
     fin_forensics = analyze_financial_document_text(body.query)
+
+    active_mode = (body.mode or "family").lower()
+    
+    # ── Specialized General Citizen Legal Consultation (mode="ask") ──────────
+    if active_mode == "ask":
+        from advanced_legal_engine import analyze_general_legal_query
+        res = analyze_general_legal_query(body.query, body.chat_history)
+        if guardrail_advice:
+            res["lay_summary"] = guardrail_advice + "\n\n---\n\n" + res.get("lay_summary", "")
+            res["expert_summary"] = guardrail_advice + "\n\n---\n\n" + res.get("expert_summary", "")
+        res["guardrail_evaluation"] = guardrail_meta
+        if fin_forensics.get("income_forensics") or (fin_forensics.get("num_discrepancies_flagged", 0) > 0):
+            res["financial_forensics"] = fin_forensics
+        return res
+
     """
     Direct synchronous query endpoint providing full RAG retrieval & legal analysis
     from the 3,000+ Indian Family Law case & statutory parents.
@@ -607,26 +624,40 @@ async def handle_judgment_file(
         raise HTTPException(status_code=422, detail=warning)
 
     user_query = (query or "").strip()
-    if user_query:
-        query_str = f"{user_query}\n\n[Attached Document Context: {filename}]\n{extracted_text[:1200]}".strip()
-        dummy_req = DirectQueryRequest(query=query_str, mode=mode or "family")
-    else:
-        query_str = (extracted_text[:1500] if extracted_text else f"Analysis of legal document {filename}").strip()
-        dummy_req = DirectQueryRequest(query=query_str, mode="document")
-    res = await handle_direct_query(dummy_req)
-    res["structured_query"]["facts"] = (user_query or f"File: {filename}") + ("\n\n[Attached File Excerpt]:\n" + extracted_text[:350] if extracted_text else "")
-    res["mode"] = mode or "document"
-    
+    active_mode = (mode or "judgment").lower()
+
     # Generate BSA Section 63 Certificate for uploaded evidence
     bsa_cert = generate_bsa_section_63_certificate_metadata(raw_bytes, file.filename or "document")
-    res["bsa_section_63_certificate"] = bsa_cert
-    
-    # Financial forensics on document text
-    doc_fin = analyze_financial_document_text(extracted_text)
-    if doc_fin.get("income_forensics") or doc_fin.get("num_discrepancies_flagged", 0) > 0:
-        res["financial_forensics"] = doc_fin
 
-    return res
+    # ── Mode 1: Specialized Court Judgment Analysis & Briefing ───────────
+    if active_mode == "judgment":
+        from advanced_legal_engine import analyze_court_judgment
+        res = analyze_court_judgment(extracted_text, filename, user_query)
+        res["bsa_section_63_certificate"] = bsa_cert
+        return res
+
+    # ── Mode 2: Interactive Contract & Document Risk Auditor ─────────────
+    elif active_mode == "document":
+        from advanced_legal_engine import audit_contract_document
+        res = audit_contract_document(extracted_text, filename, user_query)
+        res["bsa_section_63_certificate"] = bsa_cert
+        doc_fin = analyze_financial_document_text(extracted_text)
+        if doc_fin.get("income_forensics") or doc_fin.get("num_discrepancies_flagged", 0) > 0:
+            res["financial_forensics"] = doc_fin
+        return res
+
+    # ── Mode 3: Family or Other Context Attachment ────────────────────────
+    else:
+        query_str = f"{user_query}\n\n[Attached Document Context: {filename}]\n{extracted_text[:2500]}".strip() if user_query else extracted_text[:2500]
+        dummy_req = DirectQueryRequest(query=query_str, mode=active_mode)
+        res = await handle_direct_query(dummy_req)
+        res["structured_query"]["facts"] = (user_query or f"File: {filename}") + ("\n\n[Attached File Excerpt]:\n" + extracted_text[:400] if extracted_text else "")
+        res["mode"] = active_mode
+        res["bsa_section_63_certificate"] = bsa_cert
+        doc_fin = analyze_financial_document_text(extracted_text)
+        if doc_fin.get("income_forensics") or doc_fin.get("num_discrepancies_flagged", 0) > 0:
+            res["financial_forensics"] = doc_fin
+        return res
 
 # ── ASR (voice input) endpoint ────────────────────────────────────────────────
 
