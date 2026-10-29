@@ -1352,7 +1352,7 @@ async def health_check():
     return {
         "status":    "healthy",
         "timestamp": datetime.utcnow().isoformat(),
-        "version":   "3.0.0",
+        "version":   "3.1.0-advanced-legal-engine",
     }
 
 
